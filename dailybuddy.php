@@ -25,7 +25,7 @@ define('DAILYBUDDY_VERSION', '1.0.0');
 define('DAILYBUDDY_PATH', plugin_dir_path(__FILE__));
 define('DAILYBUDDY_URL', plugin_dir_url(__FILE__));
 define('DAILYBUDDY_BASENAME', plugin_basename(__FILE__));
-define('DAILYBUDDY_DEV_MODE', false); // Set to true to enable development mode
+define('DAILYBUDDY_DEV_MODE', true); // Set to true to enable development mode
 
 // Include core files
 require_once DAILYBUDDY_PATH . 'includes/helpers.php';

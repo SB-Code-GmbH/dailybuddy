@@ -1,0 +1,1141 @@
+/**
+ * dailybuddy Content Folders v4.1
+ * IMPROVED VERSION - Fixes für alle 5 Probleme
+ */
+
+/* ========== VARIABLES ========== */
+:root {
+    --sidebar-width: 275px;
+    --sidebar-min-width: 200px;
+    --sidebar-max-width: 500px;
+    --wp-menu-width: 160px;
+    /* Default */
+}
+
+/* WordPress Menu Width Detection - Höhere Spezifität */
+body.wp-admin {
+    --wp-menu-width: 160px;
+    /* Default: Normal Menu */
+}
+
+
+/* Collapsed State - NUR wenn tatsächlich folded! */
+body.folded {
+    --wp-menu-width: 36px !important;
+    /* Collapsed Menu */
+}
+
+/* WordPress responsive behavior: Bei <960px wird auto-fold zu 36px */
+@media screen and (max-width: 960px) {
+    body.auto-fold {
+        --wp-menu-width: 36px !important;
+    }
+}
+
+/* Extra Sicherheit: Bei <782px immer collapsed */
+@media screen and (max-width: 782px) {
+    body {
+        --wp-menu-width: 0;
+        /* Menu hidden */
+    }
+}
+
+/* ========== SIDEBAR CONTAINER ========== */
+.dailybuddy-folders-sidebar {
+    position: fixed;
+    left: calc(var(--wp-menu-width) * -1);
+    /* Hidden: -(WP menu width) */
+    top: 32px;
+    bottom: 0;
+    width: var(--sidebar-width);
+    background: #fff;
+    border-right: 1px solid #ddd;
+    /* z-index: 0 removed - stays below WP menu */
+    overflow-x: hidden;
+    /* Prevent content from overflowing left into WP menu */
+    display: flex;
+    flex-direction: column;
+    box-shadow: 2px 0 8px rgba(0, 0, 0, 0.05);
+    transition: left 0.3s ease, width 0.1s ease, visibility 0s 0.3s;
+    visibility: hidden;
+}
+
+/* Active/Open State - Automatisch richtige Position */
+.dailybuddy-folders-sidebar.active {
+    left: var(--wp-menu-width) !important;
+    /* Right of WP menu */
+    visibility: visible;
+    transition: left 0.3s ease, width 0.1s ease, visibility 0s 0s;
+}
+
+/* Hidden state - push far off screen */
+.dailybuddy-folders-sidebar:not(.active) {
+    left: calc((var(--sidebar-width) + var(--wp-menu-width)) * -1) !important;
+}
+
+/* ========== RESPONSIVE - WORDPRESS STYLE ========== */
+
+/* WordPress macht automatisch diese Änderungen:
+   - >960px: Normal Desktop, #adminmenu width 160px
+   - <=960px: Schmaler Desktop, #adminmenu width 160px  
+   - <=782px: Mobile, #adminmenu margin-left -160px (hidden)
+*/
+
+/* Wir brauchen nur EINE Media Query für sehr kleine Screens */
+@media screen and (max-width: 782px) {
+
+    /* Admin bar wird höher */
+    .dailybuddy-folders-sidebar {
+        top: 46px;
+    }
+
+    /* Sidebar schmaler auf Mobile */
+    .dailybuddy-folders-sidebar {
+        --sidebar-width: 250px;
+        max-width: 90%;
+        z-index: 9999;
+        /* Above WP menu in overlay mode */
+    }
+
+    /* Overlay Mode - Sidebar überlappt */
+    .dailybuddy-folders-sidebar.active {
+        left: 0 !important;
+    }
+
+    body.folded .dailybuddy-folders-sidebar.active {
+        left: 0 !important;
+    }
+
+    /* Backdrop/Overlay */
+    body.sb-folders-active::before {
+        content: '';
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: rgba(0, 0, 0, 0.3);
+        z-index: 8;
+    }
+}
+
+/* Sehr kleine Screens */
+@media screen and (max-width: 540px) {
+    .dailybuddy-folders-sidebar {
+        --sidebar-width: 100%;
+        max-width: 100%;
+    }
+}
+
+/* ========== RESIZER (FIX 2) ========== */
+.dailybuddy-folders-resizer {
+    position: absolute;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    width: 8px;
+    cursor: ew-resize;
+    z-index: 10;
+    transition: background 0.2s;
+    pointer-events: none;
+    /* Disabled by default */
+    opacity: 0;
+}
+
+/* Only enable resizer when sidebar is active */
+.dailybuddy-folders-sidebar.active .dailybuddy-folders-resizer {
+    pointer-events: auto;
+    opacity: 1;
+}
+
+.dailybuddy-folders-resizer:hover,
+.dailybuddy-folders-resizer.resizing {
+    background: rgba(17, 170, 0, 0.185);
+}
+
+.dailybuddy-folders-resizer::after {
+    content: '';
+    position: absolute;
+    left: 3px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 2px;
+    height: 40px;
+    background: #ccc;
+    border-radius: 1px;
+}
+
+.dailybuddy-folders-resizer.resizing::after {
+    background: var(--folder-primary-color, #91CE00);
+}
+
+/* ========== CONTENT MARGIN (FIX 1 & 5) ========== */
+body.dailybuddy-folders-active #wpcontent {
+    margin-left: calc(var(--wp-menu-width) + var(--sidebar-width)) !important;
+    transition: margin-left 0.3s ease;
+}
+
+
+/* ========== CONTENT MARGIN ========== */
+/* Desktop: Push content right - automatisch angepasst an WP Menu */
+body.sb-folders-active .wrap {
+    margin-left: calc(var(--wp-menu-width) + var(--sidebar-width) + 20px);
+    transition: margin-left 0.3s ease;
+}
+
+/* Mobile: No margin, overlay mode */
+@media screen and (max-width: 782px) {
+    body.sb-folders-active .wrap {
+        margin-left: 0 !important;
+    }
+}
+
+/* ========== FOOTER MARGIN ========== */
+body.dailybuddy-folders-active #wpfooter {
+    margin-left: calc(var(--wp-menu-width) + var(--sidebar-width)) !important;
+    transition: margin-left 0.3s ease;
+}
+
+/* Mobile: No margin */
+@media screen and (max-width: 782px) {
+    body.dailybuddy-folders-active #wpfooter {
+        margin-left: 0 !important;
+    }
+}
+
+/* ========== TOGGLE BUTTON ========== */
+.dailybuddy-folders-toggle {
+    position: fixed;
+    left: var(--wp-menu-width);
+    /* Automatisch nach WP Menu */
+    top: 52px;
+    z-index: 10;
+    background: var(--folder-primary-color, #91CE00);
+    color: #fff;
+    border: none;
+    padding: 6px 2px;
+    cursor: pointer;
+    border-radius: 0 4px 4px 0;
+    box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.15);
+    transition: all 0.3s ease;
+}
+
+/* When sidebar active: move with sidebar */
+body.dailybuddy-folders-active .dailybuddy-folders-toggle {
+    left: calc(var(--wp-menu-width) + var(--sidebar-width));
+}
+
+.dailybuddy-folders-toggle:hover {
+    background: var(--folder-accent-color, #478d63);
+}
+
+.dailybuddy-folders-toggle .dashicons {
+    font-size: 16px;
+    width: 16px;
+    height: 16px;
+}
+
+/* Mobile: Toggle links */
+@media screen and (max-width: 782px) {
+    .dailybuddy-folders-toggle {
+        left: 0 !important;
+        top: 46px !important;
+        border-radius: 0 0 4px 0;
+    }
+
+    body.dailybuddy-folders-active .dailybuddy-folders-toggle {
+        left: var(--sidebar-width) !important;
+    }
+}
+
+/* ========== HEADER ========== */
+.folders-header {
+    padding: 16px;
+    background: #f9f9f9;
+    border-bottom: 1px solid #ddd;
+    flex-shrink: 0;
+}
+
+.folders-header h3 {
+    margin: 0 0 10px 0;
+    font-size: 12px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: #555;
+}
+
+.folders-header .button {
+    width: 100%;
+    height: 34px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    background: var(--folder-primary-color, #91CE00);
+    border: none;
+    color: #fff;
+    font-size: 13px;
+    font-weight: 500;
+    border-radius: 3px;
+}
+
+.folders-header .button:hover {
+    background: var(--folder-accent-color, #478d63);
+    color: #ccc;
+}
+
+/* ========== SEARCH ========== */
+.folders-search {
+    padding: 12px 16px;
+    background: #fff;
+    border-bottom: 1px solid #e5e5e5;
+    flex-shrink: 0;
+}
+
+.folders-search input {
+    width: 100%;
+    padding: 7px 10px;
+    border: 1px solid #ddd;
+    border-radius: 3px;
+    font-size: 13px;
+}
+
+.folders-search input:focus {
+    border-color: var(--folder-primary-color, #91CE00);
+    outline: none;
+    box-shadow: 0 0 0 1px var(--folder-primary-color, #91CE00);
+}
+
+/* ========== TREE CONTAINER ========== */
+.folders-tree-container {
+    flex: 1;
+    overflow-y: auto;
+    overflow-x: hidden;
+    background: #fff;
+    padding: 8px 0;
+}
+
+.folders-tree-container::-webkit-scrollbar {
+    width: 8px;
+}
+
+.folders-tree-container::-webkit-scrollbar-thumb {
+    background: #ccc;
+    border-radius: 4px;
+}
+
+/* ========== SPECIAL FOLDERS ========== */
+.folders-special {
+    padding: 0 12px 8px;
+    border-bottom: 1px solid #e5e5e5;
+    margin-bottom: 8px;
+}
+
+.folder-item {
+    display: flex;
+    align-items: center;
+    padding: 8px 10px;
+    cursor: pointer;
+    border-radius: 3px;
+    gap: 8px;
+    font-size: 13px;
+    color: #555;
+    margin-bottom: 2px;
+    transition: all 0.15s;
+}
+
+.folder-item:hover {
+    background: #f0f0f1;
+}
+
+.folder-item.active {
+    background: var(--folder-primary-color, #91CE00);
+    color: #fff;
+    font-weight: 500;
+}
+
+.folder-item .dashicons {
+    font-size: 18px;
+    width: 18px;
+    height: 18px;
+    color: var(--folder-primary-color, #91CE00);
+}
+
+.folder-item.active .dashicons {
+    color: #fff;
+}
+
+.folder-item .folder-name {
+    flex: 1;
+}
+
+.folder-item .folder-count {
+    background: rgba(0, 0, 0, 0.08);
+    padding: 2px 6px;
+    border-radius: 10px;
+    font-size: 11px;
+    font-weight: 600;
+}
+
+.folder-item.active .folder-count {
+    background: rgba(255, 255, 255, 0.25);
+}
+
+/* ========== FOLDER TREE ========== */
+.folders-tree {
+    padding: 0 12px;
+}
+
+.folders-tree ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.folders-tree li {
+    margin: 2px 0;
+}
+
+.folders-tree .folder-tree-item {
+    display: flex;
+    align-items: center;
+    padding: 8px 10px;
+    cursor: pointer;
+    border-radius: 3px;
+    gap: 8px;
+    font-size: 13px;
+    color: #555;
+    transition: all 0.15s;
+}
+
+.folders-tree .folder-tree-item:hover {
+    background: #f0f0f1;
+}
+
+.folders-tree .folder-tree-item.active {
+    background: var(--folder-primary-color, #91CE00);
+    color: #fff;
+    font-weight: 600;
+    box-shadow: 0 0 0 2px rgba(0, 115, 170, 0.2);
+}
+
+.folders-tree .folder-tree-item .dashicons {
+    font-size: 16px;
+    width: 16px;
+    height: 16px;
+    color: var(--folder-primary-color, #91CE00);
+}
+
+.folders-tree .folder-tree-item.active .dashicons {
+    color: #fff;
+}
+
+.context-menu-icon {
+    color: var(--folder-primary-color, #91CE00) !important;
+}
+
+.folders-tree .folder-tree-item .folder-name {
+    flex: 1;
+}
+
+.folders-tree .folder-tree-item .folder-count {
+    background: rgba(0, 0, 0, 0.08);
+    padding: 2px 6px;
+    border-radius: 10px;
+    font-size: 10px;
+    font-weight: 600;
+}
+
+.folders-tree .folder-tree-item.active .folder-count {
+    background: rgba(255, 255, 255, 0.25);
+}
+
+/* Hierarchie */
+.folders-tree ul ul {
+    margin-left: 20px;
+}
+
+/* Droppable */
+.folder-tree-item.drop-hover {
+    background: #e1f0fa !important;
+    border: 2px dashed var(--folder-primary-color, #91CE00);
+}
+
+/* ========== NEW FOLDER FORM ========== */
+.folders-form {
+    padding: 16px;
+    background: #f9f9f9;
+    border-top: 1px solid #ddd;
+    flex-shrink: 0;
+}
+
+.folders-form input {
+    width: 100%;
+    padding: 7px 10px;
+    border: 1px solid #ddd;
+    border-radius: 3px;
+    font-size: 13px;
+    margin-bottom: 8px;
+}
+
+.folders-form-actions {
+    display: flex;
+    gap: 8px;
+}
+
+.folders-form-actions .button {
+    flex: 1;
+    height: 30px;
+    font-size: 12px;
+}
+
+#dailybuddy-cancel-folder-btn {
+    border: none;
+    color: var(--folder-primary-color, #91CE00);
+    font-size: 13px;
+    font-weight: 500;
+    border-radius: 3px;
+}
+
+#dailybuddy-create-folder-btn {
+    background: var(--folder-primary-color, #91CE00);
+    border: none;
+    color: #fff;
+    font-size: 13px;
+    font-weight: 500;
+    border-radius: 3px;
+}
+
+
+#dailybuddy-folder-name-input:focus {
+    border-color: var(--folder-primary-color, #91CE00);
+    box-shadow: 0 0 0 1px var(--folder-primary-color, #91CE00);
+}
+
+#dailybuddy-rename-folder-cancel-btn {
+    border: none;
+    color: var(--folder-primary-color, #91CE00);
+    font-size: 13px;
+    font-weight: 500;
+    border-radius: 3px;
+}
+
+#dailybuddy-rename-folder-save-btn {
+    background: var(--folder-primary-color, #91CE00);
+    border: none;
+    color: #fff;
+    font-size: 13px;
+    font-weight: 500;
+    border-radius: 3px;
+}
+
+
+#dailybuddy-rename-folder-input:focus {
+    border-color: var(--folder-primary-color, #91CE00);
+    box-shadow: 0 0 0 1px var(--folder-primary-color, #91CE00);
+}
+
+.folders-tree .folder-name,
+.folders-special .folder-name,
+.folder-tree-item .folder-name {
+    display: inline-block;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    vertical-align: middle;
+}
+
+.folder-tree-item .folder-name {
+    max-width: calc(var(--sidebar-width) - 90px);
+}
+
+
+/* ========== TABLE COLUMNS (FIX 3 & 4) ========== */
+
+/* Neue Drag Handle Spalte (FIX 3) */
+.wp-list-table th.column-dailybuddy_drag,
+.wp-list-table td.column-dailybuddy_drag {
+    width: 40px !important;
+    min-width: 40px !important;
+    max-width: 40px !important;
+    padding: 8px 4px !important;
+    text-align: center;
+}
+
+.dailybuddy-drag-handle {
+    cursor: move;
+    opacity: 0.3;
+    padding: 4px;
+    display: inline-block;
+    transition: opacity 0.2s;
+    touch-action: none;
+}
+
+tr:hover .dailybuddy-drag-handle {
+    opacity: 0.6;
+}
+
+.dailybuddy-drag-handle:hover {
+    opacity: 1 !important;
+}
+
+.dailybuddy-drag-handle .dashicons {
+    font-size: 18px;
+    width: 18px;
+    height: 18px;
+    color: #999;
+}
+
+.dailybuddy-drag-helper-minimal {
+    position: fixed;
+    padding: 10px 14px;
+    background: #fff;
+    border: 2px solid var(--folder-primary-color, #91CE00);
+    border-radius: 6px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+    z-index: 100000;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    opacity: 0.95;
+    pointer-events: none;
+}
+
+.dailybuddy-drag-helper-minimal .drag-icon {
+    opacity: 0.6;
+}
+
+.dailybuddy-drag-helper-minimal .drag-title {
+    font-weight: 600;
+    color: #333;
+}
+
+body.post-type-post .wp-list-table th.column-title,
+body.post-type-post .wp-list-table td.column-title {
+    width: 260px !important;
+    white-space: normal;
+}
+
+.wp-list-table th.column-name,
+.wp-list-table td.column-name {
+    min-width: 200px;
+}
+
+/* Folder Spalte sichtbar machen (FIX 4) */
+.wp-list-table th.column-dailybuddy_folder,
+.wp-list-table td.column-dailybuddy_folder {
+    display: table-cell !important;
+    width: 150px;
+}
+
+.wp-list-table td.column-dailybuddy_folder {
+    color: #50575e;
+}
+
+.wp-list-table td.column-dailybuddy_folder a {
+    text-decoration: none;
+    color: #2271b1;
+    cursor: pointer;
+}
+
+.wp-list-table td.column-dailybuddy_folder a:hover {
+    color: #135e96;
+}
+
+/* Folder Badge Styling */
+.dailybuddy-folder-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    padding: 2px 8px;
+    background: #f0f0f1;
+    border-radius: 3px;
+    font-size: 12px;
+    transition: background 0.15s;
+}
+
+.dailybuddy-folder-badge:focus {
+    box-shadow: 0 0 0 2px transparent;
+}
+
+.dailybuddy-folder-badge:hover {
+    background: #e0e0e1;
+}
+
+.dailybuddy-folder-badge .dashicons {
+    font-size: 14px;
+    width: 14px;
+    height: 14px;
+    color: var(--folder-primary-color, #91CE00);
+}
+
+/* Unassigned State */
+.dailybuddy-folder-badge.unassigned {
+    color: #999;
+}
+
+.dailybuddy-folder-badge.unassigned .dashicons {
+    color: #999;
+}
+
+/* ========== DRAG FEEDBACK ========== */
+.dailybuddy-dragging {
+    opacity: 0.5;
+}
+
+.dailybuddy-drag-helper {
+    position: fixed;
+    z-index: 10000;
+    pointer-events: none;
+    background: #fff;
+    border: 2px solid var(--folder-primary-color, #91CE00);
+    border-radius: 3px;
+    padding: 8px 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    font-size: 13px;
+}
+
+/* ========== RESPONSIVE ========== */
+@media screen and (max-width: 782px) {
+    .dailybuddy-folders-sidebar {
+        width: 100%;
+        left: 0 !important;
+    }
+
+    .dailybuddy-folders-sidebar.collapsed {
+        left: -100% !important;
+    }
+
+    .dailybuddy-folders-toggle {
+        left: 0 !important;
+    }
+
+    body.dailybuddy-folders-active #wpcontent {
+        margin-left: 0 !important;
+    }
+
+    .dailybuddy-folders-resizer {
+        display: none;
+    }
+}
+
+/* ========== ADDITIONAL IMPROVEMENTS ========== */
+
+/* Bessere Scroll-Performance */
+.folders-tree-container {
+    will-change: scroll-position;
+}
+
+/* Smooth Transitions */
+* {
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Focus States für Accessibility */
+.folder-item:focus,
+.folder-tree-item:focus {
+    outline: 2px solid var(--folder-primary-color, #91CE00);
+    outline-offset: 2px;
+}
+
+/* Loading State */
+.folders-tree-container.loading {
+    opacity: 0.5;
+    pointer-events: none;
+}
+
+.folders-tree-container.loading::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 30px;
+    height: 30px;
+    border: 3px solid #f0f0f1;
+    border-top-color: var(--folder-primary-color, #91CE00);
+    border-radius: 50%;
+    animation: spin 0.6s linear infinite;
+}
+
+@keyframes spin {
+    to {
+        transform: translate(-50%, -50%) rotate(360deg);
+    }
+}
+
+/* ========== CONTEXT MENU (NEW) ========== */
+.folders-tree-container.loading {
+    opacity: 0.5;
+    pointer-events: none;
+}
+
+.folders-tree-container.loading::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 30px;
+    height: 30px;
+    border: 3px solid #f0f0f1;
+    border-top-color: var(--folder-primary-color, #91CE00);
+    border-radius: 50%;
+    animation: spin 0.6s linear infinite;
+}
+
+.folder-actions-toggle {
+    position: absolute;
+    right: 8px;
+    top: 50%;
+    transform: translateY(-50%);
+    opacity: 0;
+    transition: opacity 0.2s;
+    cursor: pointer;
+    padding: 4px;
+    border-radius: 3px;
+}
+
+.folder-tree-item:hover .folder-actions-toggle {
+    opacity: 1;
+}
+
+.folder-actions-toggle:hover {
+    background: rgba(0, 0, 0, 0.05);
+}
+
+.folder-actions-toggle .dashicons {
+    font-size: 16px;
+    width: 16px;
+    height: 16px;
+    color: #666;
+}
+
+.folder-actions {
+    position: absolute;
+    right: -8px;
+    top: 100%;
+    min-width: 150px;
+    background: #fff;
+    border: 1px solid #ddd;
+    border-radius: 3px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+    z-index: 1000;
+    display: none;
+    padding: 4px 0;
+    margin-top: 4px;
+}
+
+.folder-actions.active {
+    display: block;
+}
+
+.folder-actions::before {
+    content: '';
+    position: absolute;
+    top: -6px;
+    right: 12px;
+    width: 0;
+    height: 0;
+    border-left: 6px solid transparent;
+    border-right: 6px solid transparent;
+    border-bottom: 6px solid #ddd;
+}
+
+.folder-actions::after {
+    content: '';
+    position: absolute;
+    top: -5px;
+    right: 13px;
+    width: 0;
+    height: 0;
+    border-left: 5px solid transparent;
+    border-right: 5px solid transparent;
+    border-bottom: 5px solid #fff;
+}
+
+.folder-action {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 12px;
+    color: #444;
+    text-decoration: none;
+    font-size: 13px;
+    transition: background 0.15s;
+    white-space: nowrap;
+}
+
+.folder-action span {
+    color: var(--folder-primary-color, #91CE00);
+}
+
+.folder-action:hover {
+    background: #f0f0f1;
+    color: #000;
+}
+
+.folder-action .dashicons {
+    font-size: 16px;
+    width: 16px;
+    height: 16px;
+}
+
+.folder-action-delete {
+    color: #d63638;
+}
+
+.folder-action-delete:hover {
+    background: #fff0f0;
+    color: #d63638;
+}
+
+/* ========== IMPROVED FOLDER TREE ITEMS ========== */
+.folder-tree-item {
+    position: relative;
+    padding-right: 40px;
+    /* Space for actions toggle */
+}
+
+.folder-tree-item .folder-count {
+    margin-right: 30px;
+    /* Space for actions toggle */
+}
+
+/* ========== DRAG & DROP IMPROVEMENTS ========== */
+.dailybuddy-drag-helper {
+    background: #fff !important;
+    border: 2px solid var(--folder-primary-color, #91CE00) !important;
+    opacity: 0.9 !important;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2) !important;
+    transform: scale(0.7) !important;
+    transform-origin: top left !important;
+}
+
+.dailybuddy-dragging {
+    opacity: 0.4 !important;
+}
+
+.folder-tree-item.drop-hover,
+.folder-item.drop-hover {
+    background: #e5f5fa !important;
+    border-left: 3px solid var(--folder-primary-color, #91CE00) !important;
+    padding-left: 7px !important;
+}
+
+/* ========== EMPTY FOLDER MESSAGE ========== */
+.dailybuddy-empty-message {
+    background: #f9f9f9 !important;
+}
+
+.dailybuddy-empty-message td {
+    border: none !important;
+}
+
+.dailybuddy-empty-message .dashicons {
+    color: #999;
+}
+
+/* ========== GRID VIEW LABELS (MEDIA LIBRARY) ========== */
+.sb-folder-label {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: rgba(0, 170, 71, 0.9);
+    color: #fff;
+    padding: 4px 8px;
+    font-size: 11px;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    z-index: 2;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.sb-folder-label:hover {
+    background: rgb(0, 170, 74);
+}
+
+.sb-folder-label.unassigned {
+    background: rgba(150, 150, 150, 0.8);
+}
+
+.sb-folder-label.unassigned:hover {
+    background: rgba(150, 150, 150, 1);
+}
+
+.sb-folder-label .dashicons {
+    font-size: 14px;
+    width: 14px;
+    height: 14px;
+}
+
+.sb-folder-label span:last-child {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/* Grid Drag Helper */
+.sb-grid-drag-helper {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3) !important;
+    border: 2px solid var(--folder-primary-color, #91CE00) !important;
+}
+
+/* ========== RESPONSIVE CONTEXT MENU ========== */
+@media screen and (max-width: 782px) {
+    .folder-actions {
+        right: auto;
+        left: 0;
+    }
+
+    .folder-actions::before {
+        right: auto;
+        left: 12px;
+    }
+
+    .folder-actions::after {
+        right: auto;
+        left: 13px;
+    }
+}
+
+/* ========== FOLDER HIERARCHY SYSTEM ========== */
+
+/* Folder Toggle (Expand/Collapse) */
+.folder-toggle {
+    cursor: pointer;
+    transition: transform 0.2s, color 0.2s;
+    flex-shrink: 0;
+    width: 20px;
+    height: 20px;
+    line-height: 20px;
+    text-align: center;
+    font-size: 14px;
+}
+
+.folder-toggle:hover {
+    color: var(--folder-primary-color, #91CE00);
+}
+
+.folder-spacer {
+    width: 20px;
+    height: 20px;
+    flex-shrink: 0;
+}
+
+/* Folder Tree Item with Children */
+.folder-tree-item.has-children {
+    font-weight: 500;
+}
+
+.folder-tree-item.expanded {
+    background: rgba(96, 202, 138, 0.05);
+}
+
+/* Children Container */
+.folder-children {
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+}
+
+.folder-children ul {
+    margin: 0;
+    padding: 0;
+}
+
+/* Folder Levels */
+.folder-level-0 {
+    padding-left: 0;
+}
+
+.folder-level-1 {
+    padding-left: 0;
+}
+
+.folder-level-2 {
+    padding-left: 0;
+}
+
+/* Drag & Drop States */
+.folder-tree-item.dragging {
+    opacity: 0.4;
+    cursor: move;
+}
+
+.folder-tree-item.droppable {
+    cursor: pointer;
+}
+
+.folder-tree-item.drop-hover {
+    background: rgba(96, 202, 138, 0.15) !important;
+    border-left: 3px solid var(--folder-primary-color, #91CE00);
+    padding-left: calc(var(--indent, 0px) - 3px) !important;
+}
+
+/* Drag Ghost */
+.folder-drag-ghost {
+    background: #fff;
+    border: 2px solid var(--folder-primary-color, #91CE00);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    border-radius: 4px;
+    padding: 8px 12px;
+    pointer-events: none;
+    cursor: move;
+    white-space: nowrap;
+}
+
+.folder-drag-ghost .folder-actions-toggle,
+.folder-drag-ghost .folder-actions {
+    display: none !important;
+}
+
+/* Visual Feedback */
+.folder-li {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.folder-tree-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    position: relative;
+}
+
+/* Hover State Enhancement */
+.folder-tree-item:hover .folder-toggle {
+    color: var(--folder-primary-color, #91CE00);
+}
+
+/* Animation */
+.folder-children {
+    transition: height 0.2s ease;
+}
+
+/* ========== PREVENT TEXT SELECTION DURING DRAG ========== */
+.folder-tree-item {
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+.folder-tree-item.dragging {
+    cursor: move !important;
+    user-select: none !important;
+}
+
+/* Prevent selection in folder name */
+.folder-name {
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
