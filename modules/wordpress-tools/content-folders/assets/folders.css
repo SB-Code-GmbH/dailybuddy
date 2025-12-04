@@ -41,6 +41,7 @@ body.folded {
 }
 
 /* ========== SIDEBAR CONTAINER ========== */
+
 .dailybuddy-folders-sidebar {
     position: fixed;
     left: calc(var(--wp-menu-width) * -1);
@@ -1035,6 +1036,15 @@ body.post-type-post .wp-list-table td.column-title {
 
 .folder-tree-item.expanded {
     background: rgba(96, 202, 138, 0.05);
+}
+
+.folder-children:not(.show) {
+    display: none;
+}
+
+.folder-children.collapsing {
+    height: 0;
+    transition: height 0.35s ease;
 }
 
 /* Children Container */
