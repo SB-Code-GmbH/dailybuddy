@@ -1,15 +1,36 @@
 <?php
 
 /**
- * General Settings Page
+ * General Settings Page (mit Tabs)
  */
 
 if (! defined('ABSPATH')) {
     exit;
 }
 
-// Später kannst du hier wieder Settings speichern, aktuell ist es nur eine Info-Seite.
-// if (isset($_POST['dailybuddy_save_general_settings'])) { ... }
+if (defined('DAILYBUDDY_URL') && defined('DAILYBUDDY_VERSION')) {
+    wp_enqueue_style(
+        'dailybuddy-uc',
+        DAILYBUDDY_URL . 'assets/css/modul-settings.css',
+        array(),
+        DAILYBUDDY_VERSION
+    );
+}
+
+$current_tab = isset($_POST['current_tab'])
+    ? sanitize_text_field(wp_unslash($_POST['current_tab']))
+    : 'general';
+
+/**
+ * Get the module list, if not already available
+ */
+if (! isset($modules) || ! is_array($modules)) {
+    if (class_exists('WP_Dailybuddy_Settings')) {
+        $modules = WP_Dailybuddy_Settings::get_modules();
+    } else {
+        $modules = array();
+    }
+}
 
 ?>
 
@@ -24,7 +45,6 @@ if (! defined('ABSPATH')) {
         <strong><?php esc_html_e('General Settings', 'dailybuddy'); ?></strong>
     </div>
 
-    <!-- Header im selben Layout wie Modul-Settings -->
     <h1 class="dailybuddy-settings-header">
         <span class="dailybuddy-settings-icon dashicons dashicons-admin-generic"></span>
         <span class="dailybuddy-settings-title">
@@ -32,85 +52,203 @@ if (! defined('ABSPATH')) {
         </span>
     </h1>
 
-    <!-- Gleicher Container wie bei Modul-Settings -->
-    <div class="dailybuddy-settings-container">
+    <div class="dailybuddy-settings-wrap">
 
-        <?php
-        // Optional: Später, wenn wieder was gespeichert wird:
-        // if ( isset($_GET['settings-updated']) ) { ... }
-        ?>
+        <form method="post" action="">
+            <?php wp_nonce_field('dailybuddy_general_settings'); ?>
+            <input type="hidden" name="current_tab" id="current_tab" value="<?php echo esc_attr($current_tab); ?>">
 
-        <!-- About / Plugin Description -->
-        <h2><?php esc_html_e('About DailyBuddy', 'dailybuddy'); ?></h2>
+            <div class="dailybuddy-settings-container">
 
-        <p>
-            <?php esc_html_e(
-                'DailyBuddy is a modular collection of helpful enhancements for your WordPress site. It bundles several small tools into one plugin, so you can enable only the features you actually need.',
-                'dailybuddy'
-            ); ?>
-        </p>
+                <!-- Tabs: General zuerst -->
+                <div class="dailybuddy-uc-tabs">
 
-        <ul style="list-style: disc; margin-left: 20px;">
-            <li><?php esc_html_e('Enable handy WordPress utilities such as maintenance mode and content tools.', 'dailybuddy'); ?></li>
-            <li><?php esc_html_e('Add custom widgets and extensions to your dashboard or page builders.', 'dailybuddy'); ?></li>
-            <li><?php esc_html_e('Keep everything organized in one central modules overview.', 'dailybuddy'); ?></li>
-        </ul>
+                    <!-- TAB 1: GENERAL -->
+                    <button type="button"
+                        class="dailybuddy-uc-tab <?php echo $current_tab === 'general' ? 'active' : ''; ?>"
+                        data-tab="general">
+                        <span class="dashicons dashicons-admin-settings"></span>
+                        <?php esc_html_e('General Settings', 'dailybuddy'); ?>
+                    </button>
 
-        <p>
-            <?php esc_html_e(
-                'You can manage all individual modules, activate or deactivate them, and access their settings from the main DailyBuddy screen.',
-                'dailybuddy'
-            ); ?>
-        </p>
+                    <!-- TAB 2: ABOUT -->
+                    <button type="button"
+                        class="dailybuddy-uc-tab <?php echo $current_tab === 'about' ? 'active' : ''; ?>"
+                        data-tab="about">
+                        <span class="dashicons dashicons-info-outline"></span>
+                        <?php esc_html_e('About DailyBuddy', 'dailybuddy'); ?>
+                    </button>
 
-        <hr />
+                </div>
 
-        <!-- Feedback / Support (Link folgt später) -->
-        <h2><?php esc_html_e('Feedback & Support', 'dailybuddy'); ?></h2>
+                <!-- Tab: General Settings -->
+                <div class="dailybuddy-uc-tab-content <?php echo $current_tab === 'general' ? 'active' : ''; ?>"
+                    data-tab="general">
 
-        <p>
-            <?php esc_html_e(
-                'If you have questions, feature requests, or found a bug, we would love to hear from you.',
-                'dailybuddy'
-            ); ?>
-        </p>
+                    <h2><?php esc_html_e('General Settings', 'dailybuddy'); ?></h2>
 
-        <?php
-        // TODO: Hier später den echten WordPress.org Plugin- oder Support-URL einsetzen.
-        // Beispiel: $support_url = 'https://wordpress.org/support/plugin/dein-plugin-slug/';
-        $dailybuddy_support_url = '#';
-        ?>
+                    <p class="description">
+                        <?php esc_html_e(
+                            'Overview of all modules that have their own settings screen.',
+                            'dailybuddy'
+                        ); ?>
+                    </p>
 
-        <p>
-            <a href="<?php echo esc_url($dailybuddy_support_url); ?>" target="_blank" rel="noopener noreferrer" class="button button-secondary">
-                <?php esc_html_e('Open support & feedback page', 'dailybuddy'); ?>
-            </a>
-        </p>
+                    <?php
+                    $dailybuddy_modules_with_settings = array();
 
-        <p class="description">
-            <?php esc_html_e(
-                'The support link will point to the official WordPress.org plugin page once it is available.',
-                'dailybuddy'
-            ); ?>
-        </p>
+                    if (class_exists('WP_Dailybuddy_Settings')) {
+                        // Liefert: 'category/module' => bool(aktiv)
+                        $dailybuddy_modules_state = WP_Dailybuddy_Settings::get_modules();
 
-        <?php
-        // Lizenzbereich & Speichern-Button vorerst entfernt / auskommentiert.
-        // Später kannst du diesen Teil wieder aktivieren, wenn du eine echte Lizenzverwaltung einbauen möchtest.
+                        if (is_array($dailybuddy_modules_state)) {
+                            foreach ($dailybuddy_modules_state as $dailybuddy_module_id => $dailybuddy_is_active) {
 
-        /*
-        <h2><?php esc_html_e('License', 'dailybuddy'); ?></h2>
-        ...
-        */
+                                // config.php des Moduls laden
+                                $config_file = DAILYBUDDY_PATH . 'modules/' . $dailybuddy_module_id . '/config.php';
 
-        /*
-        <p class="submit">
-            <button type="submit" name="dailybuddy_save_general_settings" class="button button-primary">
-                <?php esc_html_e('Save Settings', 'dailybuddy'); ?>
-            </button>
-        </p>
-        */
-        ?>
+                                if (! file_exists($config_file)) {
+                                    continue;
+                                }
 
+                                $config = include $config_file;
+                                if (! is_array($config)) {
+                                    continue;
+                                }
+
+                                // Nur Module mit eigenen Einstellungen
+                                if (empty($config['has_settings'])) {
+                                    continue;
+                                }
+
+                                // Kategorie ist der erste Teil vor dem Slash
+                                $parts    = explode('/', $dailybuddy_module_id);
+                                $category = $parts[0];
+
+                                $dailybuddy_modules_with_settings[] = array(
+                                    'id'       => $dailybuddy_module_id,
+                                    'name'     => isset($config['name']) ? $config['name'] : $dailybuddy_module_id,
+                                    'category' => $category,
+                                );
+                            }
+                        }
+                    }
+
+                    if (! empty($dailybuddy_modules_with_settings)) : ?>
+                        <table class="widefat striped">
+                            <thead>
+                                <tr>
+                                    <th><?php esc_html_e('Module', 'dailybuddy'); ?></th>
+                                    <th><?php esc_html_e('Category', 'dailybuddy'); ?></th>
+                                    <th><?php esc_html_e('Settings', 'dailybuddy'); ?></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <?php foreach ($dailybuddy_modules_with_settings as $dailybuddy_mod) : ?>
+                                    <tr>
+                                        <td>
+                                            <strong><?php echo esc_html($dailybuddy_mod['name']); ?></strong>
+                                        </td>
+                                        <td>
+                                            <?php echo esc_html(dailybuddy_format_category_name($dailybuddy_mod['category'])); ?>
+                                        </td>
+                                        <td>
+                                            <a href="<?php echo esc_url(
+                                                            admin_url(
+                                                                'admin.php?page=dailybuddy&view=settings&module=' . urlencode($dailybuddy_mod['id'])
+                                                            )
+                                                        ); ?>" class="button button-primary button-large">
+                                                <?php esc_html_e('Open settings', 'dailybuddy'); ?>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                <?php endforeach; ?>
+                            </tbody>
+                        </table>
+                    <?php else : ?>
+                        <p>
+                            <?php esc_html_e(
+                                'Currently, no modules provide their own settings page.',
+                                'dailybuddy'
+                            ); ?>
+                        </p>
+                    <?php endif; ?>
+
+                </div>
+
+
+                <!-- TAB CONTENT: ABOUT -->
+                <div class="dailybuddy-uc-tab-content <?php echo $current_tab === 'about' ? 'active' : ''; ?>"
+                    data-tab="about">
+
+                    <h2><?php esc_html_e('About DailyBuddy', 'dailybuddy'); ?></h2>
+
+                    <p>
+                        <?php esc_html_e(
+                            'DailyBuddy is a modular collection of helpful enhancements for your WordPress site. It bundles several small tools into one plugin, so you can enable only the features you actually need.',
+                            'dailybuddy'
+                        ); ?>
+                    </p>
+
+                    <ul style="list-style: disc; margin-left: 20px;">
+                        <li><?php esc_html_e('Enable handy WordPress utilities such as maintenance mode and content tools.', 'dailybuddy'); ?></li>
+                        <li><?php esc_html_e('Add custom widgets and extensions to your dashboard or page builders.', 'dailybuddy'); ?></li>
+                        <li><?php esc_html_e('Keep everything organized in one central modules overview.', 'dailybuddy'); ?></li>
+                    </ul>
+
+                    <p>
+                        <?php esc_html_e(
+                            'You can manage all individual modules, activate or deactivate them, and access their settings from the main DailyBuddy screen.',
+                            'dailybuddy'
+                        ); ?>
+                    </p>
+
+                    <hr />
+
+                    <h2><?php esc_html_e('Feedback & Support', 'dailybuddy'); ?></h2>
+
+                    <p>
+                        <?php esc_html_e(
+                            'If you have questions, feature requests, or found a bug, we would love to hear from you.',
+                            'dailybuddy'
+                        ); ?>
+                    </p>
+
+                    <?php $dailybuddy_support_url = '#'; ?>
+
+                    <p>
+                        <a href="<?php echo esc_url($dailybuddy_support_url); ?>" target="_blank" rel="noopener noreferrer" class="button button-secondary">
+                            <?php esc_html_e('Open support & feedback page', 'dailybuddy'); ?>
+                        </a>
+                    </p>
+
+                    <p class="description">
+                        <?php esc_html_e(
+                            'The support link will point to the official WordPress.org plugin page once it is available.',
+                            'dailybuddy'
+                        ); ?>
+                    </p>
+
+                </div>
+
+            </div>
+
+        </form>
     </div>
 </div>
+
+<script>
+    jQuery(document).ready(function($) {
+        $('.dailybuddy-uc-tab').on('click', function() {
+            var tab = $(this).data('tab');
+
+            $('#current_tab').val(tab);
+
+            $('.dailybuddy-uc-tab').removeClass('active');
+            $(this).addClass('active');
+
+            $('.dailybuddy-uc-tab-content').removeClass('active');
+            $('.dailybuddy-uc-tab-content[data-tab="' + tab + '"]').addClass('active');
+        });
+    });
+</script>

@@ -68,3 +68,20 @@ function dailybuddy_get_category_description($category)
 
     return '';
 }
+
+function dailybuddy_register_translated_script($handle, $relative_path, $deps = array('jquery', 'wp-i18n'))
+{
+    wp_register_script(
+        $handle,
+        DAILYBUDDY_URL . ltrim($relative_path, '/'),
+        $deps,
+        DAILYBUDDY_VERSION,
+        true
+    );
+
+    wp_set_script_translations(
+        $handle,
+        'dailybuddy',                // deine Textdomain
+        DAILYBUDDY_PATH . 'languages'
+    );
+}

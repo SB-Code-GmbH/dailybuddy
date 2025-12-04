@@ -139,15 +139,11 @@ jQuery(document).ready(function ($) {
 
         if (typeof isActive === 'boolean') {
             if (isActive) {
-                message = sprintf(
-                    __('%s activated!', 'dailybuddy'),
-                    moduleName
-                );
+                var tmpl = dailybuddyAdmin.strings.moduleActivated || '%s activated!';
+                message = tmpl.replace('%s', moduleName);
             } else {
-                message = sprintf(
-                    __('%s deactivated', 'dailybuddy'),
-                    moduleName
-                );
+                var tmpl = dailybuddyAdmin.strings.moduleDeactivated || '%s deactivated';
+                message = tmpl.replace('%s', moduleName);
             }
         } else {
             // Direkt übergebene Nachricht (z.B. Fehler)

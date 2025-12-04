@@ -268,7 +268,7 @@ class Dailybuddy_Content_Folders
             array(),
             '4.2.0'
         );
-        
+
         // Add inline CSS for custom colors and settings
         $settings = get_option('dailybuddy_content_folders_settings', array(
             'primary_color' => '#91CE00',
@@ -276,47 +276,57 @@ class Dailybuddy_Content_Folders
             'show_counts'   => true,
             'show_icons'    => true,
         ));
-        
+
         $custom_css = ':root {';
         $custom_css .= '--folder-primary-color: ' . esc_attr($settings['primary_color']) . ';';
         $custom_css .= '--folder-accent-color: ' . esc_attr($settings['accent_color']) . ';';
         $custom_css .= '}';
-        
+
         // Hide counts if disabled
         if (empty($settings['show_counts'])) {
             $custom_css .= '.folder-count, .total-count { display: none !important; }';
         }
-        
+
         // Hide icons if disabled
         if (empty($settings['show_icons'])) {
             $custom_css .= '.folder-item .dashicons, .folder-tree-item > span.dashicons { display: none !important; }';
         }
-        
+
         wp_add_inline_style('dailybuddy-folders', $custom_css);
 
-        // Enqueue JS
-        wp_enqueue_script(
+        wp_register_script(
             'dailybuddy-folders',
             DAILYBUDDY_URL . 'modules/wordpress-tools/content-folders/assets/folders.js',
-            array('jquery', 'jquery-ui-sortable', 'jquery-ui-draggable', 'jquery-ui-droppable'),
+            array('jquery', 'jquery-ui-sortable', 'jquery-ui-draggable', 'jquery-ui-droppable', 'wp-i18n'),
             '4.2.0',
             true
         );
 
+        wp_set_script_translations(
+            'dailybuddy-folders',
+            'dailybuddy',
+            DAILYBUDDY_PATH . 'languages'
+        );
+
+        wp_enqueue_script('dailybuddy-folders');
+
         // Localize script
         wp_localize_script('dailybuddy-folders', 'sbToolboxFolders', array(
-            'ajaxurl' => admin_url('admin-ajax.php'),
-            'nonce'   => wp_create_nonce('dailybuddy_folders'),
+            'ajaxurl'  => admin_url('admin-ajax.php'),
+            'nonce'    => wp_create_nonce('dailybuddy_folders'),
             'taxonomy' => $this->get_taxonomy_name($screen->post_type),
             'postType' => $screen->post_type,
-            'strings' => array(
-                'newFolder' => __('New Folder', 'dailybuddy'),
-                'allFiles' => __('All Files', 'dailybuddy'),
-                'unassigned' => __('Unassigned', 'dailybuddy'),
-                'createFolder' => __('Create', 'dailybuddy'),
-                'cancel' => __('Cancel', 'dailybuddy'),
-                'folderName' => __('Folder name...', 'dailybuddy'),
+            'strings'  => array(
+                'newFolder'     => __('New Folder', 'dailybuddy'),
+                'allFiles'      => __('All Files', 'dailybuddy'),
+                'unassigned'    => __('Unassigned', 'dailybuddy'),
+                'createFolder'  => __('Create', 'dailybuddy'),
+                'cancel'        => __('Cancel', 'dailybuddy'),
+                'folderName'    => __('Folder name...', 'dailybuddy'),
                 'confirmDelete' => __('Delete this folder?', 'dailybuddy'),
+                'emptyTitle'     => __('This folder is empty', 'dailybuddy'),
+                'emptyTemplate'  => __('Drag items here to organize them into "%s"', 'dailybuddy'),
+                'rootDrop' => __('Drag here to move the folder to the root level', 'dailybuddy'),
             ),
         ));
     }
@@ -358,16 +368,15 @@ class Dailybuddy_Content_Folders
             'hide_empty' => false,
             'orderby'    => 'name',
             'order'      => 'ASC',
+            'pad_counts' => false,
         ));
 
         if (is_wp_error($terms)) {
             wp_send_json_error(array('message' => $terms->get_error_message()));
         }
 
-        $tree = $this->build_folder_tree($terms);
         $counts = $this->get_folder_counts($terms, $taxonomy);
-
-        // Get post type
+        $tree   = $this->build_folder_tree($terms, $counts);
         $post_type = $this->get_post_type_from_taxonomy($taxonomy);
 
         // Count ALL posts including drafts, pending, etc.
@@ -418,18 +427,18 @@ class Dailybuddy_Content_Folders
     /**
      * Build folder tree
      */
-    private function build_folder_tree($terms, $parent = 0)
+    private function build_folder_tree($terms, $counts, $parent = 0)
     {
         $branch = array();
 
         foreach ($terms as $term) {
-            if ($term->parent == $parent) {
-                $children = $this->build_folder_tree($terms, $term->term_id);
+            if ((int) $term->parent === (int) $parent) {
+                $children = $this->build_folder_tree($terms, $counts, $term->term_id);
 
                 $branch[] = array(
-                    'id' => $term->term_id,
-                    'name' => $term->name,
-                    'count' => $term->count,
+                    'id'       => $term->term_id,
+                    'name'     => $term->name,
+                    'count'    => isset($counts[$term->term_id]) ? (int) $counts[$term->term_id] : 0,
                     'children' => $children,
                 );
             }
@@ -438,31 +447,31 @@ class Dailybuddy_Content_Folders
         return $branch;
     }
 
+
     /**
      * Get folder counts
      */
     private function get_folder_counts($terms, $taxonomy)
     {
-        $counts = array();
+        $counts    = array();
         $post_type = $this->get_post_type_from_taxonomy($taxonomy);
 
         foreach ($terms as $term) {
-            // Manual count for ALL post statuses
             $args = array(
-                'post_type' => $post_type,
-                'numberposts' => -1,
-                'fields' => 'ids',
-                'post_status' => 'any', // All statuses
-                'tax_query' => array(
+                'post_type'      => $post_type,
+                'numberposts'    => -1,
+                'fields'         => 'ids',
+                'post_status'    => 'any',
+                'tax_query'      => array(
                     array(
-                        'taxonomy' => $taxonomy,
-                        'field' => 'term_id',
-                        'terms' => $term->term_id,
+                        'taxonomy'         => $taxonomy,
+                        'field'            => 'term_id',
+                        'terms'            => $term->term_id,
+                        'include_children' => false,
                     ),
                 ),
             );
 
-            // For attachments
             if ($post_type === 'attachment') {
                 $args['post_status'] = 'inherit';
             }
@@ -473,6 +482,7 @@ class Dailybuddy_Content_Folders
 
         return $counts;
     }
+
 
     /**
      * AJAX: Create folder

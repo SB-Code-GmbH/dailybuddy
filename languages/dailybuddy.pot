@@ -787,12 +787,6 @@ msgstr ""
 msgid "Animated flip box with front and back content. Perfect for showcasing features, services, or team members."
 msgstr ""
 
-msgid "elementor"
-msgstr ""
-
-msgid "widget"
-msgstr ""
-
 msgid "flipbox"
 msgstr ""
 
@@ -837,14 +831,6 @@ msgstr ""
 
 #: C:\\MAMP\\htdocs\\wp\\wp-content\\plugins\\dailybuddy\\admin\\views\\development-page.php (Line 13)
 msgid "Access denied. Development mode is not enabled."
-msgstr ""
-
-#: C:\\MAMP\\htdocs\\wp\\wp-content\\plugins\\dailybuddy\\admin\\views\\development-page.php (Line 4)
-msgid "Development"
-msgstr ""
-
-#: C:\\MAMP\\htdocs\\wp\\wp-content\\plugins\\dailybuddy\\admin\\views\\development-page.php (Line 49)
-msgid "Development Mode Active"
 msgstr ""
 
 #: C:\\MAMP\\htdocs\\wp\\wp-content\\plugins\\dailybuddy\\admin\\views\\development-page.php (Line 50)
@@ -1387,24 +1373,8 @@ msgstr ""
 msgid "Hours"
 msgstr ""
 
-#: C:\\MAMP\\htdocs\\wp\\wp-content\\plugins\\dailybuddy\\modules\\wordpress-tools\\under-construction\\layouts\\clean-minimal.php (Line 282)
-msgid "Minutes"
-msgstr ""
-
-#: C:\\MAMP\\htdocs\\wp\\wp-content\\plugins\\dailybuddy\\modules\\wordpress-tools\\under-construction\\layouts\\clean-minimal.php (Line 287)
-msgid "Seconds"
-msgstr ""
-
 #: C:\\MAMP\\htdocs\\wp\\wp-content\\plugins\\dailybuddy\\modules\\wordpress-tools\\under-construction\\layouts\\clean-minimal.php (Line 0)
 msgid "We\'re working hard to bring you something amazing!"
-msgstr ""
-
-#: C:\\MAMP\\htdocs\\wp\\wp-content\\plugins\\dailybuddy\\modules\\wordpress-tools\\under-construction\\layouts\\parallax-rocket.php (Line 318)
-msgid "Days"
-msgstr ""
-
-#: C:\\MAMP\\htdocs\\wp\\wp-content\\plugins\\dailybuddy\\modules\\wordpress-tools\\under-construction\\layouts\\parallax-rocket.php (Line 323)
-msgid "Hours"
 msgstr ""
 
 #: C:\\MAMP\\htdocs\\wp\\wp-content\\plugins\\dailybuddy\\modules\\wordpress-tools\\under-construction\\layouts\\parallax-rocket.php (Line 328)
@@ -1959,10 +1929,6 @@ msgstr ""
 msgid "Tab Title"
 msgstr ""
 
-#: C:\\MAMP\\htdocs\\wp\\wp-content\\plugins\\dailybuddy\\modules\\elementor-extensions\\advanced-accordion\\widget.php (Line 576)
-msgid "Border Color"
-msgstr ""
-
 #: C:\\MAMP\\htdocs\\wp\\wp-content\\plugins\\dailybuddy\\modules\\elementor-extensions\\advanced-accordion\\widget.php (Line 358)
 msgid "Active"
 msgstr ""
@@ -2295,10 +2261,6 @@ msgstr ""
 msgid "DailyBuddy is currently running in development mode. Set DAILYBUDDY_DEV_MODE to false in production."
 msgstr ""
 
-#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\admin\views\development-page.php (Line 461)
-msgid "You can create or update translations for DailyBuddy using tools like Poedit or Loco Translate."
-msgstr ""
-
 #: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\admin\views\general-settings-page.php (Line 44)
 msgid "About DailyBuddy"
 msgstr ""
@@ -2313,4 +2275,245 @@ msgstr ""
 
 #: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\admin\views\module-settings-page.php (Line 47)
 msgid "DailyBuddy"
+msgstr ""
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\wordpress-tools\content-folders\config.php (Line 9)
+msgid "Organize your Posts, Pages, and Media files in folders with drag & drop functionality."
+msgstr ""
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\wordpress-tools\content-folders\module.php (Line 4)
+msgid "Content Folders"
+msgstr ""
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\wordpress-tools\content-folders\module.php (Line 4)
+msgid "Folder"
+msgstr ""
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\wordpress-tools\content-folders\module.php (Line 225)
+msgid "Drag to folder"
+msgstr ""
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\wordpress-tools\content-folders\module.php (Line 315)
+msgid "Unassigned"
+msgstr ""
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\wordpress-tools\content-folders\module.php (Line 319)
+msgid "Delete this folder?"
+msgstr ""
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\wordpress-tools\content-folders\module.php (Line 353)
+msgid "Invalid taxonomy"
+msgstr ""
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\wordpress-tools\content-folders\module.php (Line 485)
+msgid "Permission denied"
+msgstr ""
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\wordpress-tools\content-folders\module.php (Line 493)
+msgid "Missing parameters"
+msgstr ""
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\wordpress-tools\content-folders\module.php (Line 531)
+msgid "Invalid parameters"
+msgstr ""
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\wordpress-tools\content-folders\module.php (Line 577)
+msgid "Folder deleted"
+msgstr ""
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\wordpress-tools\content-folders\module.php (Line 669)
+msgid "Cannot move folder into itself"
+msgstr ""
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\wordpress-tools\content-folders\module.php (Line 680)
+msgid "Cannot create circular reference"
+msgstr ""
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\wordpress-tools\content-folders\module.php (Line 695)
+msgid "Folder moved successfully"
+msgstr ""
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\wordpress-tools\content-folders\module.php (Line 788)
+msgid "Enable Folders For"
+msgstr ""
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\wordpress-tools\content-folders\module.php (Line 793)
+msgid "Enable folder organization for posts"
+msgstr ""
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\wordpress-tools\content-folders\module.php (Line 807)
+msgid "Enable folder organization for pages"
+msgstr ""
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\wordpress-tools\content-folders\module.php (Line 820)
+msgid "Media Library"
+msgstr ""
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\wordpress-tools\content-folders\module.php (Line 821)
+msgid "Enable folder organization for media library"
+msgstr ""
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\wordpress-tools\content-folders\module.php (Line 838)
+msgid "Design Settings"
+msgstr ""
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\wordpress-tools\content-folders\module.php (Line 842)
+msgid "Show Counts"
+msgstr ""
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\wordpress-tools\content-folders\module.php (Line 843)
+msgid "Display item count for each folder"
+msgstr ""
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\wordpress-tools\content-folders\module.php (Line 856)
+msgid "Show Icons"
+msgstr ""
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\wordpress-tools\content-folders\module.php (Line 857)
+msgid "Display icons next to folder names"
+msgstr ""
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\wordpress-tools\content-folders\module.php (Line 870)
+msgid "Primary Color"
+msgstr ""
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\wordpress-tools\content-folders\module.php (Line 871)
+msgid "Main color for active elements and buttons"
+msgstr ""
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\wordpress-tools\content-folders\module.php (Line 891)
+msgid "Accent Color"
+msgstr ""
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\wordpress-tools\content-folders\module.php (Line 892)
+msgid "Hover color for active elements"
+msgstr ""
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\wordpress-tools\content-folders\module.php (Line 921)
+msgid "How to Use"
+msgstr ""
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\wordpress-tools\content-folders\module.php (Line 923)
+msgid "Go to Posts, Pages, or Media Library"
+msgstr ""
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\wordpress-tools\content-folders\module.php (Line 924)
+msgid "Click the toggle button to show the folder sidebar"
+msgstr ""
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\wordpress-tools\content-folders\module.php (Line 925)
+msgid "Create folders with the \"New Folder\" button"
+msgstr ""
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\wordpress-tools\content-folders\module.php (Line 926)
+msgid "Drag items using the ☰ icon to assign them to folders"
+msgstr ""
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\wordpress-tools\content-folders\module.php (Line 927)
+msgid "Click on folder badges in the table to filter by folder"
+msgstr ""
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\wordpress-tools\content-folders\templates\sidebar.php (Line 7)
+msgid "New Folder"
+msgstr ""
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\wordpress-tools\content-folders\templates\sidebar.php (Line 12)
+msgid "Search folders..."
+msgstr ""
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\wordpress-tools\content-folders\templates\sidebar.php (Line 19)
+msgid "All Files"
+msgstr ""
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\wordpress-tools\content-folders\templates\sidebar.php (Line 24)
+msgid "Unassigned Files"
+msgstr ""
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\wordpress-tools\content-folders\templates\sidebar.php (Line 35)
+msgid "Folder name..."
+msgstr ""
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\wordpress-tools\content-folders\templates\sidebar.php (Line 37)
+msgid "Create"
+msgstr ""
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\wordpress-tools\content-folders\templates\sidebar.php (Line 38)
+msgid "Cancel"
+msgstr ""
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\wordpress-tools\content-folders\templates\sidebar.php (Line 45)
+msgid "New folder name..."
+msgstr ""
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\wordpress-tools\content-folders\templates\sidebar.php (Line 42)
+msgid "Rename"
+msgstr ""
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\wordpress-tools\content-folders\module.php (Line 4)
+msgid "Folders"
+msgstr ""
+
+msgid "This folder is empty"
+msgstr ""
+
+msgid "Drag items here to organize them into \"%s\""
+msgstr ""
+
+msgid "Drag here to move the folder to the root level"
+msgstr ""
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\admin\views\development-page.php (Line 461)
+msgid "You can create or update translations for DailyBuddy using tools like Poedit or Loco Translate."
+msgstr ""
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\admin\views\general-settings-page.php (Line 54)
+msgid "Enable handy WordPress utilities such as maintenance mode and content tools."
+msgstr ""
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\admin\views\general-settings-page.php (Line 73)
+msgid "If you have questions, feature requests, or found a bug, we would love to hear from you."
+msgstr ""
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\admin\views\general-settings-page.php (Line 92)
+msgid "The support link will point to the official WordPress.org plugin page once it is available."
+msgstr ""
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\admin\views\main-page.php (Line 50)
+msgid "No modules available yet. Create your first module in the modules/ directory!"
+msgstr ""
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\admin\views\module-settings-page.php (Line 83)
+msgid "The module \"%1$s\" is currently <strong>deactivated</strong>. You can see and change its settings after you <a href=\"%2$s\">activate the module</a>."
+msgstr ""
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\dashboard-widgets\quick-stats\config.php (Line 9)
+msgid "Displays key website statistics at a glance: posts, pages, comments, users, and media."
+msgstr ""
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\dashboard-widgets\recent-activity\config.php (Line 9)
+msgid "Shows the last 10 changes on your website: post updates, new comments, plugin updates, and more with timestamps and direct links."
+msgstr ""
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\wordpress-tools\under-construction\config.php (Line 43)
+msgid "Maintenance mode is controlled via settings, not when activating the module."
+msgstr ""
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\admin\views\general-settings-page.php (Line 92)
+msgid "Overview of all modules that have their own settings screen."
+msgstr ""
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\admin\views\general-settings-page.php (Line 119)
+msgid "Module"
+msgstr ""
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\admin\views\general-settings-page.php (Line 142)
+msgid "Category"
+msgstr ""
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\admin\views\general-settings-page.php (Line 161)
+msgid "Open settings"
+msgstr ""
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\admin\views\general-settings-page.php (Line 171)
+msgid "Currently, no modules provide their own settings page."
 msgstr ""

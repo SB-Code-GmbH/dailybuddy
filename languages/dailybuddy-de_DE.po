@@ -2086,3 +2086,263 @@ msgstr "Sie können alle einzelnen Module verwalten, aktivieren oder deaktiviere
 #: (Line 47)
 msgid "DailyBuddy"
 msgstr "DailyBuddy"
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\wordpress-tools\content-folders\config.php
+#: (Line 9)
+msgid "Organize your Posts, Pages, and Media files in folders with drag & drop functionality."
+msgstr "Organisieren Sie Ihre Beiträge, Seiten und Mediendateien mit Drag & Drop in Ordnern."
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\wordpress-tools\content-folders\module.php
+#: (Line 4)
+msgid "Content Folders"
+msgstr "Ressourcenordner"
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\wordpress-tools\content-folders\module.php
+#: (Line 4)
+msgid "Folders"
+msgstr "Ordner"
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\wordpress-tools\content-folders\module.php
+#: (Line 4)
+msgid "Folder"
+msgstr "Ordner"
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\wordpress-tools\content-folders\module.php
+#: (Line 225)
+msgid "Drag to folder"
+msgstr "In Ordner ziehen"
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\wordpress-tools\content-folders\module.php
+#: (Line 321)
+msgid "All Files"
+msgstr "Alle Dateien"
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\wordpress-tools\content-folders\module.php
+#: (Line 322)
+msgid "Unassigned"
+msgstr "Nicht zugewiesen"
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\wordpress-tools\content-folders\module.php
+#: (Line 324)
+msgid "Cancel"
+msgstr "Abbrechen"
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\wordpress-tools\content-folders\module.php
+#: (Line 325)
+msgid "Folder name..."
+msgstr "Ordnername …"
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\wordpress-tools\content-folders\module.php
+#: (Line 326)
+msgid "Delete this folder?"
+msgstr "Diesen Ordner löschen?"
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\wordpress-tools\content-folders\module.php
+#: (Line 327)
+msgid "This folder is empty"
+msgstr "Dieser Ordner ist leer"
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\wordpress-tools\content-folders\module.php
+#: (Line 328)
+msgid "Drag items here to organize them into \"%s\""
+msgstr "Elemente hierher ziehen, um sie in „%s“ zu organisieren"
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\wordpress-tools\content-folders\module.php
+#: (Line 329)
+msgid "Drag here to move the folder to the root level"
+msgstr "Hierher ziehen, um den Ordner in die oberste Ebene zu verschieben"
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\wordpress-tools\content-folders\module.php
+#: (Line 363)
+msgid "Invalid taxonomy"
+msgstr "Ungültige Taxonomie"
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\wordpress-tools\content-folders\module.php
+#: (Line 495)
+msgid "Permission denied"
+msgstr "Zugriff verweigert"
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\wordpress-tools\content-folders\module.php
+#: (Line 503)
+msgid "Missing parameters"
+msgstr "Fehlende Parameter"
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\wordpress-tools\content-folders\module.php
+#: (Line 541)
+msgid "Invalid parameters"
+msgstr "Ungültige Parameter"
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\wordpress-tools\content-folders\module.php
+#: (Line 587)
+msgid "Folder deleted"
+msgstr "Ordner gelöscht"
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\wordpress-tools\content-folders\module.php
+#: (Line 679)
+msgid "Cannot move folder into itself"
+msgstr "Ordner kann nicht in sich selbst verschoben werden"
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\wordpress-tools\content-folders\module.php
+#: (Line 690)
+msgid "Cannot create circular reference"
+msgstr "Zirkuläre Referenz kann nicht erstellt werden"
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\wordpress-tools\content-folders\module.php
+#: (Line 705)
+msgid "Folder moved successfully"
+msgstr "Ordner wurde erfolgreich verschoben"
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\wordpress-tools\content-folders\module.php
+#: (Line 798)
+msgid "Enable Folders For"
+msgstr "Ordner aktivieren für"
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\wordpress-tools\content-folders\module.php
+#: (Line 803)
+msgid "Enable folder organization for posts"
+msgstr "Ordnerorganisation für Beiträge aktivieren"
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\wordpress-tools\content-folders\module.php
+#: (Line 817)
+msgid "Enable folder organization for pages"
+msgstr "Ordnerorganisation für Seiten aktivieren"
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\wordpress-tools\content-folders\module.php
+#: (Line 830)
+msgid "Media Library"
+msgstr "Mediathek"
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\wordpress-tools\content-folders\module.php
+#: (Line 831)
+msgid "Enable folder organization for media library"
+msgstr "Ordnerorganisation für die Mediathek aktivieren"
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\wordpress-tools\content-folders\module.php
+#: (Line 848)
+msgid "Design Settings"
+msgstr "Design-Einstellungen"
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\wordpress-tools\content-folders\module.php
+#: (Line 852)
+msgid "Show Counts"
+msgstr "Anzahl anzeigen"
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\wordpress-tools\content-folders\module.php
+#: (Line 853)
+msgid "Display item count for each folder"
+msgstr "Elementanzahl für jeden Ordner anzeigen"
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\wordpress-tools\content-folders\module.php
+#: (Line 866)
+msgid "Show Icons"
+msgstr "Symbole anzeigen"
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\wordpress-tools\content-folders\module.php
+#: (Line 867)
+msgid "Display icons next to folder names"
+msgstr "Symbole neben Ordnernamen anzeigen"
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\wordpress-tools\content-folders\module.php
+#: (Line 880)
+msgid "Primary Color"
+msgstr "Primärfarbe"
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\wordpress-tools\content-folders\module.php
+#: (Line 881)
+msgid "Main color for active elements and buttons"
+msgstr "Hauptfarbe für aktive Elemente und Buttons"
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\wordpress-tools\content-folders\module.php
+#: (Line 901)
+msgid "Accent Color"
+msgstr "Akzentfarbe"
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\wordpress-tools\content-folders\module.php
+#: (Line 902)
+msgid "Hover color for active elements"
+msgstr "Hover-Farbe für aktive Elemente"
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\wordpress-tools\content-folders\module.php
+#: (Line 931)
+msgid "How to Use"
+msgstr "So verwenden Sie es"
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\wordpress-tools\content-folders\module.php
+#: (Line 933)
+msgid "Go to Posts, Pages, or Media Library"
+msgstr "Gehen Sie zu Beiträge, Seiten oder Mediathek"
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\wordpress-tools\content-folders\module.php
+#: (Line 934)
+msgid "Click the toggle button to show the folder sidebar"
+msgstr "Klicken Sie auf den Umschalter, um die Ordner-Seitenleiste anzuzeigen"
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\wordpress-tools\content-folders\module.php
+#: (Line 935)
+msgid "Create folders with the \"New Folder\" button"
+msgstr "Erstellen Sie Ordner mit der Schaltfläche „Neuer Ordner“"
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\wordpress-tools\content-folders\module.php
+#: (Line 936)
+msgid "Drag items using the ☰ icon to assign them to folders"
+msgstr "Ziehen Sie Elemente mit dem ☰-Symbol, um sie Ordnern zuzuweisen"
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\wordpress-tools\content-folders\module.php
+#: (Line 937)
+msgid "Click on folder badges in the table to filter by folder"
+msgstr "Klicken Sie auf Ordner-Badges in der Tabelle, um nach Ordner zu filtern"
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\wordpress-tools\content-folders\templates\sidebar.php
+#: (Line 7)
+msgid "New Folder"
+msgstr "Neuer Ordner"
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\wordpress-tools\content-folders\templates\sidebar.php
+#: (Line 12)
+msgid "Search folders..."
+msgstr "Ordner durchsuchen …"
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\wordpress-tools\content-folders\templates\sidebar.php
+#: (Line 24)
+msgid "Unassigned Files"
+msgstr "Nicht zugewiesene Dateien"
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\wordpress-tools\content-folders\templates\sidebar.php
+#: (Line 37)
+msgid "Create"
+msgstr "Erstellen"
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\wordpress-tools\content-folders\templates\sidebar.php
+#: (Line 45)
+msgid "New folder name..."
+msgstr "Neuer Ordnername …"
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\wordpress-tools\content-folders\templates\sidebar.php
+#: (Line 42)
+msgid "Rename"
+msgstr "Umbenennen"
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\admin\views\general-settings-page.php
+#: (Line 92)
+msgid "Overview of all modules that have their own settings screen."
+msgstr "Übersicht über alle Module, die über einen eigenen Einstellungsbildschirm verfügen."
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\admin\views\general-settings-page.php
+#: (Line 119)
+msgid "Module"
+msgstr "Modul"
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\admin\views\general-settings-page.php
+#: (Line 142)
+msgid "Category"
+msgstr "Kategorie"
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\admin\views\general-settings-page.php
+#: (Line 161)
+msgid "Open settings"
+msgstr "Einstellungen öffnen"
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\admin\views\general-settings-page.php
+#: (Line 171)
+msgid "Currently, no modules provide their own settings page."
+msgstr "Derzeit bieten keine Module eine eigene Einstellungsseite an."

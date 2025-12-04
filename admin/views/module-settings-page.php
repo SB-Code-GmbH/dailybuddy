@@ -46,9 +46,19 @@ $dailybuddy_activate_url = add_query_arg(
         <a href="<?php echo esc_url($dailybuddy_breadcrumb_url); ?>">
             <?php esc_html_e('DailyBuddy', 'dailybuddy'); ?>
         </a>
+
         <span class="separator">›</span>
+
+        <a href="<?php echo esc_url(admin_url('admin.php?page=dailybuddy-settings')); ?>">
+            <?php esc_html_e('General Settings', 'dailybuddy'); ?>
+        </a>
+
+        <span class="separator">›</span>
+
         <span><?php echo esc_html($dailybuddy_category_name); ?></span>
+
         <span class="separator">›</span>
+
         <strong><?php echo esc_html($dailybuddy_module_name); ?></strong>
     </div>
 

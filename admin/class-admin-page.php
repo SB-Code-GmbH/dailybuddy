@@ -31,12 +31,12 @@ class WP_Dailybuddy_Admin_Page
     {
 
         add_menu_page(
-            __('dailybuddy', 'dailybuddy'),
-            __('dailybuddy', 'dailybuddy'),
+            __('DailyBuddy', 'dailybuddy'),
+            __('DailyBuddy', 'dailybuddy'),
             'manage_options',
             'dailybuddy',
             array($this, 'render_admin_page'),
-            plugin_dir_url(dirname(__FILE__)) . 'assets/images/toolbox_navbar.svg',
+            plugin_dir_url(dirname(__FILE__)) . 'assets/images/dailybuddy_logo_navbar.svg',
             75
         );
 
@@ -44,10 +44,10 @@ class WP_Dailybuddy_Admin_Page
 ?>
             <style>
                 #toplevel_page_dailybuddy .wp-menu-image img {
-                    width: 18px;
-                    height: 18px;
+                    width: 19px;
+                    height: 19px;
                     opacity: 1;
-                    padding: 6px 0 0;
+                    padding: 8px 0 0 3px;
                 }
             </style>
         <?php

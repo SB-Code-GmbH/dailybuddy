@@ -25,16 +25,30 @@ foreach ($modules as $dailybuddy_category => $dailybuddy_category_modules) {
         'total'  => $dailybuddy_total_count,
     );
 }
+
+wp_localize_script(
+    'dailybuddy-admin',
+    'dailybuddyAdmin',
+    array(
+        'ajaxurl' => admin_url('admin-ajax.php'),
+        // ... was du schon drin hast ...
+        'strings' => array(
+            'moduleActivated'   => __('%s activated!', 'dailybuddy'),
+            'moduleDeactivated' => __('%s deactivated', 'dailybuddy'),
+        ),
+    )
+);
+
 ?>
 
 <div class="wrap">
 
-    <h1 class="dailybuddy-header">
+    <div class="dailybuddy-header">
         <span class="dailybuddy-logo">
-            <img src="<?php echo esc_url(plugin_dir_url(dirname(__DIR__, 1)) . 'assets/images/toolbox.svg'); ?>" alt="dailybuddy Logo" class="dailybuddy-logo-img">
+            <img src="<?php echo esc_url(plugin_dir_url(dirname(__DIR__, 1)) . 'assets/images/logo.png'); ?>" alt="dailybuddy Logo" class="dailybuddy-logo-img">
         </span>
-        <?php echo esc_html(get_admin_page_title()); ?>
-    </h1>
+        <h2 style="margin: 0px;"><?php esc_html_e('DailyBuddy', 'dailybuddy'); ?></h2>
+    </div>
 
     <?php // phpcs:ignore WordPress.Security.NonceVerification.Recommended -- Reading display state only 
     ?>

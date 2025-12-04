@@ -24,7 +24,7 @@
             this.checkSidebarState();
             this.initResizer();
             this.watchWPAdminMenu();
-            this.initFolderHierarchy(); // Hierarchy system
+            this.initFolderHierarchy();
 
             // Erst wenn alles gesetzt ist, Animationen aktivieren
             var self = this;
@@ -163,63 +163,108 @@
                 }
             });
 
-            // Folder Drag & Drop
+            // Folder Drag & Drop MIT VERZÖGERUNG
             var dragging = null;
             var $ghost = null;
+            var dragStartTimer = null;
+            var isDragging = false;
+            var dragDelay = 180; // ms
 
             $(document).on('mousedown', '.folder-tree-item', function (e) {
-                // Ignore clicks on actions, toggle, or count
+                // Ignore clicks auf Actions, Toggle oder Count
                 if ($(e.target).closest('.folder-actions-toggle, .folder-actions, .folder-toggle, .folder-count').length) {
                     return;
                 }
 
-                // Prevent text selection during drag
-                e.preventDefault();
-
-                dragging = $(this).data('folder-id');
                 var $item = $(this);
+                var startEvent = e;
 
-                // Create drag ghost
-                $ghost = $item.clone().addClass('folder-drag-ghost');
-                $ghost.css({
-                    position: 'fixed',
-                    zIndex: 10000,
-                    pointerEvents: 'none',
-                    opacity: 0.7
-                });
-                $('body').append($ghost);
+                dragging = $item.data('folder-id');
+                isDragging = false;
 
-                $item.addClass('dragging');
-                $('.folder-tree-item').not($item).addClass('droppable');
+                // Funktion, die den Drag WIRKLICH startet
+                function startFolderDrag(ev) {
+                    if (isDragging) return;
+                    isDragging = true;
 
-                var moveGhost = function (e) {
+                    var $li = $item.closest('.folder-li');
+                    var isNested = $li.parents('.folder-children').length > 0;
+
+                    // Root-Dropzone nur für verschachtelte Ordner anzeigen
+                    if (isNested) {
+                        $('#folder-root-dropzone').addClass('visible');
+                    }
+
+                    // Ghost erstellen
+                    $ghost = $item.clone().addClass('folder-drag-ghost');
                     $ghost.css({
-                        left: e.pageX + 10,
-                        top: e.pageY + 10
+                        position: 'fixed',
+                        zIndex: 10000,
+                        pointerEvents: 'none',
+                        opacity: 0.7,
+                        left: ev.pageX + 10,
+                        top: ev.pageY + 10
                     });
-                };
+                    $('body').append($ghost);
 
-                $(document).on('mousemove', moveGhost);
-                moveGhost(e);
+                    $item.addClass('dragging');
+                    $('.folder-tree-item').not($item).addClass('droppable');
 
-                $(document).one('mouseup', function (e) {
-                    $(document).off('mousemove', moveGhost);
+                    // Ghost bewegen + Hover-States
+                    $(document).on('mousemove.folderDrag', function (moveEv) {
+                        $ghost.css({
+                            left: moveEv.pageX + 10,
+                            top: moveEv.pageY + 10
+                        });
+
+                        var $folderItem = $(moveEv.target).closest('.folder-tree-item, .folder-item');
+                        $('.folder-tree-item, .folder-item').removeClass('drop-hover');
+                        if ($folderItem.length) {
+                            $folderItem.addClass('drop-hover');
+                        }
+                    });
+                }
+
+                // Verzögerung: erst nach dragDelay ms starten
+                dragStartTimer = setTimeout(function () {
+                    startFolderDrag(startEvent);
+                }, dragDelay);
+
+                // Mouseup: entweder Klick (kein Drag) oder Drop (Drag aktiv)
+                $(document).on('mouseup.folderDrag', function (upEv) {
+                    clearTimeout(dragStartTimer);
+                    $(document).off('mouseup.folderDrag mousemove.folderDrag');
+
+                    // WENN der Drag nie gestartet wurde → normaler Klick, nichts tun
+                    if (!isDragging) {
+                        dragging = null;
+                        return;
+                    }
+
+                    // Ab hier: echter Drop
                     if ($ghost) {
                         $ghost.remove();
                     }
                     $('.folder-tree-item').removeClass('dragging droppable drop-hover');
+                    $('#folder-root-dropzone').removeClass('visible');
 
-                    // Clear any text selection
                     if (window.getSelection) {
                         window.getSelection().removeAllRanges();
                     }
 
-                    var $target = $(e.target).closest('.folder-tree-item');
-                    if ($target.length && $target.data('folder-id') != dragging) {
-                        // Dropped on another folder
+                    var $target = $(upEv.target).closest('.folder-tree-item');
+                    var $rootTarget = $(upEv.target).closest('#folder-root-dropzone');
+
+                    if ($rootTarget.length) {
+                        // Root-Dropzone → nach Root verschieben
+                        self.moveFolderToParent(dragging, 0);
+
+                    } else if ($target.length && $target.data('folder-id') != dragging) {
+                        // Auf anderen Ordner gedroppt
                         self.moveFolderToParent(dragging, $target.data('folder-id'));
-                    } else if ($(e.target).closest('#folders-tree').length && !$target.length) {
-                        // Dropped on tree background = move to root
+
+                    } else if ($(upEv.target).closest('#folders-tree').length && !$target.length) {
+                        // Hintergrund im Baum → ebenfalls Root
                         self.moveFolderToParent(dragging, 0);
                     }
 
@@ -228,14 +273,15 @@
                 });
             });
 
-            // Hover effect while dragging
+            // Hover effect while dragging bleibt wie gehabt
             $(document).on('mouseenter', '.folder-tree-item.droppable', function () {
-                if (dragging) {
+                if (dragging && isDragging) {
                     $(this).addClass('drop-hover');
                 }
             }).on('mouseleave', '.folder-tree-item.droppable', function () {
                 $(this).removeClass('drop-hover');
             });
+
         },
 
         moveFolderToParent: function (folderId, newParentId) {
@@ -419,23 +465,56 @@
             this.$folderSearch.on('keyup', function () {
                 var query = $(this).val().toLowerCase().trim();
 
-                // Alle Ordner (special + tree)
-                var $allItems = $('.folder-item, .folder-tree-item');
+                var $treeLis = $('.folders-tree .folder-li');
+
+                // Alte Hervorhebungen entfernen
+                $('.folder-name').each(function () {
+                    var original = $(this).text();
+                    $(this).text(original);
+                });
 
                 if (query === '') {
-                    // Alles zeigen
-                    $allItems.closest('li, .folder-item').show();
+                    $treeLis.show();
+                    $('.folder-children').show();
+                    $('.folder-tree-item.has-children').addClass('expanded');
                     return;
                 }
 
-                $allItems.each(function () {
-                    var $item = $(this);
-                    var name = $item.find('.folder-name').text().toLowerCase();
+                // Alles ausblenden
+                $treeLis.hide();
+                $('.folder-children').hide();
+                $('.folder-tree-item.has-children').removeClass('expanded');
 
-                    if (name.indexOf(query) !== -1) {
-                        $item.closest('li, .folder-item').show();
-                    } else {
-                        $item.closest('li, .folder-item').hide();
+                // Treffer suchen
+                $('.folder-name').each(function () {
+                    var $name = $(this);
+                    var text = $name.text();
+                    var lower = text.toLowerCase();
+
+                    var idx = lower.indexOf(query);
+
+                    if (idx !== -1) {
+
+                        // ----- 1️⃣ HIGHLIGHT -----
+                        var before = text.substring(0, idx);
+                        var match = text.substring(idx, idx + query.length);
+                        var after = text.substring(idx + query.length);
+
+                        $name.html(
+                            before +
+                            '<span class="search-highlight">' + match + '</span>' +
+                            after
+                        );
+
+                        // ----- 2️⃣ Sichtbarkeit herstellen -----
+                        var $li = $name.closest('.folder-li');
+                        $li.show();
+                        $li.parents('.folder-li').show();
+                        $li.parents('.folder-children').show();
+
+                        $li.parents('.folder-children')
+                            .prev('.folder-tree-item.has-children')
+                            .addClass('expanded');
                     }
                 });
             });
@@ -540,7 +619,14 @@
         },
 
         renderFolders: function (tree) {
-            var html = this.buildFolderTree(tree);
+            var html = '';
+
+            html += '<div id="folder-root-dropzone" class="folder-root-dropzone">';
+            html += sbToolboxFolders.strings.rootDrop;
+            html += '</div>';
+
+            html += this.buildFolderTree(tree);
+
             this.$folderTree.html(html);
             this.restoreExpandedFolders();
         },
@@ -552,7 +638,7 @@
 
             $.each(items, function (i, item) {
                 var hasChildren = item.children && item.children.length > 0;
-                var indent = level * 20; // 20px per level
+                var indent = level * 1; // 20px per level
 
                 html += '<li class="folder-li" data-folder-id="' + item.id + '">';
                 html += '<div class="folder-tree-item' + (hasChildren ? ' has-children' : '') + '" data-folder-id="' + item.id + '" style="padding-left: ' + indent + 'px;">';
@@ -746,10 +832,14 @@
                 var $headerRow = $('.wp-list-table thead tr, .wp-list-table .widefat thead tr').first();
                 var colspan = ($headerRow.find('th:visible').length + 1) || 20;
 
+                var title = sbToolboxFolders.strings.emptyTitle;
+                var descriptionTemplate = sbToolboxFolders.strings.emptyTemplate || '';
+                var description = descriptionTemplate.replace('%s', folderName);
+
                 var message = '<tr class="dailybuddy-empty-message no-items">' +
                     '<td colspan="' + colspan + '" style="text-align: center; padding: 40px 20px; color: #666;">' +
-                    '<p style="font-size: 16px; margin: 0 0 8px 0;"><strong>This folder is empty</strong></p>' +
-                    '<p style="font-size: 14px; margin: 0; opacity: 0.7;">Drag items here to organize them into "' + folderName + '"</p>' +
+                    '<p style="font-size: 16px; margin: 0 0 8px 0;"><strong>' + title + '</strong></p>' +
+                    '<p style="font-size: 14px; margin: 0; opacity: 0.7;">' + description + '</p>' +
                     '</td>' +
                     '</tr>';
 
@@ -907,7 +997,23 @@
 
         startDrag: function ($row, startEvent) {
             var self = this;
+
+            // 1. Standard: Posts/Seiten
             var pageTitle = $row.find('.row-title').text().trim();
+
+            // 2. Mediathek (Listenansicht): Dateiname
+            if (!pageTitle) {
+                pageTitle = $row.find('.filename strong').text().trim();
+            }
+
+            // 3. Fallback: erster Link/strong in Titelspalte
+            if (!pageTitle) {
+                pageTitle = $row.find('td.column-title a, td.column-title strong')
+                    .first()
+                    .text()
+                    .trim();
+            }
+
             var pageIcon = $row.find('.dailybuddy-drag-handle').html() || '';
 
             var $dragHelper = $('<div class="dailybuddy-drag-helper-minimal">' +
@@ -924,7 +1030,7 @@
                 position: 'fixed',
                 left: startEvent.pageX + 10,
                 top: startEvent.pageY + 10,
-                width: $row.outerWidth(),
+                width: 'auto',
                 opacity: 0.8,
                 zIndex: 10000,
                 pointerEvents: 'none'
