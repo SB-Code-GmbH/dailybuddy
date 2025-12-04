@@ -1,0 +1,2088 @@
+# German Translation for dailybuddy
+msgid ""
+msgstr ""
+"Project-Id-Version: dailybuddy 1.0.0\n"
+"POT-Creation-Date: \n"
+"PO-Revision-Date: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: de_DE\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Poedit 3.8\n"
+
+# Plugin Description
+msgid "A modular collection of essential WordPress features that can be individually enabled or disabled. Includes tools for duplicating posts, maintenance mode, media organization, custom widgets, and Elementor extensions - all in one place."
+msgstr "Eine modulare Sammlung wichtiger WordPress-Funktionen, die einzeln aktiviert oder deaktiviert werden können. Enthält Tools zum Duplizieren von Beiträgen, Wartungsmodus, Medienorganisation, benutzerdefinierte Widgets und Elementor-Erweiterungen - alles an einem Ort."
+
+# Main Menu
+msgid "dailybuddy"
+msgstr "dailybuddy"
+
+# General
+msgid "Settings"
+msgstr "Einstellungen"
+
+msgid "General Settings"
+msgstr "Allgemeine Einstellungen"
+
+msgid "Back to Modules"
+msgstr "Zurück zu den Modulen"
+
+msgid "Settings saved!"
+msgstr "Einstellungen gespeichert!"
+
+msgid "No permission"
+msgstr "Keine Berechtigung"
+
+msgid "Invalid module ID"
+msgstr "Ungültige Modul-ID"
+
+msgid "Module activated!"
+msgstr "Modul aktiviert!"
+
+msgid "Module deactivated"
+msgstr "Modul deaktiviert"
+
+msgid "Failed to save settings"
+msgstr "Fehler beim Speichern der Einstellungen"
+
+msgid "No modules available yet. Create your first module in the modules/ directory!"
+msgstr "Noch keine Module vorhanden. Erstelle dein erstes Modul im modules/ Verzeichnis!"
+
+msgid "Requires:"
+msgstr "Benötigt:"
+
+msgid "Module not found"
+msgstr "Modul nicht gefunden"
+
+msgid "This module has no settings"
+msgstr "Dieses Modul hat keine Einstellungen"
+
+# Categories
+msgid "Essential WordPress utilities and tools"
+msgstr "Wichtige WordPress-Werkzeuge und Tools"
+
+msgid "Custom dashboard widgets and displays"
+msgstr "Benutzerdefinierte Dashboard-Widgets und Anzeigen"
+
+msgid "Additional widgets and features for Elementor"
+msgstr "Zusätzliche Widgets und Funktionen für Elementor"
+
+# Module: Duplicate Posts
+msgid "Duplicate Posts/Pages"
+msgstr "Seiten/Beiträge duplizieren"
+
+msgid "Adds a \"Duplicate\" link to posts and pages."
+msgstr "Fügt einen \"Duplizieren\" Link zu Seiten und Beiträgen hinzu."
+
+msgid "Duplicate"
+msgstr "Duplizieren"
+
+msgid "No post to duplicate specified."
+msgstr "Kein Beitrag zum Duplizieren angegeben."
+
+msgid "Post not found."
+msgstr "Beitrag nicht gefunden."
+
+msgid "Error duplicating post."
+msgstr "Fehler beim Duplizieren des Beitrags."
+
+# Module: Media Folders
+msgid "Media Library Folders"
+msgstr "Mediathek Ordner"
+
+msgid "Organize media library with folders (requires additional implementation)."
+msgstr "Organisiert die Mediathek mit Ordnern (benötigt zusätzliche Implementierung)."
+
+msgid "Media Folders module is active - Add your implementation here!"
+msgstr "Media Folders Modul ist aktiviert - Füge hier deine Implementierung hinzu!"
+
+# Module: Dashboard Widget
+msgid "Custom Dashboard Widget"
+msgstr "Benutzerdefiniertes Dashboard Widget"
+
+msgid "Example dashboard widget - create your own widgets here."
+msgstr "Beispiel für ein Dashboard Widget - hier kannst du deine eigenen Widgets erstellen."
+
+# Module: Elementor Widgets
+msgid "Elementor Widgets"
+msgstr "Elementor Widgets"
+
+msgid "Adds custom widgets to Elementor (requires Elementor plugin)."
+msgstr "Fügt benutzerdefinierte Widgets zu Elementor hinzu (benötigt Elementor Plugin)."
+
+msgid "Elementor Widgets module requires Elementor! Please install Elementor."
+msgstr "Elementor Widgets Modul benötigt Elementor! Bitte installiere Elementor."
+
+# Module: Under Construction
+msgid "Under Construction Mode"
+msgstr "Wartungsmodus"
+
+msgid "Shows an \"Under Construction\" page for non-logged-in users."
+msgstr "Zeigt eine \"Under Construction\" Seite für nicht angemeldete Benutzer."
+
+msgid "Maintenance Mode"
+msgstr "Wartungsmodus"
+
+msgid "Website Under Construction"
+msgstr "Website wird gerade überarbeitet"
+
+msgid "We are currently working on improvements. Please check back soon!"
+msgstr "Wir arbeiten derzeit an Verbesserungen. Bitte schauen Sie bald wieder vorbei!"
+
+msgid "Page Title"
+msgstr "Seitentitel"
+
+msgid "The main heading shown on the maintenance page"
+msgstr "Die Hauptüberschrift auf der Wartungsseite"
+
+msgid "Message"
+msgstr "Nachricht"
+
+msgid "The message displayed below the title"
+msgstr "Die Nachricht unter dem Titel"
+
+msgid "Background Color"
+msgstr "Hintergrundfarbe"
+
+msgid "Choose a background color for the maintenance page"
+msgstr "Wähle eine Hintergrundfarbe für die Wartungsseite"
+
+msgid "Use Gradient"
+msgstr "Farbverlauf verwenden"
+
+msgid "Apply gradient effect to background"
+msgstr "Farbverlauf auf Hintergrund anwenden"
+
+msgid "Save Settings"
+msgstr "Einstellungen speichern"
+
+# General Settings Page
+msgid "Plugin Settings"
+msgstr "Plugin-Einstellungen"
+
+msgid "Feedback System"
+msgstr "Feedback-System"
+
+msgid "Enable feedback system for module improvements"
+msgstr "Feedback-System für Modul-Verbesserungen aktivieren"
+
+msgid "Help us improve dailybuddy by sending anonymous usage data."
+msgstr "Hilf uns dailybuddy zu verbessern, indem du anonyme Nutzungsdaten sendest."
+
+msgid "Usage Analytics"
+msgstr "Nutzungsanalyse"
+
+msgid "Enable anonymous usage analytics"
+msgstr "Anonyme Nutzungsanalyse aktivieren"
+
+msgid "Track which modules are most used to prioritize future development."
+msgstr "Verfolge welche Module am häufigsten genutzt werden, um die zukünftige Entwicklung zu priorisieren."
+
+msgid "License"
+msgstr "Lizenz"
+
+msgid "License Key"
+msgstr "Lizenzschlüssel"
+
+msgid "Enter your license key to unlock premium features."
+msgstr "Gib deinen Lizenzschlüssel ein, um Premium-Funktionen freizuschalten."
+
+msgid "License Active"
+msgstr "Lizenz aktiv"
+
+msgid "No License Key"
+msgstr "Kein Lizenzschlüssel"
+
+msgid "Plugin Information"
+msgstr "Plugin-Informationen"
+
+msgid "Version"
+msgstr "Version"
+
+msgid "Author"
+msgstr "Autor"
+
+msgid "Documentation"
+msgstr "Dokumentation"
+
+msgid "View Documentation"
+msgstr "Dokumentation ansehen"
+
+# Tags (translated)
+msgid "content"
+msgstr "Inhalt"
+
+msgid "admin"
+msgstr "Admin"
+
+msgid "media"
+msgstr "Medien"
+
+msgid "organization"
+msgstr "Organisation"
+
+msgid "maintenance"
+msgstr "Wartung"
+
+msgid "frontend"
+msgstr "Frontend"
+
+msgid "widget"
+msgstr "Widget"
+
+msgid "elementor"
+msgstr "Elementor"
+
+msgid "pagebuilder"
+msgstr "Pagebuilder"
+
+msgid "widgets"
+msgstr "Widgets"
+
+msgid "Insufficient permissions"
+msgstr "Unzureichende Berechtigungen"
+
+msgid "Maintenance mode activated"
+msgstr "Wartungsmodus aktiviert"
+
+msgid "Maintenance mode deactivated"
+msgstr "Wartungsmodus deaktiviert"
+
+msgid "Maintenance Mode Active"
+msgstr "Wartungsmodus aktiviert"
+
+msgid "Maintenance Mode Inactive"
+msgstr "Wartungsmodus deaktiviert"
+
+msgid "Enable Maintenance Mode"
+msgstr "Wartungsmodus aktivieren"
+
+msgid "Show Settings"
+msgstr "Einstellungen anzeigen"
+
+msgid "Admin Login"
+msgstr "Admin-Login"
+
+msgid "Wartungsmodus"
+msgstr "Wartungsmodus"
+
+msgid "Enable or disable the under construction page"
+msgstr "Aktiviert oder deaktiviert die Wartungsseite"
+
+msgid "Seitentitel"
+msgstr "Seitentitel"
+
+msgid "Nachricht"
+msgstr "Nachricht"
+
+msgid "Show Login Button"
+msgstr "Login-Button anzeigen"
+
+msgid "Show admin login link in bottom right corner"
+msgstr "Admin-Login-Link unten rechts anzeigen"
+
+msgid "Admin Bar Notice"
+msgstr "Hinweis in der Admin-Leiste"
+
+msgid "Show warning in WordPress admin bar when mode is active"
+msgstr "Warnhinweis in der WordPress-Admin-Leiste anzeigen, wenn der Modus aktiv ist"
+
+msgid "Auto-End Mode"
+msgstr "Automatisches Beenden"
+
+msgid "Automatically disable maintenance mode at specific date/time"
+msgstr "Wartungsmodus automatisch zu einem bestimmten Datum/Uhrzeit deaktivieren"
+
+msgid "General"
+msgstr "Allgemein"
+
+msgid "Design"
+msgstr "Design"
+
+msgid "Social Media"
+msgstr "Social Media"
+
+msgid "Layout"
+msgstr "Layout"
+
+msgid "Select a layout style for your maintenance page"
+msgstr "Wähle ein Layout für deine Wartungsseite"
+
+msgid "Custom CSS"
+msgstr "Eigenes CSS"
+
+msgid "Add custom CSS to further customize your maintenance page"
+msgstr "Füge eigenes CSS hinzu, um deine Wartungsseite weiter anzupassen"
+
+msgid "Enable Social Links"
+msgstr "Social-Media-Links aktivieren"
+
+msgid "Show social media links on maintenance page"
+msgstr "Social-Media-Links auf der Wartungsseite anzeigen"
+
+msgid "Modules"
+msgstr "Module"
+
+msgid "%s deactivated"
+msgstr "%s deaktiviert"
+
+msgid "%s activated!"
+msgstr "%s aktiviert!"
+
+msgid "The module \"%1$s\" is currently <strong>deactivated</strong>. You can see and change its settings after you <a href=\"%2$s\">activate the module</a>."
+msgstr "Das Modul „%1$s“ ist derzeit <strong>deaktiviert</strong>. Sie können seine Einstellungen anzeigen und ändern, nachdem Sie <a href=\"%2$s\">das Modul aktiviert haben</a>."
+
+msgid "Settings interface not implemented yet."
+msgstr "Einstellungs-Schnittstelle noch nicht implementiert."
+
+msgid "Maintenance mode is controlled via settings, not when activating the module."
+msgstr "Der Wartungsmodus wird über die Einstellungen gesteuert, nicht beim Aktivieren des Moduls."
+
+msgid "About dailybuddy"
+msgstr "Über dailybuddy"
+
+msgid "dailybuddy is a modular collection of helpful enhancements for your WordPress site. It bundles several small tools into one plugin, so you can enable only the features you actually need."
+msgstr "dailybuddy ist eine modulare Sammlung hilfreicher Erweiterungen für deine WordPress-Website. Das Plugin vereint mehrere kleine Tools, sodass du nur die Funktionen aktivieren kannst, die du wirklich benötigst."
+
+msgid "Enable handy WordPress utilities such as maintenance mode and content tools."
+msgstr "Aktiviere praktische WordPress-Werkzeuge wie den Wartungsmodus oder Content-Helfer."
+
+msgid "Add custom widgets and extensions to your dashboard or page builders."
+msgstr "Füge benutzerdefinierte Widgets und Erweiterungen zum Dashboard oder Page Builder hinzu."
+
+msgid "Keep everything organized in one central modules overview."
+msgstr "Behalte alles in einer zentralen Modulübersicht organisiert."
+
+msgid "You can manage all individual modules, activate or deactivate them, and access their settings from the main dailybuddy screen."
+msgstr "Du kannst alle Module verwalten, aktivieren oder deaktivieren und ihre Einstellungen direkt über die Hauptansicht von dailybuddy aufrufen."
+
+msgid "Feedback & Support"
+msgstr "Feedback & Support"
+
+msgid "If you have questions, feature requests, or found a bug, we would love to hear from you."
+msgstr "Wenn du Fragen, Funktionswünsche oder einen Fehler gefunden hast, freuen wir uns über dein Feedback."
+
+msgid "Open support & feedback page"
+msgstr "Support- & Feedback-Seite öffnen"
+
+msgid "The support link will point to the official WordPress.org plugin page once it is available."
+msgstr "Der Support-Link führt zur offiziellen WordPress.org-Plugin-Seite, sobald diese verfügbar ist."
+
+msgid "Quick Stats"
+msgstr "Schnelle Statistiken"
+
+msgid "Displays key website statistics at a glance: posts, pages, comments, users, and media."
+msgstr "Zeigt wichtige Website-Statistiken auf einen Blick an: Beiträge, Seiten, Kommentare, Benutzer und Medien."
+
+msgid "statistics"
+msgstr "Statistiken"
+
+msgid "overview"
+msgstr "Übersicht"
+
+msgid "Users"
+msgstr "Benutzer"
+
+msgid "Total"
+msgstr "Gesamt"
+
+msgid "This Week"
+msgstr "Diese Woche"
+
+msgid "Media"
+msgstr "Medien"
+
+msgid "Images"
+msgstr "Bilder"
+
+msgid "Videos"
+msgstr "Videos"
+
+msgid "Total Files"
+msgstr "Dateien insgesamt"
+
+msgid "No recent activity found."
+msgstr "Keine kürzlichen Aktivitäten gefunden."
+
+msgid "ago"
+msgstr "zuvor"
+
+msgid "Posts"
+msgstr "Beiträge"
+
+msgid "Published"
+msgstr "Veröffentlicht"
+
+msgid "Draft"
+msgstr "Entwurf"
+
+msgid "Scheduled"
+msgstr "Geplant"
+
+msgid "Pages"
+msgstr "Seiten"
+
+msgid "Comments"
+msgstr "Kommentare"
+
+msgid "Approved"
+msgstr "Genehmigt"
+
+msgid "Pending"
+msgstr "Ausstehend"
+
+msgid "Spam"
+msgstr "Spam"
+
+msgid "Comment on <a href=\"%s\">%s</a>"
+msgstr "Kommentar zu <a href=\"%s\">%s</a>"
+
+msgid "(unknown post)"
+msgstr "(unbekannter Beitrag)"
+
+msgid "Image"
+msgstr "Bild"
+
+msgid "Video"
+msgstr "Video"
+
+msgid "Audio"
+msgstr "Audio"
+
+msgid "File"
+msgstr "Datei"
+
+msgid "%s uploaded: <a href=\"%s\">%s</a>"
+msgstr "%s hochgeladen: <a href=\"%s\">%s</a>"
+
+msgid "New"
+msgstr "Neu"
+
+msgid "Updated"
+msgstr "Aktualisiert"
+
+msgid "Deleted"
+msgstr "Gelöscht"
+
+msgid "New user registered: <a href=\"%s\">%s</a>"
+msgstr "Neuer Benutzer registriert: <a href=\"%s\">%s</a>"
+
+msgid "(No title)"
+msgstr "(Kein Titel)"
+
+msgid "Recent Activity"
+msgstr "Aktuelle Aktivitäten"
+
+msgid "Shows the last 10 changes on your website: post updates, new comments, plugin updates, and more with timestamps and direct links."
+msgstr "Zeigt die letzten 10 Änderungen auf deiner Website an: Beitragsaktualisierungen, neue Kommentare, Plugin-Updates und mehr, mit Zeitangaben und direkten Links."
+
+msgid "activity"
+msgstr "Aktivität"
+
+msgid "timeline"
+msgstr "Zeitverlauf"
+
+msgid "Quick Notes"
+msgstr "Schnelle Notizen"
+
+msgid "Note title..."
+msgstr "Notiztitel..."
+
+msgid "Note content (optional)..."
+msgstr "Notizinhalte (optional)..."
+
+msgid "Make it a ToDo"
+msgstr "Als Aufgabe markieren"
+
+msgid "Add Note"
+msgstr "Notiz hinzufügen"
+
+msgid "No notes yet. Add your first note above!"
+msgstr "Noch keine Notizen vorhanden. Füge oben deine erste Notiz hinzu!"
+
+msgid "Todo"
+msgstr "Aufgabe"
+
+msgid "Delete"
+msgstr "Löschen"
+
+msgid "Title is required"
+msgstr "Titel ist erforderlich"
+
+msgid "Note saved!"
+msgstr "Notiz gespeichert!"
+
+msgid "Invalid note ID"
+msgstr "Ungültige Notiz-ID"
+
+msgid "No notes found"
+msgstr "Keine Notizen gefunden"
+
+msgid "Note deleted!"
+msgstr "Notiz gelöscht!"
+
+msgid "Todo updated!"
+msgstr "Aufgabe aktualisiert!"
+
+msgid "Personal notes and todo list in your dashboard. Each user has their own notes with checkboxes for tasks."
+msgstr "Persönliche Notizen und Aufgabenliste in deinem Dashboard. Jeder Benutzer hat eine eigene Notizenübersicht mit Checkboxen für Aufgaben."
+
+msgid "Server & Performance"
+msgstr "Server & Leistung"
+
+msgid "PHP Version"
+msgstr "PHP-Version"
+
+msgid "Recommended: 8.0+"
+msgstr "Empfohlen: 8.0+"
+
+msgid "Memory Limit"
+msgstr "Speicherlimit"
+
+msgid "Usage: %s (%d%%)"
+msgstr "Nutzung: %s (%d%%)"
+
+msgid "Database"
+msgstr "Datenbank"
+
+msgid "WordPress"
+msgstr "WordPress"
+
+msgid "Update available: %s"
+msgstr "Aktualisierung verfügbar: %s"
+
+msgid "Up to date"
+msgstr "Aktuell"
+
+msgid "Disk Space"
+msgstr "Speicherplatz"
+
+msgid "Total: %s | Used: %s"
+msgstr "Gesamt: %s | Belegt: %s"
+
+msgid "Web Server"
+msgstr "Webserver"
+
+msgid "OS:"
+msgstr "Betriebssystem:"
+
+msgid "Max Upload:"
+msgstr "Max. Upload:"
+
+msgid "Max Execution:"
+msgstr "Max. Ausführungszeit:"
+
+msgid "Good"
+msgstr "Gut"
+
+msgid "Update Recommended"
+msgstr "Aktualisierung empfohlen"
+
+msgid "Critical"
+msgstr "Kritisch"
+
+msgid "Monitor"
+msgstr "Beobachten"
+
+msgid "Unknown"
+msgstr "Unbekannt"
+
+msgid "Update Available"
+msgstr "Aktualisierung verfügbar"
+
+msgid "Up to Date"
+msgstr "Auf dem neuesten Stand"
+
+msgid "Server Health: Critical"
+msgstr "Serverzustand: Kritisch"
+
+msgid "%d critical issue(s) detected. Please check the details below."
+msgstr "%d kritische(r) Fehler erkannt. Bitte prüfe die Details unten."
+
+msgid "Server Health: Good (Improvements Possible)"
+msgstr "Serverzustand: Gut (Verbesserungen möglich)"
+
+msgid "%d recommendation(s) for optimization. Your site is running fine."
+msgstr "%d Empfehlung(en) zur Optimierung. Deine Website läuft einwandfrei."
+
+msgid "Server Health: Excellent"
+msgstr "Serverzustand: Ausgezeichnet"
+
+msgid "All systems are running optimally. Great job!"
+msgstr "Alle Systeme laufen optimal. Gute Arbeit!"
+
+msgid "Quick health check showing PHP version, memory limit, MySQL version, WordPress version, and disk space usage."
+msgstr "Schneller Systemcheck mit PHP-Version, Speicherlimit, MySQL-Version, WordPress-Version und Festplattennutzung."
+
+msgid "dashboard"
+msgstr "Dashboard"
+
+msgid "server"
+msgstr "Server"
+
+msgid "performance"
+msgstr "Leistung"
+
+msgid "health"
+msgstr "Gesundheit"
+
+msgid "Security Monitor"
+msgstr "Sicherheitsmonitor"
+
+msgid "Admin Logins Today"
+msgstr "Admin-Anmeldungen heute"
+
+msgid "Failed Logins (24h)"
+msgstr "Fehlgeschlagene Anmeldungen (24h)"
+
+msgid "Updates Available"
+msgstr "Updates verfügbar"
+
+msgid "Outdated Components"
+msgstr "Veraltete Komponenten"
+
+msgid "Updates Required"
+msgstr "Updates erforderlich"
+
+msgid "All plugins and themes are up to date!"
+msgstr "Alle Plugins und Themes sind auf dem neuesten Stand!"
+
+msgid "Plugins"
+msgstr "Plugins"
+
+msgid "Themes"
+msgstr "Themes"
+
+msgid "Security Status: Good"
+msgstr "Sicherheitsstatus: Gut"
+
+msgid "No immediate security concerns."
+msgstr "Keine unmittelbaren Sicherheitsbedenken."
+
+msgid "Security Alert: High Risk"
+msgstr "Sicherheitswarnung: Hohes Risiko"
+
+msgid "Multiple failed login attempts detected!"
+msgstr "Mehrere fehlgeschlagene Anmeldeversuche erkannt!"
+
+msgid "Security Alert: Outdated"
+msgstr "Sicherheitswarnung: Veraltet"
+
+msgid "Critical components need updates!"
+msgstr "Kritische Komponenten benötigen Updates!"
+
+msgid "Security Status: Monitor"
+msgstr "Sicherheitsstatus: Beobachtung"
+
+msgid "Some issues require attention."
+msgstr "Einige Punkte erfordern Aufmerksamkeit."
+
+msgid "Security Status: Updates Available"
+msgstr "Sicherheitsstatus: Updates verfügbar"
+
+msgid "Updates are available for installation."
+msgstr "Updates stehen zur Installation bereit."
+
+msgid "Compact security overview showing admin logins, failed attempts, available updates, and outdated components."
+msgstr "Kompakte Sicherheitsübersicht mit Admin-Anmeldungen, fehlgeschlagenen Versuchen, verfügbaren Updates und veralteten Komponenten."
+
+msgid "security"
+msgstr "Sicherheit"
+
+msgid "monitoring"
+msgstr "Überwachung"
+
+msgid "User Activity"
+msgstr "Benutzeraktivität"
+
+msgid "Online Now"
+msgstr "Jetzt online"
+
+msgid "Idle (15m)"
+msgstr "Inaktiv (15 Min.)"
+
+msgid "Total Users"
+msgstr "Gesamtanzahl Benutzer"
+
+msgid "Online (%d)"
+msgstr "Online (%d)"
+
+msgid "All Users (%d)"
+msgstr "Alle Benutzer (%d)"
+
+msgid "Currently Online"
+msgstr "Aktuell online"
+
+msgid "Refresh"
+msgstr "Aktualisieren"
+
+msgid "No users online right now."
+msgstr "Derzeit sind keine Benutzer online."
+
+msgid "All Users"
+msgstr "Alle Benutzer"
+
+msgid "Offline"
+msgstr "Offline"
+
+msgid "Online"
+msgstr "Online"
+
+msgid "Idle"
+msgstr "Inaktiv"
+
+msgid "Never"
+msgstr "Nie"
+
+msgid "Active now"
+msgstr "Jetzt aktiv"
+
+msgid "Last seen %s ago"
+msgstr "Zuletzt gesehen vor %s"
+
+msgid "Never logged in"
+msgstr "Noch nie angemeldet"
+
+msgid "Shows who is currently online and the last activity of all users. Perfect for multi-user sites."
+msgstr "Zeigt, wer derzeit online ist und die letzte Aktivität aller Benutzer. Ideal für Webseiten mit mehreren Benutzern."
+
+msgid "users"
+msgstr "Benutzer"
+
+msgid "online"
+msgstr "Online"
+
+msgid "User list refreshed!"
+msgstr "Benutzerliste aktualisiert!"
+
+msgid "FlipBox"
+msgstr "FlipBox"
+
+msgid "Animated flip box with front and back content. Perfect for showcasing features, services, or team members."
+msgstr "Animierte Flipbox mit Vorder- und Rückseite. Ideal zur Präsentation von Funktionen, Dienstleistungen oder Teammitgliedern."
+
+msgid "flipbox"
+msgstr "Flipbox"
+
+msgid "animation"
+msgstr "Animation"
+
+msgid "Development"
+msgstr "Entwicklung"
+
+msgid "Development Mode Active"
+msgstr "Entwicklungsmodus aktiv"
+
+msgid "dailybuddy is currently running in development mode. Set DAILYBUDDY_DEV_MODE to false in production."
+msgstr "dailybuddy läuft derzeit im Entwicklungsmodus. Setze DAILYBUDDY_DEV_MODE in der Produktion auf false."
+
+msgid "View Development Page"
+msgstr "Entwicklungsseite anzeigen"
+
+msgid "Module deactivated!"
+msgstr "Modul deaktiviert!"
+
+msgid "Currently %s module is active."
+msgstr "Derzeit ist %s Modul aktiv."
+
+msgid "Currently %s modules are active."
+msgstr "Derzeit sind %s Module aktiv."
+
+msgid "translation"
+msgstr "Übersetzung"
+
+msgid "translations"
+msgstr "Übersetzungen"
+
+msgid "Access denied. Development mode is not enabled."
+msgstr "Zugriff verweigert. Der Entwicklungsmodus ist nicht aktiviert."
+
+msgid "This page is only visible when DAILYBUDDY_DEV_MODE is set to true in dailybuddy.php."
+msgstr "Diese Seite ist nur sichtbar, wenn DAILYBUDDY_DEV_MODE in dailybuddy.php auf true gesetzt ist."
+
+msgid "Translation"
+msgstr "Übersetzung"
+
+msgid "Plugin Version"
+msgstr "Plugin-Version"
+
+msgid "Plugin Path"
+msgstr "Plugin-Pfad"
+
+msgid "Plugin URL"
+msgstr "Plugin-URL"
+
+msgid "Plugin Basename"
+msgstr "Plugin-Basename"
+
+msgid "Development Mode"
+msgstr "Entwicklungsmodus"
+
+msgid "ENABLED"
+msgstr "AKTIVIERT"
+
+msgid "WordPress Environment"
+msgstr "WordPress-Umgebung"
+
+msgid "WordPress Version"
+msgstr "WordPress-Version"
+
+msgid "Site URL"
+msgstr "Website-URL"
+
+msgid "Home URL"
+msgstr "Home-URL"
+
+msgid "Active Theme"
+msgstr "Aktives Theme"
+
+msgid "WP Debug"
+msgstr "WP-Debug"
+
+msgid "Enabled"
+msgstr "Aktiviert"
+
+msgid "Disabled"
+msgstr "Deaktiviert"
+
+msgid "Active Modules"
+msgstr "Aktive Module"
+
+msgid "No modules are currently active."
+msgstr "Derzeit sind keine Module aktiv."
+
+msgid "Debug Tools"
+msgstr "Debug-Werkzeuge"
+
+msgid "Additional debug tools and utilities for development."
+msgstr "Zusätzliche Debug-Werkzeuge und Hilfsprogramme für die Entwicklung."
+
+msgid "To disable this page, set DAILYBUDDY_DEV_MODE to false in dailybuddy.php."
+msgstr "Um diese Seite zu deaktivieren, setze DAILYBUDDY_DEV_MODE in dailybuddy.php auf false."
+
+msgid "Translation Information"
+msgstr "Übersetzungsinformationen"
+
+msgid "Text Domain"
+msgstr "Textdomain"
+
+msgid "Languages Directory"
+msgstr "Sprachverzeichnis"
+
+msgid "Current WordPress Locale"
+msgstr "Aktuelle WordPress-Lokalisierung"
+
+msgid "Translation available"
+msgstr "Übersetzung verfügbar"
+
+msgid "No translation available"
+msgstr "Keine Übersetzung verfügbar"
+
+msgid "Available Translations"
+msgstr "Verfügbare Übersetzungen"
+
+msgid "No translations found"
+msgstr "Keine Übersetzungen gefunden"
+
+msgid "Translation Files"
+msgstr "Übersetzungsdateien"
+
+msgid "Locale"
+msgstr "Gebietsschema"
+
+msgid "PO File"
+msgstr "PO-Datei"
+
+msgid "MO File"
+msgstr "MO-Datei"
+
+msgid "Empty Translations"
+msgstr "Leere Übersetzungen"
+
+msgid "Last Modified"
+msgstr "Zuletzt geändert"
+
+msgid "active"
+msgstr "aktiv"
+
+msgid "Missing"
+msgstr "Fehlt"
+
+msgid "Add New Language"
+msgstr "Neue Sprache hinzufügen"
+
+msgid "Create a new translation file based on the POT template. Enter a locale code (e.g., de_DE, fr_FR, es_ES)."
+msgstr "Erstelle eine neue Übersetzungsdatei basierend auf der POT-Vorlage. Gib einen Gebietsschema-Code ein (z. B. de_DE, fr_FR, es_ES)."
+
+msgid "e.g., de_DE, fr_FR, es_ES"
+msgstr "z. B. de_DE, fr_FR, es_ES"
+
+msgid "Create Language File"
+msgstr "Sprachdatei erstellen"
+
+msgid "Common locale codes:"
+msgstr "Gängige Gebietsschema-Codes:"
+
+msgid "Translation String Scanner"
+msgstr "Übersetzungs-String-Scanner"
+
+msgid "Scan your plugin files for translatable strings and compare them with your existing translation files."
+msgstr "Scanne deine Plugin-Dateien nach übersetzbaren Strings und vergleiche sie mit deinen vorhandenen Übersetzungsdateien."
+
+msgid "Scan for Missing Translations"
+msgstr "Nach fehlenden Übersetzungen scannen"
+
+msgid "Scanning..."
+msgstr "Scannen …"
+
+msgid "Scan Complete"
+msgstr "Scan abgeschlossen"
+
+msgid "Missing Translations"
+msgstr "Fehlende Übersetzungen"
+
+msgid "Add Missing Strings"
+msgstr "Fehlende Strings hinzufügen"
+
+msgid "Select which translation files you want to update with the missing strings."
+msgstr "Wähle aus, welche Übersetzungsdateien mit den fehlenden Strings aktualisiert werden sollen."
+
+msgid "Add to All Translation Files"
+msgstr "Zu allen Übersetzungsdateien hinzufügen"
+
+msgid "Clear Results"
+msgstr "Ergebnisse löschen"
+
+msgid "Translation Tools"
+msgstr "Übersetzungswerkzeuge"
+
+msgid "You can create or update translations for dailybuddy using tools like Poedit or Loco Translate."
+msgstr "Du kannst Übersetzungen für dailybuddy mit Tools wie Poedit oder Loco Translate erstellen oder aktualisieren."
+
+msgid "POT Template File"
+msgstr "POT-Vorlagendatei"
+
+msgid "Use this file as a template to create new translations."
+msgstr "Verwende diese Datei als Vorlage, um neue Übersetzungen zu erstellen."
+
+msgid "POT file not found"
+msgstr "POT-Datei nicht gefunden"
+
+msgid "Recommended Tools"
+msgstr "Empfohlene Tools"
+
+msgid "Download Poedit"
+msgstr "Poedit herunterladen"
+
+msgid "Installed"
+msgstr "Installiert"
+
+msgid "View Plugin"
+msgstr "Plugin anzeigen"
+
+msgid "untranslated"
+msgstr "nicht übersetzt"
+
+msgid "Complete"
+msgstr "Abgeschlossen"
+
+msgid "Please enter a locale code."
+msgstr "Bitte gib einen Gebietsschema-Code ein."
+
+msgid "Invalid locale format. Use format like: de_DE, fr_FR, en_US"
+msgstr "Ungültiges Gebietsschema-Format. Verwende ein Format wie: de_DE, fr_FR, en_US"
+
+msgid "Creating language files..."
+msgstr "Erstelle Sprachdateien …"
+
+msgid "An error occurred. Please try again."
+msgstr "Ein Fehler ist aufgetreten. Bitte versuche es erneut."
+
+msgid "An error occurred while scanning. Please try again."
+msgstr "Beim Scannen ist ein Fehler aufgetreten. Bitte versuche es erneut."
+
+msgid "Found"
+msgstr "Gefunden"
+
+msgid "translatable strings in"
+msgstr "übersetzbare Strings in"
+
+msgid "files."
+msgstr "Dateien."
+
+msgid "strings are missing from at least one translation file."
+msgstr "Strings fehlen in mindestens einer Übersetzungsdatei."
+
+msgid "All strings are translated!"
+msgstr "Alle Strings sind übersetzt!"
+
+msgid "String"
+msgstr "String"
+
+msgid "Context"
+msgstr "Kontext"
+
+msgid "Missing in"
+msgstr "Fehlt in"
+
+msgid "Add to"
+msgstr "Hinzufügen zu"
+
+msgid "No missing translations found!"
+msgstr "Keine fehlenden Übersetzungen gefunden!"
+
+msgid "Please select at least one string to add."
+msgstr "Bitte wähle mindestens einen String zum Hinzufügen aus."
+
+msgid "Adding..."
+msgstr "Füge hinzu …"
+
+msgid "Successfully added %d strings to 1 translation file."
+msgstr "%d Strings erfolgreich zu einer Übersetzungsdatei hinzugefügt."
+
+msgid "Successfully added %d strings to %d translation files."
+msgstr "%d Strings erfolgreich zu %d Übersetzungsdateien hinzugefügt."
+
+msgid "Missing required data"
+msgstr "Erforderliche Daten fehlen"
+
+msgid "POT template file was also updated."
+msgstr "Die POT-Vorlagendatei wurde ebenfalls aktualisiert."
+
+msgid "Failed to update translation files"
+msgstr "Aktualisierung der Übersetzungsdateien fehlgeschlagen"
+
+msgid "Locale is required"
+msgstr "Gebietsschema ist erforderlich"
+
+msgid "POT template file not found"
+msgstr "POT-Vorlagendatei nicht gefunden"
+
+msgid "Language file for %s already exists"
+msgstr "Sprachdatei für %s existiert bereits"
+
+msgid "Failed to create PO file"
+msgstr "PO-Datei konnte nicht erstellt werden"
+
+msgid "Successfully created language files for %s"
+msgstr "Sprachdateien für %s erfolgreich erstellt"
+
+msgid "Dashboard Widgets"
+msgstr "Dashboard-Widgets"
+
+msgid "notes"
+msgstr "Notizen"
+
+msgid "todo"
+msgstr "To-Do"
+
+msgid "productivity"
+msgstr "Produktivität"
+
+msgid "Elementor Extensions"
+msgstr "Elementor-Erweiterungen"
+
+msgid "Flip Effect"
+msgstr "Flip-Effekt"
+
+msgid "Flip Left"
+msgstr "Nach links flippen"
+
+msgid "Flip Right"
+msgstr "Nach rechts flippen"
+
+msgid "Flip Up"
+msgstr "Nach oben flippen"
+
+msgid "Flip Down"
+msgstr "Nach unten flippen"
+
+msgid "Zoom In"
+msgstr "Hineinzoomen"
+
+msgid "Zoom Out"
+msgstr "Herauszoomen"
+
+msgid "Fade"
+msgstr "Ausblenden"
+
+msgid "Height"
+msgstr "Höhe"
+
+msgid "Flip Duration (ms)"
+msgstr "Flip-Dauer (ms)"
+
+msgid "Front Content"
+msgstr "Vorderseite"
+
+msgid "Icon Type"
+msgstr "Icon-Typ"
+
+msgid "None"
+msgstr "Keine"
+
+msgid "Icon"
+msgstr "Icon"
+
+msgid "Title"
+msgstr "Titel"
+
+msgid "Front Title"
+msgstr "Titel (Vorderseite)"
+
+msgid "Description"
+msgstr "Beschreibung"
+
+msgid "This is the front side of the flip box."
+msgstr "Dies ist die Vorderseite der Flip-Box."
+
+msgid "Back Content"
+msgstr "Rückseite"
+
+msgid "Back Title"
+msgstr "Titel (Rückseite)"
+
+msgid "This is the back side of the flip box with more detailed information."
+msgstr "Dies ist die Rückseite der Flip-Box mit detaillierteren Informationen."
+
+msgid "Show Button"
+msgstr "Button anzeigen"
+
+msgid "Yes"
+msgstr "Ja"
+
+msgid "No"
+msgstr "Nein"
+
+msgid "Button Text"
+msgstr "Button-Text"
+
+msgid "Learn More"
+msgstr "Mehr erfahren"
+
+msgid "Button Link"
+msgstr "Button-Link"
+
+msgid "https://your-link.com"
+msgstr "https://dein-link.de"
+
+msgid "Front Side"
+msgstr "Vorderseite"
+
+msgid "Padding"
+msgstr "Padding"
+
+msgid "Border Radius"
+msgstr "Radius"
+
+msgid "Icon Color"
+msgstr "Icon-Farbe"
+
+msgid "Icon Size"
+msgstr "Icon-Größe"
+
+msgid "Color"
+msgstr "Farbe"
+
+msgid "Back Side"
+msgstr "Rückseite"
+
+msgid "Button"
+msgstr "Button"
+
+msgid "Text Color"
+msgstr "Textfarbe"
+
+msgid "WordPress Tools"
+msgstr "WordPress-Werkzeuge"
+
+msgid "Days"
+msgstr "Tage"
+
+msgid "Hours"
+msgstr "Stunden"
+
+msgid "Minutes"
+msgstr "Minuten"
+
+msgid "Seconds"
+msgstr "Sekunden"
+
+msgid "We're working hard to bring you something amazing!"
+msgstr "Wir arbeiten hart daran, dir etwas Großartiges zu bringen!"
+
+msgid "We are working hard to bring you something amazing!"
+msgstr "Wir arbeiten hart daran, dir etwas Großartiges zu bringen!"
+
+#: C:\\MAMP\\htdocs\\wp\\wp-content\\plugins\\dailybuddy\\modules\\elementor-extensions\\hide-elementor-pro-widgets\\config.php
+#: (Line 4)
+msgid "Hide Elementor Pro Widgets"
+msgstr "Elementor Pro-Widgets ausblenden"
+
+#: C:\\MAMP\\htdocs\\wp\\wp-content\\plugins\\dailybuddy\\modules\\elementor-extensions\\hide-elementor-pro-widgets\\config.php
+#: (Line 10)
+msgid "Hides Elementor Pro widgets, Pro categories, upsell elements and promotional notices inside the Elementor editor."
+msgstr "Versteckt Elementor Pro-Widgets, Pro-Kategorien, Upsell-Elemente und Werbehinweise innerhalb des Elementor-Editors."
+
+#: C:\\MAMP\\htdocs\\wp\\wp-content\\plugins\\dailybuddy\\modules\\elementor-extensions\\hide-elementor-pro-widgets\\config.php
+#: (Line 16)
+msgid "ui"
+msgstr "ui"
+
+#: C:\\MAMP\\htdocs\\wp\\wp-content\\plugins\\dailybuddy\\modules\\elementor-extensions\\hide-elementor-pro-widgets\\config.php
+#: (Line 20)
+msgid "cleanup"
+msgstr "Aufräumarbeiten"
+
+#: C:\\MAMP\\htdocs\\wp\\wp-content\\plugins\\dailybuddy\\modules\\dashboard-widgets\\security-monitor\\module.php
+#: (Line 37)
+msgid "security monitor"
+msgstr "Sicherheitsmonitor"
+
+#: C:\\MAMP\\htdocs\\wp\\wp-content\\plugins\\dailybuddy\\modules\\elementor-extensions\\logo-carousel\\config.php
+#: (Line 9)
+msgid "Display logos in an animated carousel/slider. Perfect for showcasing clients, partners, or sponsors with various animation effects."
+msgstr "Zeige Logos in einem animierten Karussell/Slider. Perfekt, um Kunden, Partner oder Sponsoren mit verschiedenen Animationseffekten zu präsentieren."
+
+#: C:\\MAMP\\htdocs\\wp\\wp-content\\plugins\\dailybuddy\\modules\\elementor-extensions\\logo-carousel\\config.php
+#: (Line 9)
+msgid "carousel"
+msgstr "Karussell"
+
+#: C:\\MAMP\\htdocs\\wp\\wp-content\\plugins\\dailybuddy\\modules\\elementor-extensions\\logo-carousel\\config.php
+#: (Line 9)
+msgid "slider"
+msgstr "Slider"
+
+#: C:\\MAMP\\htdocs\\wp\\wp-content\\plugins\\dailybuddy\\modules\\elementor-extensions\\logo-carousel\\config.php
+#: (Line 9)
+msgid "logo"
+msgstr "Logo"
+
+#: C:\\MAMP\\htdocs\\wp\\wp-content\\plugins\\dailybuddy\\modules\\elementor-extensions\\logo-carousel\\config.php
+#: (Line 20)
+msgid "brand"
+msgstr "Marke"
+
+#: C:\\MAMP\\htdocs\\wp\\wp-content\\plugins\\dailybuddy\\modules\\elementor-extensions\\logo-carousel\\widget.php
+#: (Line 4)
+msgid "Logo Carousel"
+msgstr "Logo-Karussell"
+
+#: C:\\MAMP\\htdocs\\wp\\wp-content\\plugins\\dailybuddy\\modules\\elementor-extensions\\logo-carousel\\widget.php
+#: (Line 107)
+msgid "Upload Logo"
+msgstr "Logo hochladen"
+
+#: C:\\MAMP\\htdocs\\wp\\wp-content\\plugins\\dailybuddy\\modules\\elementor-extensions\\logo-carousel\\widget.php
+#: (Line 128)
+msgid "Hide Title?"
+msgstr "Titel ausblenden?"
+
+#: C:\\MAMP\\htdocs\\wp\\wp-content\\plugins\\dailybuddy\\modules\\elementor-extensions\\logo-carousel\\widget.php
+#: (Line 138)
+msgid "Alt Text"
+msgstr "Alt-Text"
+
+#: C:\\MAMP\\htdocs\\wp\\wp-content\\plugins\\dailybuddy\\modules\\elementor-extensions\\logo-carousel\\widget.php
+#: (Line 146)
+msgid "Link"
+msgstr "Link"
+
+#: C:\\MAMP\\htdocs\\wp\\wp-content\\plugins\\dailybuddy\\modules\\elementor-extensions\\logo-carousel\\widget.php
+#: (Line 155)
+msgid "Logos"
+msgstr "Logos"
+
+#: C:\\MAMP\\htdocs\\wp\\wp-content\\plugins\\dailybuddy\\modules\\elementor-extensions\\logo-carousel\\widget.php
+#: (Line 161)
+msgid "Logo 1"
+msgstr "Logo 1"
+
+#: C:\\MAMP\\htdocs\\wp\\wp-content\\plugins\\dailybuddy\\modules\\elementor-extensions\\logo-carousel\\widget.php
+#: (Line 165)
+msgid "Logo 2"
+msgstr "Logo 2"
+
+#: C:\\MAMP\\htdocs\\wp\\wp-content\\plugins\\dailybuddy\\modules\\elementor-extensions\\logo-carousel\\widget.php
+#: (Line 169)
+msgid "Logo 3"
+msgstr "Logo 3"
+
+#: C:\\MAMP\\htdocs\\wp\\wp-content\\plugins\\dailybuddy\\modules\\elementor-extensions\\logo-carousel\\widget.php
+#: (Line 173)
+msgid "Logo 4"
+msgstr "Logo 4"
+
+#: C:\\MAMP\\htdocs\\wp\\wp-content\\plugins\\dailybuddy\\modules\\elementor-extensions\\logo-carousel\\widget.php
+#: (Line 184)
+msgid "Carousel Settings"
+msgstr "Karussell-Einstellungen"
+
+#: C:\\MAMP\\htdocs\\wp\\wp-content\\plugins\\dailybuddy\\modules\\elementor-extensions\\logo-carousel\\widget.php
+#: (Line 198)
+msgid "Items Per View"
+msgstr "Elemente pro Ansicht"
+
+#: C:\\MAMP\\htdocs\\wp\\wp-content\\plugins\\dailybuddy\\modules\\elementor-extensions\\logo-carousel\\widget.php
+#: (Line 221)
+msgid "Spacing Between Items"
+msgstr "Abstand zwischen Elementen"
+
+#: C:\\MAMP\\htdocs\\wp\\wp-content\\plugins\\dailybuddy\\modules\\elementor-extensions\\logo-carousel\\widget.php
+#: (Line 244)
+msgid "Effect"
+msgstr "Effekt"
+
+#: C:\\MAMP\\htdocs\\wp\\wp-content\\plugins\\dailybuddy\\modules\\elementor-extensions\\logo-carousel\\widget.php
+#: (Line 248)
+msgid "Slide"
+msgstr "Slide"
+
+#: C:\\MAMP\\htdocs\\wp\\wp-content\\plugins\\dailybuddy\\modules\\elementor-extensions\\logo-carousel\\widget.php
+#: (Line 250)
+msgid "Cube"
+msgstr "Würfel"
+
+#: C:\\MAMP\\htdocs\\wp\\wp-content\\plugins\\dailybuddy\\modules\\elementor-extensions\\logo-carousel\\widget.php
+#: (Line 251)
+msgid "Coverflow"
+msgstr "Coverflow"
+
+#: C:\\MAMP\\htdocs\\wp\\wp-content\\plugins\\dailybuddy\\modules\\elementor-extensions\\logo-carousel\\widget.php
+#: (Line 252)
+msgid "Flip"
+msgstr "Flip"
+
+#: C:\\MAMP\\htdocs\\wp\\wp-content\\plugins\\dailybuddy\\modules\\elementor-extensions\\logo-carousel\\widget.php
+#: (Line 260)
+msgid "Slider Speed (ms)"
+msgstr "Slider-Geschwindigkeit (ms)"
+
+#: C:\\MAMP\\htdocs\\wp\\wp-content\\plugins\\dailybuddy\\modules\\elementor-extensions\\logo-carousel\\widget.php
+#: (Line 278)
+msgid "Autoplay"
+msgstr "Automatische Wiedergabe"
+
+#: C:\\MAMP\\htdocs\\wp\\wp-content\\plugins\\dailybuddy\\modules\\elementor-extensions\\logo-carousel\\widget.php
+#: (Line 288)
+msgid "Autoplay Speed (ms)"
+msgstr "Autoplay-Geschwindigkeit (ms)"
+
+#: C:\\MAMP\\htdocs\\wp\\wp-content\\plugins\\dailybuddy\\modules\\elementor-extensions\\logo-carousel\\widget.php
+#: (Line 309)
+msgid "Pause on Hover"
+msgstr "Bei Hover anhalten"
+
+#: C:\\MAMP\\htdocs\\wp\\wp-content\\plugins\\dailybuddy\\modules\\elementor-extensions\\logo-carousel\\widget.php
+#: (Line 322)
+msgid "Infinite Loop"
+msgstr "Endlosschleife"
+
+#: C:\\MAMP\\htdocs\\wp\\wp-content\\plugins\\dailybuddy\\modules\\elementor-extensions\\logo-carousel\\widget.php
+#: (Line 332)
+msgid "Grab Cursor"
+msgstr "Greif-Cursor"
+
+#: C:\\MAMP\\htdocs\\wp\\wp-content\\plugins\\dailybuddy\\modules\\elementor-extensions\\logo-carousel\\widget.php
+#: (Line 342)
+msgid "Direction"
+msgstr "Richtung"
+
+#: C:\\MAMP\\htdocs\\wp\\wp-content\\plugins\\dailybuddy\\modules\\elementor-extensions\\logo-carousel\\widget.php
+#: (Line 355)
+msgid "Navigation"
+msgstr "Navigation"
+
+#: C:\\MAMP\\htdocs\\wp\\wp-content\\plugins\\dailybuddy\\modules\\elementor-extensions\\logo-carousel\\widget.php
+#: (Line 364)
+msgid "Show Arrows"
+msgstr "Pfeile anzeigen"
+
+#: C:\\MAMP\\htdocs\\wp\\wp-content\\plugins\\dailybuddy\\modules\\elementor-extensions\\logo-carousel\\widget.php
+#: (Line 374)
+msgid "Arrow Icon"
+msgstr "Pfeil-Icon"
+
+#: C:\\MAMP\\htdocs\\wp\\wp-content\\plugins\\dailybuddy\\modules\\elementor-extensions\\logo-carousel\\widget.php
+#: (Line 389)
+msgid "Show Dots"
+msgstr "Punkte anzeigen"
+
+#: C:\\MAMP\\htdocs\\wp\\wp-content\\plugins\\dailybuddy\\modules\\elementor-extensions\\logo-carousel\\widget.php
+#: (Line 399)
+msgid "Dots Position"
+msgstr "Position der Punkte"
+
+#: C:\\MAMP\\htdocs\\wp\\wp-content\\plugins\\dailybuddy\\modules\\elementor-extensions\\logo-carousel\\widget.php
+#: (Line 403)
+msgid "Inside"
+msgstr "Innen"
+
+#: C:\\MAMP\\htdocs\\wp\\wp-content\\plugins\\dailybuddy\\modules\\elementor-extensions\\logo-carousel\\widget.php
+#: (Line 404)
+msgid "Outside"
+msgstr "Außen"
+
+#: C:\\MAMP\\htdocs\\wp\\wp-content\\plugins\\dailybuddy\\modules\\elementor-extensions\\logo-carousel\\widget.php
+#: (Line 420)
+msgid "Container"
+msgstr "Container"
+
+#: C:\\MAMP\\htdocs\\wp\\wp-content\\plugins\\dailybuddy\\modules\\elementor-extensions\\logo-carousel\\widget.php
+#: (Line 443)
+msgid "Logo Item"
+msgstr "Logo-Element"
+
+#: C:\\MAMP\\htdocs\\wp\\wp-content\\plugins\\dailybuddy\\modules\\elementor-extensions\\logo-carousel\\widget.php
+#: (Line 504)
+msgid "Grayscale Effect"
+msgstr "Graustufen-Effekt"
+
+#: C:\\MAMP\\htdocs\\wp\\wp-content\\plugins\\dailybuddy\\modules\\elementor-extensions\\logo-carousel\\widget.php
+#: (Line 513)
+msgid "Grayscale in Normal State"
+msgstr "Graustufen im Normalzustand"
+
+#: C:\\MAMP\\htdocs\\wp\\wp-content\\plugins\\dailybuddy\\modules\\elementor-extensions\\logo-carousel\\widget.php
+#: (Line 523)
+msgid "Grayscale on Hover"
+msgstr "Graustufen bei Hover"
+
+#: C:\\MAMP\\htdocs\\wp\\wp-content\\plugins\\dailybuddy\\modules\\elementor-extensions\\logo-carousel\\widget.php
+#: (Line 532)
+msgid "Logo Image"
+msgstr "Logobild"
+
+#: C:\\MAMP\\htdocs\\wp\\wp-content\\plugins\\dailybuddy\\modules\\elementor-extensions\\logo-carousel\\widget.php
+#: (Line 544)
+msgid "Width"
+msgstr "Breite"
+
+#: C:\\MAMP\\htdocs\\wp\\wp-content\\plugins\\dailybuddy\\modules\\elementor-extensions\\logo-carousel\\widget.php
+#: (Line 584)
+msgid "Object Fit"
+msgstr "Objektanpassung"
+
+#: C:\\MAMP\\htdocs\\wp\\wp-content\\plugins\\dailybuddy\\modules\\elementor-extensions\\logo-carousel\\widget.php
+#: (Line 420)
+msgid "Contain"
+msgstr "Contain"
+
+#: C:\\MAMP\\htdocs\\wp\\wp-content\\plugins\\dailybuddy\\modules\\elementor-extensions\\logo-carousel\\widget.php
+#: (Line 251)
+msgid "Cover"
+msgstr "Cover"
+
+#: C:\\MAMP\\htdocs\\wp\\wp-content\\plugins\\dailybuddy\\modules\\elementor-extensions\\logo-carousel\\widget.php
+#: (Line 590)
+msgid "Fill"
+msgstr "Füllen"
+
+#: C:\\MAMP\\htdocs\\wp\\wp-content\\plugins\\dailybuddy\\modules\\elementor-extensions\\logo-carousel\\widget.php
+#: (Line 601)
+msgid "Opacity"
+msgstr "Deckkraft"
+
+#: C:\\MAMP\\htdocs\\wp\\wp-content\\plugins\\dailybuddy\\modules\\elementor-extensions\\logo-carousel\\widget.php
+#: (Line 619)
+msgid "Hover Opacity"
+msgstr "Deckkraft bei Hover"
+
+#: C:\\MAMP\\htdocs\\wp\\wp-content\\plugins\\dailybuddy\\modules\\elementor-extensions\\logo-carousel\\widget.php
+#: (Line 679)
+msgid "Top Spacing"
+msgstr "Abstand oben"
+
+#: C:\\MAMP\\htdocs\\wp\\wp-content\\plugins\\dailybuddy\\modules\\elementor-extensions\\logo-carousel\\widget.php
+#: (Line 364)
+msgid "Arrows"
+msgstr "Pfeile"
+
+#: C:\\MAMP\\htdocs\\wp\\wp-content\\plugins\\dailybuddy\\modules\\elementor-extensions\\logo-carousel\\widget.php
+#: (Line 745)
+msgid "Size"
+msgstr "Größe"
+
+#: C:\\MAMP\\htdocs\\wp\\wp-content\\plugins\\dailybuddy\\modules\\elementor-extensions\\logo-carousel\\widget.php
+#: (Line 513)
+msgid "Normal"
+msgstr "Normal"
+
+#: C:\\MAMP\\htdocs\\wp\\wp-content\\plugins\\dailybuddy\\modules\\elementor-extensions\\logo-carousel\\widget.php
+#: (Line 16)
+msgid "Background"
+msgstr "Hintergrund"
+
+#: C:\\MAMP\\htdocs\\wp\\wp-content\\plugins\\dailybuddy\\modules\\elementor-extensions\\logo-carousel\\widget.php
+#: (Line 309)
+msgid "Hover"
+msgstr "Hover"
+
+#: C:\\MAMP\\htdocs\\wp\\wp-content\\plugins\\dailybuddy\\modules\\elementor-extensions\\logo-carousel\\widget.php
+#: (Line 389)
+msgid "Dots"
+msgstr "Punkte"
+
+#: C:\\MAMP\\htdocs\\wp\\wp-content\\plugins\\dailybuddy\\modules\\elementor-extensions\\logo-carousel\\widget.php
+#: (Line 908)
+msgid "Active Color"
+msgstr "Aktive Farbe"
+
+#: C:\\MAMP\\htdocs\\wp\\wp-content\\plugins\\dailybuddy\\modules\\elementor-extensions\\toggle\\config.php
+#: (Line 9)
+msgid "Switch between two content sections with beautiful effects. Perfect for pricing tables, light/dark mode, or any dual content display."
+msgstr "Schalte zwischen zwei Inhaltsbereichen mit schönen Effekten um. Perfekt für Preistabellen, Hell/Dunkel-Modus oder jede andere zweigeteilte Inhaltsdarstellung."
+
+#: C:\\MAMP\\htdocs\\wp\\wp-content\\plugins\\dailybuddy\\modules\\elementor-extensions\\toggle\\config.php
+#: (Line 11)
+msgid "toggle"
+msgstr "Umschalter"
+
+#: C:\\MAMP\\htdocs\\wp\\wp-content\\plugins\\dailybuddy\\modules\\elementor-extensions\\toggle\\config.php
+#: (Line 18)
+msgid "switcher"
+msgstr "Wechsler"
+
+#: C:\\MAMP\\htdocs\\wp\\wp-content\\plugins\\dailybuddy\\modules\\elementor-extensions\\toggle\\config.php
+#: (Line 20)
+msgid "tabs"
+msgstr "Tabs"
+
+#: C:\\MAMP\\htdocs\\wp\\wp-content\\plugins\\dailybuddy\\modules\\elementor-extensions\\toggle\\widget.php
+#: (Line 37)
+msgid "Content Toggle"
+msgstr "Inhalts-Umschalter"
+
+#: C:\\MAMP\\htdocs\\wp\\wp-content\\plugins\\dailybuddy\\modules\\elementor-extensions\\toggle\\widget.php
+#: (Line 90)
+msgid "Toggle Style"
+msgstr "Umschalter-Stil"
+
+#: C:\\MAMP\\htdocs\\wp\\wp-content\\plugins\\dailybuddy\\modules\\elementor-extensions\\toggle\\widget.php
+#: (Line 94)
+msgid "Default"
+msgstr "Standard"
+
+#: C:\\MAMP\\htdocs\\wp\\wp-content\\plugins\\dailybuddy\\modules\\elementor-extensions\\toggle\\widget.php
+#: (Line 95)
+msgid "Liquid Glass"
+msgstr "Liquid Glass"
+
+#: C:\\MAMP\\htdocs\\wp\\wp-content\\plugins\\dailybuddy\\modules\\elementor-extensions\\toggle\\widget.php
+#: (Line 96)
+msgid "Crystalmorphism"
+msgstr "Crystalmorphism"
+
+#: C:\\MAMP\\htdocs\\wp\\wp-content\\plugins\\dailybuddy\\modules\\elementor-extensions\\toggle\\widget.php
+#: (Line 104)
+msgid "Alignment"
+msgstr "Ausrichtung"
+
+#: C:\\MAMP\\htdocs\\wp\\wp-content\\plugins\\dailybuddy\\modules\\elementor-extensions\\toggle\\widget.php
+#: (Line 108)
+msgid "Left"
+msgstr "Links"
+
+#: C:\\MAMP\\htdocs\\wp\\wp-content\\plugins\\dailybuddy\\modules\\elementor-extensions\\toggle\\widget.php
+#: (Line 112)
+msgid "Center"
+msgstr "Zentriert"
+
+#: C:\\MAMP\\htdocs\\wp\\wp-content\\plugins\\dailybuddy\\modules\\elementor-extensions\\toggle\\widget.php
+#: (Line 116)
+msgid "Right"
+msgstr "Rechts"
+
+#: C:\\MAMP\\htdocs\\wp\\wp-content\\plugins\\dailybuddy\\modules\\elementor-extensions\\toggle\\widget.php
+#: (Line 131)
+msgid "Primary Content"
+msgstr "Primärer Inhalt"
+
+#: C:\\MAMP\\htdocs\\wp\\wp-content\\plugins\\dailybuddy\\modules\\elementor-extensions\\toggle\\widget.php
+#: (Line 145)
+msgid "Label"
+msgstr "Bezeichnung"
+
+#: C:\\MAMP\\htdocs\\wp\\wp-content\\plugins\\dailybuddy\\modules\\elementor-extensions\\toggle\\widget.php
+#: (Line 131)
+msgid "Primary"
+msgstr "Primär"
+
+#: C:\\MAMP\\htdocs\\wp\\wp-content\\plugins\\dailybuddy\\modules\\elementor-extensions\\toggle\\widget.php
+#: (Line 156)
+msgid "Show Icon"
+msgstr "Icon anzeigen"
+
+#: C:\\MAMP\\htdocs\\wp\\wp-content\\plugins\\dailybuddy\\modules\\elementor-extensions\\toggle\\widget.php
+#: (Line 245)
+msgid "Content Type"
+msgstr "Inhaltstyp"
+
+#: C:\\MAMP\\htdocs\\wp\\wp-content\\plugins\\dailybuddy\\modules\\elementor-extensions\\toggle\\widget.php
+#: (Line 37)
+msgid "Content"
+msgstr "Inhalt"
+
+#: C:\\MAMP\\htdocs\\wp\\wp-content\\plugins\\dailybuddy\\modules\\elementor-extensions\\toggle\\widget.php
+#: (Line 251)
+msgid "Saved Template"
+msgstr "Gespeichertes Template"
+
+#: C:\\MAMP\\htdocs\\wp\\wp-content\\plugins\\dailybuddy\\modules\\elementor-extensions\\toggle\\widget.php
+#: (Line 262)
+msgid "This is the primary content. You can add any HTML content here."
+msgstr "Dies ist der primäre Inhalt. Du kannst hier beliebigen HTML-Inhalt hinzufügen."
+
+#: C:\\MAMP\\htdocs\\wp\\wp-content\\plugins\\dailybuddy\\modules\\elementor-extensions\\toggle\\widget.php
+#: (Line 286)
+msgid "Select Template"
+msgstr "Template auswählen"
+
+#: C:\\MAMP\\htdocs\\wp\\wp-content\\plugins\\dailybuddy\\modules\\elementor-extensions\\toggle\\widget.php
+#: (Line 299)
+msgid "Secondary Content"
+msgstr "Sekundärer Inhalt"
+
+#: C:\\MAMP\\htdocs\\wp\\wp-content\\plugins\\dailybuddy\\modules\\elementor-extensions\\toggle\\widget.php
+#: (Line 299)
+msgid "Secondary"
+msgstr "Sekundär"
+
+#: C:\\MAMP\\htdocs\\wp\\wp-content\\plugins\\dailybuddy\\modules\\elementor-extensions\\toggle\\widget.php
+#: (Line 430)
+msgid "This is the secondary content. You can add any HTML content here."
+msgstr "Dies ist der sekundäre Inhalt. Du kannst hier beliebigen HTML-Inhalt hinzufügen."
+
+#: C:\\MAMP\\htdocs\\wp\\wp-content\\plugins\\dailybuddy\\modules\\elementor-extensions\\toggle\\widget.php
+#: (Line 509)
+msgid "Toggle Switch"
+msgstr "Toggle-Schalter"
+
+#: C:\\MAMP\\htdocs\\wp\\wp-content\\plugins\\dailybuddy\\modules\\elementor-extensions\\toggle\\widget.php
+#: (Line 535)
+msgid "Switch Size"
+msgstr "Schaltergröße"
+
+#: C:\\MAMP\\htdocs\\wp\\wp-content\\plugins\\dailybuddy\\modules\\elementor-extensions\\toggle\\widget.php
+#: (Line 565)
+msgid "Active Background Color"
+msgstr "Aktive Hintergrundfarbe"
+
+#: C:\\MAMP\\htdocs\\wp\\wp-content\\plugins\\dailybuddy\\modules\\elementor-extensions\\toggle\\widget.php
+#: (Line 576)
+msgid "Handle Color"
+msgstr "Schalterfarbe"
+
+#: C:\\MAMP\\htdocs\\wp\\wp-content\\plugins\\dailybuddy\\modules\\elementor-extensions\\toggle\\widget.php
+#: (Line 587)
+msgid "Spacing"
+msgstr "Abstand"
+
+#: C:\\MAMP\\htdocs\\wp\\wp-content\\plugins\\dailybuddy\\modules\\elementor-extensions\\toggle\\widget.php
+#: (Line 613)
+msgid "Labels"
+msgstr "Beschriftungen"
+
+msgid "Advanced Accordion"
+msgstr "Erweitertes Akkordeon"
+
+msgid "Create beautiful, feature-rich accordions with multiple design styles, auto-numbering, icon animations, and more. Perfect for FAQs, content organization, and interactive layouts."
+msgstr "Erstellen Sie schöne, funktionsreiche Akkordeons mit mehreren Designstilen, automatischer Nummerierung, Icon-Animationen und mehr. Perfekt für FAQs, Inhaltsorganisation und interaktive Layouts."
+
+msgid "accordion"
+msgstr "Akkordeon"
+
+msgid "faq"
+msgstr "FAQ"
+
+msgid "collapsible"
+msgstr "zusammenklappbar"
+
+msgid "Accordion Type"
+msgstr "Akkordeon-Typ"
+
+msgid "Accordion (One at a Time)"
+msgstr "Akkordeon (nur eines geöffnet)"
+
+msgid "Toggle (Multiple Open)"
+msgstr "Umschalten (mehrere geöffnet)"
+
+msgid "Design Style"
+msgstr "Designstil"
+
+msgid "Classic"
+msgstr "Klassisch"
+
+msgid "Modern"
+msgstr "Modern"
+
+msgid "Minimal"
+msgstr "Minimal"
+
+msgid "Title HTML Tag"
+msgstr "Titel-HTML-Tag"
+
+msgid "Enable Auto Numbering"
+msgstr "Automatische Nummerierung aktivieren"
+
+msgid "Add automatic numbering to accordion items"
+msgstr "Automatische Nummerierung für Akkordeon-Elemente hinzufügen"
+
+msgid "Show Toggle Icon"
+msgstr "Umschalt-Icon anzeigen"
+
+msgid "Opened Icon"
+msgstr "Icon geöffnet"
+
+msgid "Closed Icon"
+msgstr "Icon geschlossen"
+
+msgid "Toggle Speed (ms)"
+msgstr "Umschaltgeschwindigkeit (ms)"
+
+msgid "Scroll on Click"
+msgstr "Beim Klicken scrollen"
+
+msgid "Scroll Offset (px)"
+msgstr "Scroll-Abstand (px)"
+
+msgid "Enable FAQ Schema"
+msgstr "FAQ-Schema aktivieren"
+
+msgid "Add structured data for FAQ schema"
+msgstr "Strukturierte Daten für FAQ-Schema hinzufügen"
+
+msgid "Accordion Items"
+msgstr "Akkordeon-Elemente"
+
+msgid "Accordion Title"
+msgstr "Akkordeon-Titel"
+
+msgid "Enable Tab Icon"
+msgstr "Tab-Icon aktivieren"
+
+msgid "Tab Icon"
+msgstr "Tab-Icon"
+
+msgid "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut elit tellus, luctus nec ullamcorper mattis, pulvinar dapibus leo."
+msgstr "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut elit tellus, luctus nec ullamcorper mattis, pulvinar dapibus leo."
+
+msgid "Active as Default"
+msgstr "Standardmäßig aktiv"
+
+msgid "Custom ID"
+msgstr "Benutzerdefinierte ID"
+
+msgid "Add custom ID for deep linking (e.g., #my-accordion)"
+msgstr "Benutzerdefinierte ID für Deep-Linking hinzufügen (z. B. #mein-akkordeon)"
+
+msgid "Items"
+msgstr "Elemente"
+
+msgid "Accordion Item #1"
+msgstr "Akkordeon-Element #1"
+
+msgid "Accordion Item #2"
+msgstr "Akkordeon-Element #2"
+
+msgid "Accordion Item #3"
+msgstr "Akkordeon-Element #3"
+
+msgid "Tab Title"
+msgstr "Tab-Titel"
+
+msgid "Border Color"
+msgstr "Rahmenfarbe"
+
+msgid "Active"
+msgstr "Aktiv"
+
+msgid "Toggle Icon"
+msgstr "Umschalt-Icon"
+
+msgid "Product Card"
+msgstr "Produktkarte"
+
+msgid "Showcase products with style! Features badges, countdown timers, quick view, and social sharing. Perfect for e-commerce and product displays."
+msgstr "Produkte stilvoll präsentieren! Enthält Badges, Countdown-Timer, Schnellansicht und Social Sharing. Perfekt für E-Commerce und Produktpräsentationen."
+
+msgid "product"
+msgstr "Produkt"
+
+msgid "card"
+msgstr "Karte"
+
+msgid "ecommerce"
+msgstr "E-Commerce"
+
+msgid "showcase"
+msgstr "Präsentation"
+
+msgid "Layout Style"
+msgstr "Layoutstil"
+
+msgid "Overlay on Hover"
+msgstr "Overlay beim Hover"
+
+msgid "Content Appears on Hover"
+msgstr "Inhalt erscheint beim Hover"
+
+msgid "Product Details"
+msgstr "Produktdetails"
+
+msgid "Product Image"
+msgstr "Produktbild"
+
+msgid "Product Title"
+msgstr "Produkttitel"
+
+msgid "Amazing Product"
+msgstr "Tolles Produkt"
+
+msgid "This is an amazing product description that showcases the features and benefits."
+msgstr "Dies ist eine großartige Produktbeschreibung, die Funktionen und Vorteile hervorhebt."
+
+msgid "Show Price"
+msgstr "Preis anzeigen"
+
+msgid "Price"
+msgstr "Preis"
+
+msgid "Show Old Price"
+msgstr "Alten Preis anzeigen"
+
+msgid "Old Price"
+msgstr "Alter Preis"
+
+msgid "Show Rating"
+msgstr "Bewertung anzeigen"
+
+msgid "Rating"
+msgstr "Bewertung"
+
+msgid "Show Review Count"
+msgstr "Anzahl der Bewertungen anzeigen"
+
+msgid "Review Count"
+msgstr "Bewertungsanzahl"
+
+msgid "Buttons"
+msgstr "Buttons"
+
+msgid "Show Details Button"
+msgstr "Details-Button anzeigen"
+
+msgid "View Details"
+msgstr "Details ansehen"
+
+msgid "Button Icon"
+msgstr "Button-Icon"
+
+msgid "Icon Position"
+msgstr "Icon-Position"
+
+msgid "Show Add to Cart Button"
+msgstr "„In den Warenkorb“-Button anzeigen"
+
+msgid "Cart Button Text"
+msgstr "Warenkorb-Button-Text"
+
+msgid "Add to Cart"
+msgstr "In den Warenkorb"
+
+msgid "Cart Button Link"
+msgstr "Warenkorb-Button-Link"
+
+msgid "Cart Button Icon"
+msgstr "Warenkorb-Button-Icon"
+
+msgid "Badge / Ribbon"
+msgstr "Badge / Banner"
+
+msgid "Show Badge"
+msgstr "Badge anzeigen"
+
+msgid "Badge Type"
+msgstr "Badge-Typ"
+
+msgid "Sale"
+msgstr "Sale"
+
+msgid "Hot"
+msgstr "Hot"
+
+msgid "Custom"
+msgstr "Benutzerdefiniert"
+
+msgid "Custom Badge Text"
+msgstr "Benutzerdefinierter Badge-Text"
+
+msgid "Limited"
+msgstr "Begrenzt"
+
+msgid "Badge Position"
+msgstr "Badge-Position"
+
+msgid "Top Left"
+msgstr "Oben links"
+
+msgid "Top Right"
+msgstr "Oben rechts"
+
+msgid "Bottom Left"
+msgstr "Unten links"
+
+msgid "Bottom Right"
+msgstr "Unten rechts"
+
+msgid "Countdown Timer"
+msgstr "Countdown-Timer"
+
+msgid "Show Countdown"
+msgstr "Countdown anzeigen"
+
+msgid "End Date & Time"
+msgstr "Enddatum und Uhrzeit"
+
+msgid "Set the deadline for your offer"
+msgstr "Legen Sie die Frist für Ihr Angebot fest"
+
+msgid "Countdown Label"
+msgstr "Countdown-Beschriftung"
+
+msgid "Offer ends in:"
+msgstr "Angebot endet in:"
+
+msgid "Quick View"
+msgstr "Schnellansicht"
+
+msgid "Enable Quick View"
+msgstr "Schnellansicht aktivieren"
+
+msgid "Quick View Icon"
+msgstr "Schnellansicht-Icon"
+
+msgid "Quick View Content"
+msgstr "Schnellansicht-Inhalt"
+
+msgid "<h3>Product Details</h3><p>Add detailed product information here that will appear in the quick view popup.</p>"
+msgstr "<h3>Produktdetails</h3><p>Fügen Sie hier detaillierte Produktinformationen hinzu, die im Schnellansichts-Popup erscheinen.</p>"
+
+msgid "Social Share"
+msgstr "Soziales Teilen"
+
+msgid "Enable Social Share"
+msgstr "Social Sharing aktivieren"
+
+msgid "Share URL"
+msgstr "URL zum Teilen"
+
+msgid "https://your-product-url.com"
+msgstr "https://ihre-produkt-url.de"
+
+msgid "Leave empty to use current page URL"
+msgstr "Leer lassen, um die aktuelle Seiten-URL zu verwenden"
+
+msgid "Facebook"
+msgstr "Facebook"
+
+msgid "Twitter"
+msgstr "Twitter"
+
+msgid "Pinterest"
+msgstr "Pinterest"
+
+msgid "LinkedIn"
+msgstr "LinkedIn"
+
+msgid "Card"
+msgstr "Karte"
+
+msgid "Badge"
+msgstr "Badge"
+
+msgid "Countdown"
+msgstr "Countdown"
+
+msgid "Details Button"
+msgstr "Details-Button"
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\includes\class-translation-scanner.php
+#: (Line 156)
+msgid "Successfully added %1$d strings to %2$d translation file."
+msgstr "%1$d Zeichenfolgen wurden erfolgreich zur Übersetzungsdatei %2$d hinzugefügt."
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\includes\class-translation-scanner.php
+#: (Line 157)
+msgid "Successfully added %1$d strings to %2$d translation files."
+msgstr "%1$d Zeichenfolgen wurden erfolgreich zu %2$d Übersetzungsdateien hinzugefügt."
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\includes\class-translation-scanner.php
+#: (Line 120)
+msgid "Erforderliche Daten fehlen"
+msgstr "Required data is missing"
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\dashboard-widgets\recent-activity\module.php
+#: (Line 430)
+msgid "Comment on <a href=\"%1$s\">%2$s</a>"
+msgstr "Kommentar zu <a href=\"%1$s\">%2$s</a>"
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\dashboard-widgets\recent-activity\module.php
+#: (Line 479)
+msgid "%1$s uploaded: <a href=\"%2$s\">%3$s</a>"
+msgstr "%1$s hochgeladen: <a href=\"%2$s\">%3$s</a>"
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\dashboard-widgets\recent-activity\module.php
+#: (Line 515)
+msgid "New user registered: <a href=\"%1$s\">%2$s</a>"
+msgstr "Neuer Benutzer registriert: <a href=\"%1$s\">%2$s</a>"
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\dashboard-widgets\server-performance\module.php
+#: (Line 309)
+msgid "Usage: %1$s (%2$d%%)"
+msgstr "Verwendung: %1$s (%2$d%%)"
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\dashboard-widgets\server-performance\module.php
+#: (Line 376)
+msgid "Total: %1$s | Used: %2$s"
+msgstr "Gesamt: %1$s | Verwendet: %2$s"
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\elementor-extensions\product-card\widget.php
+#: (Line 332)
+msgid "Cart Button"
+msgstr "Warenkorb-Button"
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\admin\class-admin-page.php
+#: (Line 200)
+msgid "DailyBuddy is currently running in development mode. Set DAILYBUDDY_DEV_MODE to false in production."
+msgstr "DailyBuddy läuft derzeit im Entwicklungsmodus. Setzen Sie DAILYBUDDY_DEV_MODE in der Produktion auf „false”."
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\admin\views\development-page.php
+#: (Line 461)
+msgid "You can create or update translations for DailyBuddy using tools like Poedit or Loco Translate."
+msgstr "Sie können Übersetzungen für DailyBuddy mit Tools wie Poedit oder Loco Translate erstellen oder aktualisieren."
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\admin\views\general-settings-page.php
+#: (Line 44)
+msgid "About DailyBuddy"
+msgstr "Über DailyBuddy"
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\admin\views\general-settings-page.php
+#: (Line 48)
+msgid "DailyBuddy is a modular collection of helpful enhancements for your WordPress site. It bundles several small tools into one plugin, so you can enable only the features you actually need."
+msgstr "DailyBuddy ist eine modulare Sammlung nützlicher Erweiterungen für Ihre WordPress-Website. Es bündelt mehrere kleine Tools in einem Plugin, sodass Sie nur die Funktionen aktivieren können, die Sie tatsächlich benötigen."
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\admin\views\general-settings-page.php
+#: (Line 61)
+msgid "You can manage all individual modules, activate or deactivate them, and access their settings from the main DailyBuddy screen."
+msgstr "Sie können alle einzelnen Module verwalten, aktivieren oder deaktivieren und über den Hauptbildschirm von DailyBuddy auf deren Einstellungen zugreifen."
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\admin\views\module-settings-page.php
+#: (Line 47)
+msgid "DailyBuddy"
+msgstr "DailyBuddy"

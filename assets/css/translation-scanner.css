@@ -1,0 +1,130 @@
+/**
+ * Translation Scanner Styles
+ */
+
+/* Scanner Controls */
+#dailybuddy-scanner-controls {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+#dailybuddy-scan-translations .dashicons {
+    margin-right: 5px;
+}
+
+#dailybuddy-scanner-status {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: #646970;
+    font-size: 14px;
+}
+
+/* Scanner Results */
+#dailybuddy-scanner-results {
+    animation: fadeIn 0.3s ease-in;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+#dailybuddy-scanner-summary {
+    border-left: 4px solid #2271b1;
+}
+
+#dailybuddy-scanner-summary strong {
+    color: #2271b1;
+}
+
+/* Missing Strings Table */
+#dailybuddy-missing-strings .widefat th {
+    font-weight: 600;
+}
+
+#dailybuddy-missing-strings .widefat code {
+    background: #f6f7f7;
+    padding: 2px 6px;
+    border-radius: 3px;
+    font-size: 12px;
+}
+
+#dailybuddy-missing-strings .locale-badges {
+    display: inline-flex;
+    gap: 5px;
+    flex-wrap: wrap;
+}
+
+#dailybuddy-missing-strings .locale-badges::before {
+    content: '';
+}
+
+.string-checkbox {
+    margin: 0;
+    cursor: pointer;
+}
+
+#select-all-strings {
+    cursor: pointer;
+}
+
+/* Scanner Actions */
+#dailybuddy-scanner-actions {
+    border-radius: 4px;
+}
+
+#dailybuddy-scanner-actions h4 {
+    color: #1d2327;
+}
+
+#locale-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.add-to-locale .dashicons {
+    margin-right: 5px;
+}
+
+/* Button States */
+#dailybuddy-add-to-all:hover,
+.add-to-locale:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+#dailybuddy-add-to-all .dashicons {
+    margin-right: 5px;
+}
+
+/* Responsive */
+@media (max-width: 782px) {
+    #dailybuddy-scanner-controls {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    #locale-buttons {
+        flex-direction: column;
+    }
+
+    .add-to-locale {
+        width: 100%;
+    }
+}
+
+/* Success/Error States */
+.scanner-success {
+    color: #46b450;
+}
+
+.scanner-error {
+    color: #d63638;
+}
+
+.scanner-warning {
+    color: #dba617;
+}

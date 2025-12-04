@@ -1,0 +1,403 @@
+/**
+ * dailybuddy Advanced Accordion Widget Styles
+ */
+
+/* ==========================================================================
+   Base Accordion Styles
+   ========================================================================== */
+
+.dailybuddy-accordion {
+    position: relative;
+    width: 100%;
+}
+
+.dailybuddy-accordion-item {
+    position: relative;
+    margin-bottom: 10px;
+    transition: all 0.3s ease;
+}
+
+.dailybuddy-accordion-item:last-child {
+    margin-bottom: 0;
+}
+
+.dailybuddy-accordion-title {
+    position: relative;
+    display: flex;
+    align-items: center;
+    padding: 15px 20px;
+    background: #f5f5f5;
+    border: 1px solid #e0e0e0;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    user-select: none;
+}
+
+.dailybuddy-accordion-title:hover {
+    background: #eeeeee;
+}
+
+.dailybuddy-accordion-title-text {
+    flex: 1;
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 1.5;
+}
+
+.dailybuddy-accordion-content {
+    padding: 20px;
+    background: #fff;
+    border: 1px solid #e0e0e0;
+    border-top: none;
+    border-radius: 0 0 4px 4px;
+    line-height: 1.6;
+    overflow: hidden;
+    display: none;
+}
+
+/* ==========================================================================
+   Auto Numbering
+   ========================================================================== */
+
+.dailybuddy-accordion.has-numbering .dailybuddy-accordion-number {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    margin-right: 12px;
+    background: #2196F3;
+    color: #fff;
+    font-size: 14px;
+    font-weight: 700;
+    border-radius: 50%;
+    flex-shrink: 0;
+}
+
+.dailybuddy-accordion.has-numbering.style-modern .dailybuddy-accordion-number {
+    border-radius: 4px;
+}
+
+.dailybuddy-accordion.has-numbering.style-minimal .dailybuddy-accordion-number {
+    background: transparent;
+    color: #2196F3;
+    border: 2px solid #2196F3;
+}
+
+/* ==========================================================================
+   Tab Icon
+   ========================================================================== */
+
+.dailybuddy-tab-icon {
+    display: inline-flex;
+    align-items: center;
+    margin-right: 10px;
+    font-size: 18px;
+}
+
+.dailybuddy-tab-icon svg {
+    width: 18px;
+    height: 18px;
+}
+
+/* ==========================================================================
+   Toggle Icon
+   ========================================================================== */
+
+.dailybuddy-accordion-icon {
+    display: inline-flex;
+    align-items: center;
+    font-size: 16px;
+    transition: all 0.3s ease;
+    flex-shrink: 0;
+}
+
+.dailybuddy-accordion-icon svg {
+    width: 16px;
+    height: 16px;
+}
+
+/* Icon Position */
+.dailybuddy-accordion.icon-left .dailybuddy-accordion-icon {
+    order: -1;
+    margin-right: 10px;
+}
+
+.dailybuddy-accordion.icon-right .dailybuddy-accordion-icon {
+    margin-left: 10px;
+}
+
+/* Toggle Icon States */
+.dailybuddy-accordion-icon .icon-opened {
+    display: none;
+}
+
+.dailybuddy-accordion-icon .icon-closed {
+    display: inline-flex;
+}
+
+.dailybuddy-accordion-item.active .dailybuddy-accordion-icon .icon-closed {
+    display: none;
+}
+
+.dailybuddy-accordion-item.active .dailybuddy-accordion-icon .icon-opened {
+    display: inline-flex;
+}
+
+/* Icon Rotation Animation - REMOVED for cleaner icon switch */
+.dailybuddy-accordion-icon {
+    transition: transform 0.3s ease;
+}
+
+/* ==========================================================================
+   CLASSIC STYLE (Default)
+   ========================================================================== */
+
+.dailybuddy-accordion.style-classic .dailybuddy-accordion-title {
+    background: #f5f5f5;
+    border: 1px solid #e0e0e0;
+}
+
+.dailybuddy-accordion.style-classic .dailybuddy-accordion-title:hover {
+    background: #eeeeee;
+}
+
+.dailybuddy-accordion.style-classic .dailybuddy-accordion-item.active .dailybuddy-accordion-title {
+    background: #ffffff;
+    border-color: #2196F3;
+    color: #2196F3;
+}
+
+.dailybuddy-accordion.style-classic .dailybuddy-accordion-content {
+    background: #ffffff;
+    border: 1px solid #e0e0e0;
+    border-top: none;
+}
+
+/* ==========================================================================
+   MODERN STYLE
+   ========================================================================== */
+
+.dailybuddy-accordion.style-modern .dailybuddy-accordion-item {
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
+
+.dailybuddy-accordion.style-modern .dailybuddy-accordion-item:hover {
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
+    transform: translateY(-2px);
+}
+
+.dailybuddy-accordion.style-modern .dailybuddy-accordion-title {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: #fff;
+    border: none;
+    border-radius: 0;
+    padding: 20px 25px;
+}
+
+.dailybuddy-accordion.style-modern .dailybuddy-accordion-title:hover {
+    background: linear-gradient(135deg, #764ba2 0%, #667eea 100%);
+}
+
+.dailybuddy-accordion.style-modern .dailybuddy-accordion-item.active .dailybuddy-accordion-title {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+}
+
+.dailybuddy-accordion.style-modern .dailybuddy-accordion-content {
+    background: #fff;
+    border: none;
+    border-radius: 0;
+    padding: 25px;
+}
+
+.dailybuddy-accordion.style-modern .dailybuddy-accordion-icon {
+    width: 28px;
+    height: 28px;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 50%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* ==========================================================================
+   MINIMAL STYLE
+   ========================================================================== */
+
+.dailybuddy-accordion.style-minimal .dailybuddy-accordion-item {
+    background: transparent;
+    border-radius: 0;
+}
+
+.dailybuddy-accordion.style-minimal .dailybuddy-accordion-title {
+    background: transparent;
+    border: none;
+    border-bottom: 2px solid #e0e0e0;
+    border-radius: 0;
+    padding: 15px 0;
+    font-weight: 500;
+}
+
+.dailybuddy-accordion.style-minimal .dailybuddy-accordion-title:hover {
+    background: transparent;
+    border-bottom-color: #2196F3;
+}
+
+.dailybuddy-accordion.style-minimal .dailybuddy-accordion-item.active .dailybuddy-accordion-title {
+    background: transparent;
+    border-bottom-color: #2196F3;
+    color: #2196F3;
+}
+
+.dailybuddy-accordion.style-minimal .dailybuddy-accordion-content {
+    background: transparent;
+    border: none;
+    border-radius: 0;
+    padding: 20px 0;
+    color: #666;
+}
+
+.dailybuddy-accordion.style-minimal .dailybuddy-accordion-icon {
+    width: 24px;
+    height: 24px;
+    border: 1px solid currentColor;
+    border-radius: 50%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.dailybuddy-accordion.style-minimal .dailybuddy-accordion-item.active .dailybuddy-accordion-icon {
+    background: #2196F3;
+    color: #fff;
+    border-color: #2196F3;
+}
+
+/* ==========================================================================
+   Active State Animations
+   ========================================================================== */
+
+.dailybuddy-accordion-item.active {
+    z-index: 1;
+}
+
+.dailybuddy-accordion-item.active .dailybuddy-accordion-title {
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+}
+
+/* ==========================================================================
+   Deep Linking Highlight
+   ========================================================================== */
+
+.dailybuddy-accordion-item.highlight {
+    animation: highlightPulse 1s ease-in-out;
+}
+
+@keyframes highlightPulse {
+    0%, 100% {
+        box-shadow: 0 0 0 0 rgba(33, 150, 243, 0.4);
+    }
+    50% {
+        box-shadow: 0 0 0 10px rgba(33, 150, 243, 0);
+    }
+}
+
+/* ==========================================================================
+   Responsive Design
+   ========================================================================== */
+
+@media screen and (max-width: 768px) {
+    .dailybuddy-accordion-title {
+        padding: 12px 15px;
+        font-size: 14px;
+    }
+
+    .dailybuddy-accordion-content {
+        padding: 15px;
+        font-size: 14px;
+    }
+
+    .dailybuddy-accordion.has-numbering .dailybuddy-accordion-number {
+        width: 28px;
+        height: 28px;
+        margin-right: 10px;
+        font-size: 12px;
+    }
+
+    .dailybuddy-tab-icon {
+        font-size: 16px;
+        margin-right: 8px;
+    }
+
+    .dailybuddy-accordion-icon {
+        font-size: 14px;
+    }
+
+    .dailybuddy-accordion.style-modern .dailybuddy-accordion-title {
+        padding: 15px 20px;
+    }
+
+    .dailybuddy-accordion.style-modern .dailybuddy-accordion-content {
+        padding: 20px;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .dailybuddy-accordion-title {
+        padding: 10px 12px;
+        font-size: 13px;
+    }
+
+    .dailybuddy-accordion-content {
+        padding: 12px;
+        font-size: 13px;
+    }
+
+    .dailybuddy-accordion.has-numbering .dailybuddy-accordion-number {
+        width: 24px;
+        height: 24px;
+        margin-right: 8px;
+        font-size: 11px;
+    }
+}
+
+/* ==========================================================================
+   Print Styles
+   ========================================================================== */
+
+@media print {
+    .dailybuddy-accordion-content {
+        display: block !important;
+    }
+
+    .dailybuddy-accordion-item {
+        page-break-inside: avoid;
+    }
+}
+
+/* ==========================================================================
+   Accessibility
+   ========================================================================== */
+
+.dailybuddy-accordion-title:focus {
+    outline: 2px solid #2196F3;
+    outline-offset: 2px;
+}
+
+.dailybuddy-accordion-title:focus:not(:focus-visible) {
+    outline: none;
+}
+
+/* ==========================================================================
+   Elementor Editor Compatibility
+   ========================================================================== */
+
+.elementor-editor-active .dailybuddy-accordion-content {
+    /* Ensure proper display in editor */
+}

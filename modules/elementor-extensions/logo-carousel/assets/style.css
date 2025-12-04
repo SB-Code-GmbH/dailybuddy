@@ -1,0 +1,283 @@
+/**
+ * dailybuddy Logo Carousel Widget Styles
+ */
+
+/* ==========================================================================
+   Carousel Container
+   ========================================================================== */
+
+.dailybuddy-logo-carousel-wrap {
+    position: relative;
+    width: 100%;
+}
+
+.dailybuddy-logo-carousel {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+}
+
+.dailybuddy-logo-carousel .swiper-wrapper {
+    display: flex;
+    align-items: center;
+}
+
+.dailybuddy-logo-carousel .swiper-slide {
+    height: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* ==========================================================================
+   Logo Item
+   ========================================================================== */
+
+.dailybuddy-lc-logo-wrap {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    transition: all 0.3s ease;
+    background: transparent;
+    border-radius: 8px;
+}
+
+.dailybuddy-lc-logo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    transition: all 0.3s ease;
+}
+
+.dailybuddy-lc-logo a {
+    display: block;
+    width: 100%;
+}
+
+.dailybuddy-lc-img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin: 0 auto;
+    transition: all 0.3s ease;
+}
+
+/* ==========================================================================
+   Title
+   ========================================================================== */
+
+.dailybuddy-logo-carousel-title {
+    margin: 15px 0 0 0;
+    padding: 0;
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 1.4;
+    text-align: center;
+    transition: all 0.3s ease;
+}
+
+.dailybuddy-logo-carousel-title a {
+    color: inherit;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.dailybuddy-logo-carousel-title a:hover {
+    opacity: 0.7;
+}
+
+/* ==========================================================================
+   Grayscale Effects
+   ========================================================================== */
+
+.dailybuddy-logo-carousel.grayscale-normal .dailybuddy-lc-img {
+    filter: grayscale(100%);
+    -webkit-filter: grayscale(100%);
+}
+
+.dailybuddy-logo-carousel.grayscale-normal .dailybuddy-lc-logo:hover .dailybuddy-lc-img {
+    filter: grayscale(0%);
+    -webkit-filter: grayscale(0%);
+}
+
+.dailybuddy-logo-carousel.grayscale-hover .dailybuddy-lc-img {
+    filter: grayscale(0%);
+    -webkit-filter: grayscale(0%);
+}
+
+.dailybuddy-logo-carousel.grayscale-hover .dailybuddy-lc-logo:hover .dailybuddy-lc-img {
+    filter: grayscale(100%);
+    -webkit-filter: grayscale(100%);
+}
+
+/* ==========================================================================
+   Navigation - Arrows
+   ========================================================================== */
+
+.dailybuddy-logo-carousel-wrap .swiper-button-next,
+.dailybuddy-logo-carousel-wrap .swiper-button-prev {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 10;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    background: rgba(0, 0, 0, 0.5);
+    color: #fff;
+    border-radius: 50%;
+    transition: all 0.3s ease;
+    font-size: 20px;
+}
+
+.dailybuddy-logo-carousel-wrap .swiper-button-next:hover,
+.dailybuddy-logo-carousel-wrap .swiper-button-prev:hover {
+    background: rgba(0, 0, 0, 0.8);
+}
+
+.dailybuddy-logo-carousel-wrap .swiper-button-next {
+    right: 10px;
+}
+
+.dailybuddy-logo-carousel-wrap .swiper-button-prev {
+    left: 10px;
+}
+
+.dailybuddy-logo-carousel-wrap .swiper-button-next::after,
+.dailybuddy-logo-carousel-wrap .swiper-button-prev::after {
+    display: none;
+}
+
+.dailybuddy-logo-carousel-wrap .swiper-button-next svg,
+.dailybuddy-logo-carousel-wrap .swiper-button-prev svg {
+    width: 20px;
+    height: 20px;
+    fill: currentColor;
+}
+
+.dailybuddy-logo-carousel-wrap .swiper-button-prev svg {
+    transform: rotate(180deg);
+}
+
+/* Disabled State */
+.dailybuddy-logo-carousel-wrap .swiper-button-disabled {
+    opacity: 0.35;
+    cursor: not-allowed;
+    pointer-events: none;
+}
+
+/* ==========================================================================
+   Navigation - Dots
+   ========================================================================== */
+
+.dailybuddy-logo-carousel-wrap .swiper-pagination {
+    position: relative;
+    margin-top: 20px;
+    text-align: center;
+}
+
+.dailybuddy-logo-carousel-wrap.dots-inside .swiper-pagination {
+    position: absolute;
+    bottom: 10px;
+    left: 0;
+    right: 0;
+    margin-top: 0;
+}
+
+.dailybuddy-logo-carousel-wrap .swiper-pagination-bullet {
+    width: 10px;
+    height: 10px;
+    background: rgba(0, 0, 0, 0.3);
+    opacity: 1;
+    margin: 0 5px;
+    transition: all 0.3s ease;
+    border-radius: 50%;
+}
+
+.dailybuddy-logo-carousel-wrap .swiper-pagination-bullet-active {
+    background: #000;
+    transform: scale(1.2);
+}
+
+/* ==========================================================================
+   Responsive Design
+   ========================================================================== */
+
+@media screen and (max-width: 768px) {
+    .dailybuddy-lc-logo-wrap {
+        padding: 15px;
+    }
+
+    .dailybuddy-logo-carousel-title {
+        font-size: 14px;
+        margin-top: 10px;
+    }
+
+    .dailybuddy-logo-carousel-wrap .swiper-button-next,
+    .dailybuddy-logo-carousel-wrap .swiper-button-prev {
+        width: 36px;
+        height: 36px;
+        font-size: 16px;
+    }
+
+    .dailybuddy-logo-carousel-wrap .swiper-button-next svg,
+    .dailybuddy-logo-carousel-wrap .swiper-button-prev svg {
+        width: 16px;
+        height: 16px;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .dailybuddy-lc-logo-wrap {
+        padding: 10px;
+    }
+
+    .dailybuddy-logo-carousel-title {
+        font-size: 12px;
+    }
+
+    .dailybuddy-logo-carousel-wrap .swiper-button-next,
+    .dailybuddy-logo-carousel-wrap .swiper-button-prev {
+        width: 32px;
+        height: 32px;
+        font-size: 14px;
+    }
+}
+
+/* ==========================================================================
+   Swiper Effects Compatibility
+   ========================================================================== */
+
+/* Fade Effect */
+.dailybuddy-logo-carousel[data-effect="fade"] .swiper-slide {
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+.dailybuddy-logo-carousel[data-effect="fade"] .swiper-slide-active {
+    opacity: 1;
+}
+
+/* Cube Effect */
+.dailybuddy-logo-carousel[data-effect="cube"] {
+    overflow: visible;
+}
+
+/* Coverflow Effect */
+.dailybuddy-logo-carousel[data-effect="coverflow"] {
+    overflow: visible;
+}
+
+/* ==========================================================================
+   Elementor Editor Compatibility
+   ========================================================================== */
+
+.elementor-editor-active .dailybuddy-logo-carousel {
+    /* Ensure proper display in editor */
+}

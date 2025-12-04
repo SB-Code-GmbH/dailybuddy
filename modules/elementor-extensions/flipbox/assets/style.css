@@ -1,0 +1,338 @@
+/**
+ * dailybuddy FlipBox Widget Styles
+ */
+
+/* ==========================================================================
+   FlipBox Base Styles
+   ========================================================================== */
+
+.dailybuddy-flipbox {
+    position: relative;
+    width: 100%;
+    perspective: 1000px;
+}
+
+.dailybuddy-flipbox-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    transition: transform 0.6s;
+    transform-style: preserve-3d;
+}
+
+.dailybuddy-flipbox-front,
+.dailybuddy-flipbox-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 8px;
+}
+
+.dailybuddy-flipbox-front {
+    background: linear-gradient(135deg, #91CE00 0%, #8792e1 100%);
+    color: #fff;
+}
+
+.dailybuddy-flipbox-back {
+    background: linear-gradient(135deg, #6d6535 0%, #91CE00 100%);
+    color: #fff;
+}
+
+.flipbox-content {
+    padding: 30px;
+    width: 100%;
+}
+
+/* ==========================================================================
+   Icon & Image Styles
+   ========================================================================== */
+
+.flipbox-icon {
+    font-size: 60px;
+    margin-bottom: 20px;
+}
+
+.flipbox-icon i {
+    display: inline-block;
+}
+
+.flipbox-icon svg {
+    width: 60px;
+    height: 60px;
+    display: inline-block;
+}
+
+.flipbox-image {
+    margin-bottom: 20px;
+}
+
+.flipbox-image img {
+    max-width: 100px;
+    height: auto;
+    border-radius: 8px;
+}
+
+/* ==========================================================================
+   Text Styles
+   ========================================================================== */
+
+.flipbox-title {
+    font-size: 24px;
+    font-weight: 700;
+    margin: 0 0 15px 0;
+    line-height: 1.3;
+}
+
+.flipbox-description {
+    font-size: 16px;
+    line-height: 1.6;
+    margin: 0 0 20px 0;
+    opacity: 0.9;
+}
+
+.flipbox-button {
+    display: inline-block;
+    padding: 12px 30px;
+    background: rgba(255, 255, 255, 0.2);
+    color: #fff;
+    text-decoration: none;
+    border-radius: 25px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    margin-top: 10px;
+    backdrop-filter: blur(10px);
+}
+
+.flipbox-button:hover {
+    background: rgba(255, 255, 255, 0.3);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+/* ==========================================================================
+   Flip Effect: Left
+   ========================================================================== */
+
+.dailybuddy-flipbox.flip-left .dailybuddy-flipbox-back {
+    transform: rotateY(180deg);
+}
+
+.dailybuddy-flipbox.flip-left:hover .dailybuddy-flipbox-inner {
+    transform: rotateY(180deg);
+}
+
+/* ==========================================================================
+   Flip Effect: Right
+   ========================================================================== */
+
+.dailybuddy-flipbox.flip-right .dailybuddy-flipbox-back {
+    transform: rotateY(-180deg);
+}
+
+.dailybuddy-flipbox.flip-right:hover .dailybuddy-flipbox-inner {
+    transform: rotateY(-180deg);
+}
+
+/* ==========================================================================
+   Flip Effect: Up
+   ========================================================================== */
+
+.dailybuddy-flipbox.flip-up .dailybuddy-flipbox-back {
+    transform: rotateX(180deg);
+}
+
+.dailybuddy-flipbox.flip-up:hover .dailybuddy-flipbox-inner {
+    transform: rotateX(180deg);
+}
+
+/* ==========================================================================
+   Flip Effect: Down
+   ========================================================================== */
+
+.dailybuddy-flipbox.flip-down .dailybuddy-flipbox-back {
+    transform: rotateX(-180deg);
+}
+
+.dailybuddy-flipbox.flip-down:hover .dailybuddy-flipbox-inner {
+    transform: rotateX(-180deg);
+}
+
+/* ==========================================================================
+   Zoom In Effect
+   ========================================================================== */
+
+.dailybuddy-flipbox.zoom-in .dailybuddy-flipbox-inner {
+    transform-style: flat;
+}
+
+.dailybuddy-flipbox.zoom-in .dailybuddy-flipbox-front {
+    transition: all 0.6s ease;
+    z-index: 2;
+}
+
+.dailybuddy-flipbox.zoom-in .dailybuddy-flipbox-back {
+    transform: scale(0);
+    opacity: 0;
+    transition: all 0.6s ease;
+    z-index: 1;
+}
+
+.dailybuddy-flipbox.zoom-in:hover .dailybuddy-flipbox-front {
+    transform: scale(0);
+    opacity: 0;
+}
+
+.dailybuddy-flipbox.zoom-in:hover .dailybuddy-flipbox-back {
+    transform: scale(1);
+    opacity: 1;
+    z-index: 2;
+}
+
+/* ==========================================================================
+   Zoom Out Effect
+   ========================================================================== */
+
+.dailybuddy-flipbox.zoom-out .dailybuddy-flipbox-inner {
+    transform-style: flat;
+}
+
+.dailybuddy-flipbox.zoom-out .dailybuddy-flipbox-front {
+    transition: all 0.6s ease;
+    z-index: 2;
+}
+
+.dailybuddy-flipbox.zoom-out .dailybuddy-flipbox-back {
+    transform: scale(2);
+    opacity: 0;
+    transition: all 0.6s ease;
+    z-index: 1;
+}
+
+.dailybuddy-flipbox.zoom-out:hover .dailybuddy-flipbox-front {
+    transform: scale(2);
+    opacity: 0;
+}
+
+.dailybuddy-flipbox.zoom-out:hover .dailybuddy-flipbox-back {
+    transform: scale(1);
+    opacity: 1;
+    z-index: 2;
+}
+
+/* ==========================================================================
+   Fade Effect
+   ========================================================================== */
+
+.dailybuddy-flipbox.fade .dailybuddy-flipbox-inner {
+    transform-style: flat;
+}
+
+.dailybuddy-flipbox.fade .dailybuddy-flipbox-front {
+    transition: opacity 0.6s ease;
+    z-index: 2;
+}
+
+.dailybuddy-flipbox.fade .dailybuddy-flipbox-back {
+    opacity: 0;
+    transition: opacity 0.6s ease;
+    z-index: 1;
+}
+
+.dailybuddy-flipbox.fade:hover .dailybuddy-flipbox-front {
+    opacity: 0;
+}
+
+.dailybuddy-flipbox.fade:hover .dailybuddy-flipbox-back {
+    opacity: 1;
+    z-index: 2;
+}
+
+/* ==========================================================================
+   Responsive Design
+   ========================================================================== */
+
+@media screen and (max-width: 768px) {
+    .flipbox-title {
+        font-size: 20px;
+    }
+
+    .flipbox-description {
+        font-size: 14px;
+    }
+
+    .flipbox-icon {
+        font-size: 48px;
+    }
+
+    .flipbox-icon svg {
+        width: 48px;
+        height: 48px;
+    }
+
+    .flipbox-content {
+        padding: 20px;
+    }
+}
+
+/* ==========================================================================
+   dailybuddy Badge (Widget Panel)
+   ========================================================================== */
+
+.elementor-element.elementor-widget-dailybuddy-flipbox .icon {
+    position: relative;
+}
+
+.elementor-element.elementor-widget-dailybuddy-flipbox .icon::after {
+    content: "\f3a1";
+    font-family: "dashicons";
+    position: absolute;
+    top: -5px;
+    right: -5px;
+    width: 20px;
+    height: 20px;
+    background: #2271b1;
+    color: #fff;
+    border-radius: 3px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    line-height: 1;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+}
+
+/* Alternative: Badge direkt im Panel */
+#elementor-panel .elementor-element[data-widget_type*="dailybuddy"] .elementor-element-title-wrapper::after {
+    content: "\f3a1";
+    font-family: "dashicons";
+    display: inline-block;
+    width: 18px;
+    height: 18px;
+    background: #2271b1;
+    color: #fff;
+    border-radius: 3px;
+    font-size: 11px;
+    line-height: 18px;
+    text-align: center;
+    margin-left: 6px;
+    vertical-align: middle;
+}
+
+/* ==========================================================================
+   Elementor Editor Compatibility
+   ========================================================================== */
+
+.elementor-element.elementor-widget-dailybuddy-flipbox {
+    /* Ensure proper display in editor */
+}
+
+.elementor-editor-active .dailybuddy-flipbox:hover .dailybuddy-flipbox-inner {
+    /* Allow editing back side in editor */
+}

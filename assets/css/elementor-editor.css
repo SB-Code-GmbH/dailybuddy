@@ -1,0 +1,18 @@
+/* Wrapper positionieren */
+.elementor-panel .elementor-element-wrapper {
+    position: relative;
+}
+
+/* Badge oben rechts nur bei deinem FlipBox-Widget */
+.elementor-panel .elementor-element-wrapper:has(.mini-icon-dailybuddy)::after {
+    content: "SBT";
+    position: absolute;
+    top: 4px;
+    right: 4px;
+    padding: 2px 4px;
+    font-size: 9px;
+    line-height: 1;
+    background: rgba(255, 255, 255, 0.15);
+    border-radius: 2px;
+    pointer-events: none;
+}

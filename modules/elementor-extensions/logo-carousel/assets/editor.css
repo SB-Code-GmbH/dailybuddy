@@ -1,0 +1,65 @@
+/**
+ * dailybuddy Logo Carousel Widget - Editor Styles
+ */
+
+/* ==========================================================================
+   Elementor Editor Panel Styles
+   ========================================================================== */
+
+/* Widget Icon Badge */
+.elementor-element.elementor-widget-dailybuddy-logo-carousel .icon::after {
+    content: "\f3a1";
+    font-family: "dashicons";
+    position: absolute;
+    top: -5px;
+    right: -5px;
+    width: 20px;
+    height: 20px;
+    background: #2271b1;
+    color: #fff;
+    border-radius: 3px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    line-height: 1;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+}
+
+/* Panel Badge */
+#elementor-panel .elementor-element[data-widget_type*="dailybuddy-logo-carousel"] .elementor-element-title-wrapper::after {
+    content: "\f3a1";
+    font-family: "dashicons";
+    display: inline-block;
+    width: 18px;
+    height: 18px;
+    background: #2271b1;
+    color: #fff;
+    border-radius: 3px;
+    font-size: 11px;
+    line-height: 18px;
+    text-align: center;
+    margin-left: 6px;
+    vertical-align: middle;
+}
+
+/* ==========================================================================
+   Editor Preview Styles
+   ========================================================================== */
+
+/* Ensure carousel works properly in editor */
+.elementor-editor-active .dailybuddy-logo-carousel {
+    min-height: 200px;
+}
+
+.elementor-editor-active .dailybuddy-logo-carousel .swiper-wrapper {
+    transform: none !important;
+}
+
+/* Show all slides in editor for easier editing */
+.elementor-editor-active .dailybuddy-logo-carousel .swiper-slide {
+    position: relative;
+    width: auto;
+    margin-right: 20px;
+}

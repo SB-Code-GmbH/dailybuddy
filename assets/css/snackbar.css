@@ -1,0 +1,63 @@
+/**
+ * Snackbar/Toast Notifications
+ */
+
+.dailybuddy-snackbar {
+    visibility: hidden;
+    min-width: 250px;
+    background-color: #323232;
+    color: #fff;
+    text-align: center;
+    border-radius: 4px;
+    padding: 16px;
+    position: fixed;
+    z-index: 99999;
+    left: 50%;
+    bottom: 30px;
+    transform: translateX(-50%);
+    font-size: 14px;
+    box-shadow: 0 3px 5px -1px rgba(0,0,0,.2), 0 6px 10px 0 rgba(0,0,0,.14), 0 1px 18px 0 rgba(0,0,0,.12);
+}
+
+.dailybuddy-snackbar.show {
+    visibility: visible;
+    animation: dailybuddy-fadein 0.3s, dailybuddy-fadeout 0.3s 2.7s;
+}
+
+.dailybuddy-snackbar.success {
+    background-color: #4caf50;
+}
+
+.dailybuddy-snackbar.error {
+    background-color: #f44336;
+}
+
+.dailybuddy-snackbar.info {
+    background-color: #2196f3;
+}
+
+.dailybuddy-snackbar.warning {
+    background-color: #ff9800;
+}
+
+@keyframes dailybuddy-fadein {
+    from {
+        bottom: 0;
+        opacity: 0;
+    }
+    to {
+        bottom: 30px;
+        opacity: 1;
+    }
+}
+
+@keyframes dailybuddy-fadeout {
+    from {
+        bottom: 30px;
+        opacity: 1;
+    }
+    to {
+        bottom: 0;
+        opacity: 0;
+    }
+}

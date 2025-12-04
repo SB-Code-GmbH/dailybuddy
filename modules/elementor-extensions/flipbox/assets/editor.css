@@ -1,0 +1,43 @@
+/**
+ * dailybuddy Elementor Editor Styles
+ * Styles for Elementor Panel (Backend only)
+ */
+
+/* ==========================================================================
+   dailybuddy Widget Badge (via JavaScript)
+   ========================================================================== */
+
+.dailybuddy-badge {
+    position: absolute !important;
+    top: 8px !important;
+    right: 8px !important;
+    width: 20px !important;
+    height: 20px !important;
+    background: #2271b1 !important;
+    color: #fff !important;
+    border-radius: 3px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    font-size: 12px !important;
+    line-height: 1 !important;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3) !important;
+    z-index: 10 !important;
+    pointer-events: none !important;
+}
+
+.dailybuddy-element {
+    position: relative !important;
+}
+
+.dailybuddy-element .elementor-element {
+    position: relative !important;
+}
+
+/* Badge Hover Effect */
+.dailybuddy-element:hover .dailybuddy-badge {
+    background: #135e96 !important;
+    transform: scale(1.1) !important;
+    transition: all 0.2s ease !important;
+}
+

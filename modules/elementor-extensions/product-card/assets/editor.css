@@ -1,0 +1,71 @@
+/**
+ * dailybuddy Product Card Widget - Editor Styles
+ */
+
+/* ==========================================================================
+   Elementor Editor Panel Styles
+   ========================================================================== */
+
+/* Widget Icon Badge */
+.elementor-element.elementor-widget-dailybuddy-product-card .icon::after {
+    content: "\f3a1";
+    font-family: "dashicons";
+    position: absolute;
+    top: -5px;
+    right: -5px;
+    width: 20px;
+    height: 20px;
+    background: #2271b1;
+    color: #fff;
+    border-radius: 3px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    line-height: 1;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+}
+
+/* Panel Badge */
+#elementor-panel .elementor-element[data-widget_type*="dailybuddy-product-card"] .elementor-element-title-wrapper::after {
+    content: "\f3a1";
+    font-family: "dashicons";
+    display: inline-block;
+    width: 18px;
+    height: 18px;
+    background: #2271b1;
+    color: #fff;
+    border-radius: 3px;
+    font-size: 11px;
+    line-height: 18px;
+    text-align: center;
+    margin-left: 6px;
+    vertical-align: middle;
+}
+
+/* ==========================================================================
+   Editor Preview Styles
+   ========================================================================== */
+
+/* Make sure countdown doesn't break in editor */
+.elementor-editor-active .dailybuddy-countdown {
+    pointer-events: none;
+}
+
+/* Make quick view button visible in editor */
+.elementor-editor-active .dailybuddy-quick-view-btn {
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 0.5;
+}
+
+/* Show social share in editor */
+.elementor-editor-active .dailybuddy-social-share {
+    opacity: 0.7;
+    transform: translateX(0);
+}
+
+/* Disable quick view modal in editor */
+.elementor-editor-active .dailybuddy-quick-view-modal {
+    display: none !important;
+}

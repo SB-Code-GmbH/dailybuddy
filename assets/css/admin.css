@@ -1,0 +1,591 @@
+/**
+ * dailybuddy Admin Styles - Modern Sidebar Layout
+ */
+
+.dailybuddy-logo img {
+    height: 44px;
+    width: 44px;
+}
+
+.dailybuddy-module-description-important {
+    color: #d63638;
+    font-weight: 500;
+    margin-top: 5px;
+}
+
+.dailybuddy-module-highlight {
+    box-shadow: 0 0 0 3px #91CE0099;
+    animation: dailybuddy-pulse 0.8s ease-in-out 2;
+}
+
+@keyframes dailybuddy-pulse {
+    0% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.02);
+    }
+
+    100% {
+        transform: scale(1);
+    }
+}
+
+.dailybuddy-module-footer {
+    font-size: 16px;
+    line-height: 1;
+    vertical-align: middle;
+    margin-right: 4px;
+    color: #555;
+    /* Standard-Admin-Farbe */
+}
+
+.dailybuddy-nav-item:focus {
+    box-shadow: 0 0 0 2px transparent !important;
+}
+
+.dailybuddy-settings-link {
+    margin-left: 10px;
+}
+
+.dailybuddy-module-requirements {
+    margin-top: 5px;
+    color: #d63638;
+    /* WordPress Warn-Farbe */
+}
+
+.dailybuddy-module-version {
+    color: #2271b1;
+    /* WP-Button-Blau */
+}
+
+
+/* Header */
+.dailybuddy-header {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 20px;
+    font-size: 23px;
+}
+
+/* Main Container with Sidebar */
+.dailybuddy-container {
+    display: flex;
+    gap: 20px;
+    background: #fff;
+    border: 1px solid #c3c4c7;
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+/* Sidebar Navigation */
+.dailybuddy-sidebar {
+    width: 290px;
+    background: #f6f7f7;
+    border-right: 1px solid #dcdcde;
+    flex-shrink: 0;
+}
+
+.dailybuddy-nav {
+    display: flex;
+    flex-direction: column;
+    padding: 12px 0;
+}
+
+.dailybuddy-nav-item {
+    display: flex;
+    align-items: center;
+    padding: 14px 20px;
+    color: #50575e;
+    text-decoration: none;
+    transition: all 0.2s ease;
+    cursor: pointer;
+    border-left: 3px solid transparent;
+    gap: 12px;
+}
+
+.dailybuddy-nav-item:hover {
+    background: #fff;
+    color: #91CE00;
+}
+
+.dailybuddy-nav-item.active {
+    background: #fff;
+    border-left-color: #91CE00;
+    color: #91CE00;
+    font-weight: 500;
+}
+
+.dailybuddy-nav-icon {
+    font-size: 20px;
+    flex-shrink: 0;
+}
+
+.dailybuddy-nav-text {
+    flex: 1;
+    font-size: 14px;
+}
+
+.dailybuddy-nav-counter {
+    font-size: 12px;
+    color: #787c82;
+    background: #dcdcde;
+    padding: 2px 8px;
+    border-radius: 10px;
+    font-weight: 500;
+}
+
+.dailybuddy-nav-counter.has-active {
+    background: #d0e8d7;
+    color: #00a32a;
+}
+
+/* Content Area */
+.dailybuddy-content {
+    flex: 1;
+    padding: 30px;
+    min-height: 500px;
+    overflow-y: auto;
+}
+
+.dailybuddy-category {
+    display: none;
+}
+
+.dailybuddy-category.active {
+    display: block;
+}
+
+.dailybuddy-category-header {
+    margin-bottom: 30px;
+}
+
+.dailybuddy-category-header h2 {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 24px;
+    margin: 0 0 10px 0;
+    color: #1d2327;
+}
+
+.dailybuddy-category-description {
+    color: #646970;
+    font-size: 14px;
+    margin: 0;
+}
+
+/* Module Cards Grid */
+.dailybuddy-modules {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+    gap: 20px;
+}
+
+/* Module Card */
+.dailybuddy-module-card {
+    background: #fff;
+    border: 1px solid #dcdcde;
+    border-radius: 4px;
+    padding: 20px;
+    transition: all 0.2s ease;
+}
+
+.dailybuddy-module-card:hover {
+    border-color: #a7aaad;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.dailybuddy-module-card.is-active {
+    border-color: #91CE00;
+    background: #f6f9fc;
+}
+
+.dailybuddy-module-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 15px;
+    gap: 15px;
+}
+
+.dailybuddy-module-title {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex: 1;
+}
+
+.dailybuddy-module-icon {
+    font-size: 20px;
+    color: #91CE00;
+}
+
+.dailybuddy-module-card h3 {
+    margin: 0;
+    font-size: 16px;
+    font-weight: 600;
+    color: #1d2327;
+    line-height: 1.4;
+}
+
+.dailybuddy-premium-badge {
+    background: linear-gradient(135deg, #f5af19 0%, #f12711 100%);
+    color: #fff;
+    padding: 2px 8px;
+    border-radius: 3px;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+}
+
+.dailybuddy-module-body {
+    margin-bottom: 15px;
+}
+
+.dailybuddy-module-description {
+    color: #50575e;
+    font-size: 13px;
+    line-height: 1.6;
+    margin: 0;
+}
+
+.dailybuddy-module-footer {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    padding-top: 15px;
+    border-top: 1px solid #f0f0f1;
+}
+
+.dailybuddy-module-tags {
+    font-size: 12px;
+    color: #646970;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.dailybuddy-module-meta {
+    font-size: 12px;
+    color: #787c82;
+}
+
+.dailybuddy-module-requirements {
+    font-size: 12px;
+    color: #d63638;
+    background: #fcf0f1;
+    padding: 6px 10px;
+    border-radius: 3px;
+}
+
+/* Toggle Switch */
+.dailybuddy-switch {
+    position: relative;
+    display: inline-block;
+    width: 48px;
+    height: 26px;
+    flex-shrink: 0;
+}
+
+.dailybuddy-switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.dailybuddy-slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #dcdcde;
+    transition: 0.3s;
+    border-radius: 34px;
+}
+
+.dailybuddy-slider:before {
+    position: absolute;
+    content: "";
+    height: 20px;
+    width: 20px;
+    left: 3px;
+    bottom: 3px;
+    background-color: white;
+    transition: 0.3s;
+    border-radius: 50%;
+}
+
+.dailybuddy-switch input:checked+.dailybuddy-slider {
+    background-color: #91CE00;
+}
+
+.dailybuddy-switch input:focus+.dailybuddy-slider {
+    box-shadow: 0 0 1px #91CE00;
+}
+
+.dailybuddy-switch input:checked+.dailybuddy-slider:before {
+    transform: translateX(22px);
+}
+
+
+@media (max-width: 1024px) {
+    .dailybuddy-modules {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 782px) {
+    .dailybuddy-container {
+        flex-direction: column;
+    }
+
+    .dailybuddy-sidebar {
+        width: 100%;
+        border-right: none;
+        border-bottom: 1px solid #dcdcde;
+    }
+
+    .dailybuddy-nav {
+        flex-direction: row;
+        overflow-x: auto;
+        padding: 12px;
+    }
+
+    .dailybuddy-nav-item {
+        flex-direction: column;
+        text-align: center;
+        padding: 12px;
+        white-space: nowrap;
+        border-left: none;
+        border-bottom: 3px solid transparent;
+    }
+
+    .dailybuddy-nav-item.active {
+        border-left: none;
+        border-bottom-color: #91CE00;
+    }
+
+    .dailybuddy-nav-text {
+        font-size: 12px;
+    }
+
+    .dailybuddy-nav-counter {
+        font-size: 10px;
+        padding: 1px 6px;
+    }
+}
+
+/* Breadcrumbs */
+.dailybuddy-breadcrumbs {
+    margin-bottom: 8px;
+    font-size: 14px;
+    color: #646970;
+}
+
+.dailybuddy-breadcrumbs a {
+    color: #91CE00;
+    text-decoration: none;
+}
+
+.dailybuddy-breadcrumbs a:hover {
+    text-decoration: underline;
+}
+
+.dailybuddy-breadcrumbs .separator {
+    margin: 0 8px;
+    color: #a7aaad;
+}
+
+/* Settings Page */
+.dailybuddy-settings-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin: 10px 0 20px;
+    padding: 16px 16px !important;
+    background: #ffffff;
+    border: 1px solid #dcdcde;
+    border-radius: 6px;
+    box-shadow: 0 1px 1px rgba(0, 0, 0, .02);
+}
+
+/* Wenn Modul inaktiv – Container wirkt wie "disabled" */
+.dailybuddy-settings-container--inactive {
+    border-style: dashed;
+    border-color: #f0b849;
+    background: #fffaf1;
+}
+
+.dailybuddy-settings-icon {
+    font-size: 26px;
+    width: 44px;
+    height: 44px;
+    margin-left: 12px;
+    border-radius: 999px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: #f0f6ff;
+    color: #91CE00;
+}
+
+.dailybuddy-settings-title {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    font-size: 18px;
+    font-weight: 600;
+}
+
+.dailybuddy-settings-title small {
+    font-size: 12px;
+    font-weight: 400;
+    color: #6c6f73;
+}
+
+.dailybuddy-back-link {
+    display: inline-block;
+    margin-bottom: 20px;
+    color: #91CE00;
+    text-decoration: none;
+    font-size: 14px;
+}
+
+.dailybuddy-back-link:hover {
+    text-decoration: underline;
+}
+
+/* Settings Container */
+.dailybuddy-settings-container {
+    background: #ffffff;
+    border: 1px solid #dcdcde;
+    border-radius: 6px;
+    padding: 24px 24px 26px;
+    box-shadow: 0 1px 1px rgba(0, 0, 0, .02);
+    margin-top: 12px;
+}
+
+/* Wenn Modul inaktiv – Container wirkt wie "disabled" */
+.dailybuddy-settings-container--inactive {
+    border-style: dashed;
+    border-color: #f0b849;
+    background: #fffaf1;
+}
+
+/* Settings Link in Module Card */
+.dailybuddy-settings-link {
+    display: inline-block;
+    color: #91CE00;
+    text-decoration: none;
+    font-size: 12px;
+    margin-left: 12px;
+    padding: 2px 8px;
+    border-radius: 3px;
+    transition: background 0.2s;
+}
+
+.dailybuddy-settings-link:hover {
+    background: #f0f6fc;
+    text-decoration: none;
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+    .dailybuddy-modules {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 782px) {
+    .dailybuddy-container {
+        flex-direction: column;
+    }
+
+    .dailybuddy-sidebar {
+        width: 100%;
+        border-right: none;
+        border-bottom: 1px solid #dcdcde;
+    }
+
+    .dailybuddy-nav {
+        flex-direction: row;
+        overflow-x: auto;
+        padding: 12px;
+    }
+
+    .dailybuddy-nav-item {
+        flex-direction: column;
+        text-align: center;
+        padding: 12px;
+        white-space: nowrap;
+        border-left: none;
+        border-bottom: 3px solid transparent;
+    }
+
+    .dailybuddy-nav-item.active {
+        border-left: none;
+        border-bottom-color: #91CE00;
+    }
+
+    .dailybuddy-nav-text {
+        font-size: 12px;
+    }
+
+    .dailybuddy-nav-counter {
+        font-size: 10px;
+        padding: 1px 6px;
+    }
+}
+
+/* Tag Badges (Bootstrap-Style) */
+.dailybuddy-module-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-top: 12px;
+}
+
+.dailybuddy-tag-badge {
+    display: inline-block;
+    padding: 4px 10px;
+    font-size: 11px;
+    font-weight: 500;
+    line-height: 1;
+    color: #646970;
+    background-color: #f0f0f1;
+    border-radius: 12px;
+    text-transform: lowercase;
+    letter-spacing: 0.3px;
+}
+
+.dailybuddy-tag-badge:first-letter {
+    text-transform: uppercase;
+}
+
+/* General Settings in Sidebar */
+.dailybuddy-nav-settings {
+    margin-top: auto;
+    border-top: 1px solid #dcdcde;
+    padding-top: 12px !important;
+    margin-top: 12px;
+}
+
+/* License Status */
+.dailybuddy-license-status {
+    margin-top: 10px;
+    padding: 10px 15px;
+    background: #d0e8d7;
+    color: #00a32a;
+    border-radius: 4px;
+    font-weight: 500;
+}
+
+.dailybuddy-license-status.inactive {
+    background: #fcf0f1;
+    color: #d63638;
+}
