@@ -1,10 +1,10 @@
-=== dailybuddy ===
+=== DailyBuddy ===
 Contributors: beckerilja
 Tags: tools, admin, dashboard, elementor, widgets
 Requires at least: 5.0
 Tested up to: 6.9
 Requires PHP: 7.4
-Stable tag: 1.0.0
+Stable tag: 1.0.1
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -12,10 +12,10 @@ A modular collection of essential WordPress enhancements, dashboard widgets, pro
 
 == Description ==
 
-dailybuddy is a lightweight, modular enhancement suite for WordPress.  
+DailyBuddy is a lightweight, modular enhancement suite for WordPress.  
 It provides a curated set of powerful admin features, custom dashboard widgets, and extended Elementor widgets – all of which can be activated or deactivated individually.
 
-Whether you want a cleaner workflow, better insights, or more creative Elementor options, dailybuddy gives you the essential tools to improve your daily workflow.
+Whether you want a cleaner workflow, better insights, or more creative Elementor options, DailyBuddy gives you the essential tools to improve your daily workflow.
 
 ### 🔧 Key Features
 
@@ -54,7 +54,7 @@ Every feature can be individually enabled or disabled, allowing you to use only 
 
 1. Upload the plugin files to the `/wp-content/plugins/dailybuddy` directory, or install the plugin through the WordPress Plugins screen.
 2. Activate the plugin through the “Plugins” menu in WordPress.
-3. Go to **dailybuddy → Modules** to enable or disable individual features.
+3. Go to **DailyBuddy → Modules** to enable or disable individual features.
 
 ---
 

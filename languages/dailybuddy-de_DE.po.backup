@@ -2095,7 +2095,7 @@ msgstr "Organisieren Sie Ihre Beiträge, Seiten und Mediendateien mit Drag & Dro
 #: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\wordpress-tools\content-folders\module.php
 #: (Line 4)
 msgid "Content Folders"
-msgstr "Inhaltsordner"
+msgstr "Ressourcenordner"
 
 #: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\wordpress-tools\content-folders\module.php
 #: (Line 4)
@@ -2321,3 +2321,193 @@ msgstr "Neuer Ordnername …"
 #: (Line 42)
 msgid "Rename"
 msgstr "Umbenennen"
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\admin\views\general-settings-page.php
+#: (Line 92)
+msgid "Overview of all modules that have their own settings screen."
+msgstr "Übersicht über alle Module, die über einen eigenen Einstellungsbildschirm verfügen."
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\admin\views\general-settings-page.php
+#: (Line 119)
+msgid "Module"
+msgstr "Modul"
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\admin\views\general-settings-page.php
+#: (Line 142)
+msgid "Category"
+msgstr "Kategorie"
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\admin\views\general-settings-page.php
+#: (Line 161)
+msgid "Open settings"
+msgstr "Einstellungen öffnen"
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\admin\views\general-settings-page.php
+#: (Line 171)
+msgid "Currently, no modules provide their own settings page."
+msgstr "Derzeit bieten keine Module eine eigene Einstellungsseite an."
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\wordpress-tools\media-replace\config.php
+#: (Line 4)
+msgid "Media Replace"
+msgstr "Medien ersetzen"
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\wordpress-tools\media-replace\config.php
+#: (Line 9)
+msgid "Replace media files easily and effectively. Upload a new file to replace an existing one without changing the URL or breaking links."
+msgstr "Ersetzen Sie Mediendateien einfach und effektiv. Laden Sie eine neue Datei hoch, um eine bestehende zu ersetzen, ohne die URL zu ändern oder Links zu beschädigen."
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\wordpress-tools\media-replace\config.php
+#: (Line 16)
+msgid "upload"
+msgstr "hochladen"
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\wordpress-tools\media-replace\config.php
+#: (Line 9)
+msgid "replace"
+msgstr "ersetzen"
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\wordpress-tools\media-replace\module.php
+#: (Line 4)
+msgid "Replace"
+msgstr "Ersetzen"
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\wordpress-tools\media-replace\module.php
+#: (Line 62)
+msgid "Replace Media"
+msgstr "Medien ersetzen"
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\wordpress-tools\media-replace\module.php
+#: (Line 67)
+msgid "Replace File"
+msgstr "Datei ersetzen"
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\wordpress-tools\media-replace\module.php
+#: (Line 102)
+msgid "Uploading..."
+msgstr "Wird hochgeladen..."
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\wordpress-tools\media-replace\module.php
+#: (Line 103)
+msgid "Processing..."
+msgstr "Wird verarbeitet..."
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\wordpress-tools\media-replace\module.php
+#: (Line 104)
+msgid "File replaced successfully!"
+msgstr "Datei erfolgreich ersetzt!"
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\wordpress-tools\media-replace\module.php
+#: (Line 105)
+msgid "Error replacing file."
+msgstr "Fehler beim Ersetzen der Datei."
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\wordpress-tools\media-replace\module.php
+#: (Line 106)
+msgid "Please select a file."
+msgstr "Bitte wählen Sie eine Datei aus."
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\wordpress-tools\media-replace\module.php
+#: (Line 107)
+msgid "Are you sure you want to replace this file? This action cannot be undone."
+msgstr "Sind Sie sicher, dass Sie diese Datei ersetzen möchten? Diese Aktion kann nicht rückgängig gemacht werden."
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\wordpress-tools\media-replace\module.php
+#: (Line 137)
+msgid "Missing required data."
+msgstr "Erforderliche Daten fehlen."
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\wordpress-tools\media-replace\module.php
+#: (Line 184)
+msgid "No attachment specified."
+msgstr "Kein Anhang angegeben."
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\wordpress-tools\media-replace\module.php
+#: (Line 191)
+msgid "Invalid attachment."
+msgstr "Ungültiger Anhang."
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\wordpress-tools\media-replace\module.php
+#: (Line 205)
+msgid "Untitled"
+msgstr "Unbenannt"
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\wordpress-tools\media-replace\module.php
+#: (Line 217)
+msgid "You do not have permission to upload files."
+msgstr "Sie haben keine Berechtigung, Dateien hochzuladen."
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\wordpress-tools\media-replace\module.php
+#: (Line 227)
+msgid "Error uploading file."
+msgstr "Fehler beim Hochladen der Datei."
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\wordpress-tools\media-replace\module.php
+#: (Line 250)
+msgid "Error moving uploaded file."
+msgstr "Fehler beim Verschieben der hochgeladenen Datei."
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\wordpress-tools\media-replace\module.php
+#: (Line 347)
+msgid "Permission denied."
+msgstr "Zugriff verweigert."
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\wordpress-tools\media-replace\templates\replace-form.php
+#: (Line 12)
+msgid "Replace Media File"
+msgstr "Mediendatei ersetzen"
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\wordpress-tools\media-replace\templates\replace-form.php
+#: (Line 16)
+msgid "Current File"
+msgstr "Aktuelle Datei"
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\wordpress-tools\media-replace\templates\replace-form.php
+#: (Line 31)
+msgid "Filename:"
+msgstr "Dateiname:"
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\wordpress-tools\media-replace\templates\replace-form.php
+#: (Line 35)
+msgid "File Type:"
+msgstr "Dateityp:"
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\wordpress-tools\media-replace\templates\replace-form.php
+#: (Line 39)
+msgid "File Size:"
+msgstr "Dateigröße:"
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\wordpress-tools\media-replace\templates\replace-form.php
+#: (Line 43)
+msgid "URL:"
+msgstr "URL:"
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\wordpress-tools\media-replace\templates\replace-form.php
+#: (Line 51)
+msgid "Upload New File"
+msgstr "Neue Datei hochladen"
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\wordpress-tools\media-replace\templates\replace-form.php
+#: (Line 60)
+msgid "Choose File"
+msgstr "Datei auswählen"
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\wordpress-tools\media-replace\templates\replace-form.php
+#: (Line 63)
+msgid "No file chosen"
+msgstr "Keine Datei ausgewählt"
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\wordpress-tools\media-replace\templates\replace-form.php
+#: (Line 67)
+msgid "Replace Options"
+msgstr "Ersetzungsoptionen"
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\wordpress-tools\media-replace\templates\replace-form.php
+#: (Line 71)
+msgid "The new file will replace the existing file while keeping the same URL. All links and references will continue to work."
+msgstr "Die neue Datei ersetzt die bestehende Datei unter Beibehaltung derselben URL. Alle Links und Verweise bleiben weiterhin funktionsfähig."
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\wordpress-tools\media-replace\templates\replace-form.php
+#: (Line 76)
+msgid "Important: This action cannot be undone. The old file will be permanently deleted."
+msgstr "Wichtig: Diese Aktion kann nicht rückgängig gemacht werden. Die alte Datei wird dauerhaft gelöscht."

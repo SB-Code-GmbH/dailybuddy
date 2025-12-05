@@ -31,9 +31,11 @@ wp_localize_script(
     'dailybuddyAdmin',
     array(
         'ajaxurl' => admin_url('admin-ajax.php'),
-        // ... was du schon drin hast ...
         'strings' => array(
+            /* translators: %s: module name */
             'moduleActivated'   => __('%s activated!', 'dailybuddy'),
+
+            /* translators: %s: module name */
             'moduleDeactivated' => __('%s deactivated', 'dailybuddy'),
         ),
     )

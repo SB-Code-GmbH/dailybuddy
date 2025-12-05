@@ -1,7 +1,7 @@
 <?php
 
 /**
- * General Settings Page (mit Tabs)
+ * General Settings Page with Tabs
  */
 
 if (! defined('ABSPATH')) {
@@ -17,18 +17,23 @@ if (defined('DAILYBUDDY_URL') && defined('DAILYBUDDY_VERSION')) {
     );
 }
 
-$current_tab = isset($_POST['current_tab'])
+// Get current active tab
+$dailybuddy_current_tab = isset($_POST['current_tab'])
     ? sanitize_text_field(wp_unslash($_POST['current_tab']))
     : 'general';
 
-/**
- * Get the module list, if not already available
- */
-if (! isset($modules) || ! is_array($modules)) {
+// Allow only defined tabs
+$dailybuddy_allowed_tabs = array('general', 'about');
+if (! in_array($dailybuddy_current_tab, $dailybuddy_allowed_tabs, true)) {
+    $dailybuddy_current_tab = 'general';
+}
+
+// Load module list if not already available
+if (! isset($dailybuddy_modules) || ! is_array($dailybuddy_modules)) {
     if (class_exists('WP_Dailybuddy_Settings')) {
-        $modules = WP_Dailybuddy_Settings::get_modules();
+        $dailybuddy_modules = WP_Dailybuddy_Settings::get_modules();
     } else {
-        $modules = array();
+        $dailybuddy_modules = array();
     }
 }
 
@@ -56,24 +61,24 @@ if (! isset($modules) || ! is_array($modules)) {
 
         <form method="post" action="">
             <?php wp_nonce_field('dailybuddy_general_settings'); ?>
-            <input type="hidden" name="current_tab" id="current_tab" value="<?php echo esc_attr($current_tab); ?>">
+
+            <input type="hidden" name="current_tab" id="current_tab"
+                value="<?php echo esc_attr($dailybuddy_current_tab); ?>">
 
             <div class="dailybuddy-settings-container">
 
-                <!-- Tabs: General zuerst -->
+                <!-- Tabs -->
                 <div class="dailybuddy-uc-tabs">
 
-                    <!-- TAB 1: GENERAL -->
                     <button type="button"
-                        class="dailybuddy-uc-tab <?php echo $current_tab === 'general' ? 'active' : ''; ?>"
+                        class="dailybuddy-uc-tab <?php echo ('general' === $dailybuddy_current_tab) ? 'active' : ''; ?>"
                         data-tab="general">
                         <span class="dashicons dashicons-admin-settings"></span>
                         <?php esc_html_e('General Settings', 'dailybuddy'); ?>
                     </button>
 
-                    <!-- TAB 2: ABOUT -->
                     <button type="button"
-                        class="dailybuddy-uc-tab <?php echo $current_tab === 'about' ? 'active' : ''; ?>"
+                        class="dailybuddy-uc-tab <?php echo ('about' === $dailybuddy_current_tab) ? 'active' : ''; ?>"
                         data-tab="about">
                         <span class="dashicons dashicons-info-outline"></span>
                         <?php esc_html_e('About DailyBuddy', 'dailybuddy'); ?>
@@ -81,8 +86,8 @@ if (! isset($modules) || ! is_array($modules)) {
 
                 </div>
 
-                <!-- Tab: General Settings -->
-                <div class="dailybuddy-uc-tab-content <?php echo $current_tab === 'general' ? 'active' : ''; ?>"
+                <!-- Tab: General -->
+                <div class="dailybuddy-uc-tab-content <?php echo ('general' === $dailybuddy_current_tab) ? 'active' : ''; ?>"
                     data-tab="general">
 
                     <h2><?php esc_html_e('General Settings', 'dailybuddy'); ?></h2>
@@ -98,43 +103,41 @@ if (! isset($modules) || ! is_array($modules)) {
                     $dailybuddy_modules_with_settings = array();
 
                     if (class_exists('WP_Dailybuddy_Settings')) {
-                        // Liefert: 'category/module' => bool(aktiv)
                         $dailybuddy_modules_state = WP_Dailybuddy_Settings::get_modules();
 
                         if (is_array($dailybuddy_modules_state)) {
                             foreach ($dailybuddy_modules_state as $dailybuddy_module_id => $dailybuddy_is_active) {
 
-                                // config.php des Moduls laden
-                                $config_file = DAILYBUDDY_PATH . 'modules/' . $dailybuddy_module_id . '/config.php';
+                                $dailybuddy_config_file = DAILYBUDDY_PATH . 'modules/' . $dailybuddy_module_id . '/config.php';
 
-                                if (! file_exists($config_file)) {
+                                if (! file_exists($dailybuddy_config_file)) {
                                     continue;
                                 }
 
-                                $config = include $config_file;
-                                if (! is_array($config)) {
+                                $dailybuddy_config = include $dailybuddy_config_file;
+
+                                if (! is_array($dailybuddy_config)) {
                                     continue;
                                 }
 
-                                // Nur Module mit eigenen Einstellungen
-                                if (empty($config['has_settings'])) {
+                                if (empty($dailybuddy_config['has_settings'])) {
                                     continue;
                                 }
 
-                                // Kategorie ist der erste Teil vor dem Slash
-                                $parts    = explode('/', $dailybuddy_module_id);
-                                $category = $parts[0];
+                                $dailybuddy_parts    = explode('/', $dailybuddy_module_id);
+                                $dailybuddy_category = $dailybuddy_parts[0];
 
                                 $dailybuddy_modules_with_settings[] = array(
                                     'id'       => $dailybuddy_module_id,
-                                    'name'     => isset($config['name']) ? $config['name'] : $dailybuddy_module_id,
-                                    'category' => $category,
+                                    'name'     => isset($dailybuddy_config['name']) ? $dailybuddy_config['name'] : $dailybuddy_module_id,
+                                    'category' => $dailybuddy_category,
                                 );
                             }
                         }
                     }
+                    ?>
 
-                    if (! empty($dailybuddy_modules_with_settings)) : ?>
+                    <?php if (! empty($dailybuddy_modules_with_settings)) : ?>
                         <table class="widefat striped">
                             <thead>
                                 <tr>
@@ -153,11 +156,14 @@ if (! isset($modules) || ! is_array($modules)) {
                                             <?php echo esc_html(dailybuddy_format_category_name($dailybuddy_mod['category'])); ?>
                                         </td>
                                         <td>
-                                            <a href="<?php echo esc_url(
+                                            <a href="<?php
+                                                        echo esc_url(
                                                             admin_url(
                                                                 'admin.php?page=dailybuddy&view=settings&module=' . urlencode($dailybuddy_mod['id'])
                                                             )
-                                                        ); ?>" class="button button-primary button-large">
+                                                        );
+                                                        ?>"
+                                                class="button button-primary button-large">
                                                 <?php esc_html_e('Open settings', 'dailybuddy'); ?>
                                             </a>
                                         </td>
@@ -176,16 +182,15 @@ if (! isset($modules) || ! is_array($modules)) {
 
                 </div>
 
-
-                <!-- TAB CONTENT: ABOUT -->
-                <div class="dailybuddy-uc-tab-content <?php echo $current_tab === 'about' ? 'active' : ''; ?>"
+                <!-- Tab: About -->
+                <div class="dailybuddy-uc-tab-content <?php echo ('about' === $dailybuddy_current_tab) ? 'active' : ''; ?>"
                     data-tab="about">
 
                     <h2><?php esc_html_e('About DailyBuddy', 'dailybuddy'); ?></h2>
 
                     <p>
                         <?php esc_html_e(
-                            'DailyBuddy is a modular collection of helpful enhancements for your WordPress site. It bundles several small tools into one plugin, so you can enable only the features you actually need.',
+                            'DailyBuddy is a modular collection of helpful enhancements for your WordPress site.',
                             'dailybuddy'
                         ); ?>
                     </p>
@@ -217,7 +222,8 @@ if (! isset($modules) || ! is_array($modules)) {
                     <?php $dailybuddy_support_url = '#'; ?>
 
                     <p>
-                        <a href="<?php echo esc_url($dailybuddy_support_url); ?>" target="_blank" rel="noopener noreferrer" class="button button-secondary">
+                        <a href="<?php echo esc_url($dailybuddy_support_url); ?>" target="_blank" rel="noopener noreferrer"
+                            class="button button-secondary">
                             <?php esc_html_e('Open support & feedback page', 'dailybuddy'); ?>
                         </a>
                     </p>

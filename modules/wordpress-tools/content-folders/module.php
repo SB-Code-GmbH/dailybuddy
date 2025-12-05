@@ -325,6 +325,7 @@ class Dailybuddy_Content_Folders
                 'folderName'    => __('Folder name...', 'dailybuddy'),
                 'confirmDelete' => __('Delete this folder?', 'dailybuddy'),
                 'emptyTitle'     => __('This folder is empty', 'dailybuddy'),
+                /* translators: %s: folder name */
                 'emptyTemplate'  => __('Drag items here to organize them into "%s"', 'dailybuddy'),
                 'rootDrop' => __('Drag here to move the folder to the root level', 'dailybuddy'),
             ),
@@ -357,7 +358,9 @@ class Dailybuddy_Content_Folders
     {
         check_ajax_referer('dailybuddy_folders', 'nonce');
 
-        $taxonomy = isset($_POST['taxonomy']) ? sanitize_text_field($_POST['taxonomy']) : '';
+        $taxonomy = isset($_POST['taxonomy'])
+            ? sanitize_text_field(wp_unslash($_POST['taxonomy']))
+            : '';
 
         if (empty($taxonomy)) {
             wp_send_json_error(array('message' => __('Invalid taxonomy', 'dailybuddy')));
@@ -458,11 +461,17 @@ class Dailybuddy_Content_Folders
 
         foreach ($terms as $term) {
             $args = array(
-                'post_type'      => $post_type,
-                'numberposts'    => -1,
-                'fields'         => 'ids',
-                'post_status'    => 'any',
-                'tax_query'      => array(
+                'post_type'              => $post_type,
+                'posts_per_page'         => -1,
+                'fields'                 => 'ids',
+                'post_status'            => ($post_type === 'attachment') ? 'inherit' : 'any',
+                'no_found_rows'          => true,
+                'update_post_meta_cache' => false,
+                'update_post_term_cache' => false,
+
+                // This tax_query is necessary to determine the exact number of posts per folder.
+                // phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_tax_query
+                'tax_query'              => array(
                     array(
                         'taxonomy'         => $taxonomy,
                         'field'            => 'term_id',
@@ -472,17 +481,12 @@ class Dailybuddy_Content_Folders
                 ),
             );
 
-            if ($post_type === 'attachment') {
-                $args['post_status'] = 'inherit';
-            }
-
             $posts = get_posts($args);
             $counts[$term->term_id] = count($posts);
         }
 
         return $counts;
     }
-
 
     /**
      * AJAX: Create folder
@@ -495,8 +499,14 @@ class Dailybuddy_Content_Folders
             wp_send_json_error(array('message' => __('Permission denied', 'dailybuddy')));
         }
 
-        $name = isset($_POST['name']) ? sanitize_text_field($_POST['name']) : '';
-        $taxonomy = isset($_POST['taxonomy']) ? sanitize_text_field($_POST['taxonomy']) : '';
+        $name = isset($_POST['name'])
+            ? sanitize_text_field(wp_unslash($_POST['name']))
+            : '';
+
+        $taxonomy = isset($_POST['taxonomy'])
+            ? sanitize_text_field(wp_unslash($_POST['taxonomy']))
+            : '';
+
         $parent = isset($_POST['parent']) ? intval($_POST['parent']) : 0;
 
         if (empty($name) || empty($taxonomy)) {
@@ -535,7 +545,10 @@ class Dailybuddy_Content_Folders
 
         $post_id = isset($_POST['post_id']) ? intval($_POST['post_id']) : 0;
         $folder_id = isset($_POST['folder_id']) ? intval($_POST['folder_id']) : 0;
-        $taxonomy = isset($_POST['taxonomy']) ? sanitize_text_field($_POST['taxonomy']) : '';
+        $taxonomy = isset($_POST['taxonomy'])
+            ? sanitize_text_field(wp_unslash($_POST['taxonomy']))
+            : '';
+
 
         if (!$post_id || empty($taxonomy)) {
             wp_send_json_error(array('message' => __('Invalid parameters', 'dailybuddy')));
@@ -572,7 +585,9 @@ class Dailybuddy_Content_Folders
         }
 
         $folder_id = isset($_POST['folder_id']) ? intval($_POST['folder_id']) : 0;
-        $taxonomy = isset($_POST['taxonomy']) ? sanitize_text_field($_POST['taxonomy']) : '';
+        $taxonomy = isset($_POST['taxonomy'])
+            ? sanitize_text_field(wp_unslash($_POST['taxonomy']))
+            : '';
 
         if (!$folder_id || empty($taxonomy)) {
             wp_send_json_error(array('message' => __('Invalid parameters', 'dailybuddy')));
@@ -599,8 +614,13 @@ class Dailybuddy_Content_Folders
         }
 
         $folder_id = isset($_POST['folder_id']) ? intval($_POST['folder_id']) : 0;
-        $new_name = isset($_POST['name']) ? sanitize_text_field($_POST['name']) : '';
-        $taxonomy = isset($_POST['taxonomy']) ? sanitize_text_field($_POST['taxonomy']) : '';
+        $new_name = isset($_POST['name'])
+            ? sanitize_text_field(wp_unslash($_POST['name']))
+            : '';
+
+        $taxonomy = isset($_POST['taxonomy'])
+            ? sanitize_text_field(wp_unslash($_POST['taxonomy']))
+            : '';
 
         if (!$folder_id || empty($new_name) || empty($taxonomy)) {
             wp_send_json_error(array('message' => __('Invalid parameters', 'dailybuddy')));
@@ -628,7 +648,9 @@ class Dailybuddy_Content_Folders
         check_ajax_referer('dailybuddy_folders', 'nonce');
 
         $post_id = isset($_POST['post_id']) ? intval($_POST['post_id']) : 0;
-        $taxonomy = isset($_POST['taxonomy']) ? sanitize_text_field($_POST['taxonomy']) : '';
+        $taxonomy = isset($_POST['taxonomy'])
+            ? sanitize_text_field(wp_unslash($_POST['taxonomy']))
+            : '';
 
         if (!$post_id || empty($taxonomy)) {
             wp_send_json_error(array('message' => __('Invalid parameters', 'dailybuddy')));
@@ -668,7 +690,9 @@ class Dailybuddy_Content_Folders
 
         $folder_id = isset($_POST['folder_id']) ? intval($_POST['folder_id']) : 0;
         $new_parent_id = isset($_POST['new_parent_id']) ? intval($_POST['new_parent_id']) : 0;
-        $taxonomy = isset($_POST['taxonomy']) ? sanitize_text_field($_POST['taxonomy']) : '';
+        $taxonomy = isset($_POST['taxonomy'])
+            ? sanitize_text_field(wp_unslash($_POST['taxonomy']))
+            : '';
 
         if (!$folder_id || empty($taxonomy)) {
             wp_send_json_error(array('message' => __('Invalid parameters', 'dailybuddy')));

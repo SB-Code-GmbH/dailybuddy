@@ -2517,3 +2517,203 @@ msgstr ""
 #: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\admin\views\general-settings-page.php (Line 171)
 msgid "Currently, no modules provide their own settings page."
 msgstr ""
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\wordpress-tools\media-replace\config.php (Line 4)
+msgid "Media Replace"
+msgstr ""
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\wordpress-tools\media-replace\config.php (Line 9)
+msgid "Replace media files easily and effectively. Upload a new file to replace an existing one without changing the URL or breaking links."
+msgstr ""
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\wordpress-tools\media-replace\config.php (Line 16)
+msgid "upload"
+msgstr ""
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\wordpress-tools\media-replace\config.php (Line 9)
+msgid "replace"
+msgstr ""
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\wordpress-tools\media-replace\module.php (Line 4)
+msgid "Replace"
+msgstr ""
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\wordpress-tools\media-replace\module.php (Line 62)
+msgid "Replace Media"
+msgstr ""
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\wordpress-tools\media-replace\module.php (Line 67)
+msgid "Replace File"
+msgstr ""
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\wordpress-tools\media-replace\module.php (Line 102)
+msgid "Uploading..."
+msgstr ""
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\wordpress-tools\media-replace\module.php (Line 103)
+msgid "Processing..."
+msgstr ""
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\wordpress-tools\media-replace\module.php (Line 104)
+msgid "File replaced successfully!"
+msgstr ""
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\wordpress-tools\media-replace\module.php (Line 105)
+msgid "Error replacing file."
+msgstr ""
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\wordpress-tools\media-replace\module.php (Line 106)
+msgid "Please select a file."
+msgstr ""
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\wordpress-tools\media-replace\module.php (Line 107)
+msgid "Are you sure you want to replace this file? This action cannot be undone."
+msgstr ""
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\wordpress-tools\media-replace\module.php (Line 137)
+msgid "Missing required data."
+msgstr ""
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\wordpress-tools\media-replace\module.php (Line 184)
+msgid "No attachment specified."
+msgstr ""
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\wordpress-tools\media-replace\module.php (Line 191)
+msgid "Invalid attachment."
+msgstr ""
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\wordpress-tools\media-replace\module.php (Line 205)
+msgid "Untitled"
+msgstr ""
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\wordpress-tools\media-replace\module.php (Line 217)
+msgid "You do not have permission to upload files."
+msgstr ""
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\wordpress-tools\media-replace\module.php (Line 227)
+msgid "Error uploading file."
+msgstr ""
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\wordpress-tools\media-replace\module.php (Line 250)
+msgid "Error moving uploaded file."
+msgstr ""
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\wordpress-tools\media-replace\module.php (Line 347)
+msgid "Permission denied."
+msgstr ""
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\wordpress-tools\media-replace\templates\replace-form.php (Line 12)
+msgid "Replace Media File"
+msgstr ""
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\wordpress-tools\media-replace\templates\replace-form.php (Line 16)
+msgid "Current File"
+msgstr ""
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\wordpress-tools\media-replace\templates\replace-form.php (Line 31)
+msgid "Filename:"
+msgstr ""
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\wordpress-tools\media-replace\templates\replace-form.php (Line 35)
+msgid "File Type:"
+msgstr ""
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\wordpress-tools\media-replace\templates\replace-form.php (Line 39)
+msgid "File Size:"
+msgstr ""
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\wordpress-tools\media-replace\templates\replace-form.php (Line 43)
+msgid "URL:"
+msgstr ""
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\wordpress-tools\media-replace\templates\replace-form.php (Line 51)
+msgid "Upload New File"
+msgstr ""
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\wordpress-tools\media-replace\templates\replace-form.php (Line 60)
+msgid "Choose File"
+msgstr ""
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\wordpress-tools\media-replace\templates\replace-form.php (Line 63)
+msgid "No file chosen"
+msgstr ""
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\wordpress-tools\media-replace\templates\replace-form.php (Line 67)
+msgid "Replace Options"
+msgstr ""
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\wordpress-tools\media-replace\templates\replace-form.php (Line 71)
+msgid "The new file will replace the existing file while keeping the same URL. All links and references will continue to work."
+msgstr ""
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\wordpress-tools\media-replace\templates\replace-form.php (Line 76)
+msgid "Important: This action cannot be undone. The old file will be permanently deleted."
+msgstr ""
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\wordpress-tools\dashboard-access\config.php (Line 4)
+msgid "Dashboard Access Control"
+msgstr ""
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\wordpress-tools\dashboard-access\config.php (Line 9)
+msgid "Control which user roles can access the WordPress dashboard. Redirect unauthorized users to the frontend."
+msgstr ""
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\wordpress-tools\dashboard-access\config.php (Line 9)
+msgid "access"
+msgstr ""
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\wordpress-tools\dashboard-access\module.php (Line 238)
+msgid "You do not have permission to access this page."
+msgstr ""
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\wordpress-tools\dashboard-access\module.php (Line 266)
+msgid "Settings saved successfully!"
+msgstr ""
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\wordpress-tools\dashboard-access\templates\settings-page.php (Line 18)
+msgid "Control which user roles can access the WordPress dashboard. Users without access will be redirected to the specified URL."
+msgstr ""
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\wordpress-tools\dashboard-access\templates\settings-page.php (Line 26)
+msgid "Allowed Roles"
+msgstr ""
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\wordpress-tools\dashboard-access\templates\settings-page.php (Line 53)
+msgid "Always Allowed"
+msgstr ""
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\wordpress-tools\dashboard-access\templates\settings-page.php (Line 60)
+msgid "Select which user roles can access the WordPress dashboard. Administrators always have access."
+msgstr ""
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\wordpress-tools\dashboard-access\templates\settings-page.php (Line 72)
+msgid "How it works"
+msgstr ""
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\wordpress-tools\dashboard-access\templates\settings-page.php (Line 75)
+msgid "Users with allowed roles can access the dashboard normally"
+msgstr ""
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\wordpress-tools\dashboard-access\templates\settings-page.php (Line 76)
+msgid "Users without allowed roles will be redirected to their profile page when trying to access /wp-admin/"
+msgstr ""
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\wordpress-tools\dashboard-access\templates\settings-page.php (Line 77)
+msgid "The admin bar in the frontend is automatically hidden for non-allowed users"
+msgstr ""
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\wordpress-tools\dashboard-access\templates\settings-page.php (Line 78)
+msgid "Administrators always have full access (cannot be restricted)"
+msgstr ""
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\wordpress-tools\dashboard-access\templates\settings-page.php (Line 79)
+msgid "AJAX requests are not affected by this restriction"
+msgstr ""
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\wordpress-tools\dashboard-access\templates\settings-page.php (Line 87)
+msgid "Important"
+msgstr ""
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\wordpress-tools\dashboard-access\templates\settings-page.php (Line 90)
+msgid "Be careful when restricting dashboard access. Make sure you understand which roles need access before making changes."
+msgstr ""

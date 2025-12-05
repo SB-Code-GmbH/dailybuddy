@@ -95,8 +95,14 @@ class WP_Dailybuddy_Translation_Scanner
             return;
         }
 
-        // Get raw POST data
+        // Development-only: Raw POST input used for internal translation scanning.
+        // This endpoint is not exposed to regular users.
+        // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
         $locales_json = isset($_POST['locales']) ? wp_unslash($_POST['locales']) : '';
+
+        // Development-only: Raw POST input used for internal translation scanning.
+        // This endpoint is not exposed to regular users.
+        // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
         $strings_json = isset($_POST['strings']) ? wp_unslash($_POST['strings']) : '';
 
         // Decode JSON strings

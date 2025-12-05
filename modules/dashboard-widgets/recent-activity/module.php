@@ -311,17 +311,36 @@ class WP_Dailybuddy_Recent_Activity_Widget
     private function get_post_activities()
     {
         $activities = array();
+        
+        // Get post status based on user capabilities
+        $post_status = array('publish');
+        if (current_user_can('edit_private_posts')) {
+            $post_status[] = 'draft';
+            $post_status[] = 'future';
+            $post_status[] = 'private';
+        }
+        
         $posts = get_posts(array(
             'post_type'      => 'post',
             'posts_per_page' => 5,
-            'post_status'    => array('publish', 'draft', 'future'),
+            'post_status'    => $post_status,
             'orderby'        => 'modified',
             'order'          => 'DESC',
         ));
 
         foreach ($posts as $post) {
+            // Skip if user can't edit this post
+            if (!current_user_can('edit_post', $post->ID)) {
+                continue;
+            }
+            
             $author = get_userdata($post->post_author);
             $edit_link = get_edit_post_link($post->ID);
+            
+            // Skip if no edit link available
+            if (!$edit_link) {
+                continue;
+            }
 
             $badge = '';
             $badge_class = '';
@@ -344,7 +363,7 @@ class WP_Dailybuddy_Recent_Activity_Widget
                     esc_url($edit_link),
                     esc_html($post->post_title ?: __('(No title)', 'dailybuddy'))
                 ),
-                'time_ago'    => human_time_diff(strtotime($post->post_modified), current_time('timestamp')) . ' ' . __('ago', 'dailybuddy'),
+                'time_ago'    => $post->post_modified ? human_time_diff(strtotime($post->post_modified), current_time('timestamp')) . ' ' . __('ago', 'dailybuddy') : __('Unknown', 'dailybuddy'),
                 'timestamp'   => strtotime($post->post_modified),
                 'author'      => $author ? $author->display_name : '',
                 'badge'       => $badge,
@@ -361,17 +380,35 @@ class WP_Dailybuddy_Recent_Activity_Widget
     private function get_page_activities()
     {
         $activities = array();
+        
+        // Get page status based on user capabilities
+        $post_status = array('publish');
+        if (current_user_can('edit_pages')) {
+            $post_status[] = 'draft';
+            $post_status[] = 'private';
+        }
+        
         $pages = get_posts(array(
             'post_type'      => 'page',
             'posts_per_page' => 3,
-            'post_status'    => array('publish', 'draft'),
+            'post_status'    => $post_status,
             'orderby'        => 'modified',
             'order'          => 'DESC',
         ));
 
         foreach ($pages as $page) {
+            // Skip if user can't edit this page
+            if (!current_user_can('edit_page', $page->ID)) {
+                continue;
+            }
+            
             $author = get_userdata($page->post_author);
             $edit_link = get_edit_post_link($page->ID);
+            
+            // Skip if no edit link available
+            if (!$edit_link) {
+                continue;
+            }
 
             $activities[] = array(
                 'type'        => 'page',
@@ -381,7 +418,7 @@ class WP_Dailybuddy_Recent_Activity_Widget
                     esc_url($edit_link),
                     esc_html($page->post_title ?: __('(No title)', 'dailybuddy'))
                 ),
-                'time_ago'    => human_time_diff(strtotime($page->post_modified), current_time('timestamp')) . ' ' . __('ago', 'dailybuddy'),
+                'time_ago'    => $page->post_modified ? human_time_diff(strtotime($page->post_modified), current_time('timestamp')) . ' ' . __('ago', 'dailybuddy') : __('Unknown', 'dailybuddy'),
                 'timestamp'   => strtotime($page->post_modified),
                 'author'      => $author ? $author->display_name : '',
                 'badge'       => $page->post_status === 'publish' ? __('Updated', 'dailybuddy') : __('Draft', 'dailybuddy'),
@@ -397,6 +434,11 @@ class WP_Dailybuddy_Recent_Activity_Widget
      */
     private function get_comment_activities()
     {
+        // Check if user can moderate comments
+        if (!current_user_can('moderate_comments')) {
+            return array();
+        }
+        
         $activities = array();
         $comments = get_comments(array(
             'number' => 5,
@@ -407,6 +449,12 @@ class WP_Dailybuddy_Recent_Activity_Widget
 
         foreach ($comments as $comment) {
             $post = get_post($comment->comment_post_ID);
+            
+            // Skip if post doesn't exist
+            if (!$post) {
+                continue;
+            }
+            
             $edit_link = admin_url('comment.php?action=editcomment&c=' . $comment->comment_ID);
 
             $badge = '';
@@ -429,9 +477,9 @@ class WP_Dailybuddy_Recent_Activity_Widget
                     // translators: 1: post URL, 2: post title
                     __('Comment on <a href="%1$s">%2$s</a>', 'dailybuddy'),
                     esc_url($edit_link),
-                    esc_html($post ? $post->post_title : __('(unknown post)', 'dailybuddy'))
+                    esc_html($post->post_title ?: __('(unknown post)', 'dailybuddy'))
                 ),
-                'time_ago'    => human_time_diff(strtotime($comment->comment_date), current_time('timestamp')) . ' ' . __('ago', 'dailybuddy'),
+                'time_ago'    => $comment->comment_date ? human_time_diff(strtotime($comment->comment_date), current_time('timestamp')) . ' ' . __('ago', 'dailybuddy') : __('Unknown', 'dailybuddy'),
                 'timestamp'   => strtotime($comment->comment_date),
                 'author'      => $comment->comment_author,
                 'badge'       => $badge,
@@ -447,6 +495,11 @@ class WP_Dailybuddy_Recent_Activity_Widget
      */
     private function get_media_activities()
     {
+        // Check if user can upload files
+        if (!current_user_can('upload_files')) {
+            return array();
+        }
+        
         $activities = array();
         $media = get_posts(array(
             'post_type'      => 'attachment',
@@ -459,6 +512,11 @@ class WP_Dailybuddy_Recent_Activity_Widget
         foreach ($media as $item) {
             $author = get_userdata($item->post_author);
             $edit_link = get_edit_post_link($item->ID);
+            
+            // Skip if no edit link available
+            if (!$edit_link) {
+                continue;
+            }
 
             $file_type = '';
             if (strpos($item->post_mime_type, 'image') !== false) {
@@ -481,7 +539,7 @@ class WP_Dailybuddy_Recent_Activity_Widget
                     esc_url($edit_link),
                     esc_html($item->post_title ?: basename($item->guid))
                 ),
-                'time_ago'    => human_time_diff(strtotime($item->post_date), current_time('timestamp')) . ' ' . __('ago', 'dailybuddy'),
+                'time_ago'    => $item->post_date ? human_time_diff(strtotime($item->post_date), current_time('timestamp')) . ' ' . __('ago', 'dailybuddy') : __('Unknown', 'dailybuddy'),
                 'timestamp'   => strtotime($item->post_date),
                 'author'      => $author ? $author->display_name : '',
                 'badge'       => __('New', 'dailybuddy'),
@@ -497,6 +555,11 @@ class WP_Dailybuddy_Recent_Activity_Widget
      */
     private function get_user_activities()
     {
+        // Check if user can list users
+        if (!current_user_can('list_users')) {
+            return array();
+        }
+        
         $activities = array();
         $users = get_users(array(
             'number'  => 3,
@@ -506,6 +569,11 @@ class WP_Dailybuddy_Recent_Activity_Widget
 
         foreach ($users as $user) {
             $edit_link = get_edit_user_link($user->ID);
+            
+            // Skip if no edit link available
+            if (!$edit_link) {
+                continue;
+            }
 
             $activities[] = array(
                 'type'        => 'user',
@@ -516,7 +584,7 @@ class WP_Dailybuddy_Recent_Activity_Widget
                     esc_url($edit_link),
                     esc_html($user->display_name)
                 ),
-                'time_ago'    => human_time_diff(strtotime($user->user_registered), current_time('timestamp')) . ' ' . __('ago', 'dailybuddy'),
+                'time_ago'    => $user->user_registered ? human_time_diff(strtotime($user->user_registered), current_time('timestamp')) . ' ' . __('ago', 'dailybuddy') : __('Unknown', 'dailybuddy'),
                 'timestamp'   => strtotime($user->user_registered),
                 'author'      => '',
                 'badge'       => __('New', 'dailybuddy'),
