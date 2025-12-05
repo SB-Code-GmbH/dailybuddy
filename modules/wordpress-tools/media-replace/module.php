@@ -120,6 +120,8 @@ class WP_Dailybuddy_Media_Replace
         }
 
         $attachment_id = absint($_POST['attachment_id']);
+        // Raw file array from $_FILES, unslashed and then restricted to allowed keys only.
+        // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
         $this->process_file_replacement($attachment_id, $_FILES['replace_file']);
     }
 
@@ -352,6 +354,8 @@ class WP_Dailybuddy_Media_Replace
         $attachment_id = absint($_POST['attachment_id']);
 
         try {
+            // Raw file array from $_FILES, unslashed and then restricted to allowed keys only.
+            // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
             $this->process_file_replacement($attachment_id, $_FILES['file']);
             wp_send_json_success(array(
                 'message' => __('File replaced successfully!', 'dailybuddy'),

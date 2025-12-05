@@ -2649,3 +2649,71 @@ msgstr ""
 #: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\wordpress-tools\media-replace\templates\replace-form.php (Line 76)
 msgid "Important: This action cannot be undone. The old file will be permanently deleted."
 msgstr ""
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\wordpress-tools\dashboard-access\config.php (Line 4)
+msgid "Dashboard Access Control"
+msgstr ""
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\wordpress-tools\dashboard-access\config.php (Line 9)
+msgid "Control which user roles can access the WordPress dashboard. Redirect unauthorized users to the frontend."
+msgstr ""
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\wordpress-tools\dashboard-access\config.php (Line 9)
+msgid "access"
+msgstr ""
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\wordpress-tools\dashboard-access\module.php (Line 238)
+msgid "You do not have permission to access this page."
+msgstr ""
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\wordpress-tools\dashboard-access\module.php (Line 266)
+msgid "Settings saved successfully!"
+msgstr ""
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\wordpress-tools\dashboard-access\templates\settings-page.php (Line 18)
+msgid "Control which user roles can access the WordPress dashboard. Users without access will be redirected to the specified URL."
+msgstr ""
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\wordpress-tools\dashboard-access\templates\settings-page.php (Line 26)
+msgid "Allowed Roles"
+msgstr ""
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\wordpress-tools\dashboard-access\templates\settings-page.php (Line 53)
+msgid "Always Allowed"
+msgstr ""
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\wordpress-tools\dashboard-access\templates\settings-page.php (Line 60)
+msgid "Select which user roles can access the WordPress dashboard. Administrators always have access."
+msgstr ""
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\wordpress-tools\dashboard-access\templates\settings-page.php (Line 72)
+msgid "How it works"
+msgstr ""
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\wordpress-tools\dashboard-access\templates\settings-page.php (Line 75)
+msgid "Users with allowed roles can access the dashboard normally"
+msgstr ""
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\wordpress-tools\dashboard-access\templates\settings-page.php (Line 76)
+msgid "Users without allowed roles will be redirected to their profile page when trying to access /wp-admin/"
+msgstr ""
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\wordpress-tools\dashboard-access\templates\settings-page.php (Line 77)
+msgid "The admin bar in the frontend is automatically hidden for non-allowed users"
+msgstr ""
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\wordpress-tools\dashboard-access\templates\settings-page.php (Line 78)
+msgid "Administrators always have full access (cannot be restricted)"
+msgstr ""
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\wordpress-tools\dashboard-access\templates\settings-page.php (Line 79)
+msgid "AJAX requests are not affected by this restriction"
+msgstr ""
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\wordpress-tools\dashboard-access\templates\settings-page.php (Line 87)
+msgid "Important"
+msgstr ""
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\wordpress-tools\dashboard-access\templates\settings-page.php (Line 90)
+msgid "Be careful when restricting dashboard access. Make sure you understand which roles need access before making changes."
+msgstr ""

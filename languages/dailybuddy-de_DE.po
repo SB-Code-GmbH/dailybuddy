@@ -2596,3 +2596,153 @@ msgstr "Wichtig"
 #: (Line 90)
 msgid "Be careful when restricting dashboard access. Make sure you understand which roles need access before making changes."
 msgstr "Seien Sie vorsichtig, wenn Sie den Dashboard-Zugriff einschränken. Stellen Sie sicher, dass Sie genau wissen, welche Rollen Zugriff benötigen, bevor Sie Änderungen vornehmen."
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\admin\views\general-settings-page.php
+#: (Line 193)
+msgid "DailyBuddy is a modular collection of helpful enhancements for your WordPress site."
+msgstr "DailyBuddy ist eine modulare Sammlung hilfreicher Erweiterungen für Ihre WordPress-Website."
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\wordpress-tools\custom-login-url\config.php
+#: (Line 9)
+msgid "Hide your wp-login.php and wp-admin by changing the login URL. Protects against brute force attacks."
+msgstr "Verbergen Sie wp-login.php und wp-admin, indem Sie die Login-URL ändern. Schützt vor Brute-Force-Angriffen."
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\wordpress-tools\custom-login-url\config.php
+#: (Line 9)
+msgid "login"
+msgstr "Login"
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\wordpress-tools\custom-login-url\config.php
+#: (Line 17)
+msgid "protection"
+msgstr "Schutz"
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\wordpress-tools\custom-login-url\module.php
+#: (Line 256)
+msgid "This has been disabled"
+msgstr "Dies wurde deaktiviert"
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\wordpress-tools\custom-login-url\module.php
+#: (Line 507)
+msgid "Invalid login slug. Please choose a different one."
+msgstr "Ungültiger Login-Slug. Bitte wählen Sie einen anderen."
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\wordpress-tools\custom-login-url\module.php
+#: (Line 564)
+msgid "Login slug and redirect slug cannot be the same!"
+msgstr "Login-Slug und Weiterleitungs-Slug dürfen nicht identisch sein!"
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\wordpress-tools\custom-login-url\module.php
+#: (Line 577)
+msgid "Login URL: %s"
+msgstr "Login-URL: %s"
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\wordpress-tools\custom-login-url\module.php
+#: (Line 583)
+msgid "Redirect URL: %s"
+msgstr "Weiterleitungs-URL: %s"
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\wordpress-tools\custom-login-url\module.php
+#: (Line 586)
+msgid "BOOKMARK your login URL now!"
+msgstr "Speichern Sie Ihre Login-URL jetzt als Lesezeichen!"
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\wordpress-tools\custom-login-url\templates\settings-page.php
+#: (Line 4)
+msgid "Custom Login URL"
+msgstr "Benutzerdefinierte Login-URL"
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\wordpress-tools\custom-login-url\templates\settings-page.php
+#: (Line 26)
+msgid "Hide your wp-login.php and wp-admin by changing the login URL. Works exactly like WPS Hide Login."
+msgstr "Verbergen Sie wp-login.php und wp-admin durch Ändern der Login-URL. Funktioniert genau wie WPS Hide Login."
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\wordpress-tools\custom-login-url\templates\settings-page.php
+#: (Line 39)
+msgid "Login Slug"
+msgstr "Login-Slug"
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\wordpress-tools\custom-login-url\templates\settings-page.php
+#: (Line 67)
+msgid "This is your new login URL. wp-login.php will be blocked."
+msgstr "Dies ist Ihre neue Login-URL. wp-login.php wird blockiert."
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\wordpress-tools\custom-login-url\templates\settings-page.php
+#: (Line 77)
+msgid "Redirect Slug"
+msgstr "Weiterleitungs-Slug"
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\wordpress-tools\custom-login-url\templates\settings-page.php
+#: (Line 105)
+msgid "Redirect URL when someone tries to access wp-login.php or wp-admin while not logged in. Default: 404."
+msgstr "Weiterleitungs-URL, wenn jemand versucht, ohne Anmeldung auf wp-login.php oder wp-admin zuzugreifen. Standard: 404."
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\wordpress-tools\custom-login-url\templates\settings-page.php
+#: (Line 115)
+msgid "Your Login URL"
+msgstr "Ihre Login-URL"
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\wordpress-tools\custom-login-url\templates\settings-page.php
+#: (Line 128)
+msgid "Copy"
+msgstr "Kopieren"
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\wordpress-tools\custom-login-url\templates\settings-page.php
+#: (Line 137)
+msgid "Your Redirect URL"
+msgstr "Ihre Weiterleitungs-URL"
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\wordpress-tools\custom-login-url\templates\settings-page.php
+#: (Line 145)
+msgid "This is where non-logged-in users will be redirected when accessing wp-admin or wp-login.php."
+msgstr "Hierhin werden nicht angemeldete Benutzer weitergeleitet, wenn sie wp-admin oder wp-login.php aufrufen."
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\wordpress-tools\custom-login-url\templates\settings-page.php
+#: (Line 160)
+msgid "BOOKMARK your login URL immediately!"
+msgstr "Speichern Sie Ihre Login-URL sofort als Lesezeichen!"
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\wordpress-tools\custom-login-url\templates\settings-page.php
+#: (Line 162)
+msgid "Your login page:"
+msgstr "Ihre Login-Seite:"
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\wordpress-tools\custom-login-url\templates\settings-page.php
+#: (Line 166)
+msgid "wp-login.php will redirect to:"
+msgstr "wp-login.php leitet weiter zu:"
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\wordpress-tools\custom-login-url\templates\settings-page.php
+#: (Line 170)
+msgid "wp-admin (not logged in) will redirect to:"
+msgstr "wp-admin (nicht angemeldet) leitet weiter zu:"
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\wordpress-tools\custom-login-url\templates\settings-page.php
+#: (Line 173)
+msgid "Password reset and logout will continue to work."
+msgstr "Passwort-Zurücksetzung und Logout funktionieren weiterhin."
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\wordpress-tools\custom-login-url\templates\settings-page.php
+#: (Line 174)
+msgid "Login slug and redirect slug must be different."
+msgstr "Login-Slug und Weiterleitungs-Slug müssen unterschiedlich sein."
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\wordpress-tools\custom-login-url\templates\settings-page.php
+#: (Line 275)
+msgid "Copied!"
+msgstr "Kopiert!"
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\wordpress-tools\custom-login-url\templates\settings-page.php
+#: (Line 291)
+msgid "Error: Login slug and redirect slug cannot be the same!"
+msgstr "Fehler: Login-Slug und Weiterleitungs-Slug dürfen nicht identisch sein!"
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\wordpress-tools\custom-login-url\templates\settings-page.php
+#: (Line 298)
+msgid "Error: Both slugs are required!"
+msgstr "Fehler: Beide Slugs sind erforderlich!"
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\wordpress-tools\dashboard-access\module.php
+#: (Line 4)
+msgid "Dashboard Access"
+msgstr "Dashboard-Zugriff"

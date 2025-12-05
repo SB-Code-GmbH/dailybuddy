@@ -2511,3 +2511,88 @@ msgstr "Die neue Datei ersetzt die bestehende Datei unter Beibehaltung derselben
 #: (Line 76)
 msgid "Important: This action cannot be undone. The old file will be permanently deleted."
 msgstr "Wichtig: Diese Aktion kann nicht rückgängig gemacht werden. Die alte Datei wird dauerhaft gelöscht."
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\wordpress-tools\dashboard-access\config.php
+#: (Line 9)
+msgid "Control which user roles can access the WordPress dashboard. Redirect unauthorized users to the frontend."
+msgstr "Steuern Sie, welche Benutzerrollen auf das WordPress-Dashboard zugreifen dürfen. Leiten Sie nicht autorisierte Benutzer ins Frontend weiter."
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\wordpress-tools\dashboard-access\config.php
+#: (Line 9)
+msgid "access"
+msgstr "Zugriff"
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\wordpress-tools\dashboard-access\module.php
+#: (Line 238)
+msgid "You do not have permission to access this page."
+msgstr "Sie haben keine Berechtigung, auf diese Seite zuzugreifen."
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\wordpress-tools\dashboard-access\module.php
+#: (Line 266)
+msgid "Settings saved successfully!"
+msgstr "Einstellungen erfolgreich gespeichert!"
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\wordpress-tools\dashboard-access\templates\settings-page.php
+#: (Line 3)
+msgid "Dashboard Access Control"
+msgstr "Dashboard-Zugriffskontrolle"
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\wordpress-tools\dashboard-access\templates\settings-page.php
+#: (Line 18)
+msgid "Control which user roles can access the WordPress dashboard. Users without access will be redirected to the specified URL."
+msgstr "Steuern Sie, welche Benutzerrollen auf das WordPress-Dashboard zugreifen dürfen. Benutzer ohne Zugriff werden zur angegebenen URL weitergeleitet."
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\wordpress-tools\dashboard-access\templates\settings-page.php
+#: (Line 26)
+msgid "Allowed Roles"
+msgstr "Erlaubte Rollen"
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\wordpress-tools\dashboard-access\templates\settings-page.php
+#: (Line 53)
+msgid "Always Allowed"
+msgstr "Immer erlaubt"
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\wordpress-tools\dashboard-access\templates\settings-page.php
+#: (Line 60)
+msgid "Select which user roles can access the WordPress dashboard. Administrators always have access."
+msgstr "Wählen Sie aus, welche Benutzerrollen auf das WordPress-Dashboard zugreifen dürfen. Administratoren haben immer Zugriff."
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\wordpress-tools\dashboard-access\templates\settings-page.php
+#: (Line 72)
+msgid "How it works"
+msgstr "So funktioniert es"
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\wordpress-tools\dashboard-access\templates\settings-page.php
+#: (Line 75)
+msgid "Users with allowed roles can access the dashboard normally"
+msgstr "Benutzer mit erlaubten Rollen können normal auf das Dashboard zugreifen"
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\wordpress-tools\dashboard-access\templates\settings-page.php
+#: (Line 76)
+msgid "Users without allowed roles will be redirected to their profile page when trying to access /wp-admin/"
+msgstr "Benutzer ohne erlaubte Rollen werden beim Zugriff auf /wp-admin/ auf ihre Profilseite weitergeleitet"
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\wordpress-tools\dashboard-access\templates\settings-page.php
+#: (Line 77)
+msgid "The admin bar in the frontend is automatically hidden for non-allowed users"
+msgstr "Die Admin-Leiste im Frontend wird für nicht erlaubte Benutzer automatisch ausgeblendet"
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\wordpress-tools\dashboard-access\templates\settings-page.php
+#: (Line 78)
+msgid "Administrators always have full access (cannot be restricted)"
+msgstr "Administratoren haben immer uneingeschränkten Zugriff (können nicht eingeschränkt werden)"
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\wordpress-tools\dashboard-access\templates\settings-page.php
+#: (Line 79)
+msgid "AJAX requests are not affected by this restriction"
+msgstr "AJAX-Anfragen sind von dieser Einschränkung nicht betroffen"
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\wordpress-tools\dashboard-access\templates\settings-page.php
+#: (Line 87)
+msgid "Important"
+msgstr "Wichtig"
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\wordpress-tools\dashboard-access\templates\settings-page.php
+#: (Line 90)
+msgid "Be careful when restricting dashboard access. Make sure you understand which roles need access before making changes."
+msgstr "Seien Sie vorsichtig, wenn Sie den Dashboard-Zugriff einschränken. Stellen Sie sicher, dass Sie genau wissen, welche Rollen Zugriff benötigen, bevor Sie Änderungen vornehmen."

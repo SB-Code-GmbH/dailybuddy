@@ -45,12 +45,14 @@ wp_localize_script(
 
 <div class="wrap">
 
-    <div class="dailybuddy-header">
-        <span class="dailybuddy-logo">
-            <img src="<?php echo esc_url(plugin_dir_url(dirname(__DIR__, 1)) . 'assets/images/logo.png'); ?>" alt="dailybuddy Logo" class="dailybuddy-logo-img">
-        </span>
-        <h2 style="margin: 0px;"><?php esc_html_e('DailyBuddy', 'dailybuddy'); ?></h2>
-    </div>
+    <h1>
+        <div class="dailybuddy-header">
+            <span class="dailybuddy-logo">
+                <img src="<?php echo esc_url(plugin_dir_url(dirname(__DIR__, 1)) . 'assets/images/logo.png'); ?>" alt="dailybuddy Logo" class="dailybuddy-logo-img">
+            </span>
+            <h2 style="margin: 0px;"><?php esc_html_e('DailyBuddy', 'dailybuddy'); ?></h2>
+        </div>
+    </h1>
 
     <?php // phpcs:ignore WordPress.Security.NonceVerification.Recommended -- Reading display state only 
     ?>
