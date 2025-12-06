@@ -48,6 +48,29 @@ class WP_Dailybuddy_Custom_Login_URL
 
         // Add "Custom Login URL" link under Tools when module is active.
         add_action('admin_menu', array($this, 'maybe_add_tools_menu'));
+        
+        // Enqueue admin styles
+        add_action('admin_enqueue_scripts', array($this, 'enqueue_admin_styles'));
+    }
+
+    /**
+     * Enqueue admin styles
+     */
+    public function enqueue_admin_styles($hook)
+    {
+        // Only load on DailyBuddy settings page
+        if (strpos($hook, 'dailybuddy') === false) {
+            return;
+        }
+
+        if (defined('DAILYBUDDY_URL') && defined('DAILYBUDDY_VERSION')) {
+            wp_enqueue_style(
+                'dailybuddy-uc',
+                DAILYBUDDY_URL . 'assets/css/modul-settings.css',
+                array(),
+                DAILYBUDDY_VERSION
+            );
+        }
     }
 
     /**

@@ -741,8 +741,7 @@ new Dailybuddy_Content_Folders();
  */
 function dailybuddy_render_content_folders_settings($module_data)
 {
-    // OPTIONAL: gleiche Styles wie Under Construction nutzen
-    // (falls du dort die allgemeinen UI-Styles drin hast)
+
     if (defined('DAILYBUDDY_URL') && defined('DAILYBUDDY_VERSION')) {
         wp_enqueue_style(
             'dailybuddy-uc',

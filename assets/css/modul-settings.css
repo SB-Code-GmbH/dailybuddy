@@ -1,6 +1,98 @@
 /**
- * Under Construction Module Styles
+ * DailyBuddy Module Settings - Zentrale Styles
  */
+
+/* ============================================
+   GENERAL / SHARED STYLES
+   ============================================ */
+
+/* Settings Form Container */
+.dailybuddy-settings-form {
+    background: #fff;
+    padding: 20px;
+    border: 1px solid #dcdcde;
+    border-radius: 4px;
+    margin-top: 20px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+}
+
+/* Info & Warning Boxes */
+.info-box,
+.warning-box {
+    margin: 20px 0;
+    padding: 15px 20px;
+    border-radius: 4px;
+}
+
+.info-box {
+    background: #e7f5fe;
+    border-left: 4px solid #2271b1;
+}
+
+.warning-box {
+    background: #fcf9e8;
+    border-left: 4px solid #dba617;
+}
+
+.info-box h3,
+.warning-box h3 {
+    margin-top: 0;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 15px;
+}
+
+.info-box .dashicons {
+    color: #2271b1;
+}
+
+.warning-box .dashicons {
+    color: #dba617;
+}
+
+.info-box ul,
+.warning-box ul {
+    margin: 10px 0 0 0;
+    padding-left: 20px;
+}
+
+.info-box li,
+.warning-box li {
+    margin: 5px 0;
+}
+
+.warning-box p {
+    margin: 5px 0 0 0;
+}
+
+/* Badges */
+.badge {
+    display: inline-block;
+    padding: 2px 8px;
+    font-size: 11px;
+    font-weight: 600;
+    border-radius: 3px;
+}
+
+.badge-green {
+    background: #d5f5dd;
+    color: #00612b;
+}
+
+.badge-red {
+    background: #fcf0f1;
+    color: #d63638;
+}
+
+.badge-blue {
+    background: #e7f5fe;
+    color: #0a5b8c;
+}
+
+/* ============================================
+   UNDER CONSTRUCTION MODULE
+   ============================================ */
 
 /* Tabs Navigation */
 .dailybuddy-uc-tabs {
@@ -105,7 +197,7 @@
     background: #91CE00;
 }
 
-/* Switch Toggle (consistent with main plugin) */
+/* Switch Toggle */
 .dailybuddy-uc-switch {
     position: relative;
     display: inline-block;
@@ -198,9 +290,348 @@ input:checked+.dailybuddy-uc-slider:before {
     border: 1px solid #dcdcde;
 }
 
-/* Social Media Icons in Settings */
+/* Social Media Icons */
 .dailybuddy-uc-social-icon {
     font-size: 18px;
     color: #91CE00;
     margin-right: 8px;
+}
+
+/* ============================================
+   DASHBOARD ACCESS MODULE
+   ============================================ */
+
+.dailybuddy-dashboard-access-settings h1 {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.dailybuddy-dashboard-access-settings h1 .dashicons {
+    color: #2271b1;
+}
+
+.roles-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 10px;
+    margin: 10px 0;
+}
+
+.role-checkbox {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 15px;
+    background: #f6f7f7;
+    border: 1px solid #dcdcde;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.role-checkbox:hover {
+    background: #fff;
+    border-color: #2271b1;
+}
+
+.role-checkbox input[type="checkbox"] {
+    margin: 0;
+}
+
+.role-checkbox input[type="checkbox"]:disabled {
+    cursor: not-allowed;
+}
+
+.role-checkbox.admin-role {
+    background: #e7f5fe;
+    border-color: #2271b1;
+}
+
+.role-name {
+    font-weight: 500;
+    flex: 1;
+}
+
+.admin-badge {
+    font-size: 11px;
+    background: #2271b1;
+    color: #fff;
+    padding: 2px 8px;
+    border-radius: 3px;
+    font-weight: 600;
+}
+
+/* ============================================
+   AI BOT BLOCKER MODULE
+   ============================================ */
+
+.dailybuddy-ai-bot-blocker-settings {
+    max-width: 1200px;
+}
+
+.dailybuddy-ai-bot-blocker-settings h1 {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.dailybuddy-ai-bot-blocker-settings h1 .dashicons {
+    color: #2271b1;
+}
+
+/* Status Card */
+.status-card {
+    display: flex;
+    gap: 20px;
+    margin: 20px 0;
+    padding: 20px;
+    background: #fff;
+    border: 1px solid #dcdcde;
+    border-radius: 4px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+}
+
+.status-item {
+    flex: 1;
+    text-align: center;
+    padding: 10px;
+}
+
+.status-number {
+    display: block;
+    font-size: 32px;
+    font-weight: 700;
+    color: #2271b1;
+}
+
+.status-icon {
+    display: block;
+    font-size: 32px;
+    font-weight: 700;
+}
+
+.status-icon.active {
+    color: #00a32a;
+}
+
+.status-icon.inactive {
+    color: #dcdcde;
+}
+
+.status-label {
+    display: block;
+    margin-top: 5px;
+    font-size: 13px;
+    color: #50575e;
+}
+
+/* Settings Sections */
+.settings-section {
+    margin-bottom: 30px;
+    padding-bottom: 30px;
+    border-bottom: 1px solid #dcdcde;
+}
+
+.settings-section:last-of-type {
+    border-bottom: none;
+}
+
+.settings-section h2 {
+    margin-top: 0;
+}
+
+/* Bots Grid */
+.bots-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 15px;
+    margin: 20px 0;
+}
+
+.bot-card {
+    display: block;
+    padding: 15px;
+    background: #f6f7f7;
+    border: 2px solid #dcdcde;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.bot-card:hover {
+    background: #fff;
+    border-color: #2271b1;
+}
+
+.bot-card.selected {
+    background: #e7f5fe;
+    border-color: #2271b1;
+}
+
+.bot-card input[type="checkbox"] {
+    margin-right: 10px;
+}
+
+.bot-info {
+    margin-left: 25px;
+}
+
+.bot-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 5px;
+}
+
+.bot-company {
+    font-size: 12px;
+    color: #646970;
+    margin-bottom: 5px;
+}
+
+.bot-description {
+    font-size: 13px;
+    color: #50575e;
+    margin-bottom: 8px;
+}
+
+.bot-useragent {
+    margin-top: 8px;
+}
+
+.bot-useragent code {
+    font-size: 11px;
+    padding: 2px 6px;
+    background: #fff;
+    border: 1px solid #dcdcde;
+    border-radius: 3px;
+}
+
+/* Bulk Actions */
+.bulk-actions {
+    margin-top: 15px;
+    display: flex;
+    gap: 10px;
+}
+
+/* Method Options */
+.method-option {
+    display: flex;
+    align-items: start;
+    gap: 10px;
+    padding: 15px;
+    background: #f6f7f7;
+    border: 1px solid #dcdcde;
+    border-radius: 4px;
+    margin-bottom: 10px;
+}
+
+.method-option.disabled {
+    opacity: 0.6;
+    background: #f0f0f1;
+}
+
+.method-option input[type="checkbox"] {
+    margin-top: 3px;
+}
+
+.method-info strong {
+    display: block;
+    margin-bottom: 5px;
+}
+
+.method-info .description {
+    margin: 5px 0;
+}
+
+.method-info .badge {
+    margin-right: 5px;
+}
+
+/* Legal Text Box */
+.legal-text-box {
+    margin: 15px 0;
+    padding: 15px;
+    background: #f6f7f7;
+    border: 1px solid #dcdcde;
+    border-radius: 4px;
+}
+
+.legal-text-box h3 {
+    margin-top: 0;
+}
+
+.legal-text-box textarea {
+    width: 100%;
+    font-family: monospace;
+    font-size: 13px;
+    padding: 10px;
+    border: 1px solid #dcdcde;
+    border-radius: 4px;
+    resize: vertical;
+}
+
+.copy-legal-btn {
+    margin-top: 10px;
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+}
+
+/* ============================================
+   CUSTOM LOGIN URL MODULE
+   ============================================ */
+
+.dailybuddy-custom-login-url-settings h1 {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.dailybuddy-custom-login-url-settings h1 .dashicons {
+    color: #d63638;
+}
+
+/* Copy URL Button */
+.copy-url-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.copy-url-btn .dashicons {
+    font-size: 18px;
+    width: 18px;
+    height: 18px;
+}
+
+/* Warning Box - Red Variant */
+.warning-box.red {
+    background: #fcf0f1;
+    border-left-color: #d63638;
+}
+
+.warning-box.red h3 {
+    color: #d63638;
+}
+
+.warning-box.red .dashicons {
+    color: #d63638;
+}
+
+.warning-box code {
+    background: #fff;
+    padding: 2px 6px;
+    border-radius: 3px;
+    font-size: 12px;
+}
+
+/* Form Table Adjustments */
+.form-table th {
+    width: 200px;
+}
+
+.form-table input[type="text"].regular-text {
+    width: 300px;
 }

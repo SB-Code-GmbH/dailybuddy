@@ -38,6 +38,29 @@ class WP_Dailybuddy_Dashboard_Access
 
         // Register settings
         add_action('admin_init', array($this, 'register_settings'));
+        
+        // Enqueue admin styles
+        add_action('admin_enqueue_scripts', array($this, 'enqueue_admin_styles'));
+    }
+
+    /**
+     * Enqueue admin styles
+     */
+    public function enqueue_admin_styles($hook)
+    {
+        // Only load on DailyBuddy settings page
+        if (strpos($hook, 'dailybuddy') === false) {
+            return;
+        }
+
+        if (defined('DAILYBUDDY_URL') && defined('DAILYBUDDY_VERSION')) {
+            wp_enqueue_style(
+                'dailybuddy-uc',
+                DAILYBUDDY_URL . 'assets/css/modul-settings.css',
+                array(),
+                DAILYBUDDY_VERSION
+            );
+        }
     }
 
     /**
