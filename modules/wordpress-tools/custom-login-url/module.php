@@ -48,7 +48,7 @@ class WP_Dailybuddy_Custom_Login_URL
 
         // Add "Custom Login URL" link under Tools when module is active.
         add_action('admin_menu', array($this, 'maybe_add_tools_menu'));
-        
+
         // Enqueue admin styles
         add_action('admin_enqueue_scripts', array($this, 'enqueue_admin_styles'));
     }
@@ -294,10 +294,21 @@ class WP_Dailybuddy_Custom_Login_URL
         $request_uri = sanitize_text_field(wp_unslash($_SERVER['REQUEST_URI']));
         $request     = wp_parse_url(rawurldecode($request_uri));
 
-        // Allow postpass action (password protected posts).
-        if (isset($_GET['action']) && 'postpass' === $_GET['action'] && isset($_POST['post_password'])) {
+        // Allow postpass action (password protected posts). Follows WordPress core behavior.
+        // phpcs:disable WordPress.Security.NonceVerification.Recommended,WordPress.Security.NonceVerification.Missing
+        $dailybuddy_action = isset($_GET['action'])
+            ? sanitize_key(wp_unslash($_GET['action']))
+            : '';
+
+        $dailybuddy_post_password = isset($_POST['post_password'])
+            ? sanitize_text_field(wp_unslash($_POST['post_password']))
+            : '';
+
+        if ('postpass' === $dailybuddy_action && '' !== $dailybuddy_post_password) {
             return;
         }
+        // phpcs:enable WordPress.Security.NonceVerification.Recommended,WordPress.Security.NonceVerification.Missing
+
 
         // Redirect non-logged-in admin access to redirect URL.
         if (
@@ -315,9 +326,13 @@ class WP_Dailybuddy_Custom_Login_URL
         }
 
         // WooCommerce ajax check.
-        if (! is_user_logged_in() && isset($_GET['wc-ajax']) && 'profile.php' === $pagenow) {
+        if (
+            ! is_user_logged_in()
+            && isset($_GET['wc-ajax']) // phpcs:ignore WordPress.Security.NonceVerification.Recommended -- read-only WooCommerce AJAX flag
+            && 'profile.php' === $pagenow
+        ) {
             wp_safe_redirect($this->new_redirect_url());
-            die();
+            exit;
         }
 
         // Options.php check.
@@ -349,14 +364,20 @@ class WP_Dailybuddy_Custom_Login_URL
                 // Load real wp-login.php for custom URL.
                 global $error, $interim_login, $action, $user_login;
 
-                $redirect_to           = admin_url();
-                $requested_redirect_to = isset($_REQUEST['redirect_to']) ? sanitize_text_field(wp_unslash($_REQUEST['redirect_to'])) : '';
+                $redirect_to = admin_url();
+
+                // phpcs:ignore WordPress.Security.NonceVerification.Recommended -- read-only redirect target
+                $requested_redirect_to = isset($_REQUEST['redirect_to'])
+                    // phpcs:ignore WordPress.Security.NonceVerification.Recommended -- read-only redirect target
+                    ? sanitize_text_field(wp_unslash($_REQUEST['redirect_to']))
+                    : '';
 
                 if (is_user_logged_in()) {
                     $user = wp_get_current_user();
-                    if (! isset($_REQUEST['action'])) {
+
+                    if (! isset($_REQUEST['action'])) { // phpcs:ignore WordPress.Security.NonceVerification.Recommended -- read-only check for redirect
                         wp_safe_redirect($redirect_to);
-                        die();
+                        exit;
                     }
                 }
 

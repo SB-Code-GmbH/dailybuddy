@@ -17,10 +17,13 @@ if (defined('DAILYBUDDY_URL') && defined('DAILYBUDDY_VERSION')) {
     );
 }
 
-// Get current active tab
+// Read-only GET parameter: switches visible tab.
+// Safe without nonce because no data is being changed.
+// phpcs:disable WordPress.Security.NonceVerification.Missing
 $dailybuddy_current_tab = isset($_POST['current_tab'])
     ? sanitize_text_field(wp_unslash($_POST['current_tab']))
     : 'general';
+// phpcs:disable WordPress.Security.NonceVerification.Missing
 
 // Allow only defined tabs
 $dailybuddy_allowed_tabs = array('general', 'about');

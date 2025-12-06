@@ -54,9 +54,8 @@ wp_localize_script(
         </div>
     </h1>
 
-    <?php // phpcs:ignore WordPress.Security.NonceVerification.Recommended -- Reading display state only 
+    <?php if (isset($_GET['settings-updated'])) : // phpcs:ignore WordPress.Security.NonceVerification.Recommended -- display-only flag 
     ?>
-    <?php if (isset($_GET['settings-updated'])) : ?>
         <div class="notice notice-success is-dismissible">
             <p><?php esc_html_e('Settings saved!', 'dailybuddy'); ?></p>
         </div>

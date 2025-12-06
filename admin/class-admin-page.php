@@ -111,12 +111,14 @@ class WP_Dailybuddy_Admin_Page
         $module_loader->load_modules();
         $this->modules = $module_loader->get_modules();
 
-        // Read-only GET parameter: controls which view is shown.
+        // Read-only GET parameter; controls which view is shown.
         // Safe without nonce because no data is being changed.
-        // phpcs:ignore WordPress.Security.NonceVerification.Recommended
+        // Only used to switch admin view; no data is modified.
+        // phpcs:disable WordPress.Security.NonceVerification.Recommended
         $view = isset($_GET['view'])
             ? sanitize_key(wp_unslash($_GET['view']))
             : 'modules';
+        // phpcs:enable WordPress.Security.NonceVerification.Recommended
 
         $allowed_views = array('modules', 'settings');
 
@@ -126,11 +128,12 @@ class WP_Dailybuddy_Admin_Page
 
         // Read-only GET parameter: selects module for display.
         // Safe without nonce because no data is being changed.
-        // phpcs:ignore WordPress.Security.NonceVerification.Recommended
+        // Only used for display switching.
+        // phpcs:disable WordPress.Security.NonceVerification.Recommended
         $module_id = isset($_GET['module'])
             ? sanitize_text_field(wp_unslash($_GET['module']))
             : '';
-
+        // phpcs:enable WordPress.Security.NonceVerification.Recommended
 
         if ('settings' === $view && ! empty($module_id)) {
             $this->render_module_settings($module_id);

@@ -94,6 +94,52 @@
    UNDER CONSTRUCTION MODULE
    ============================================ */
 
+/* Custom CSS Editor Styling */
+.dailybuddy-under-construction-settings .CodeMirror {
+    border: 1px solid #dcdcde;
+    border-radius: 8px;
+    font-size: 13px;
+    line-height: 1.6;
+    min-height: 240px;
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.05);
+    /* dunkel */
+}
+
+.dailybuddy-under-construction-settings .CodeMirror-gutters {
+    background: #dcdcde;
+    border-right: 1px solid #1e293b;
+}
+
+.dailybuddy-under-construction-settings .CodeMirror-linenumber {
+    color: #64748b;
+}
+
+.dailybuddy-under-construction-settings .CodeMirror-cursor {
+    border-left: 2px solid #38bdf8;
+}
+
+.dailybuddy-css-toolbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: #cbd5f5;
+    padding: 10px 14px;
+    font-size: 13px;
+    border-radius: 8px 8px 0 0;
+    margin-bottom: -8px;
+}
+
+
+.dailybuddy-under-construction-settings h1 {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.dailybuddy-under-construction-settings h1 .dashicons {
+    color: #2271b1;
+}
+
 /* Tabs Navigation */
 .dailybuddy-uc-tabs {
     display: flex;
@@ -365,9 +411,8 @@ input:checked+.dailybuddy-uc-slider:before {
 /* ============================================
    AI BOT BLOCKER MODULE
    ============================================ */
-
-.dailybuddy-ai-bot-blocker-settings {
-    max-width: 1200px;
+.copy-legal-btn .dashicons {
+    margin-top: 5px;
 }
 
 .dailybuddy-ai-bot-blocker-settings h1 {
@@ -634,4 +679,37 @@ input:checked+.dailybuddy-uc-slider:before {
 
 .form-table input[type="text"].regular-text {
     width: 300px;
+}
+
+/* ============================================
+   CONTENT FOLDERS MODULE - Settings Styles
+   ============================================ */
+
+.dailybuddy-content-folders-settings h1 {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.dailybuddy-content-folders-settings h1 .dashicons {
+    color: #2271b1;
+}
+
+/* Color Picker Group */
+.color-picker-group {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.color-picker-group input[type="color"] {
+    width: 50px;
+    height: 40px;
+    border: 1px solid #dcdcde;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.color-picker-group .color-text {
+    max-width: 120px;
 }

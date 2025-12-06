@@ -18,10 +18,13 @@ wp_enqueue_style('dailybuddy-admin', DAILYBUDDY_URL . 'assets/css/admin.css', ar
 wp_enqueue_style('dailybuddy-dev-mode', DAILYBUDDY_URL . 'assets/css/modul-settings.css', array(), DAILYBUDDY_VERSION);
 wp_enqueue_style('dailybuddy-scanner', DAILYBUDDY_URL . 'assets/css/translation-scanner.css', array(), DAILYBUDDY_VERSION);
 
+// Read-only GET parameter: switches visible tab.
+// Safe without nonce because no data is being changed.
+// phpcs:disable WordPress.Security.NonceVerification.Recommended
 $dailybuddy_current_tab = isset($_GET['tab'])
-    // phpcs:ignore WordPress.Security.NonceVerification.Recommended
     ? sanitize_key(wp_unslash($_GET['tab']))
     : 'general';
+// phpcs:enable WordPress.Security.NonceVerification.Recommended
 
 ?>
 

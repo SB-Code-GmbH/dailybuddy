@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Template: AI Bot Blocker Settings
  */
@@ -7,8 +8,8 @@ if (!defined('ABSPATH')) {
     exit;
 }
 
-$blocked_count = count($settings['blocked_bots']);
-$robots_url = home_url('robots.txt');
+$dailybuddy_blocked_count = count($dailybuddy_settings['blocked_bots']);
+$dailybuddy_robots_url = home_url('robots.txt');
 ?>
 
 <div class="wrap dailybuddy-ai-bot-blocker-settings">
@@ -24,24 +25,24 @@ $robots_url = home_url('robots.txt');
     <!-- Status Card -->
     <div class="status-card">
         <div class="status-item">
-            <span class="status-number"><?php echo esc_html($blocked_count); ?></span>
+            <span class="status-number"><?php echo esc_html($dailybuddy_blocked_count); ?></span>
             <span class="status-label"><?php esc_html_e('Bots Blocked', 'dailybuddy'); ?></span>
         </div>
         <div class="status-item">
-            <span class="status-icon <?php echo $settings['use_meta_tags'] ? 'active' : 'inactive'; ?>">
-                <?php echo $settings['use_meta_tags'] ? '✓' : '✗'; ?>
+            <span class="status-icon <?php echo $dailybuddy_settings['use_meta_tags'] ? 'active' : 'inactive'; ?>">
+                <?php echo $dailybuddy_settings['use_meta_tags'] ? '✓' : '✗'; ?>
             </span>
             <span class="status-label"><?php esc_html_e('Meta Tags', 'dailybuddy'); ?></span>
         </div>
         <div class="status-item">
-            <span class="status-icon <?php echo $settings['use_robots_txt'] ? 'active' : 'inactive'; ?>">
-                <?php echo $settings['use_robots_txt'] ? '✓' : '✗'; ?>
+            <span class="status-icon <?php echo $dailybuddy_settings['use_robots_txt'] ? 'active' : 'inactive'; ?>">
+                <?php echo $dailybuddy_settings['use_robots_txt'] ? '✓' : '✗'; ?>
             </span>
             <span class="status-label"><?php esc_html_e('robots.txt', 'dailybuddy'); ?></span>
         </div>
         <div class="status-item">
-            <span class="status-icon <?php echo $settings['use_htaccess'] ? 'active' : 'inactive'; ?>">
-                <?php echo $settings['use_htaccess'] ? '✓' : '✗'; ?>
+            <span class="status-icon <?php echo $dailybuddy_settings['use_htaccess'] ? 'active' : 'inactive'; ?>">
+                <?php echo $dailybuddy_settings['use_htaccess'] ? '✓' : '✗'; ?>
             </span>
             <span class="status-label"><?php esc_html_e('HTTP Headers', 'dailybuddy'); ?></span>
         </div>
@@ -58,27 +59,26 @@ $robots_url = home_url('robots.txt');
             </p>
 
             <div class="bots-grid">
-                <?php foreach ($ai_bots as $bot_key => $bot) : ?>
-                    <label class="bot-card <?php echo in_array($bot_key, $settings['blocked_bots']) ? 'selected' : ''; ?>">
-                        <input 
-                            type="checkbox" 
-                            name="blocked_bots[]" 
-                            value="<?php echo esc_attr($bot_key); ?>"
-                            <?php checked(in_array($bot_key, $settings['blocked_bots'])); ?>
-                        >
+                <?php foreach ($dailybuddy_ai_bots as $dailybuddy_bot_key => $dailybuddy_bot) : ?>
+                    <label class="bot-card <?php echo in_array($dailybuddy_bot_key, $dailybuddy_settings['blocked_bots'], true) ? 'selected' : ''; ?>">
+                        <input
+                            type="checkbox"
+                            name="blocked_bots[]"
+                            value="<?php echo esc_attr($dailybuddy_bot_key); ?>"
+                            <?php checked(in_array($dailybuddy_bot_key, $dailybuddy_settings['blocked_bots'], true)); ?>>
                         <div class="bot-info">
                             <div class="bot-header">
-                                <strong><?php echo esc_html($bot['name']); ?></strong>
-                                <?php if ($bot['respects_robots']) : ?>
+                                <strong><?php echo esc_html($dailybuddy_bot['name']); ?></strong>
+                                <?php if ($dailybuddy_bot['respects_robots']) : ?>
                                     <span class="badge badge-green"><?php esc_html_e('Respects robots.txt', 'dailybuddy'); ?></span>
                                 <?php else : ?>
                                     <span class="badge badge-red"><?php esc_html_e('May ignore', 'dailybuddy'); ?></span>
                                 <?php endif; ?>
                             </div>
-                            <div class="bot-company"><?php echo esc_html($bot['company']); ?></div>
-                            <div class="bot-description"><?php echo esc_html($bot['description']); ?></div>
+                            <div class="bot-company"><?php echo esc_html($dailybuddy_bot['company']); ?></div>
+                            <div class="bot-description"><?php echo esc_html($dailybuddy_bot['description']); ?></div>
                             <div class="bot-useragent">
-                                <code><?php echo esc_html($bot['user_agent']); ?></code>
+                                <code><?php echo esc_html($dailybuddy_bot['user_agent']); ?></code>
                             </div>
                         </div>
                     </label>
@@ -110,28 +110,27 @@ $robots_url = home_url('robots.txt');
                         </th>
                         <td>
                             <?php
-                            $blocked_count = count($settings['blocked_bots']);
-                            $total_bots = count($ai_bots);
-                            $required_count = ceil($total_bots * 0.8); // 80%
-                            $can_use_meta = $blocked_count >= $required_count;
+                            $dailybuddy_blocked_count = count($dailybuddy_settings['blocked_bots']);
+                            $dailybuddy_total_bots = count($dailybuddy_ai_bots);
+                            $dailybuddy_required_count = ceil($dailybuddy_total_bots * 0.8); // 80%
+                            $dailybuddy_can_use_meta = $dailybuddy_blocked_count >= $dailybuddy_required_count;
                             ?>
-                            
-                            <label class="method-option <?php echo !$can_use_meta ? 'disabled' : ''; ?>">
-                                <input 
-                                    type="checkbox" 
-                                    id="use_meta_tags" 
-                                    name="use_meta_tags" 
+
+                            <label class="method-option <?php echo !$dailybuddy_can_use_meta ? 'disabled' : ''; ?>">
+                                <input
+                                    type="checkbox"
+                                    id="use_meta_tags"
+                                    name="use_meta_tags"
                                     value="1"
-                                    <?php checked($settings['use_meta_tags']); ?>
-                                    <?php disabled(!$can_use_meta); ?>
-                                >
+                                    <?php checked($dailybuddy_settings['use_meta_tags']); ?>
+                                    <?php disabled(!$dailybuddy_can_use_meta); ?>>
                                 <div class="method-info">
                                     <strong><?php esc_html_e('Block ALL AI via meta tags (global)', 'dailybuddy'); ?></strong>
                                     <p class="description">
                                         <?php esc_html_e('Adds <meta name="robots" content="noai, noimageai"> to all pages.', 'dailybuddy'); ?>
                                     </p>
-                                    
-                                    <?php if ($can_use_meta) : ?>
+
+                                    <?php if ($dailybuddy_can_use_meta) : ?>
                                         <span class="badge badge-green"><?php esc_html_e('Available', 'dailybuddy'); ?></span>
                                         <span class="badge badge-blue"><?php esc_html_e('Safe', 'dailybuddy'); ?></span>
                                         <div class="meta-warning" style="margin-top: 10px; padding: 10px; background: #fcf9e8; border-left: 3px solid #dba617; border-radius: 3px;">
@@ -142,16 +141,22 @@ $robots_url = home_url('robots.txt');
                                         <span class="badge badge-red"><?php esc_html_e('Disabled', 'dailybuddy'); ?></span>
                                         <div class="meta-disabled-info" style="margin-top: 10px; padding: 10px; background: #fcf0f1; border-left: 3px solid #d63638; border-radius: 3px;">
                                             <strong>🚫 <?php esc_html_e('Cannot activate:', 'dailybuddy'); ?></strong>
-                                            <?php 
-                                            printf(
-                                                esc_html__('Meta tags are global and block ALL AI bots. To activate this option, you must block at least %d out of %d bots (%d%% or more).', 'dailybuddy'),
-                                                $required_count,
-                                                $total_bots,
-                                                80
-                                            ); 
+                                            <?php
+                                            echo esc_html(
+                                                sprintf(
+                                                    /* translators: 1: number of required blocked bots, 2: total number of bots, 3: percentage threshold */
+                                                    __('Meta tags are global and block ALL AI bots. To activate this option, you must block at least %1$d out of %2$d bots (%3$d%% or more).', 'dailybuddy'),
+                                                    $dailybuddy_required_count,
+                                                    $dailybuddy_total_bots,
+                                                    80
+                                                )
+                                            );
                                             ?>
                                             <br>
-                                            <strong><?php esc_html_e('Currently blocking:', 'dailybuddy'); ?></strong> <?php echo $blocked_count; ?> / <?php echo $total_bots; ?> (<?php echo round(($blocked_count / $total_bots) * 100); ?>%)
+                                            <strong><?php esc_html_e('Currently blocking:', 'dailybuddy'); ?></strong>
+                                            <?php echo esc_html($dailybuddy_blocked_count); ?>
+                                            / <?php echo esc_html($dailybuddy_total_bots); ?>
+                                            (<?php echo esc_html(round(($dailybuddy_blocked_count / $dailybuddy_total_bots) * 100)); ?>%)
                                         </div>
                                     <?php endif; ?>
                                 </div>
@@ -165,20 +170,19 @@ $robots_url = home_url('robots.txt');
                         </th>
                         <td>
                             <label class="method-option">
-                                <input 
-                                    type="checkbox" 
-                                    id="use_robots_txt" 
-                                    name="use_robots_txt" 
+                                <input
+                                    type="checkbox"
+                                    id="use_robots_txt"
+                                    name="use_robots_txt"
                                     value="1"
-                                    <?php checked($settings['use_robots_txt']); ?>
-                                >
+                                    <?php checked($dailybuddy_settings['use_robots_txt']); ?>>
                                 <div class="method-info">
                                     <strong><?php esc_html_e('Block bots via robots.txt', 'dailybuddy'); ?></strong>
                                     <p class="description">
                                         <?php esc_html_e('Adds User-agent rules to your robots.txt. Only works for bots that respect robots.txt.', 'dailybuddy'); ?>
                                     </p>
                                     <span class="badge badge-green"><?php esc_html_e('Recommended', 'dailybuddy'); ?></span>
-                                    <a href="<?php echo esc_url($robots_url); ?>" target="_blank" class="button button-small">
+                                    <a href="<?php echo esc_url($dailybuddy_robots_url); ?>" target="_blank" class="button button-small">
                                         <?php esc_html_e('View robots.txt', 'dailybuddy'); ?>
                                     </a>
                                 </div>
@@ -192,13 +196,12 @@ $robots_url = home_url('robots.txt');
                         </th>
                         <td>
                             <label class="method-option">
-                                <input 
-                                    type="checkbox" 
-                                    id="use_htaccess" 
-                                    name="use_htaccess" 
+                                <input
+                                    type="checkbox"
+                                    id="use_htaccess"
+                                    name="use_htaccess"
                                     value="1"
-                                    <?php checked($settings['use_htaccess']); ?>
-                                >
+                                    <?php checked($dailybuddy_settings['use_htaccess']); ?>>
                                 <div class="method-info">
                                     <strong><?php esc_html_e('Send X-Robots-Tag HTTP headers', 'dailybuddy'); ?></strong>
                                     <p class="description">
@@ -222,9 +225,11 @@ $robots_url = home_url('robots.txt');
 
             <div class="legal-text-box">
                 <h3><?php esc_html_e('Legal Notice Text', 'dailybuddy'); ?></h3>
-                <textarea readonly id="legal-text-en" rows="5">The use, reproduction, or processing of content provided on this website (including text, images, videos, and other media) by automated systems, web crawlers, AI models, machine learning systems, or other forms of data extraction is prohibited without explicit written consent from the operator.
+                <textarea readonly id="legal-text-en" rows="5"><?php echo esc_html__(
+                                                                    'The use, reproduction, or processing of content provided on this website (including text, images, videos, and other media) by automated systems, web crawlers, AI models, machine learning systems, or other forms of data extraction is prohibited without explicit written consent from the operator. This applies in particular to use for training artificial intelligence, creating datasets, or commercial exploitation.',
+                                                                    'dailybuddy'
+                                                                ); ?></textarea>
 
-This applies in particular to use for training artificial intelligence, creating datasets, or commercial exploitation.</textarea>
                 <button type="button" class="button copy-legal-btn" data-target="legal-text-en">
                     <span class="dashicons dashicons-admin-page"></span>
                     <?php esc_html_e('Copy Text', 'dailybuddy'); ?>
@@ -263,45 +268,45 @@ This applies in particular to use for training artificial intelligence, creating
 </div>
 
 <script>
-jQuery(document).ready(function($) {
-    // Select all bots
-    $('#select-all-bots').on('click', function() {
-        $('.bot-card input[type="checkbox"]').prop('checked', true);
-        $('.bot-card').addClass('selected');
-    });
+    jQuery(document).ready(function($) {
+        // Select all bots
+        $('#select-all-bots').on('click', function() {
+            $('.bot-card input[type="checkbox"]').prop('checked', true);
+            $('.bot-card').addClass('selected');
+        });
 
-    // Deselect all bots
-    $('#deselect-all-bots').on('click', function() {
-        $('.bot-card input[type="checkbox"]').prop('checked', false);
-        $('.bot-card').removeClass('selected');
-    });
+        // Deselect all bots
+        $('#deselect-all-bots').on('click', function() {
+            $('.bot-card input[type="checkbox"]').prop('checked', false);
+            $('.bot-card').removeClass('selected');
+        });
 
-    // Update card style on checkbox change
-    $('.bot-card input[type="checkbox"]').on('change', function() {
-        if ($(this).is(':checked')) {
-            $(this).closest('.bot-card').addClass('selected');
-        } else {
-            $(this).closest('.bot-card').removeClass('selected');
-        }
-    });
+        // Update card style on checkbox change
+        $('.bot-card input[type="checkbox"]').on('change', function() {
+            if ($(this).is(':checked')) {
+                $(this).closest('.bot-card').addClass('selected');
+            } else {
+                $(this).closest('.bot-card').removeClass('selected');
+            }
+        });
 
-    // Copy legal text
-    $('.copy-legal-btn').on('click', function() {
-        const target = $(this).data('target');
-        const textarea = $('#' + target);
-        
-        textarea.select();
-        document.execCommand('copy');
-        
-        const btn = $(this);
-        const originalText = btn.html();
-        btn.html('<span class="dashicons dashicons-yes"></span> <?php esc_html_e('Copied!', 'dailybuddy'); ?>');
-        btn.css('color', '#00a32a');
-        
-        setTimeout(function() {
-            btn.html(originalText);
-            btn.css('color', '');
-        }, 2000);
+        // Copy legal text
+        $('.copy-legal-btn').on('click', function() {
+            const target = $(this).data('target');
+            const textarea = $('#' + target);
+
+            textarea.select();
+            document.execCommand('copy');
+
+            const btn = $(this);
+            const originalText = btn.html();
+            btn.html('<span class="dashicons dashicons-yes"></span> <?php esc_html_e('Copied!', 'dailybuddy'); ?>');
+            btn.css('color', '#00a32a');
+
+            setTimeout(function() {
+                btn.html(originalText);
+                btn.css('color', '');
+            }, 2000);
+        });
     });
-});
 </script>

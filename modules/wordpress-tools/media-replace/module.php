@@ -79,6 +79,7 @@ class WP_Dailybuddy_Media_Replace
     public function enqueue_admin_assets($hook)
     {
         // Load on our custom page
+        // phpcs:ignore WordPress.Security.NonceVerification.Recommended -- Admin routing only
         if (isset($_GET['page']) && $_GET['page'] === 'dailybuddy-replace-media') {
             wp_enqueue_style(
                 'dailybuddy-media-replace',
@@ -164,11 +165,21 @@ class WP_Dailybuddy_Media_Replace
         global $title;
         $title = __('Replace Media', 'dailybuddy');
 
+        // Read-only GET parameter: attachment existence check.
+        // Safe without nonce because no data is being changed.
+        // phpcs:ignore WordPress.Security.NonceVerification.Recommended
         if (!isset($_GET['attachment_id'])) {
             wp_die(esc_html__('No attachment specified.', 'dailybuddy'));
         }
 
-        $attachment_id = absint($_GET['attachment_id']);
+        // Read-only GET parameter: attachment ID for display only.
+        // Safe without nonce because no data is being changed.
+        // phpcs:ignore WordPress.Security.NonceVerification.Recommended
+        $attachment_id = isset($_GET['attachment_id'])
+            // phpcs:ignore WordPress.Security.NonceVerification.Recommended
+            ? absint(wp_unslash($_GET['attachment_id']))
+            : 0;
+
         $attachment = get_post($attachment_id);
 
         if (!$attachment || $attachment->post_type !== 'attachment') {
