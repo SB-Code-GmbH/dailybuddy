@@ -1,0 +1,36 @@
+/**
+ * dailybuddy Content Timeline Editor Styles
+ */
+
+/* Elementor Editor Specific Styles */
+.elementor-element .mini-icon-dailybuddy::before {
+    content: '\e921';
+    font-family: 'eicons';
+}
+
+.elementor-control-section_timeline_content,
+.elementor-control-section_timeline_layout,
+.elementor-control-section_query {
+    background-color: #f9f9f9;
+}
+
+/* Preview in Editor */
+.elementor-editor-active .dailybuddy-timeline-item {
+    animation: none;
+    opacity: 1;
+}
+
+.elementor-editor-active .dailybuddy-timeline-horizontal .dailybuddy-timeline {
+    cursor: default;
+}
+
+/* Control Panel Tweaks */
+.elementor-control-content_source .elementor-control-input-wrapper {
+    display: flex;
+    gap: 10px;
+}
+
+.elementor-control-timeline_alignment .elementor-control-input-wrapper {
+    display: flex;
+    justify-content: center;
+}
