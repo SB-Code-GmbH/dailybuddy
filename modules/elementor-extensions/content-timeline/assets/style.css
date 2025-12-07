@@ -5,6 +5,7 @@
 .dailybuddy-timeline-wrapper {
     position: relative;
     width: 100%;
+    overflow: hidden;
 }
 
 /* Vertical Timeline */
@@ -14,27 +15,18 @@
 
 .dailybuddy-timeline {
     position: relative;
-    padding: 0;
+    padding: 50px 0;
 }
 
-/* Timeline Line - dynamically adjusted by JavaScript */
+/* Timeline Line - clipped to start and end at bulletpoints */
 .dailybuddy-timeline-line {
     position: absolute;
     left: 50%;
-    top: 0;
-    bottom: 0;
+    top: 50px;
+    bottom: 50px;
     width: 2px;
     background-color: #e5e5e5;
     transform: translateX(-50%);
-}
-
-/* Remove extra space - line connects items only */
-.dailybuddy-timeline-item:first-child {
-    padding-top: 0;
-}
-
-.dailybuddy-timeline-item:last-child {
-    padding-bottom: 0;
 }
 
 .dailybuddy-timeline-item {
@@ -46,9 +38,13 @@
     justify-content: center;
 }
 
+.dailybuddy-timeline-item:first-child {
+    padding-top: 0;
+}
+
 .dailybuddy-timeline-item:last-child {
-    margin-bottom: 0;
     padding-bottom: 0;
+    margin-bottom: 0;
 }
 
 /* Timeline Marker - centered vertically to content */
@@ -196,18 +192,21 @@
     display: flex;
     flex-direction: row;
     overflow-x: auto;
-    padding: 40px 20px;
+    padding: 60px 20px 20px 20px; /* Extra padding oben für die Linie */
     scroll-behavior: smooth;
+    align-items: stretch; /* Alle Items gleiche Höhe */
+    position: relative;
 }
 
 .dailybuddy-timeline-horizontal .dailybuddy-timeline-line {
-    left: 0;
-    right: 0;
-    top: 50%;
+    position: absolute;
+    left: 40px; /* Feste Position am ersten Bulletpoint */
+    right: auto;
+    top: 40px; /* Linie oben auf Höhe der Bulletpoints */
     bottom: auto;
-    width: 100%;
+    width: auto; /* Wird dynamisch per JavaScript gesetzt */
     height: 2px;
-    transform: translateY(-50%);
+    transform: none;
 }
 
 .dailybuddy-timeline-horizontal .dailybuddy-timeline-item {
@@ -216,19 +215,32 @@
     margin-bottom: 0;
     padding: 0;
     flex-direction: column;
+    display: flex;
+    align-items: stretch; /* Content nimmt volle Höhe */
+    position: relative;
+}
+
+.dailybuddy-timeline-horizontal .dailybuddy-timeline-item:last-child {
+    margin-right: 0;
 }
 
 .dailybuddy-timeline-horizontal .dailybuddy-timeline-marker {
-    position: relative;
-    left: 50%;
-    top: 0;
+    position: absolute;
+    left: 50%; /* Horizontal in der Mitte der Content-Box */
+    top: 80px; /* Auf Höhe der Linie */
     transform: translateX(-50%);
-    margin-bottom: 20px;
+    margin-bottom: 0;
+    flex-shrink: 0;
+    z-index: 10; /* Marker über der Linie */
 }
 
 .dailybuddy-timeline-horizontal .dailybuddy-timeline-item-content {
     width: 100%;
     text-align: center;
+    height: 100%; /* Nimmt volle verfügbare Höhe */
+    display: flex;
+    flex-direction: column;
+    margin-top: 60px; /* Platz für den Bulletpoint oben */
 }
 
 .dailybuddy-timeline-horizontal .dailybuddy-timeline-item-content::before {
@@ -269,7 +281,8 @@
     }
 
     .dailybuddy-timeline-horizontal .dailybuddy-timeline-item {
-        flex: 0 0 250px;
+        flex: 0 0 280px;
+        min-height: 400px; /* Mindesthöhe auf Mobile */
     }
 }
 
@@ -283,8 +296,9 @@
     }
 
     .dailybuddy-timeline-horizontal .dailybuddy-timeline-item {
-        flex: 0 0 220px;
+        flex: 0 0 250px;
         margin-right: 20px;
+        min-height: 380px;
     }
 }
 

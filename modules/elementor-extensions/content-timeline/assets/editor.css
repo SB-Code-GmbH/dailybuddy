@@ -34,3 +34,34 @@
     display: flex;
     justify-content: center;
 }
+
+/* Fix timeline line in editor when widget is selected */
+.elementor-editor-active .dailybuddy-timeline-wrapper {
+    overflow: hidden;
+}
+
+.elementor-editor-active .dailybuddy-timeline {
+    position: relative;
+}
+
+.elementor-editor-active .dailybuddy-timeline-line {
+    top: 50px !important;
+    bottom: 50px !important;
+}
+
+/* Prevent extra space in editor */
+.elementor-editor-active .dailybuddy-timeline-vertical {
+    min-height: auto;
+}
+
+/* Hide overflow when widget is being edited */
+.elementor-element-edit-mode .dailybuddy-timeline-wrapper,
+.elementor-element.elementor-element-edit-mode .dailybuddy-timeline-wrapper {
+    overflow: hidden;
+}
+
+.elementor-element-edit-mode .dailybuddy-timeline-line,
+.elementor-element.elementor-element-edit-mode .dailybuddy-timeline-line {
+    top: 50px !important;
+    bottom: 50px !important;
+}

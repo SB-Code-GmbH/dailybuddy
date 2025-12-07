@@ -8,31 +8,72 @@
     var DailybuddyTimeline = {
         init: function () {
             this.adjustTimelineLine();
+            this.adjustHorizontalTimelineLine();
             this.handleHorizontalScroll();
             this.handleIntersectionObserver();
         },
 
         /**
          * Adjust timeline line to start at first bulletpoint and end at last bulletpoint
+         * This fine-tunes the CSS defaults based on actual marker positions
          */
         adjustTimelineLine: function () {
             $('.dailybuddy-timeline-vertical .dailybuddy-timeline').each(function () {
                 var $timeline = $(this);
                 var $line = $timeline.find('.dailybuddy-timeline-line');
-                var $firstMarker = $timeline.find('.dailybuddy-timeline-marker').first();
-                var $lastMarker = $timeline.find('.dailybuddy-timeline-marker').last();
+                var $markers = $timeline.find('.dailybuddy-timeline-marker');
+
+                if ($markers.length < 2) return; // Need at least 2 markers
+
+                var $firstMarker = $markers.first();
+                var $lastMarker = $markers.last();
 
                 if ($firstMarker.length && $lastMarker.length) {
-                    var timelineTop = $timeline.offset().top;
-                    var firstMarkerTop = $firstMarker.offset().top;
-                    var lastMarkerTop = $lastMarker.offset().top;
-                    
-                    var topOffset = firstMarkerTop - timelineTop;
-                    var bottomOffset = $timeline.height() - (lastMarkerTop - timelineTop);
+                    var timelineOffset = $timeline.offset().top;
+                    var firstMarkerOffset = $firstMarker.offset().top + ($firstMarker.height() / 2);
+                    var lastMarkerOffset = $lastMarker.offset().top + ($lastMarker.height() / 2);
+
+                    var topPosition = firstMarkerOffset - timelineOffset;
+                    var bottomPosition = $timeline.height() - (lastMarkerOffset - timelineOffset - 120);
 
                     $line.css({
-                        'top': topOffset + 'px',
-                        'bottom': bottomOffset + 'px'
+                        'top': topPosition + 'px',
+                        'bottom': bottomPosition + 'px'
+                    });
+                }
+            });
+        },
+
+        /**
+         * Adjust horizontal timeline line to connect bulletpoints
+         */
+        adjustHorizontalTimelineLine: function () {
+            $('.dailybuddy-timeline-horizontal .dailybuddy-timeline').each(function () {
+                var $timeline = $(this);
+                var $line = $timeline.find('.dailybuddy-timeline-line');
+                var $markers = $timeline.find('.dailybuddy-timeline-marker');
+
+                if ($markers.length < 2) return;
+
+                var $firstMarker = $markers.first();
+                var $lastMarker = $markers.last();
+
+                if ($firstMarker.length && $lastMarker.length) {
+                    // Berechne die Position der Marker relativ zum ersten Item
+                    var firstItemLeft = $firstMarker.closest('.dailybuddy-timeline-item').position().left;
+                    var lastItemLeft = $lastMarker.closest('.dailybuddy-timeline-item').position().left;
+
+                    // Marker ist in der Mitte des Items (50%)
+                    var firstMarkerCenter = firstItemLeft + ($firstMarker.closest('.dailybuddy-timeline-item').width() / 2);
+                    var lastMarkerCenter = lastItemLeft + ($lastMarker.closest('.dailybuddy-timeline-item').width() / 2);
+
+                    var lineWidth = lastMarkerCenter - firstMarkerCenter;
+                    var lineTop = "80";
+
+                    $line.css({
+                        'left': firstMarkerCenter + 'px',
+                        'width': lineWidth + 'px',
+                        'top': lineTop + 'px'
                     });
                 }
             });
@@ -120,6 +161,7 @@
     // Reinitialize on window resize
     $(window).on('resize', function () {
         DailybuddyTimeline.adjustTimelineLine();
+        DailybuddyTimeline.adjustHorizontalTimelineLine();
     });
 
     // Reinitialize on Elementor frontend init

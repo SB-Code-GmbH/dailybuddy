@@ -1,0 +1,40 @@
+/**
+ * Advanced Tabs Widget Editor Styles
+ * dailybuddy Plugin
+ */
+
+/* Elementor Panel Styling */
+.elementor-control-dailybuddy .elementor-control-input-wrapper {
+    display: flex;
+    gap: 10px;
+}
+
+/* Tab Icons in Editor */
+.elementor-element.elementor-widget-dailybuddy-advanced-tabs {
+    position: relative;
+}
+
+.elementor-widget-dailybuddy-advanced-tabs .mini-icon-dailybuddy::before {
+    content: "\e923";
+}
+
+/* Preview in Editor */
+.elementor-editor-active .dailybuddy-advance-tabs .dailybuddy-tabs-nav ul li {
+    cursor: pointer;
+}
+
+.elementor-editor-active .dailybuddy-tab-content-item {
+    min-height: 100px;
+}
+
+/* Editor Panel Controls */
+.elementor-control-dailybuddy .elementor-repeater-fields {
+    background: #f8f9fa;
+    padding: 15px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+}
+
+.elementor-control-dailybuddy .elementor-repeater-fields:hover {
+    background: #f1f3f5;
+}

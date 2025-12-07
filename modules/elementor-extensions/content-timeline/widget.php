@@ -2,7 +2,6 @@
 
 /**
  * dailybuddy Content Timeline Widget
- * Adapted from Essential Addons for Elementor
  */
 
 if (!defined('ABSPATH')) {
@@ -133,7 +132,7 @@ class WP_Dailybuddy_Elementor_Content_Timeline_Widget extends Widget_Base
             array(
                 'label'   => __('Date', 'dailybuddy'),
                 'type'    => Controls_Manager::TEXT,
-                'default' => date('F j, Y'),
+                'default' => gmdate('F j, Y'),
             )
         );
 
@@ -166,39 +165,12 @@ class WP_Dailybuddy_Elementor_Content_Timeline_Widget extends Widget_Base
         $repeater->add_control(
             'custom_icon',
             array(
-                'label'   => __('Custom Icon', 'dailybuddy'),
+                'label'   => __('Bulletpoint Icon', 'dailybuddy'),
                 'type'    => Controls_Manager::ICONS,
                 'default' => array(
                     'value'   => 'fas fa-circle',
                     'library' => 'fa-solid',
                 ),
-            )
-        );
-
-        $repeater->add_control(
-            'custom_icon_color',
-            array(
-                'label'   => __('Icon Color', 'dailybuddy'),
-                'type'    => Controls_Manager::COLOR,
-                'default' => '#3498db',
-            )
-        );
-
-        $repeater->add_control(
-            'custom_icon_background',
-            array(
-                'label'   => __('Icon Background', 'dailybuddy'),
-                'type'    => Controls_Manager::COLOR,
-                'default' => '#ffffff',
-            )
-        );
-
-        $repeater->add_control(
-            'custom_icon_border_color',
-            array(
-                'label'   => __('Icon Border Color', 'dailybuddy'),
-                'type'    => Controls_Manager::COLOR,
-                'default' => '#3498db',
             )
         );
 
@@ -339,18 +311,6 @@ class WP_Dailybuddy_Elementor_Content_Timeline_Widget extends Widget_Base
                 'default'   => __('Read More', 'dailybuddy'),
                 'condition' => array(
                     'show_read_more' => 'yes',
-                ),
-            )
-        );
-
-        $this->add_control(
-            'timeline_icon',
-            array(
-                'label'   => __('Bulletpoint Icon', 'dailybuddy'),
-                'type'    => Controls_Manager::ICONS,
-                'default' => array(
-                    'value'   => 'fas fa-circle',
-                    'library' => 'fa-solid',
                 ),
             )
         );
@@ -942,7 +902,7 @@ class WP_Dailybuddy_Elementor_Content_Timeline_Widget extends Widget_Base
         $settings = $this->get_settings_for_display();
         $layout = $settings['timeline_layout'];
 
-        ?>
+?>
         <div class="dailybuddy-timeline-wrapper dailybuddy-timeline-<?php echo esc_attr($layout); ?>">
             <?php
             if ('dynamic' === $settings['content_source']) {
@@ -952,7 +912,7 @@ class WP_Dailybuddy_Elementor_Content_Timeline_Widget extends Widget_Base
             }
             ?>
         </div>
-        <?php
+    <?php
     }
 
     /**
@@ -973,7 +933,7 @@ class WP_Dailybuddy_Elementor_Content_Timeline_Widget extends Widget_Base
         if ($query->have_posts()) {
             echo '<div class="dailybuddy-timeline">';
             echo '<div class="dailybuddy-timeline-line"></div>';
-            
+
             $index = 0;
             while ($query->have_posts()) {
                 $query->the_post();
@@ -986,7 +946,7 @@ class WP_Dailybuddy_Elementor_Content_Timeline_Widget extends Widget_Base
                 ), $index);
                 $index++;
             }
-            
+
             echo '</div>';
             wp_reset_postdata();
         }
@@ -1002,7 +962,7 @@ class WP_Dailybuddy_Elementor_Content_Timeline_Widget extends Widget_Base
         if (!empty($items)) {
             echo '<div class="dailybuddy-timeline">';
             echo '<div class="dailybuddy-timeline-line"></div>';
-            
+
             foreach ($items as $index => $item) {
                 $this->render_timeline_item($settings, array(
                     'title'     => $item['custom_title'],
@@ -1013,12 +973,9 @@ class WP_Dailybuddy_Elementor_Content_Timeline_Widget extends Widget_Base
                     'is_external' => $item['custom_link']['is_external'],
                     'nofollow'  => $item['custom_link']['nofollow'],
                     'custom_icon' => !empty($item['custom_icon']) ? $item['custom_icon'] : null,
-                    'custom_icon_color' => !empty($item['custom_icon_color']) ? $item['custom_icon_color'] : null,
-                    'custom_icon_background' => !empty($item['custom_icon_background']) ? $item['custom_icon_background'] : null,
-                    'custom_icon_border_color' => !empty($item['custom_icon_border_color']) ? $item['custom_icon_border_color'] : null,
                 ), $index);
             }
-            
+
             echo '</div>';
         }
     }
@@ -1028,38 +985,23 @@ class WP_Dailybuddy_Elementor_Content_Timeline_Widget extends Widget_Base
      */
     private function render_timeline_item($settings, $data, $index = 0)
     {
-        $target = !empty($data['is_external']) ? ' target="_blank"' : '';
-        $nofollow = !empty($data['nofollow']) ? ' rel="nofollow"' : '';
-        
-        // Use custom icon if available, otherwise use global icon
-        $icon_to_render = !empty($data['custom_icon']) ? $data['custom_icon'] : $settings['timeline_icon'];
-        
-        // Build inline style for custom icon colors
-        $icon_style = '';
-        $icon_inline_styles = array();
-        
-        if (!empty($data['custom_icon_color'])) {
-            $icon_inline_styles[] = 'color: ' . esc_attr($data['custom_icon_color']);
-        }
-        if (!empty($data['custom_icon_background'])) {
-            $icon_inline_styles[] = 'background-color: ' . esc_attr($data['custom_icon_background']);
-        }
-        if (!empty($data['custom_icon_border_color'])) {
-            $icon_inline_styles[] = 'border-color: ' . esc_attr($data['custom_icon_border_color']);
-        }
-        
-        if (!empty($icon_inline_styles)) {
-            $icon_style = ' style="' . implode('; ', $icon_inline_styles) . '"';
-        }
-        
-        ?>
+        $dailybuddy_target = !empty($data['is_external']) ? ' target="_blank"' : '';
+        $dailybuddy_nofollow = !empty($data['nofollow']) ? ' rel="nofollow"' : '';
+
+        // Use custom icon if available, otherwise use default icon
+        $icon_to_render = !empty($data['custom_icon']) ? $data['custom_icon'] : array(
+            'value'   => 'fas fa-circle',
+            'library' => 'fa-solid',
+        );
+
+    ?>
         <div class="dailybuddy-timeline-item">
             <div class="dailybuddy-timeline-marker">
-                <div class="dailybuddy-timeline-icon"<?php echo $icon_style; ?>>
+                <div class="dailybuddy-timeline-icon">
                     <?php \Elementor\Icons_Manager::render_icon($icon_to_render, ['aria-hidden' => 'true']); ?>
                 </div>
             </div>
-            
+
             <div class="dailybuddy-timeline-item-content">
                 <?php if ('yes' === $settings['show_date'] && !empty($data['date'])): ?>
                     <div class="dailybuddy-timeline-item-date">
@@ -1076,7 +1018,7 @@ class WP_Dailybuddy_Elementor_Content_Timeline_Widget extends Widget_Base
                 <?php if ('yes' === $settings['show_title']): ?>
                     <h3 class="dailybuddy-timeline-item-title">
                         <?php if (!empty($data['link'])): ?>
-                            <a href="<?php echo esc_url($data['link']); ?>"<?php echo $target . $nofollow; ?>>
+                            <a href="<?php echo esc_url($data['link']); ?>" <?php echo esc_attr($dailybuddy_target . $dailybuddy_nofollow); ?>>
                                 <?php echo esc_html($data['title']); ?>
                             </a>
                         <?php else: ?>
@@ -1093,13 +1035,15 @@ class WP_Dailybuddy_Elementor_Content_Timeline_Widget extends Widget_Base
 
                 <?php if ('yes' === $settings['show_read_more'] && !empty($data['link'])): ?>
                     <div class="dailybuddy-timeline-read-more">
-                        <a href="<?php echo esc_url($data['link']); ?>" class="dailybuddy-timeline-read-more-btn"<?php echo $target . $nofollow; ?>>
+                        <a href="<?php echo esc_url($data['link']); ?>"
+                            class="dailybuddy-timeline-read-more-btn"
+                            <?php echo esc_attr($dailybuddy_target . $dailybuddy_nofollow); ?>>
                             <?php echo esc_html($settings['read_more_text']); ?>
                         </a>
                     </div>
                 <?php endif; ?>
             </div>
         </div>
-        <?php
+<?php
     }
 }

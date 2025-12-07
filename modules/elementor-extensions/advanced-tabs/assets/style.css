@@ -1,0 +1,351 @@
+/**
+ * Advanced Tabs Widget Styles
+ * dailybuddy Plugin
+ */
+
+/* Base Styles */
+.dailybuddy-advance-tabs {
+    position: relative;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+}
+
+.dailybuddy-tabs-nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.dailybuddy-tabs-horizontal .dailybuddy-tabs-nav ul {
+    flex-direction: row;
+    border-bottom: none;
+    justify-content: flex-start;
+    /* Default: left */
+}
+
+/* Tab Alignment wird durch Elementor Selectors gesteuert */
+/* Left: justify-content: flex-start (default) */
+/* Center: justify-content: center */
+/* Right: justify-content: flex-end */
+/* Stretch: justify-content: stretch + spezielle Klasse */
+
+/* UL im Stretch-Modus auf Flex + volle Breite */
+.dailybuddy-tabs-horizontal .dailybuddy-tabs-nav ul.dailybuddy-tabs-stretch {
+    display: flex;
+    width: 100%;
+}
+
+/* Alle Tabs gleich breit machen */
+.dailybuddy-tabs-horizontal .dailybuddy-tabs-nav ul.dailybuddy-tabs-stretch>li {
+    flex: 1 1 0;
+    text-align: center;
+}
+
+/* Titel-Link im Tab über die ganze Breite ziehen (falls nötig) */
+.dailybuddy-tabs-horizontal .dailybuddy-tabs-nav ul.dailybuddy-tabs-stretch>li .dailybuddy-tab-title {
+    display: inline-block;
+    width: 100%;
+}
+
+
+/* 1. UL der Tabs auf volle Breite + Flex-Container */
+.dailybuddy-tabs-nav ul.dailybuddy-tab-inline-icon.dailybuddy-tabs-stretch {
+    display: flex !important;
+    width: 100% !important;
+    padding: 0;
+    margin: 0;
+}
+
+/* 2. JEDES Tab (LI) gleich breit machen */
+.dailybuddy-tabs-nav ul.dailybuddy-tab-inline-icon.dailybuddy-tabs-stretch>li {
+    flex: 1 1 0 !important;
+    /* alle gleich breit */
+    text-align: center;
+}
+
+/* 3. Link im Tab über die ganze LI-Breite ziehen */
+.dailybuddy-tabs-nav ul.dailybuddy-tab-inline-icon.dailybuddy-tabs-stretch>li>a {
+    display: block;
+    width: 100%;
+}
+
+
+.dailybuddy-tabs-vertical {
+    display: flex;
+    gap: 30px;
+}
+
+.dailybuddy-tabs-vertical .dailybuddy-tabs-nav {
+    flex: 0 0 250px;
+}
+
+.dailybuddy-tabs-vertical .dailybuddy-tabs-nav ul {
+    flex-direction: column;
+    border-right: none;
+    border-bottom: none;
+}
+
+.dailybuddy-tabs-vertical .dailybuddy-tabs-content {
+    flex: 1;
+}
+
+/* Tab Items - Modern Default Style */
+.dailybuddy-tab-nav-item {
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    padding: 14px 24px;
+    background: #ffffff;
+    border: 2px solid #e5e7eb;
+    border-radius: 8px;
+    font-weight: 500;
+    font-size: 15px;
+    color: #4b5563;
+    min-height: 48px;
+}
+
+.dailybuddy-tab-nav-item:hover {
+    background: #f9fafb;
+    border-color: #d1d5db;
+    color: #1f2937;
+    transform: translateY(-1px);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+}
+
+.dailybuddy-tab-nav-item.active,
+.dailybuddy-tab-nav-item.active-default {
+    background: #3b82f6;
+    border-color: #3b82f6;
+    color: #ffffff;
+    box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
+}
+
+.dailybuddy-tab-nav-item.active:hover,
+.dailybuddy-tab-nav-item.active-default:hover {
+    background: #2563eb;
+    border-color: #2563eb;
+    transform: translateY(-1px);
+}
+
+.dailybuddy-tab-nav-item.dailybuddy-tab-inline-icon {
+    flex-direction: row;
+    gap: 8px;
+}
+
+.dailybuddy-tab-nav-item.dailybuddy-tab-top-icon {
+    flex-direction: column;
+    gap: 6px;
+}
+
+.dailybuddy-tab-title {
+    display: block;
+    line-height: 1.4;
+}
+
+/* Icons */
+.dailybuddy-tab-nav-item i,
+.dailybuddy-tab-nav-item svg {
+    transition: all 0.3s ease;
+    flex-shrink: 0;
+}
+
+.dailybuddy-tab-nav-item img {
+    max-width: 24px;
+    height: auto;
+    flex-shrink: 0;
+}
+
+.dailybuddy-tab-nav-item.active i,
+.dailybuddy-tab-nav-item.active-default i,
+.dailybuddy-tab-nav-item.active svg,
+.dailybuddy-tab-nav-item.active-default svg {
+    color: #ffffff;
+    fill: #ffffff;
+}
+
+/* Tab Content */
+.dailybuddy-tabs-content {
+    position: relative;
+}
+
+.dailybuddy-tab-content-item {
+    display: none;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.dailybuddy-tab-content-item.active,
+.dailybuddy-tab-content-item.active-default {
+    display: block;
+    opacity: 1;
+}
+
+/* Default Content Styling */
+.dailybuddy-advance-tabs .dailybuddy-tabs-content>div {
+    padding: 30px;
+    background: #ffffff;
+    border: 2px solid #e5e7eb;
+    border-radius: 8px;
+    margin-top: 20px;
+    line-height: 1.7;
+}
+
+/* Modern Card Style */
+.dailybuddy-tabs-modern-card ul {
+    gap: 12px;
+    border-bottom: none;
+}
+
+.dailybuddy-tabs-modern-card .dailybuddy-tab-nav-item {
+    padding: 18px 28px;
+    background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
+    border: none;
+    border-radius: 12px;
+    color: #ffffff;
+    box-shadow: 0 4px 16px rgba(99, 102, 241, 0.25);
+    font-weight: 600;
+}
+
+.dailybuddy-tabs-modern-card .dailybuddy-tab-nav-item:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 24px rgba(99, 102, 241, 0.35);
+    background: linear-gradient(135deg, #5b5fc7 0%, #7c52d4 100%);
+}
+
+.dailybuddy-tabs-modern-card .dailybuddy-tab-nav-item.active,
+.dailybuddy-tabs-modern-card .dailybuddy-tab-nav-item.active-default {
+    background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%);
+    transform: translateY(-3px) scale(1.02);
+    box-shadow: 0 12px 32px rgba(79, 70, 229, 0.4);
+}
+
+.dailybuddy-tabs-modern-card .dailybuddy-tab-nav-item i,
+.dailybuddy-tabs-modern-card .dailybuddy-tab-nav-item svg {
+    color: #ffffff;
+    fill: #ffffff;
+}
+
+.dailybuddy-tabs-modern-card+.dailybuddy-tabs-content>div {
+    background: #ffffff;
+    border: none;
+    border-radius: 12px;
+    padding: 32px;
+    margin-top: 24px;
+    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.06);
+}
+
+/* Vertical Layout Adjustments */
+.dailybuddy-tabs-vertical.dailybuddy-advance-tabs .dailybuddy-tabs-nav ul {
+    flex-direction: column;
+}
+
+.dailybuddy-tabs-vertical.dailybuddy-advance-tabs .dailybuddy-tabs-modern-card ul {
+    flex-direction: column;
+    border-right: none;
+}
+
+.dailybuddy-tabs-vertical .dailybuddy-tabs-content>div {
+    margin-top: 0;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .dailybuddy-tabs-vertical {
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .dailybuddy-tabs-vertical .dailybuddy-tabs-nav {
+        flex: 0 0 auto;
+        width: 100%;
+    }
+
+    .dailybuddy-tabs-vertical .dailybuddy-tabs-nav ul {
+        border-right: none;
+    }
+
+    .dailybuddy-tabs-nav ul {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .dailybuddy-tab-nav-item {
+        width: 100%;
+        justify-content: flex-start;
+        padding: 16px 20px;
+    }
+
+    .dailybuddy-tabs-modern-card .dailybuddy-tab-nav-item {
+        margin-right: 0;
+    }
+
+    .dailybuddy-advance-tabs .dailybuddy-tabs-content>div {
+        padding: 20px;
+        margin-top: 16px;
+    }
+}
+
+@media (max-width: 480px) {
+    .dailybuddy-tab-nav-item {
+        font-size: 14px;
+        padding: 14px 18px;
+    }
+
+    .dailybuddy-advance-tabs .dailybuddy-tabs-content>div {
+        padding: 16px;
+    }
+}
+
+/* Animation */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(12px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.dailybuddy-tab-content-item.active,
+.dailybuddy-tab-content-item.active-default {
+    animation: fadeInUp 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Focus States for Accessibility */
+.dailybuddy-tab-nav-item:focus {
+    outline: 2px solid #3b82f6;
+    outline-offset: 2px;
+}
+
+.dailybuddy-tab-nav-item:focus:not(:focus-visible) {
+    outline: none;
+}
+
+/* Loading State (Optional) */
+.dailybuddy-tabs-loading .dailybuddy-tab-content-item {
+    min-height: 200px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Print Styles */
+@media print {
+    .dailybuddy-tabs-nav {
+        display: none;
+    }
+
+    .dailybuddy-tab-content-item {
+        display: block !important;
+        opacity: 1 !important;
+        page-break-inside: avoid;
+    }
+}

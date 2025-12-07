@@ -3057,3 +3057,339 @@ msgstr ""
 #: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\wordpress-tools\under-construction\templates\settings-page.php (Line 134)
 msgid "Show a maintenance page to visitors while you work on your site."
 msgstr ""
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\elementor-extensions\advanced-tabs\config.php (Line 4)
+msgid "Advanced Tabs"
+msgstr ""
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\elementor-extensions\advanced-tabs\config.php (Line 9)
+msgid "Create beautiful tabbed content with multiple design styles. Supports icons, images, scheduled tabs, and Elementor templates."
+msgstr ""
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\elementor-extensions\advanced-tabs\config.php (Line 20)
+msgid "navigation"
+msgstr ""
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\elementor-extensions\advanced-tabs\widget.php (Line 99)
+msgid "Tab Style"
+msgstr ""
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\elementor-extensions\advanced-tabs\widget.php (Line 105)
+msgid "Modern Card"
+msgstr ""
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\elementor-extensions\advanced-tabs\widget.php (Line 127)
+msgid "Tab Alignment"
+msgstr ""
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\elementor-extensions\advanced-tabs\widget.php (Line 144)
+msgid "Stretch"
+msgstr ""
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\elementor-extensions\advanced-tabs\widget.php (Line 166)
+msgid "Enable Icon"
+msgstr ""
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\elementor-extensions\advanced-tabs\widget.php (Line 181)
+msgid "Stacked"
+msgstr ""
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\elementor-extensions\advanced-tabs\widget.php (Line 182)
+msgid "Inline"
+msgstr ""
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\elementor-extensions\advanced-tabs\widget.php (Line 193)
+msgid "Icon Alignment"
+msgstr ""
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\elementor-extensions\advanced-tabs\widget.php (Line 194)
+msgid "Set icon position before/after the tab title."
+msgstr ""
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\elementor-extensions\advanced-tabs\widget.php (Line 199)
+msgid "Before"
+msgstr ""
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\elementor-extensions\advanced-tabs\widget.php (Line 203)
+msgid "After"
+msgstr ""
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\elementor-extensions\advanced-tabs\widget.php (Line 216)
+msgid "Auto Active?"
+msgstr ""
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\elementor-extensions\advanced-tabs\widget.php (Line 218)
+msgid "Activate the first tab if no tab is selected as the active tab."
+msgstr ""
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\elementor-extensions\advanced-tabs\widget.php (Line 229)
+msgid "Toggle Tab"
+msgstr ""
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\elementor-extensions\advanced-tabs\widget.php (Line 231)
+msgid "Enables tab to expand and collapse."
+msgstr ""
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\elementor-extensions\advanced-tabs\widget.php (Line 242)
+msgid "Custom ID offset"
+msgstr ""
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\elementor-extensions\advanced-tabs\widget.php (Line 243)
+msgid "Use offset to set the custom ID target scrolling position."
+msgstr ""
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\elementor-extensions\advanced-tabs\widget.php (Line 254)
+msgid "Scroll Speed (ms)"
+msgstr ""
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\elementor-extensions\advanced-tabs\widget.php (Line 301)
+msgid "Active as Scheduled"
+msgstr ""
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\elementor-extensions\advanced-tabs\widget.php (Line 307)
+msgid "When enabled, this tab will become active if the current date matches the scheduled date/time."
+msgstr ""
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\elementor-extensions\advanced-tabs\widget.php (Line 314)
+msgid "Start Date"
+msgstr ""
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\elementor-extensions\advanced-tabs\widget.php (Line 326)
+msgid "End Date"
+msgstr ""
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\elementor-extensions\advanced-tabs\widget.php (Line 428)
+msgid "Saved Templates"
+msgstr ""
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\elementor-extensions\advanced-tabs\widget.php (Line 437)
+msgid "Choose Template"
+msgstr ""
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\elementor-extensions\advanced-tabs\widget.php (Line 450)
+msgid "Tab Content"
+msgstr ""
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\elementor-extensions\advanced-tabs\widget.php (Line 452)
+msgid "Enhance user experience with Advanced Tabs, allowing seamless content navigation. Organize information efficiently while keeping the interface clean and interactive."
+msgstr ""
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\elementor-extensions\advanced-tabs\widget.php (Line 465)
+msgid "Custom ID will be added as an anchor tag. For example, if you add \"test\" as your custom ID, the link will become like: https://www.example.com/#test"
+msgstr ""
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\elementor-extensions\advanced-tabs\widget.php (Line 477)
+msgid "Mission"
+msgstr ""
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\elementor-extensions\advanced-tabs\widget.php (Line 484)
+msgid "Vision"
+msgstr ""
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\elementor-extensions\advanced-tabs\widget.php (Line 491)
+msgid "Philosophy"
+msgstr ""
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\elementor-extensions\advanced-tabs\widget.php (Line 559)
+msgid "Margin"
+msgstr ""
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\elementor-extensions\advanced-tabs\widget.php (Line 644)
+msgid "Icon Gap"
+msgstr ""
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\elementor-extensions\advanced-tabs\widget.php (Line 1165)
+msgid "The provided Template matches the current page or one of its revisions!"
+msgstr ""
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\elementor-extensions\content-timeline\config.php (Line 4)
+msgid "Content Timeline"
+msgstr ""
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\elementor-extensions\content-timeline\config.php (Line 9)
+msgid "Display your content in an elegant timeline layout. Supports dynamic posts, custom content, and ACF repeater fields with horizontal and vertical layouts."
+msgstr ""
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\elementor-extensions\content-timeline\config.php (Line 9)
+msgid "posts"
+msgstr ""
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\elementor-extensions\content-timeline\config.php (Line 20)
+msgid "history"
+msgstr ""
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\elementor-extensions\content-timeline\widget.php (Line 91)
+msgid "Timeline Content"
+msgstr ""
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\elementor-extensions\content-timeline\widget.php (Line 98)
+msgid "Content Source"
+msgstr ""
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\elementor-extensions\content-timeline\widget.php (Line 102)
+msgid "Dynamic Posts"
+msgstr ""
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\elementor-extensions\content-timeline\widget.php (Line 103)
+msgid "Custom Content"
+msgstr ""
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\elementor-extensions\content-timeline\widget.php (Line 116)
+msgid "Timeline Item"
+msgstr ""
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\elementor-extensions\content-timeline\widget.php (Line 126)
+msgid "Add your timeline content here..."
+msgstr ""
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\elementor-extensions\content-timeline\widget.php (Line 133)
+msgid "Date"
+msgstr ""
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\elementor-extensions\content-timeline\widget.php (Line 168)
+msgid "Bulletpoint Icon"
+msgstr ""
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\elementor-extensions\content-timeline\widget.php (Line 180)
+msgid "Timeline Items"
+msgstr ""
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\elementor-extensions\content-timeline\widget.php (Line 185)
+msgid "First Event"
+msgstr ""
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\elementor-extensions\content-timeline\widget.php (Line 186)
+msgid "This is the first event in the timeline"
+msgstr ""
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\elementor-extensions\content-timeline\widget.php (Line 190)
+msgid "Second Event"
+msgstr ""
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\elementor-extensions\content-timeline\widget.php (Line 191)
+msgid "This is the second event in the timeline"
+msgstr ""
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\elementor-extensions\content-timeline\widget.php (Line 213)
+msgid "Layout Settings"
+msgstr ""
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\elementor-extensions\content-timeline\widget.php (Line 224)
+msgid "Vertical"
+msgstr ""
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\elementor-extensions\content-timeline\widget.php (Line 225)
+msgid "Horizontal"
+msgstr ""
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\elementor-extensions\content-timeline\widget.php (Line 259)
+msgid "Show Image"
+msgstr ""
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\elementor-extensions\content-timeline\widget.php (Line 269)
+msgid "Show Title"
+msgstr ""
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\elementor-extensions\content-timeline\widget.php (Line 279)
+msgid "Show Excerpt/Content"
+msgstr ""
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\elementor-extensions\content-timeline\widget.php (Line 289)
+msgid "Show Date"
+msgstr ""
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\elementor-extensions\content-timeline\widget.php (Line 299)
+msgid "Show Read More Button"
+msgstr ""
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\elementor-extensions\content-timeline\widget.php (Line 309)
+msgid "Read More Text"
+msgstr ""
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\elementor-extensions\content-timeline\widget.php (Line 299)
+msgid "Read More"
+msgstr ""
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\elementor-extensions\content-timeline\widget.php (Line 322)
+msgid "Query"
+msgstr ""
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\elementor-extensions\content-timeline\widget.php (Line 339)
+msgid "Post Type"
+msgstr ""
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\elementor-extensions\content-timeline\widget.php (Line 349)
+msgid "Posts Per Page"
+msgstr ""
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\elementor-extensions\content-timeline\widget.php (Line 358)
+msgid "Order By"
+msgstr ""
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\elementor-extensions\content-timeline\widget.php (Line 364)
+msgid "Modified"
+msgstr ""
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\elementor-extensions\content-timeline\widget.php (Line 365)
+msgid "Random"
+msgstr ""
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\elementor-extensions\content-timeline\widget.php (Line 358)
+msgid "Order"
+msgstr ""
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\elementor-extensions\content-timeline\widget.php (Line 377)
+msgid "Descending"
+msgstr ""
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\elementor-extensions\content-timeline\widget.php (Line 378)
+msgid "Ascending"
+msgstr ""
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\elementor-extensions\content-timeline\widget.php (Line 391)
+msgid "Timeline Line"
+msgstr ""
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\elementor-extensions\content-timeline\widget.php (Line 403)
+msgid "Line Color"
+msgstr ""
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\elementor-extensions\content-timeline\widget.php (Line 415)
+msgid "Line Width"
+msgstr ""
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\elementor-extensions\content-timeline\widget.php (Line 440)
+msgid "Bulletpoint / Icon"
+msgstr ""
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\elementor-extensions\content-timeline\widget.php (Line 508)
+msgid "Box Size"
+msgstr ""
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\elementor-extensions\content-timeline\widget.php (Line 530)
+msgid "Border Width"
+msgstr ""
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\elementor-extensions\content-timeline\widget.php (Line 14)
+msgid "Border"
+msgstr ""
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\elementor-extensions\content-timeline\widget.php (Line 597)
+msgid "Box Shadow"
+msgstr ""
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\elementor-extensions\content-timeline\widget.php (Line 16)
+msgid "Typography"
+msgstr ""
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\elementor-extensions\content-timeline\widget.php (Line 651)
+msgid "Bottom Spacing"
+msgstr ""
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\elementor-extensions\content-timeline\widget.php (Line 299)
+msgid "Read More Button"
+msgstr ""
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\wordpress-tools\ai-bot-blocker\templates\settings-page.php (Line 148)
+msgid "Meta tags are global and block ALL AI bots. To activate this option, you must block at least %1$d out of %2$d bots (%3$d%% or more)."
+msgstr ""

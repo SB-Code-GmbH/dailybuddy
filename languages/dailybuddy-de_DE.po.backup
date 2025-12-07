@@ -2746,3 +2746,278 @@ msgstr "Fehler: Beide Slugs sind erforderlich!"
 #: (Line 4)
 msgid "Dashboard Access"
 msgstr "Dashboard-Zugriff"
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\wordpress-tools\ai-bot-blocker\config.php
+#: (Line 9)
+msgid "Block AI bots and web crawlers from training on your content. Control which AI services can access your website."
+msgstr "Blockieren Sie KI-Bots und Webcrawler daran, Ihre Inhalte für das Training zu verwenden. Steuern Sie, welche KI-Dienste auf Ihre Website zugreifen dürfen."
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\wordpress-tools\ai-bot-blocker\config.php
+#: (Line 8)
+msgid "ai"
+msgstr "KI"
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\wordpress-tools\ai-bot-blocker\config.php
+#: (Line 17)
+msgid "privacy"
+msgstr "Datenschutz"
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\wordpress-tools\ai-bot-blocker\config.php
+#: (Line 9)
+msgid "bots"
+msgstr "Bots"
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\wordpress-tools\ai-bot-blocker\templates\settings-page.php
+#: (Line 4)
+msgid "AI Bot Blocker"
+msgstr "KI-Bot-Blocker"
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\wordpress-tools\ai-bot-blocker\templates\settings-page.php
+#: (Line 22)
+msgid "Protect your content from being used to train AI models. Block crawlers from OpenAI, Google, Meta, and other AI companies."
+msgstr "Schützen Sie Ihre Inhalte davor, zum Training von KI-Modellen verwendet zu werden. Blockieren Sie Crawler von OpenAI, Google, Meta und anderen KI-Unternehmen."
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\wordpress-tools\ai-bot-blocker\templates\settings-page.php
+#: (Line 29)
+msgid "Bots Blocked"
+msgstr "Blockierte Bots"
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\wordpress-tools\ai-bot-blocker\templates\settings-page.php
+#: (Line 35)
+msgid "Meta Tags"
+msgstr "Meta-Tags"
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\wordpress-tools\ai-bot-blocker\templates\settings-page.php
+#: (Line 12)
+msgid "robots.txt"
+msgstr "robots.txt"
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\wordpress-tools\ai-bot-blocker\templates\settings-page.php
+#: (Line 47)
+msgid "HTTP Headers"
+msgstr "HTTP-Header"
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\wordpress-tools\ai-bot-blocker\templates\settings-page.php
+#: (Line 56)
+msgid "Select AI Bots to Block"
+msgstr "KI-Bots zum Blockieren auswählen"
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\wordpress-tools\ai-bot-blocker\templates\settings-page.php
+#: (Line 58)
+msgid "Choose which AI crawlers should be blocked from accessing your content."
+msgstr "Wählen Sie aus, welche KI-Crawler vom Zugriff auf Ihre Inhalte ausgeschlossen werden sollen."
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\wordpress-tools\ai-bot-blocker\templates\settings-page.php
+#: (Line 73)
+msgid "Respects robots.txt"
+msgstr "Beachtet robots.txt"
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\wordpress-tools\ai-bot-blocker\templates\settings-page.php
+#: (Line 75)
+msgid "May ignore"
+msgstr "Kann ignorieren"
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\wordpress-tools\ai-bot-blocker\templates\settings-page.php
+#: (Line 90)
+msgid "Select All"
+msgstr "Alle auswählen"
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\wordpress-tools\ai-bot-blocker\templates\settings-page.php
+#: (Line 93)
+msgid "Deselect All"
+msgstr "Alle abwählen"
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\wordpress-tools\ai-bot-blocker\templates\settings-page.php
+#: (Line 98)
+msgid "Blocking Methods"
+msgstr "Blockierungsmethoden"
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\wordpress-tools\ai-bot-blocker\templates\settings-page.php
+#: (Line 102)
+msgid "Choose how to block AI bots. Multiple methods provide better protection."
+msgstr "Wählen Sie aus, wie KI-Bots blockiert werden sollen. Mehrere Methoden bieten besseren Schutz."
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\wordpress-tools\ai-bot-blocker\templates\settings-page.php
+#: (Line 109)
+msgid "Meta Tags (Global)"
+msgstr "Meta-Tags (Global)"
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\wordpress-tools\ai-bot-blocker\templates\settings-page.php
+#: (Line 128)
+msgid "Block ALL AI via meta tags (global)"
+msgstr "ALLE KI per Meta-Tags blockieren (global)"
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\wordpress-tools\ai-bot-blocker\templates\settings-page.php
+#: (Line 130)
+msgid "Adds <meta name=\"robots\" content=\"noai, noimageai\"> to all pages."
+msgstr "Fügt <meta name=\"robots\" content=\"noai, noimageai\"> auf allen Seiten hinzu."
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\wordpress-tools\ai-bot-blocker\templates\settings-page.php
+#: (Line 134)
+msgid "Available"
+msgstr "Verfügbar"
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\wordpress-tools\ai-bot-blocker\templates\settings-page.php
+#: (Line 135)
+msgid "Safe"
+msgstr "Sicher"
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\wordpress-tools\ai-bot-blocker\templates\settings-page.php
+#: (Line 137)
+msgid "Important:"
+msgstr "Wichtig:"
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\wordpress-tools\ai-bot-blocker\templates\settings-page.php
+#: (Line 138)
+msgid "Meta tags block ALL AI bots globally, regardless of your selection above. Use this only if you want to block most/all AI crawlers."
+msgstr "Meta-Tags blockieren ALLE KI-Bots global – unabhängig von Ihrer Auswahl oben. Verwenden Sie dies nur, wenn Sie die meisten oder alle KI-Crawler blockieren möchten."
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\wordpress-tools\ai-bot-blocker\templates\settings-page.php
+#: (Line 143)
+msgid "Cannot activate:"
+msgstr "Kann nicht aktiviert werden:"
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\wordpress-tools\ai-bot-blocker\templates\settings-page.php
+#: (Line 146)
+msgid "Meta tags are global and block ALL AI bots. To activate this option, you must block at least %d out of %d bots (%d%% or more)."
+msgstr "Meta-Tags sind global und blockieren ALLE KI-Bots. Um diese Option zu aktivieren, müssen mindestens %d von %d Bots (%d%% oder mehr) blockiert sein."
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\wordpress-tools\ai-bot-blocker\templates\settings-page.php
+#: (Line 153)
+msgid "Currently blocking:"
+msgstr "Aktuell blockiert:"
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\wordpress-tools\ai-bot-blocker\templates\settings-page.php
+#: (Line 174)
+msgid "Block bots via robots.txt"
+msgstr "Bots über robots.txt blockieren"
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\wordpress-tools\ai-bot-blocker\templates\settings-page.php
+#: (Line 176)
+msgid "Adds User-agent rules to your robots.txt. Only works for bots that respect robots.txt."
+msgstr "Fügt User-Agent-Regeln zur robots.txt hinzu. Funktioniert nur bei Bots, die robots.txt respektieren."
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\wordpress-tools\ai-bot-blocker\templates\settings-page.php
+#: (Line 178)
+msgid "Recommended"
+msgstr "Empfohlen"
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\wordpress-tools\ai-bot-blocker\templates\settings-page.php
+#: (Line 180)
+msgid "View robots.txt"
+msgstr "robots.txt anzeigen"
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\wordpress-tools\ai-bot-blocker\templates\settings-page.php
+#: (Line 200)
+msgid "Send X-Robots-Tag HTTP headers"
+msgstr "X-Robots-Tag HTTP-Header senden"
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\wordpress-tools\ai-bot-blocker\templates\settings-page.php
+#: (Line 202)
+msgid "Sends headers with every request. Works for all file types including PDFs and images."
+msgstr "Sendet Header bei jeder Anfrage. Funktioniert für alle Dateitypen einschließlich PDFs und Bilder."
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\wordpress-tools\ai-bot-blocker\templates\settings-page.php
+#: (Line 204)
+msgid "Advanced"
+msgstr "Erweitert"
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\wordpress-tools\ai-bot-blocker\templates\settings-page.php
+#: (Line 215)
+msgid "Legal Protection (Copy & Paste)"
+msgstr "Rechtlicher Schutz (Copy & Paste)"
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\wordpress-tools\ai-bot-blocker\templates\settings-page.php
+#: (Line 217)
+msgid "Add this text to your Imprint, Terms of Service, or Privacy Policy for legal protection."
+msgstr "Fügen Sie diesen Text Ihrem Impressum, Ihren AGB oder Ihrer Datenschutzerklärung hinzu, um rechtlichen Schutz zu erhalten."
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\wordpress-tools\ai-bot-blocker\templates\settings-page.php
+#: (Line 221)
+msgid "Legal Notice Text"
+msgstr "Rechtlicher Hinweistext"
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\wordpress-tools\ai-bot-blocker\templates\settings-page.php
+#: (Line 0)
+msgid "The use, reproduction, or processing of content provided on this website (including text, images, videos, and other media) by automated systems, web crawlers, AI models, machine learning systems, or other forms of data extraction is prohibited without explicit written consent from the operator. This applies in particular to use for training artificial intelligence, creating datasets, or commercial exploitation."
+msgstr "Die Nutzung, Vervielfältigung oder Verarbeitung der auf dieser Website bereitgestellten Inhalte (einschließlich Texte, Bilder, Videos und anderer Medien) durch automatisierte Systeme, Webcrawler, KI-Modelle, maschinelle Lernsysteme oder andere Formen der Datenextraktion ist ohne ausdrückliche schriftliche Zustimmung des Betreibers untersagt. Dies gilt insbesondere für die Nutzung zum Training künstlicher Intelligenz, zur Erstellung von Datensätzen oder zur kommerziellen Verwertung."
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\wordpress-tools\ai-bot-blocker\templates\settings-page.php
+#: (Line 231)
+msgid "Copy Text"
+msgstr "Text kopieren"
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\wordpress-tools\ai-bot-blocker\templates\settings-page.php
+#: (Line 237)
+msgid "Where to add this text:"
+msgstr "Wo dieser Text eingefügt werden sollte:"
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\wordpress-tools\ai-bot-blocker\templates\settings-page.php
+#: (Line 238)
+msgid "Imprint / Impressum page"
+msgstr "Impressum-Seite"
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\wordpress-tools\ai-bot-blocker\templates\settings-page.php
+#: (Line 239)
+msgid "Terms of Service / AGB"
+msgstr "Nutzungsbedingungen / AGB"
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\wordpress-tools\ai-bot-blocker\templates\settings-page.php
+#: (Line 240)
+msgid "Privacy Policy / Datenschutzerklärung"
+msgstr "Datenschutzerklärung"
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\wordpress-tools\ai-bot-blocker\templates\settings-page.php
+#: (Line 241)
+msgid "Why this is important:"
+msgstr "Warum dies wichtig ist:"
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\wordpress-tools\ai-bot-blocker\templates\settings-page.php
+#: (Line 242)
+msgid "This text provides legal grounds for claims under copyright law and GDPR. It makes your position clear in case of unauthorized AI training on your content."
+msgstr "Dieser Text schafft rechtliche Grundlagen für Ansprüche nach dem Urheberrecht und der DSGVO. Er macht Ihre Position im Falle eines unbefugten KI-Trainings mit Ihren Inhalten eindeutig klar."
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\wordpress-tools\ai-bot-blocker\templates\settings-page.php
+#: (Line 251)
+msgid "Important Information"
+msgstr "Wichtige Hinweise"
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\wordpress-tools\ai-bot-blocker\templates\settings-page.php
+#: (Line 254)
+msgid "Blocking is NOT 100% effective - some bots may ignore these rules"
+msgstr "Die Blockierung ist NICHT zu 100 % wirksam – einige Bots können diese Regeln ignorieren"
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\wordpress-tools\ai-bot-blocker\templates\settings-page.php
+#: (Line 255)
+msgid "Reputable companies like OpenAI, Google, and Anthropic respect robots.txt"
+msgstr "Seriöse Unternehmen wie OpenAI, Google und Anthropic respektieren robots.txt"
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\wordpress-tools\ai-bot-blocker\templates\settings-page.php
+#: (Line 256)
+msgid "This does NOT block regular search engines like Google Search"
+msgstr "Dies blockiert KEINE normalen Suchmaschinen wie die Google-Suche"
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\wordpress-tools\ai-bot-blocker\templates\settings-page.php
+#: (Line 257)
+msgid "For maximum protection, use Cloudflare or similar services"
+msgstr "Für maximalen Schutz verwenden Sie Cloudflare oder vergleichbare Dienste"
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\wordpress-tools\ai-bot-blocker\templates\settings-page.php
+#: (Line 258)
+msgid "Legal text is important for GDPR and copyright claims"
+msgstr "Der Rechtstext ist wichtig für DSGVO- und Urheberrechtsansprüche"
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\wordpress-tools\content-folders\templates\settings-page.php
+#: (Line 56)
+msgid "Organize your posts, pages and media in folders with drag & drop."
+msgstr "Organisieren Sie Ihre Beiträge, Seiten und Medien in Ordnern per Drag & Drop."
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\wordpress-tools\under-construction\templates\settings-page.php
+#: (Line 3)
+msgid "Under Construction"
+msgstr "Im Aufbau"
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\wordpress-tools\under-construction\templates\settings-page.php
+#: (Line 134)
+msgid "Show a maintenance page to visitors while you work on your site."
+msgstr "Zeigen Sie Besuchern eine Wartungsseite an, während Sie an Ihrer Website arbeiten."
