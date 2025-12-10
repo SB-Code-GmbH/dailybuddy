@@ -4,7 +4,7 @@
  * Plugin Name: DailyBuddy
  * Plugin URI: https://dailybuddy.net/
  * Description: A modular collection of essential WordPress features that can be individually enabled or disabled. Includes tools for duplicating posts, maintenance mode, media organization, custom widgets, and Elementor extensions - all in one place.
- * Version: 1.0.4
+ * Version: 1.0.5
  * Author: Ilja Becker
  * Author URI: https://profiles.wordpress.org/beckerilja/
  * Text Domain: dailybuddy

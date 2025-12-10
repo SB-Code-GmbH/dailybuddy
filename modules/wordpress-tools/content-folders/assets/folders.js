@@ -1,6 +1,5 @@
 /**
  * dailybuddy Content Folders - COMPLETE FUNCTIONAL VERSION
- * v4.3.0 - All features working
  */
 
 (function ($) {

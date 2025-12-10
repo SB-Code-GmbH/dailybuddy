@@ -5,7 +5,7 @@
 
 /* Badge oben rechts nur bei deinem FlipBox-Widget */
 .elementor-panel .elementor-element-wrapper:has(.mini-icon-dailybuddy)::after {
-    content: "SBT";
+    content: "B";
     position: absolute;
     top: 4px;
     right: 4px;

@@ -1,0 +1,12 @@
+/**
+ * dailybuddy Filterable Gallery - Editor Styles
+ */
+
+/* Elementor Editor Specific Styles */
+.elementor-element-edit-mode .dailybuddy-filter-gallery-wrapper {
+    min-height: 200px;
+}
+
+.elementor-element-edit-mode .dailybuddy-filterable-gallery-item-wrap {
+    cursor: pointer;
+}

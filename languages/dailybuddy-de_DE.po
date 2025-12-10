@@ -3441,3 +3441,648 @@ msgstr "„Mehr lesen“-Button"
 #: (Line 148)
 msgid "Meta tags are global and block ALL AI bots. To activate this option, you must block at least %1$d out of %2$d bots (%3$d%% or more)."
 msgstr "Meta-Tags sind global und blockieren ALLE KI-Bots. Um diese Option zu aktivieren, müssen mindestens %1$d von %2$d Bots (%3$d%% oder mehr) blockiert sein."
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\elementor-extensions\filterable-gallery\config.php
+#: (Line 9)
+msgid "Create beautiful filterable image galleries with multiple layout styles, search functionality, and lightbox support."
+msgstr "Erstelle wunderschöne, filterbare Bildergalerien mit mehreren Layout-Stilen, Suchfunktionalität und Lightbox-Unterstützung."
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\elementor-extensions\filterable-gallery\config.php
+#: (Line 17)
+msgid "gallery"
+msgstr "Galerie"
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\elementor-extensions\filterable-gallery\config.php
+#: (Line 9)
+msgid "filter"
+msgstr "Filter"
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\elementor-extensions\filterable-gallery\config.php
+#: (Line 19)
+msgid "portfolio"
+msgstr "Portfolio"
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\elementor-extensions\filterable-gallery\config.php
+#: (Line 11)
+msgid "images"
+msgstr "Bilder"
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\elementor-extensions\filterable-gallery\config.php
+#: (Line 9)
+msgid "lightbox"
+msgstr "Lightbox"
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\elementor-extensions\filterable-gallery\widget.php
+#: (Line 4)
+msgid "Filterable Gallery"
+msgstr "Filterbare Galerie"
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\elementor-extensions\filterable-gallery\widget.php
+#: (Line 117)
+msgid "Overlay"
+msgstr "Overlay"
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\elementor-extensions\filterable-gallery\widget.php
+#: (Line 119)
+msgid "Search and Filter"
+msgstr "Suchen und Filtern"
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\elementor-extensions\filterable-gallery\widget.php
+#: (Line 127)
+msgid "Items to show"
+msgstr "Anzuzeigende Elemente"
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\elementor-extensions\filterable-gallery\widget.php
+#: (Line 141)
+msgid "Animation Duration (ms)"
+msgstr "Animationsdauer (ms)"
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\elementor-extensions\filterable-gallery\widget.php
+#: (Line 157)
+msgid "Columns"
+msgstr "Spalten"
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\elementor-extensions\filterable-gallery\widget.php
+#: (Line 195)
+msgid "Grid Style"
+msgstr "Rasterstil"
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\elementor-extensions\filterable-gallery\widget.php
+#: (Line 195)
+msgid "Grid"
+msgstr "Raster"
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\elementor-extensions\filterable-gallery\widget.php
+#: (Line 203)
+msgid "Masonry"
+msgstr "Masonry"
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\elementor-extensions\filterable-gallery\widget.php
+#: (Line 219)
+msgid "Image Height"
+msgstr "Bildhöhe"
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\elementor-extensions\filterable-gallery\widget.php
+#: (Line 239)
+msgid "Search Full Gallery ?"
+msgstr "Gesamte Galerie durchsuchen?"
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\elementor-extensions\filterable-gallery\widget.php
+#: (Line 254)
+msgid "Enabling this will load all prior items up to the one you searched for."
+msgstr "Wenn aktiviert, werden alle vorherigen Elemente bis zu dem gesuchten geladen."
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\elementor-extensions\filterable-gallery\widget.php
+#: (Line 266)
+msgid "Not Found Text"
+msgstr "Nicht gefunden-Text"
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\elementor-extensions\filterable-gallery\widget.php
+#: (Line 268)
+msgid "No Items Found"
+msgstr "Keine Elemente gefunden"
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\elementor-extensions\filterable-gallery\widget.php
+#: (Line 195)
+msgid "Style"
+msgstr "Stil"
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\elementor-extensions\filterable-gallery\widget.php
+#: (Line 299)
+msgid "Slide In Up"
+msgstr "Hochgleiten"
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\elementor-extensions\filterable-gallery\widget.php
+#: (Line 300)
+msgid "Fade In"
+msgstr "Einblenden"
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\elementor-extensions\filterable-gallery\widget.php
+#: (Line 301)
+msgid "Zoom In "
+msgstr "Hineinzoomen "
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\elementor-extensions\filterable-gallery\widget.php
+#: (Line 312)
+msgid "Transition"
+msgstr "Übergang"
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\elementor-extensions\filterable-gallery\widget.php
+#: (Line 336)
+msgid "Link to"
+msgstr "Verlinken mit"
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\elementor-extensions\filterable-gallery\widget.php
+#: (Line 365)
+msgid "Title Clickable"
+msgstr "Titel anklickbar"
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\elementor-extensions\filterable-gallery\widget.php
+#: (Line 378)
+msgid "Image Clickable"
+msgstr "Bild anklickbar"
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\elementor-extensions\filterable-gallery\widget.php
+#: (Line 391)
+msgid "Caption in Popup"
+msgstr "Beschriftung im Popup"
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\elementor-extensions\filterable-gallery\widget.php
+#: (Line 393)
+msgid "Show"
+msgstr "Anzeigen"
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\elementor-extensions\filterable-gallery\widget.php
+#: (Line 394)
+msgid "Hide"
+msgstr "Ausblenden"
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\elementor-extensions\filterable-gallery\widget.php
+#: (Line 406)
+msgid "Lightbox Icon"
+msgstr "Lightbox-Symbol"
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\elementor-extensions\filterable-gallery\widget.php
+#: (Line 424)
+msgid "Link Icon"
+msgstr "Link-Symbol"
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\elementor-extensions\filterable-gallery\widget.php
+#: (Line 442)
+msgid "Full Image Action"
+msgstr "Vollbild-Aktion"
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\elementor-extensions\filterable-gallery\widget.php
+#: (Line 406)
+msgid "Lightbox"
+msgstr "Lightbox"
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\elementor-extensions\filterable-gallery\widget.php
+#: (Line 463)
+msgid "Filterable Controls"
+msgstr "Filterbare Steuerungen"
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\elementor-extensions\filterable-gallery\widget.php
+#: (Line 4)
+msgid "Filter"
+msgstr "Filter"
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\elementor-extensions\filterable-gallery\widget.php
+#: (Line 472)
+msgid "Enable"
+msgstr "Aktivieren"
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\elementor-extensions\filterable-gallery\widget.php
+#: (Line 473)
+msgid "Disable"
+msgstr "Deaktivieren"
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\elementor-extensions\filterable-gallery\widget.php
+#: (Line 481)
+msgid "Gallery All Label"
+msgstr "Gesamte Galerie-Bezeichnung"
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\elementor-extensions\filterable-gallery\widget.php
+#: (Line 481)
+msgid "All"
+msgstr "Alle"
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\elementor-extensions\filterable-gallery\widget.php
+#: (Line 497)
+msgid "All label icon"
+msgstr "Symbol für Alle-Bezeichnung"
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\elementor-extensions\filterable-gallery\widget.php
+#: (Line 513)
+msgid "Title Tag"
+msgstr "Titel-Tag"
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\elementor-extensions\filterable-gallery\widget.php
+#: (Line 519)
+msgid "H1"
+msgstr "H1"
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\elementor-extensions\filterable-gallery\widget.php
+#: (Line 523)
+msgid "H2"
+msgstr "H2"
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\elementor-extensions\filterable-gallery\widget.php
+#: (Line 527)
+msgid "H3"
+msgstr "H3"
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\elementor-extensions\filterable-gallery\widget.php
+#: (Line 531)
+msgid "H4"
+msgstr "H4"
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\elementor-extensions\filterable-gallery\widget.php
+#: (Line 535)
+msgid "H5"
+msgstr "H5"
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\elementor-extensions\filterable-gallery\widget.php
+#: (Line 539)
+msgid "H6"
+msgstr "H6"
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\elementor-extensions\filterable-gallery\widget.php
+#: (Line 543)
+msgid "SPAN"
+msgstr "SPAN"
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\elementor-extensions\filterable-gallery\widget.php
+#: (Line 7)
+msgid "P"
+msgstr "P"
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\elementor-extensions\filterable-gallery\widget.php
+#: (Line 551)
+msgid "DIV"
+msgstr "DIV"
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\elementor-extensions\filterable-gallery\widget.php
+#: (Line 568)
+msgid "Filter Title"
+msgstr "Filter-Titel"
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\elementor-extensions\filterable-gallery\widget.php
+#: (Line 563)
+msgid "Gallery Filter"
+msgstr "Galerie-Filter"
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\elementor-extensions\filterable-gallery\widget.php
+#: (Line 580)
+msgid "Adding a custom ID will function as an anchor tag. For instance, if you input \"test\" as your custom ID, the link will change to \"https://www.example.com/#test\" and it will immediately open the corresponding tab."
+msgstr "Die Eingabe einer benutzerdefinierten ID fungiert als Anker-Tag. Zum Beispiel: Wenn Sie \"test\" als benutzerdefinierte ID eingeben, ändert sich der Link zu \"https://www.example.com/#test\" und der entsprechende Tab wird sofort geöffnet."
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\elementor-extensions\filterable-gallery\widget.php
+#: (Line 591)
+msgid "Custom Label"
+msgstr "Benutzerdefinierte Bezeichnung"
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\elementor-extensions\filterable-gallery\widget.php
+#: (Line 599)
+msgid "Item Label"
+msgstr "Elementbezeichnung"
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\elementor-extensions\filterable-gallery\widget.php
+#: (Line 631)
+msgid "Gallery Items"
+msgstr "Galerie-Elemente"
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\elementor-extensions\filterable-gallery\widget.php
+#: (Line 641)
+msgid "Photo Gallery"
+msgstr "Fotogalerie"
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\elementor-extensions\filterable-gallery\widget.php
+#: (Line 657)
+msgid "Video Privacy Mode"
+msgstr "Video-Datenschutzmodus"
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\elementor-extensions\filterable-gallery\widget.php
+#: (Line 0)
+msgid "If enabled, YouTube won't store information about visitors unless they play the video."
+msgstr "Wenn aktiviert, speichert YouTube keine Informationen über Besucher, solange sie das Video nicht abspielen."
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\elementor-extensions\filterable-gallery\widget.php
+#: (Line 672)
+msgid "Consent Notice"
+msgstr "Zustimmungs-Hinweis"
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\elementor-extensions\filterable-gallery\widget.php
+#: (Line 676)
+msgid "If enabled, The consent notice will appear before playing the video."
+msgstr "Wenn aktiviert, wird der Zustimmungs-Hinweis angezeigt, bevor das Video abgespielt wird."
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\elementor-extensions\filterable-gallery\widget.php
+#: (Line 687)
+msgid "Privacy Notice"
+msgstr "Datenschutzhinweis"
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\elementor-extensions\filterable-gallery\widget.php
+#: (Line 700)
+msgid "Randomize Item"
+msgstr "Element zufällig anzeigen"
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\elementor-extensions\filterable-gallery\widget.php
+#: (Line 704)
+msgid "Items will be displayed in a random order."
+msgstr "Die Elemente werden in zufälliger Reihenfolge angezeigt."
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\elementor-extensions\filterable-gallery\widget.php
+#: (Line 716)
+msgid "Gallery Item Title"
+msgstr "Galerie-Elementtitel"
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\elementor-extensions\filterable-gallery\widget.php
+#: (Line 720)
+msgid "Gallery item name"
+msgstr "Name des Galerie-Elements"
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\elementor-extensions\filterable-gallery\widget.php
+#: (Line 730)
+msgid "Gallery Filter Title"
+msgstr "Galerie-Filter-Titel"
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\elementor-extensions\filterable-gallery\widget.php
+#: (Line 735)
+msgid "Use the gallery filter title from Control Settings. Separate multiple items with comma (e.g. <strong>Gallery Filter, Gallery Filter 2</strong>)"
+msgstr "Verwenden Sie den Galerie-Filter-Titel aus den Steuereinstellungen. Mehrere Elemente mit Komma trennen (z. B. <strong>Galerie-Filter, Galerie-Filter 2</strong>)"
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\elementor-extensions\filterable-gallery\widget.php
+#: (Line 749)
+msgid "Video Gallery?"
+msgstr "Video-Galerie?"
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\elementor-extensions\filterable-gallery\widget.php
+#: (Line 770)
+msgid "For Video Display"
+msgstr "Für Videoanzeige"
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\elementor-extensions\filterable-gallery\widget.php
+#: (Line 771)
+msgid "Currently, videos are displayed in the Overlay, Card and Search and Filter layout"
+msgstr "Derzeit werden Videos im Overlay-, Karten- und Suchen-und-Filtern-Layout angezeigt"
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\elementor-extensions\filterable-gallery\widget.php
+#: (Line 797)
+msgid "Layout Type"
+msgstr "Layout-Typ"
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\elementor-extensions\filterable-gallery\widget.php
+#: (Line 833)
+msgid "Value"
+msgstr "Wert"
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\elementor-extensions\filterable-gallery\widget.php
+#: (Line 836)
+msgid "$20.00"
+msgstr "20,00 $"
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\elementor-extensions\filterable-gallery\widget.php
+#: (Line 850)
+msgid "Ratings"
+msgstr "Bewertungen"
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\elementor-extensions\filterable-gallery\widget.php
+#: (Line 51)
+msgid "5"
+msgstr "5"
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\elementor-extensions\filterable-gallery\widget.php
+#: (Line 891)
+msgid "Name"
+msgstr "Name"
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\elementor-extensions\filterable-gallery\widget.php
+#: (Line 913)
+msgid "Price, Ratings and Category"
+msgstr "Preis, Bewertungen und Kategorie"
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\elementor-extensions\filterable-gallery\widget.php
+#: (Line 915)
+msgid "will be visible only on the \"%1$sSearch & Filter%2$s\" layout."
+msgstr "wird nur im \"%1$sSuchen & Filtern%2$s\"-Layout sichtbar sein."
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\elementor-extensions\filterable-gallery\widget.php
+#: (Line 927)
+msgid "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quidem, provident."
+msgstr "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quidem, provident.\"  # unverändert, da Platzhaltertex."
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\elementor-extensions\filterable-gallery\widget.php
+#: (Line 949)
+msgid "Video play icon"
+msgstr "Video-Wiedergabesymbol"
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\elementor-extensions\filterable-gallery\widget.php
+#: (Line 966)
+msgid "Lightbox Button?"
+msgstr "Lightbox-Button?"
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\elementor-extensions\filterable-gallery\widget.php
+#: (Line 981)
+msgid "Link Button?"
+msgstr "Link-Button?"
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\elementor-extensions\filterable-gallery\widget.php
+#: (Line 1031)
+msgid "Load More Button"
+msgstr "Mehr laden-Button"
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\elementor-extensions\filterable-gallery\widget.php
+#: (Line 1053)
+msgid "Images Per Page"
+msgstr "Bilder pro Seite"
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\elementor-extensions\filterable-gallery\widget.php
+#: (Line 1069)
+msgid "Button Label"
+msgstr "Button-Beschriftung"
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\elementor-extensions\filterable-gallery\widget.php
+#: (Line 1031)
+msgid "Load More"
+msgstr "Mehr laden"
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\elementor-extensions\filterable-gallery\widget.php
+#: (Line 1085)
+msgid "No More Items Text"
+msgstr "Kein weiteres Elemente-Text"
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\elementor-extensions\filterable-gallery\widget.php
+#: (Line 1088)
+msgid "No more items!"
+msgstr "Keine weiteren Elemente!"
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\elementor-extensions\filterable-gallery\widget.php
+#: (Line 1105)
+msgid "Extra Small"
+msgstr "Extra klein"
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\elementor-extensions\filterable-gallery\widget.php
+#: (Line 1105)
+msgid "Small"
+msgstr "Klein"
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\elementor-extensions\filterable-gallery\widget.php
+#: (Line 1107)
+msgid "Medium"
+msgstr "Mittel"
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\elementor-extensions\filterable-gallery\widget.php
+#: (Line 1108)
+msgid "Large"
+msgstr "Groß"
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\elementor-extensions\filterable-gallery\widget.php
+#: (Line 1109)
+msgid "Extra Large"
+msgstr "Extra groß"
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\elementor-extensions\filterable-gallery\widget.php
+#: (Line 12)
+msgid "Control"
+msgstr "Steuerung"
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\elementor-extensions\filterable-gallery\widget.php
+#: (Line 1289)
+msgid "Bar"
+msgstr "Leiste"
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\elementor-extensions\filterable-gallery\widget.php
+#: (Line 127)
+msgid "Item"
+msgstr "Element"
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\elementor-extensions\filterable-gallery\widget.php
+#: (Line 1634)
+msgid "Mouseover Effect"
+msgstr "Mouseover-Effekt"
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\elementor-extensions\filterable-gallery\widget.php
+#: (Line 1644)
+msgid "These controls will be in effect when the mouse hovers over the items."
+msgstr "Diese Steuerungen wirken, wenn die Maus über die Elemente fährt."
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\elementor-extensions\filterable-gallery\widget.php
+#: (Line 1675)
+msgid "Title Typography"
+msgstr "Titel-Typografie"
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\elementor-extensions\filterable-gallery\widget.php
+#: (Line 1696)
+msgid "Hover Color"
+msgstr "Hover-Farbe"
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\elementor-extensions\filterable-gallery\widget.php
+#: (Line 1727)
+msgid "Content Typography"
+msgstr "Inhalt-Typografie"
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\elementor-extensions\filterable-gallery\widget.php
+#: (Line 1785)
+msgid "Content Alignment"
+msgstr "Inhalt-Ausrichtung"
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\elementor-extensions\filterable-gallery\widget.php
+#: (Line 1814)
+msgid "Thumbnail"
+msgstr "Vorschaubild"
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\elementor-extensions\filterable-gallery\widget.php
+#: (Line 1902)
+msgid "Mouseover Effects"
+msgstr "Mouseover-Effekte"
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\elementor-extensions\filterable-gallery\widget.php
+#: (Line 1922)
+msgid "Background transition"
+msgstr "Hintergrund-Übergang"
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\elementor-extensions\filterable-gallery\widget.php
+#: (Line 1942)
+msgid "Icon size"
+msgstr "Symbolgröße"
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\elementor-extensions\filterable-gallery\widget.php
+#: (Line 1965)
+msgid "Hover icon scale"
+msgstr "Hover-Symbolgröße"
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\elementor-extensions\filterable-gallery\widget.php
+#: (Line 1980)
+msgid "Icon transition"
+msgstr "Symbol-Übergang"
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\elementor-extensions\filterable-gallery\widget.php
+#: (Line 2000)
+msgid "Custom Width"
+msgstr "Benutzerdefinierte Breite"
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\elementor-extensions\filterable-gallery\widget.php
+#: (Line 2014)
+msgid "Video Content Width"
+msgstr "Video-Inhaltsbreite"
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\elementor-extensions\filterable-gallery\widget.php
+#: (Line 2081)
+msgid "Item Card"
+msgstr "Element-Karte"
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\elementor-extensions\filterable-gallery\widget.php
+#: (Line 2325)
+msgid "Icons"
+msgstr "Symbole"
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\elementor-extensions\filterable-gallery\widget.php
+#: (Line 2419)
+msgid "Icon Font Size"
+msgstr "Symbol-Schriftgröße"
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\elementor-extensions\filterable-gallery\widget.php
+#: (Line 2617)
+msgid "Star Color"
+msgstr "Sternfarbe"
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\elementor-extensions\filterable-gallery\widget.php
+#: (Line 2701)
+msgid "Search Form"
+msgstr "Suchformular"
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\elementor-extensions\filterable-gallery\widget.php
+#: (Line 12)
+msgid "Controls"
+msgstr "Steuerungen"
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\elementor-extensions\filterable-gallery\widget.php
+#: (Line 2733)
+msgid "Icon Space"
+msgstr "Symbolabstand"
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\elementor-extensions\filterable-gallery\widget.php
+#: (Line 2806)
+msgid "Controls Background"
+msgstr "Hintergrund der Steuerungen"
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\elementor-extensions\filterable-gallery\widget.php
+#: (Line 2849)
+msgid "Separator"
+msgstr "Trennlinie"
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\elementor-extensions\filterable-gallery\widget.php
+#: (Line 2858)
+msgid "Separator Size"
+msgstr "Trennliniengröße"
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\elementor-extensions\filterable-gallery\widget.php
+#: (Line 2877)
+msgid "Separator Color"
+msgstr "Trennlinienfarbe"
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\elementor-extensions\filterable-gallery\widget.php
+#: (Line 2701)
+msgid "Form"
+msgstr "Formular"
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\elementor-extensions\filterable-gallery\widget.php
+#: (Line 2909)
+msgid "Placeholder"
+msgstr "Platzhalter"
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\elementor-extensions\filterable-gallery\widget.php
+#: (Line 2911)
+msgid "Search Gallery Item..."
+msgstr "Galerieelement suchen..."
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\elementor-extensions\filterable-gallery\widget.php
+#: (Line 2921)
+msgid "Placeholder Color"
+msgstr "Platzhalterfarbe"
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\elementor-extensions\filterable-gallery\widget.php
+#: (Line 2977)
+msgid "Dropdown"
+msgstr "Dropdown"
