@@ -19,31 +19,41 @@ Whether you want a cleaner workflow, better insights, or more creative Elementor
 
 ### 🔧 Key Features
 
-#### **Dashboard Widgets (6 modules)**
+#### Dashboard Widgets (6 modules)
 Enhance your WordPress admin dashboard with helpful information and productivity tools:
 
-- **Quick Notes** – Personal notes & to-do lists directly in the dashboard.  
-- **Quick Stats** – See key website statistics at a glance (posts, users, comments, media).  
-- **Recent Activity** – Shows the latest 10 changes on your site with timestamps and direct links.  
-- **Security Monitor** – Overview of logins, failed attempts, outdated components, and security-related system info.  
-- **Server & Performance Check** – PHP version, memory limit, MySQL version, disk usage, and system health.  
-- **User Activity** – Shows who is currently online and the latest activity of all users.
+- Quick Notes – Personal notes and to-do lists displayed directly in the dashboard.
+- Quick Stats – Displays basic site statistics such as posts, users, comments, and media counts.
+- Recent Activity – Shows recent content-related activity with timestamps and direct links.
+- Security Monitor – Displays general security-related system and status information.
+- Server & Performance Check – Shows server and environment information such as PHP version, memory limit, database version, disk usage, and system health.
+- User Activity – Displays recent user activity and currently active users in the admin area.
 
-#### **Elementor Extensions (6 modules)**
-Additional Elementor widgets and UI features (Elementor required):
 
-- **Advanced Accordion** – Multi-design accordion widget with numbering, icon animations and rich styling.  
-- **FlipBox** – Animated flip boxes for showcasing features or team members (front/back side).  
-- **Hide Elementor Pro Widgets** – Remove Pro widgets, upsell elements and categories from the editor.  
-- **Logo Carousel** – Responsive logo slider with animation effects.  
-- **Product Card** – Modern product presentation widget with countdown, badges and quick view.  
-- **Content Switcher** – Toggle between two content blocks (great for pricing tables, dark/light mode, etc.).
+#### Elementor Extensions (9 modules)
+Additional Elementor widgets and editor enhancements (Elementor required):
 
-#### **WordPress Tools (2 modules)**
-Small productivity utilities for everyday use:
+- Advanced Accordion – Configurable accordion widget with multiple layouts, numbering, icons, and styling options.
+- Advanced Tabs – Tab widget with multiple design styles, icon support, scheduled tabs, and Elementor templates.
+- Content Timeline – Displays content in a horizontal or vertical timeline layout, supporting dynamic posts and custom content.
+- Filterable Gallery – Create filterable image galleries with multiple layout styles, search functionality, and lightbox support.
+- FlipBox – Animated flip box widget for presenting content on front and back sides.
+- Hide Elementor Pro Widgets – Option to hide Elementor Pro widgets, categories, and upsell elements from the editor interface.
+- Logo Carousel – Responsive logo carousel/slider with configurable animation options.
+- Product Card – Product-style content widget with configurable layout elements such as badges, countdowns, and call-to-action buttons.
+- Content Switcher – Toggle between two content sections within a single layout (e.g. pricing tables or light/dark sections).
 
-- **Duplicate Posts/Pages** – Adds a “Duplicate” link to posts and pages.  
-- **Maintenance Mode** – Displays an “Under Construction” page for non-logged-in visitors.
+
+#### WordPress Tools (7 modules)
+Small utilities to improve everyday WordPress workflows:
+
+- AI Bot Signals – Adds robots.txt and meta directives to provide guidance signals for AI crawlers regarding content handling.
+- Content Folders – Organize posts, pages, and media files into folders using a drag-and-drop interface.
+- Custom Login URL – Allows changing the default login URL slug for administrative access.
+- Dashboard Access Control – Controls access to selected dashboard areas based on user roles and capabilities.
+- Duplicate Posts/Pages – Adds an option to duplicate posts and pages within the admin interface.
+- Media Replace – Replace media files while keeping existing URLs intact.
+- Maintenance Mode – Displays a temporary maintenance page for visitors who are not logged in.
 
 ### Modular by Design
 Every feature can be individually enabled or disabled, allowing you to use only what you need — keeping your site clean and efficient.
@@ -86,7 +96,34 @@ Yes, and it even includes an option to hide Elementor Pro widgets from the edito
 ---
 
 == Changelog ==
-
 = 1.0.6 =
-* Initial release.
+* Maintenance update for WordPress.org review
+* Unified plugin name, text domain, and internal identifiers
+* Removed reserved WP_ prefixes and improved prefixing consistency
+* Fixed script and style enqueueing
+* Internal refactoring and code cleanup
+* No locked features or license checks
 
+= 1.0.5 =
+* Added Filterable Gallery module with multiple layouts and lightbox support
+
+= 1.0.4 =
+* Added Elementor Advanced Tabs module
+* Added Elementor Content Timeline module
+
+= 1.0.3 =
+* Added AI Bot Blocker module
+* Centralized module settings CSS
+* Improved template structure for better maintainability
+
+= 1.0.2 =
+* Added Custom Login URL module
+
+= 1.0.1 =
+* Added Media Replace module
+* Added Dashboard Access Control module
+* Added Content Folders module
+* Improved dashboard widgets and permission handling
+
+= 1.0.0 =
+* Initial release.
