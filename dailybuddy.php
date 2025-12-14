@@ -4,7 +4,7 @@
  * Plugin Name: DailyBuddy
  * Plugin URI: https://dailybuddy.net/
  * Description: A modular collection of essential WordPress features that can be individually enabled or disabled. Includes tools for duplicating posts, maintenance mode, media organization, custom widgets, and Elementor extensions - all in one place.
- * Version: 1.0.5
+ * Version: 1.0.6
  * Author: Ilja Becker
  * Author URI: https://profiles.wordpress.org/beckerilja/
  * Text Domain: dailybuddy
@@ -21,7 +21,7 @@ if (! defined('ABSPATH')) {
 }
 
 // Plugin constants
-define('DAILYBUDDY_VERSION', '1.0.0');
+define('DAILYBUDDY_VERSION', '1.0.6');
 define('DAILYBUDDY_PATH', plugin_dir_path(__FILE__));
 define('DAILYBUDDY_URL', plugin_dir_url(__FILE__));
 define('DAILYBUDDY_BASENAME', plugin_basename(__FILE__));
@@ -40,7 +40,7 @@ if (defined('DAILYBUDDY_DEV_MODE') && DAILYBUDDY_DEV_MODE) {
 
     // Initialize scanner after WordPress is loaded
     add_action('init', function () {
-        new WP_Dailybuddy_Translation_Scanner();
+        new Dailybuddy_Translation_Scanner();
     });
 }
 

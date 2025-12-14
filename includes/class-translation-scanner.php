@@ -10,7 +10,7 @@ if (! defined('ABSPATH')) {
     exit;
 }
 
-class WP_Dailybuddy_Translation_Scanner
+class Dailybuddy_Translation_Scanner
 {
 
     private $plugin_path;
