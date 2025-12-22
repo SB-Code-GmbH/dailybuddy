@@ -10,7 +10,7 @@ if (!defined('ABSPATH')) {
     exit;
 }
 
-class WP_Dailybuddy_Elementor_Hide_Pro_Widgets
+class Dailybuddy_Elementor_Hide_Pro_Widgets
 {
     private static $instance = null;
 
@@ -263,4 +263,4 @@ class WP_Dailybuddy_Elementor_Hide_Pro_Widgets
     }
 }
 
-WP_Dailybuddy_Elementor_Hide_Pro_Widgets::get_instance();
+Dailybuddy_Elementor_Hide_Pro_Widgets::get_instance();

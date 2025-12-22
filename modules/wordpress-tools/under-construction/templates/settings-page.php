@@ -122,7 +122,7 @@ if (isset($_POST['dailybuddy_save_uc_settings'])) {
 }
 
 // Get available layouts
-$dailybuddy_available_layouts = WP_Dailybuddy_Under_Construction::get_available_layouts();
+$dailybuddy_available_layouts = Dailybuddy_Under_Construction::get_available_layouts();
 ?>
 
 <div class="wrap dailybuddy-under-construction-settings">
@@ -251,8 +251,14 @@ $dailybuddy_available_layouts = WP_Dailybuddy_Under_Construction::get_available_
                             <?php checked($dailybuddy_settings['layout'], $dailybuddy_layout['id']); ?>>
                         <div class="layout-preview-inner">
                             <?php
-                            // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-                            echo WP_Dailybuddy_Under_Construction::get_layout_preview_html($dailybuddy_layout['id']);
+                            /**
+                             * Output layout preview HTML
+                             * 
+                             * get_layout_preview_html() returns self-generated HTML with
+                             * proper escaping (esc_url, esc_attr). Using wp_kses_post()
+                             * to allow safe HTML tags while filtering dangerous content.
+                             */
+                            echo wp_kses_post(Dailybuddy_Under_Construction::get_layout_preview_html($dailybuddy_layout['id']));
                             ?>
                         </div>
                         <div class="layout-preview-label"><?php echo esc_html($dailybuddy_layout['name']); ?></div>

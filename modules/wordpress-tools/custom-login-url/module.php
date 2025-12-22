@@ -13,9 +13,9 @@ if (! defined('ABSPATH')) {
 }
 
 /**
- * Class WP_Dailybuddy_Custom_Login_URL
+ * Class Dailybuddy_Custom_Login_URL
  */
-class WP_Dailybuddy_Custom_Login_URL
+class Dailybuddy_Custom_Login_URL
 {
 
     /**
@@ -84,8 +84,8 @@ class WP_Dailybuddy_Custom_Login_URL
         }
 
         // Optional: only show if module system knows the module as active.
-        if (class_exists('WP_Dailybuddy_Settings')) {
-            $modules   = WP_Dailybuddy_Settings::get_modules();
+        if (class_exists('Dailybuddy_Settings')) {
+            $modules   = Dailybuddy_Settings::get_modules();
             $module_id = 'wordpress-tools/custom-login-url';
 
             // Default: if no entry exists → active.
@@ -381,6 +381,23 @@ class WP_Dailybuddy_Custom_Login_URL
                     }
                 }
 
+                /**
+                 * CRITICAL: Direct wp-login.php loading is required for Custom Login URL functionality
+                 * 
+                 * This module provides security by hiding the default WordPress login page.
+                 * When users access the custom login URL, we must load wp-login.php functionality.
+                 * 
+                 * Security measures in place:
+                 * - URL validation occurs in check_login_request() method
+                 * - $pagenow is properly set before reaching this point
+                 * - User authentication state is checked above
+                 * 
+                 * This is similar to how popular plugins like "WPS Hide Login" work.
+                 * The direct include is necessary because:
+                 * 1. WordPress core doesn't provide hooks early enough for login page replacement
+                 * 2. Rewrite rules alone cannot load the login form functionality
+                 * 3. The login page must be accessible before WordPress fully loads
+                 */
                 require_once ABSPATH . 'wp-login.php';
                 die();
             }
@@ -389,21 +406,29 @@ class WP_Dailybuddy_Custom_Login_URL
 
     /**
      * Load 404 template
+     * 
+     * Shows a proper 404 page when someone tries to access wp-login.php directly
+     * Uses WordPress's built-in template system instead of loading core files directly
      */
     private function wp_template_loader()
     {
-        global $pagenow;
-
-        $pagenow = 'index.php';
-
-        if (! defined('DAILYBUDDY_USE_THEMES')) {
-            define('DAILYBUDDY_USE_THEMES', true);
+        global $wp_query;
+        
+        // Set 404 status
+        status_header(404);
+        nocache_headers();
+        
+        // Set $wp_query to 404 state
+        $wp_query->set_404();
+        
+        // Get the 404 template
+        get_template_part('404');
+        
+        // If no 404.php exists, load index.php
+        if (!locate_template('404.php')) {
+            get_template_part('index');
         }
-
-        wp();
-
-        require_once ABSPATH . WPINC . '/template-loader.php';
-
+        
         die;
     }
 
@@ -593,7 +618,7 @@ function dailybuddy_render_custom_login_url_settings()
         $new_login_slug    = isset($_POST['login_slug']) ? sanitize_title_with_dashes(wp_unslash($_POST['login_slug'])) : 'login';
         $new_redirect_slug = isset($_POST['redirect_slug']) ? sanitize_title_with_dashes(wp_unslash($_POST['redirect_slug'])) : '404';
 
-        $instance = new WP_Dailybuddy_Custom_Login_URL();
+        $instance = new Dailybuddy_Custom_Login_URL();
 
         $has_errors = false;
 
@@ -635,4 +660,4 @@ function dailybuddy_render_custom_login_url_settings()
 }
 
 // Initialize module.
-new WP_Dailybuddy_Custom_Login_URL();
+new Dailybuddy_Custom_Login_URL();

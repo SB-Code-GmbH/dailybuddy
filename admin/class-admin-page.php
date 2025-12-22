@@ -8,7 +8,7 @@ if (! defined('ABSPATH')) {
     exit;
 }
 
-class WP_Dailybuddy_Admin_Page
+class Dailybuddy_Admin_Page
 {
 
     private $modules = array();
@@ -107,7 +107,7 @@ class WP_Dailybuddy_Admin_Page
      */
     public function render_admin_page()
     {
-        $module_loader = new WP_Dailybuddy_Module_Loader();
+        $module_loader = new Dailybuddy_Module_Loader();
         $module_loader->load_modules();
         $this->modules = $module_loader->get_modules();
 
@@ -232,13 +232,13 @@ class WP_Dailybuddy_Admin_Page
         }
 
         // Get current modules
-        $modules = WP_Dailybuddy_Settings::get_modules();
+        $modules = Dailybuddy_Settings::get_modules();
 
         // Update module status
         $modules[$module_id] = $is_active;
 
         // Save
-        $saved = WP_Dailybuddy_Settings::save_modules($modules);
+        $saved = Dailybuddy_Settings::save_modules($modules);
 
         if ($saved) {
             wp_send_json_success(array(

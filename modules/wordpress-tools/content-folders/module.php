@@ -80,8 +80,8 @@ class Dailybuddy_Content_Folders
         }
 
         // Optional: nur anzeigen, wenn Modulsystem das Modul als aktiv kennt
-        if (class_exists('WP_Dailybuddy_Settings')) {
-            $modules   = WP_Dailybuddy_Settings::get_modules();
+        if (class_exists('Dailybuddy_Settings')) {
+            $modules   = Dailybuddy_Settings::get_modules();
             $module_id = 'wordpress-tools/content-folders'; // <-- ggf. anpassen
 
             // Standard: wenn kein Eintrag vorhanden ist → aktiv

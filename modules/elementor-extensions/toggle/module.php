@@ -10,7 +10,7 @@ if (!defined('ABSPATH')) {
     exit;
 }
 
-class WP_Dailybuddy_Elementor_Toggle
+class Dailybuddy_Elementor_Toggle
 {
     private static $instance = null;
 
@@ -55,7 +55,7 @@ class WP_Dailybuddy_Elementor_Toggle
         require_once DAILYBUDDY_PATH . 'modules/elementor-extensions/toggle/widget.php';
 
         // Register widget
-        $widgets_manager->register(new \WP_Dailybuddy_Elementor_Toggle_Widget());
+        $widgets_manager->register(new \Dailybuddy_Elementor_Toggle_Widget());
     }
 
     /**
@@ -100,4 +100,4 @@ class WP_Dailybuddy_Elementor_Toggle
 }
 
 // Initialize module
-WP_Dailybuddy_Elementor_Toggle::get_instance();
+Dailybuddy_Elementor_Toggle::get_instance();

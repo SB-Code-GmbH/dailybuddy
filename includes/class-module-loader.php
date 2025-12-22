@@ -8,7 +8,7 @@ if ( ! defined( 'ABSPATH' ) ) {
     exit;
 }
 
-class WP_Dailybuddy_Module_Loader {
+class Dailybuddy_Module_Loader {
     
     private $modules = array();
     private $active_modules = array();

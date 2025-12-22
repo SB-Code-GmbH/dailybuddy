@@ -9,7 +9,7 @@ if (! defined('ABSPATH')) {
 }
 
 // Instance and current URLs for display.
-$dailybuddy_instance           = new WP_Dailybuddy_Custom_Login_URL();
+$dailybuddy_instance           = new Dailybuddy_Custom_Login_URL();
 $dailybuddy_current_login_url  = $dailybuddy_instance->new_login_url();
 $dailybuddy_current_redirect_url = $dailybuddy_instance->new_redirect_url();
 $dailybuddy_has_permalink      = get_option('permalink_structure');

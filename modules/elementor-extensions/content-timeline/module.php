@@ -10,7 +10,7 @@ if (!defined('ABSPATH')) {
     exit;
 }
 
-class WP_Dailybuddy_Elementor_Content_Timeline
+class Dailybuddy_Elementor_Content_Timeline
 {
     private static $instance = null;
 
@@ -55,7 +55,7 @@ class WP_Dailybuddy_Elementor_Content_Timeline
         require_once DAILYBUDDY_PATH . 'modules/elementor-extensions/content-timeline/widget.php';
 
         // Register widget
-        $widgets_manager->register(new \WP_Dailybuddy_Elementor_Content_Timeline_Widget());
+        $widgets_manager->register(new \Dailybuddy_Elementor_Content_Timeline_Widget());
     }
 
     /**
@@ -100,4 +100,4 @@ class WP_Dailybuddy_Elementor_Content_Timeline
 }
 
 // Initialize module
-WP_Dailybuddy_Elementor_Content_Timeline::get_instance();
+Dailybuddy_Elementor_Content_Timeline::get_instance();

@@ -18,7 +18,7 @@ use Elementor\Icons_Manager;
 use Elementor\Utils;
 use Elementor\Plugin;
 
-class WP_Dailybuddy_Elementor_Toggle_Widget extends Widget_Base
+class Dailybuddy_Elementor_Toggle_Widget extends Widget_Base
 {
 
     /**

@@ -10,7 +10,7 @@ if (!defined('ABSPATH')) {
     exit;
 }
 
-class WP_Dailybuddy_User_Activity_Widget
+class Dailybuddy_User_Activity_Widget
 {
     private $online_threshold = 300; // 5 minutes in seconds
 
@@ -654,4 +654,4 @@ class WP_Dailybuddy_User_Activity_Widget
 }
 
 // Initialize module
-new WP_Dailybuddy_User_Activity_Widget();
+new Dailybuddy_User_Activity_Widget();

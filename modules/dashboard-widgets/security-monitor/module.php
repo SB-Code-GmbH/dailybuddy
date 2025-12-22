@@ -10,7 +10,7 @@ if (!defined('ABSPATH')) {
     exit;
 }
 
-class WP_Dailybuddy_Security_Monitor_Widget
+class Dailybuddy_Security_Monitor_Widget
 {
     private $transient_prefix = 'dailybuddy_security_';
 
@@ -600,4 +600,4 @@ class WP_Dailybuddy_Security_Monitor_Widget
 }
 
 // Initialize module
-new WP_Dailybuddy_Security_Monitor_Widget();
+new Dailybuddy_Security_Monitor_Widget();

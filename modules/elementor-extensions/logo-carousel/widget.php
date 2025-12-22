@@ -18,7 +18,7 @@ use Elementor\Repeater;
 use Elementor\Utils;
 use Elementor\Icons_Manager;
 
-class WP_Dailybuddy_Elementor_Logo_Carousel_Widget extends Widget_Base
+class Dailybuddy_Elementor_Logo_Carousel_Widget extends Widget_Base
 {
 
     /**
@@ -1008,8 +1008,10 @@ class WP_Dailybuddy_Elementor_Logo_Carousel_Widget extends Widget_Base
                                         }
 
                                         if ($is_linked) {
-                                            // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-                                            printf('<a %s>', $this->get_render_attribute_string($logo_key));
+                                            // Use print_render_attribute_string() for proper escaping
+                                            echo '<a ';
+                                            $this->print_render_attribute_string($logo_key);
+                                            echo '>';
                                         }
                                         ?>
                                         <img class="dailybuddy-lc-img"
@@ -1025,8 +1027,10 @@ class WP_Dailybuddy_Elementor_Logo_Carousel_Widget extends Widget_Base
                                     if (!empty($item['logo_title']) && $item['hide_logo_title'] !== 'yes') {
                                         echo '<h3 class="dailybuddy-logo-carousel-title">';
                                         if ($is_linked) {
-                                            // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-                                            printf('<a %s>', $this->get_render_attribute_string($logo_key));
+                                            // Use print_render_attribute_string() for proper escaping
+                                            echo '<a ';
+                                            $this->print_render_attribute_string($logo_key);
+                                            echo '>';
                                         }
                                         echo esc_html($item['logo_title']);
                                         if ($is_linked) {

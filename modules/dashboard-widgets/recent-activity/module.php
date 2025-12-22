@@ -10,7 +10,7 @@ if (!defined('ABSPATH')) {
     exit;
 }
 
-class WP_Dailybuddy_Recent_Activity_Widget
+class Dailybuddy_Recent_Activity_Widget
 {
     private $activity_limit = 10;
 
@@ -597,4 +597,4 @@ class WP_Dailybuddy_Recent_Activity_Widget
 }
 
 // Initialize module
-new WP_Dailybuddy_Recent_Activity_Widget();
+new Dailybuddy_Recent_Activity_Widget();

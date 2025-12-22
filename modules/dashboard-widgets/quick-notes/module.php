@@ -10,7 +10,7 @@ if (!defined('ABSPATH')) {
     exit;
 }
 
-class WP_Dailybuddy_Quick_Notes_Widget
+class Dailybuddy_Quick_Notes_Widget
 {
     public function __construct()
     {
@@ -599,4 +599,4 @@ class WP_Dailybuddy_Quick_Notes_Widget
 }
 
 // Initialize module
-new WP_Dailybuddy_Quick_Notes_Widget();
+new Dailybuddy_Quick_Notes_Widget();

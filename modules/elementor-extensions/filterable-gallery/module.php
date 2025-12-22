@@ -10,7 +10,7 @@ if (!defined('ABSPATH')) {
     exit;
 }
 
-class WP_Dailybuddy_Elementor_Filterable_Gallery
+class Dailybuddy_Elementor_Filterable_Gallery
 {
     private static $instance = null;
 
@@ -55,7 +55,7 @@ class WP_Dailybuddy_Elementor_Filterable_Gallery
         require_once DAILYBUDDY_PATH . 'modules/elementor-extensions/filterable-gallery/widget.php';
 
         // Register widget
-        $widgets_manager->register(new \WP_Dailybuddy_Elementor_Filterable_Gallery_Widget());
+        $widgets_manager->register(new \Dailybuddy_Elementor_Filterable_Gallery_Widget());
     }
 
     /**
@@ -63,14 +63,6 @@ class WP_Dailybuddy_Elementor_Filterable_Gallery
      */
     public function enqueue_widget_styles()
     {
-        // Enqueue Magnific Popup CSS
-        wp_enqueue_style(
-            'magnific-popup',
-            DAILYBUDDY_URL . 'vendor/magnific-popup/magnific-popup.min.css',
-            array(),
-            '1.1.0'
-        );
-
         wp_enqueue_style(
             'dailybuddy-filterable-gallery',
             DAILYBUDDY_URL . 'modules/elementor-extensions/filterable-gallery/assets/style.css',
@@ -102,15 +94,6 @@ class WP_Dailybuddy_Elementor_Filterable_Gallery
             true
         );
 
-        // Enqueue Magnific Popup
-        wp_enqueue_script(
-            'magnific-popup',
-            DAILYBUDDY_URL . 'vendor/magnific-popup/magnific-popup.min.js',
-            array('jquery'),
-            '1.1.0',
-            true
-        );
-
         // Enqueue DOMPurify for security
         wp_enqueue_script(
             'dompurify',
@@ -120,11 +103,11 @@ class WP_Dailybuddy_Elementor_Filterable_Gallery
             true
         );
 
-        // Enqueue main script with dailybuddy hooks
+        // Enqueue main script - now using Elementor's native lightbox
         wp_enqueue_script(
             'dailybuddy-filterable-gallery',
             DAILYBUDDY_URL . 'modules/elementor-extensions/filterable-gallery/assets/script.js',
-            array('jquery', 'isotope', 'imagesloaded', 'magnific-popup', 'dompurify'),
+            array('jquery', 'isotope', 'imagesloaded', 'dompurify'),
             DAILYBUDDY_VERSION,
             true
         );
@@ -145,4 +128,4 @@ class WP_Dailybuddy_Elementor_Filterable_Gallery
 }
 
 // Initialize module
-WP_Dailybuddy_Elementor_Filterable_Gallery::get_instance();
+Dailybuddy_Elementor_Filterable_Gallery::get_instance();

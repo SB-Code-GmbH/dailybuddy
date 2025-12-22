@@ -18,7 +18,7 @@ use Elementor\Group_Control_Background;
 use Elementor\Utils;
 use Elementor\Plugin;
 
-class WP_Dailybuddy_Elementor_Content_Timeline_Widget extends Widget_Base
+class Dailybuddy_Elementor_Content_Timeline_Widget extends Widget_Base
 {
 
     /**

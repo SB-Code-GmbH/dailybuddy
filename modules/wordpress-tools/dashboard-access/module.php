@@ -10,7 +10,7 @@ if (!defined('ABSPATH')) {
     exit;
 }
 
-class WP_Dailybuddy_Dashboard_Access
+class Dailybuddy_Dashboard_Access
 {
     private $settings;
 
@@ -326,4 +326,4 @@ function dailybuddy_render_dashboard_access_settings()
 }
 
 // Initialize module
-new WP_Dailybuddy_Dashboard_Access();
+new Dailybuddy_Dashboard_Access();

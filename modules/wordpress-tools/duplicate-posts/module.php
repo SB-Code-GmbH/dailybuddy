@@ -10,7 +10,7 @@ if (! defined('ABSPATH')) {
     exit;
 }
 
-class WP_Dailybuddy_Duplicate_Posts
+class Dailybuddy_Duplicate_Posts
 {
 
     public function __construct()
@@ -104,4 +104,4 @@ class WP_Dailybuddy_Duplicate_Posts
 }
 
 // Initialize module
-new WP_Dailybuddy_Duplicate_Posts();
+new Dailybuddy_Duplicate_Posts();

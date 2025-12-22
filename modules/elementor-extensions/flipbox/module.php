@@ -10,7 +10,7 @@ if (!defined('ABSPATH')) {
     exit;
 }
 
-class WP_Dailybuddy_Elementor_FlipBox
+class Dailybuddy_Elementor_FlipBox
 {
     private static $instance = null;
 
@@ -54,7 +54,7 @@ class WP_Dailybuddy_Elementor_FlipBox
         require_once DAILYBUDDY_PATH . 'modules/elementor-extensions/flipbox/widget.php';
 
         // Register widget
-        $widgets_manager->register(new \WP_Dailybuddy_Elementor_FlipBox_Widget());
+        $widgets_manager->register(new \Dailybuddy_Elementor_FlipBox_Widget());
     }
 
     /**
@@ -85,4 +85,4 @@ class WP_Dailybuddy_Elementor_FlipBox
 }
 
 // Initialize module
-WP_Dailybuddy_Elementor_FlipBox::get_instance();
+Dailybuddy_Elementor_FlipBox::get_instance();

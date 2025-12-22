@@ -10,7 +10,7 @@ if (! defined('ABSPATH')) {
     exit;
 }
 
-class WP_Dailybuddy_Under_Construction
+class Dailybuddy_Under_Construction
 {
 
     public function __construct()
@@ -121,12 +121,12 @@ class WP_Dailybuddy_Under_Construction
             return;
         }
 
-        // Prüfen, ob die WP_Dailybuddy_Settings-Klasse verfügbar ist
-        if (! class_exists('WP_Dailybuddy_Settings')) {
+        // Prüfen, ob die Dailybuddy_Settings-Klasse verfügbar ist
+        if (! class_exists('Dailybuddy_Settings')) {
             return;
         }
 
-        $modules   = WP_Dailybuddy_Settings::get_modules();
+        $modules   = Dailybuddy_Settings::get_modules();
         $module_id = 'wordpress-tools/under-construction';
 
         /**
@@ -533,9 +533,17 @@ class WP_Dailybuddy_Under_Construction
                 }
 
                 <?php
-                /* Custom CSS – sanitized on save in control callback */
-                // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-                echo $settings['custom_css'];
+                /**
+                 * Custom CSS output
+                 * 
+                 * User-provided CSS from admin settings.
+                 * wp_strip_all_tags() prevents XSS by removing HTML tags
+                 * while preserving CSS syntax (selectors, properties, values).
+                 * 
+                 * This is the recommended approach for outputting CSS code
+                 * within <style> tags per WordPress security guidelines.
+                 */
+                echo wp_strip_all_tags($settings['custom_css']);
                 ?>
             </style>
         </head>
@@ -675,7 +683,7 @@ class WP_Dailybuddy_Under_Construction
 }
 
 // Initialize module
-new WP_Dailybuddy_Under_Construction();
+new Dailybuddy_Under_Construction();
 
 /**
  * Render settings page for Under Construction module

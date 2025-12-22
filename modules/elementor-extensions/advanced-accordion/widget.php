@@ -18,7 +18,7 @@ use Elementor\Icons_Manager;
 use Elementor\Repeater;
 use Elementor\Plugin;
 
-class WP_Dailybuddy_Elementor_Advanced_Accordion_Widget extends Widget_Base
+class Dailybuddy_Elementor_Advanced_Accordion_Widget extends Widget_Base
 {
 
     /**

@@ -33,8 +33,8 @@ if (! in_array($dailybuddy_current_tab, $dailybuddy_allowed_tabs, true)) {
 
 // Load module list if not already available
 if (! isset($dailybuddy_modules) || ! is_array($dailybuddy_modules)) {
-    if (class_exists('WP_Dailybuddy_Settings')) {
-        $dailybuddy_modules = WP_Dailybuddy_Settings::get_modules();
+    if (class_exists('Dailybuddy_Settings')) {
+        $dailybuddy_modules = Dailybuddy_Settings::get_modules();
     } else {
         $dailybuddy_modules = array();
     }
@@ -105,8 +105,8 @@ if (! isset($dailybuddy_modules) || ! is_array($dailybuddy_modules)) {
                     <?php
                     $dailybuddy_modules_with_settings = array();
 
-                    if (class_exists('WP_Dailybuddy_Settings')) {
-                        $dailybuddy_modules_state = WP_Dailybuddy_Settings::get_modules();
+                    if (class_exists('Dailybuddy_Settings')) {
+                        $dailybuddy_modules_state = Dailybuddy_Settings::get_modules();
 
                         if (is_array($dailybuddy_modules_state)) {
                             foreach ($dailybuddy_modules_state as $dailybuddy_module_id => $dailybuddy_is_active) {

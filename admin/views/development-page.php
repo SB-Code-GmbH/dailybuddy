@@ -158,7 +158,7 @@ $dailybuddy_current_tab = isset($_GET['tab'])
             <h2><?php esc_html_e('Active Modules', 'dailybuddy'); ?></h2>
 
             <?php
-            $dailybuddy_active_modules  = WP_Dailybuddy_Settings::get_modules();
+            $dailybuddy_active_modules  = Dailybuddy_Settings::get_modules();
             $dailybuddy_active_count   = count(array_filter($dailybuddy_active_modules));
             ?>
 

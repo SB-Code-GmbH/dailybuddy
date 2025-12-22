@@ -7,7 +7,7 @@ if ( ! defined( 'ABSPATH' ) ) {
     exit;
 }
 
-class WP_Dailybuddy_Settings {
+class Dailybuddy_Settings {
     
     /**
      * Speichert die Modul-Einstellungen

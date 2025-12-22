@@ -17,7 +17,7 @@ use Elementor\Group_Control_Background;
 use Elementor\Icons_Manager;
 use Elementor\Utils;
 
-class WP_Dailybuddy_Elementor_FlipBox_Widget extends Widget_Base
+class Dailybuddy_Elementor_FlipBox_Widget extends Widget_Base
 {
 
     /**

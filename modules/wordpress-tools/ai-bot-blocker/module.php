@@ -10,7 +10,7 @@ if (!defined('ABSPATH')) {
     exit;
 }
 
-class WP_Dailybuddy_AI_Bot_Blocker
+class Dailybuddy_AI_Bot_Blocker
 {
     private $settings;
 
@@ -119,7 +119,7 @@ class WP_Dailybuddy_AI_Bot_Blocker
         // Manage physical robots.txt file
         if (!empty($this->settings['use_robots_txt'])) {
             add_action('init', function () {
-                WP_Dailybuddy_AI_Bot_Blocker::manage_robots_txt_file();
+                Dailybuddy_AI_Bot_Blocker::manage_robots_txt_file();
             });
             // Also use WordPress filter as fallback
             add_filter('robots_txt', array($this, 'modify_robots_txt'), 10, 2);
@@ -137,7 +137,7 @@ class WP_Dailybuddy_AI_Bot_Blocker
         add_action('admin_enqueue_scripts', array($this, 'enqueue_admin_styles'));
 
         // Clean up on deactivation
-        register_deactivation_hook(__FILE__, array('WP_Dailybuddy_AI_Bot_Blocker', 'cleanup_robots_txt'));
+        register_deactivation_hook(__FILE__, array('Dailybuddy_AI_Bot_Blocker', 'cleanup_robots_txt'));
     }
 
     /**
@@ -205,6 +205,23 @@ class WP_Dailybuddy_AI_Bot_Blocker
 
     /**
      * Manage physical robots.txt file
+     * 
+     * IMPORTANT: This function MUST use ABSPATH for robots.txt location
+     * 
+     * Why ABSPATH is correct and necessary here:
+     * - robots.txt is a web standard that MUST be located at the domain root (example.com/robots.txt)
+     * - This is NOT a WordPress-specific file but a universal web crawling protocol (RFC 9309)
+     * - Search engines and bots expect robots.txt at the site root, not in wp-content or uploads
+     * - ABSPATH represents the WordPress installation root, which is the correct location
+     * 
+     * We cannot use:
+     * - plugin_dir_path() - would place file in plugin directory (incorrect)
+     * - wp_upload_dir() - would place file in uploads directory (incorrect)
+     * - WP_CONTENT_DIR - would place file in wp-content directory (incorrect)
+     * 
+     * Reference: https://www.robotstxt.org/robotstxt.html
+     * 
+     * @param array|null $settings Optional settings array
      */
     public static function manage_robots_txt_file($settings = null)
     {
@@ -212,6 +229,10 @@ class WP_Dailybuddy_AI_Bot_Blocker
             $settings = get_option('dailybuddy_ai_bot_blocker_settings', array());
         }
 
+        /**
+         * ABSPATH usage is intentional and correct here for robots.txt
+         * robots.txt must be at domain root per web standards (RFC 9309)
+         */
         $robots_file = ABSPATH . 'robots.txt';
         $blocked_bots = isset($settings['blocked_bots']) ? $settings['blocked_bots'] : array();
         $use_robots_txt = !empty($settings['use_robots_txt']);
@@ -249,7 +270,11 @@ class WP_Dailybuddy_AI_Bot_Blocker
             WP_Filesystem();
         }
 
-        // Check if path is writable using WordPress helpers.
+        /**
+         * Check if WordPress root directory or robots.txt file is writable
+         * ABSPATH usage is correct here - robots.txt must be in WordPress root directory
+         * to comply with Robots Exclusion Standard (RFC 9309)
+         */
         if (wp_is_writable(ABSPATH) || wp_is_writable($robots_file)) {
             // Use WP_Filesystem instead of direct PHP file operations.
             $wp_filesystem->put_contents($robots_file, $new_content, FS_CHMOD_FILE);
@@ -295,9 +320,16 @@ class WP_Dailybuddy_AI_Bot_Blocker
 
     /**
      * Clean up robots.txt on deactivation
+     * 
+     * ABSPATH is correctly used here - robots.txt must be at WordPress root
+     * per Robots Exclusion Standard (RFC 9309)
      */
     public static function cleanup_robots_txt()
     {
+        /**
+         * ABSPATH usage is intentional and correct here
+         * robots.txt must be at domain root per web standards
+         */
         $robots_file = ABSPATH . 'robots.txt';
 
         if (!file_exists($robots_file)) {
@@ -375,7 +407,7 @@ function dailybuddy_render_ai_bot_blocker_settings()
         wp_die(esc_html__('You do not have permission to access this page.', 'dailybuddy'));
     }
 
-    $dailybuddy_instance = new WP_Dailybuddy_AI_Bot_Blocker();
+    $dailybuddy_instance = new Dailybuddy_AI_Bot_Blocker();
     $dailybuddy_ai_bots = $dailybuddy_instance->get_ai_bots();
 
     // Get current settings
@@ -403,7 +435,7 @@ function dailybuddy_render_ai_bot_blocker_settings()
         $dailybuddy_settings = $dailybuddy_new_settings;
 
         // Update robots.txt file immediately after saving
-        WP_Dailybuddy_AI_Bot_Blocker::manage_robots_txt_file($dailybuddy_new_settings);
+        Dailybuddy_AI_Bot_Blocker::manage_robots_txt_file($dailybuddy_new_settings);
 
         echo '<div class="notice notice-success is-dismissible"><p>' . esc_html__('Settings saved successfully!', 'dailybuddy') . '</p></div>';
     }
@@ -413,4 +445,4 @@ function dailybuddy_render_ai_bot_blocker_settings()
 }
 
 // Initialize module
-new WP_Dailybuddy_AI_Bot_Blocker();
+new Dailybuddy_AI_Bot_Blocker();

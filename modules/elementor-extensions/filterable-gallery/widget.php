@@ -19,7 +19,7 @@ use Elementor\Core\Kits\Documents\Tabs\Global_Typography;
 use Elementor\Utils;
 use Elementor\Plugin;
 
-class WP_Dailybuddy_Elementor_Filterable_Gallery_Widget extends Widget_Base
+class Dailybuddy_Elementor_Filterable_Gallery_Widget extends Widget_Base
 {
     private $popup_status = false;
     private $default_control_key = 0;
@@ -3500,11 +3500,7 @@ class WP_Dailybuddy_Elementor_Filterable_Gallery_Widget extends Widget_Base
         $sorter_class = str_replace('}', 'curlybracket', $sorter_class);
         $sorter_class = str_replace('?', 'questionmark', $sorter_class);
 
-        if (function_exists('mb_convert_encoding')) {
-            $sorter_class = mb_convert_encoding($sorter_class, 'UTF-8');
-        } else {
-            $sorter_class = utf8_encode($sorter_class);
-        }
+        $sorter_class = mb_convert_encoding($sorter_class, 'UTF-8');
 
         return $sorter_class;
     }
@@ -4202,8 +4198,17 @@ class WP_Dailybuddy_Elementor_Filterable_Gallery_Widget extends Widget_Base
                                                                         for ($i = 0; $i < $init_show; $i++) {
 
                                                                             if (array_key_exists($i, $gallery_items)) {
-                                                                                // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-                                                                                echo  $gallery_items[$i];
+                                                                                /**
+                                                                                 * Output gallery item HTML
+                                                                                 * 
+                                                                                 * $gallery_items contains self-generated HTML from render_gallery_items()
+                                                                                 * or render_layout_3_gallery_items() functions. The HTML is already
+                                                                                 * escaped at generation time (esc_url, esc_attr, etc.).
+                                                                                 * 
+                                                                                 * Using wp_kses_post() to allow safe HTML tags while filtering
+                                                                                 * any potentially dangerous content.
+                                                                                 */
+                                                                                echo wp_kses_post($gallery_items[$i]);
                                                                             }
                                                                         }
                                                                         if ($settings['dailybuddy_fg_caption_style'] === 'layout_3'):
@@ -4407,33 +4412,7 @@ class WP_Dailybuddy_Elementor_Filterable_Gallery_Widget extends Widget_Base
                             }, 500);
                         }
 
-                        // Popup
-                        $($scope).magnificPopup({
-                            delegate: ".dailybuddy-filterable-gallery-item-wrap:not([style*='display: none']) .dailybuddy-magnific-link-clone.active",
-                            type: "image",
-                            gallery: {
-                                enabled: $gallery_enabled
-                            },
-                            iframe: {
-                                markup: `<div class="mfp-iframe-scaler">
-                                        <div class="mfp-close"></div>
-                                        <iframe class="mfp-iframe" frameborder="0" allowfullscreen></iframe>
-                                        <div class="mfp-title dailybuddy-privacy-message"></div>
-                                    </div>`
-                            },
-                            callbacks: {
-                                markupParse: function(template, values, item) {
-                                    if (item.el.attr('title') !== "") {
-                                        values.title = item.el.attr('title');
-                                    }
-                                },
-                                open: function() {
-                                    setTimeout(() => {
-                                        $(".dailybuddy-privacy-message").remove();
-                                    }, 5000);
-                                },
-                            }
-                        });
+                        // Note: Using Elementor's native lightbox via data-elementor-open-lightbox attribute
 
                         // filter
                         $scope.on("click", ".control", function() {

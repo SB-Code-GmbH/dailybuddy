@@ -15,7 +15,7 @@ $dailybuddy_category      = explode('/', $dailybuddy_module_id)[0];
 $dailybuddy_category_name = dailybuddy_format_category_name($dailybuddy_category);
 
 // Aktuellen Modul-Status laden.
-$dailybuddy_modules_status = WP_Dailybuddy_Settings::get_modules();
+$dailybuddy_modules_status = Dailybuddy_Settings::get_modules();
 $dailybuddy_is_active      = ! empty($dailybuddy_modules_status[$dailybuddy_module_id]);
 
 // Breadcrumb link → focus on category only.

@@ -85,6 +85,16 @@ class Dailybuddy_Translation_Scanner
 
     /**
      * AJAX: Add translations to PO files
+     * 
+     * DEVELOPMENT TOOL NOTICE:
+     * This is a development-only tool for plugin authors to scan and manage translations.
+     * It is only accessible to users with 'manage_options' capability (administrators).
+     * 
+     * Security measures:
+     * - Nonce verification (check_ajax_referer)
+     * - Permission check (current_user_can('manage_options'))
+     * - JSON validation and sanitization
+     * - File path validation before writing
      */
     public function ajax_add_translations()
     {
@@ -96,18 +106,27 @@ class Dailybuddy_Translation_Scanner
         }
 
         // Development-only: Raw POST input used for internal translation scanning.
-        // This endpoint is not exposed to regular users.
+        // This endpoint is only accessible to administrators for development purposes.
         // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
         $locales_json = isset($_POST['locales']) ? wp_unslash($_POST['locales']) : '';
 
         // Development-only: Raw POST input used for internal translation scanning.
-        // This endpoint is not exposed to regular users.
+        // This endpoint is only accessible to administrators for development purposes.
         // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
         $strings_json = isset($_POST['strings']) ? wp_unslash($_POST['strings']) : '';
 
-        // Decode JSON strings
+        // Decode JSON strings with error handling
         $dailybuddy_locales = json_decode($locales_json, true);
         $strings = json_decode($strings_json, true);
+
+        // Check for JSON decoding errors
+        if (json_last_error() !== JSON_ERROR_NONE) {
+            wp_send_json_error(array(
+                'message' => __('JSON decoding error', 'dailybuddy'),
+                'error' => json_last_error_msg()
+            ));
+            return;
+        }
 
         // Ensure arrays
         if (!is_array($dailybuddy_locales)) {
@@ -119,6 +138,23 @@ class Dailybuddy_Translation_Scanner
 
         // Sanitize locale values
         $dailybuddy_locales = array_map('sanitize_text_field', $dailybuddy_locales);
+
+        // Sanitize translation strings
+        // Each string entry should be an array with 'msgid' and optionally 'context'
+        $strings = array_map(function($string) {
+            if (!is_array($string)) {
+                return array();
+            }
+            return array(
+                'msgid' => isset($string['msgid']) ? sanitize_text_field($string['msgid']) : '',
+                'context' => isset($string['context']) ? sanitize_text_field($string['context']) : '',
+            );
+        }, $strings);
+
+        // Remove empty strings after sanitization
+        $strings = array_filter($strings, function($string) {
+            return !empty($string['msgid']);
+        });
 
         // Validate data
         if (empty($dailybuddy_locales) || empty($strings)) {

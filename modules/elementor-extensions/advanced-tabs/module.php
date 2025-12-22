@@ -10,7 +10,7 @@ if (!defined('ABSPATH')) {
     exit;
 }
 
-class WP_Dailybuddy_Elementor_Advanced_Tabs
+class Dailybuddy_Elementor_Advanced_Tabs
 {
     private static $instance = null;
 
@@ -55,7 +55,7 @@ class WP_Dailybuddy_Elementor_Advanced_Tabs
         require_once DAILYBUDDY_PATH . 'modules/elementor-extensions/advanced-tabs/widget.php';
 
         // Register widget
-        $widgets_manager->register(new \WP_Dailybuddy_Elementor_Advanced_Tabs_Widget());
+        $widgets_manager->register(new \Dailybuddy_Elementor_Advanced_Tabs_Widget());
     }
 
     /**
@@ -100,4 +100,4 @@ class WP_Dailybuddy_Elementor_Advanced_Tabs
 }
 
 // Initialize module
-WP_Dailybuddy_Elementor_Advanced_Tabs::get_instance();
+Dailybuddy_Elementor_Advanced_Tabs::get_instance();

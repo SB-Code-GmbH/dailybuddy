@@ -8,7 +8,7 @@ if (! defined('ABSPATH')) {
     exit;
 }
 
-class WP_Dailybuddy
+class Dailybuddy
 {
 
     private static $instance = null;
@@ -24,12 +24,12 @@ class WP_Dailybuddy
     public function init()
     {
         // Initialize module loader
-        $module_loader = new WP_Dailybuddy_Module_Loader();
+        $module_loader = new Dailybuddy_Module_Loader();
         $module_loader->load_modules();
 
         // Initialize admin page
         if (is_admin()) {
-            $admin_page = new WP_Dailybuddy_Admin_Page();
+            $admin_page = new Dailybuddy_Admin_Page();
             $admin_page->init();
         }
 
@@ -55,14 +55,6 @@ class WP_Dailybuddy
             DAILYBUDDY_URL . 'assets/css/font-awesome/css/all.min.css',
             [],
             '6.5.1'
-        );
-
-        wp_enqueue_script(
-            'tweenmax-min',
-            DAILYBUDDY_URL . 'assets/js/TweenMax.min',
-            ['jquery', 'wp-i18n'],
-            DAILYBUDDY_VERSION,
-            true
         );
 
         wp_enqueue_style(

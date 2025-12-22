@@ -10,7 +10,7 @@ if (!defined('ABSPATH')) {
     exit;
 }
 
-class WP_Dailybuddy_Server_Performance_Widget
+class Dailybuddy_Server_Performance_Widget
 {
     public function __construct()
     {
@@ -590,4 +590,4 @@ class WP_Dailybuddy_Server_Performance_Widget
 }
 
 // Initialize module
-new WP_Dailybuddy_Server_Performance_Widget();
+new Dailybuddy_Server_Performance_Widget();

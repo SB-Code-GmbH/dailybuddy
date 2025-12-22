@@ -20,7 +20,7 @@ use Elementor\Utils;
 use Elementor\Icons_Manager;
 use Elementor\Plugin;
 
-class WP_Dailybuddy_Elementor_Advanced_Tabs_Widget extends Widget_Base
+class Dailybuddy_Elementor_Advanced_Tabs_Widget extends Widget_Base
 {
     /**
      * Get widget name

@@ -11,7 +11,7 @@ if (!defined('ABSPATH')) {
     exit;
 }
 
-class WP_Dailybuddy_Media_Replace
+class Dailybuddy_Media_Replace
 {
     public function __construct()
     {
@@ -121,9 +121,16 @@ class WP_Dailybuddy_Media_Replace
         }
 
         $attachment_id = absint($_POST['attachment_id']);
-        // Raw file array from $_FILES, unslashed and then restricted to allowed keys only.
-        // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
-        $this->process_file_replacement($attachment_id, $_FILES['replace_file']);
+
+        // Validate and sanitize uploaded file
+        // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized -- Validated by validate_uploaded_file()
+        $validated_file = $this->validate_uploaded_file($_FILES['replace_file']);
+
+        if (is_wp_error($validated_file)) {
+            wp_die(esc_html($validated_file->get_error_message()));
+        }
+
+        $this->process_file_replacement($attachment_id, $validated_file);
     }
 
     /**
@@ -204,6 +211,9 @@ class WP_Dailybuddy_Media_Replace
 
     /**
      * Process file replacement
+     * 
+     * @param int   $attachment_id The attachment ID to replace
+     * @param array $uploaded_file Already validated file array from validate_uploaded_file()
      */
     private function process_file_replacement($attachment_id, $uploaded_file)
     {
@@ -217,10 +227,7 @@ class WP_Dailybuddy_Media_Replace
         $old_file_dir = dirname($old_file_path);
         $old_file_name = basename($old_file_path);
 
-        // Check for upload errors
-        if ($uploaded_file['error'] !== UPLOAD_ERR_OK) {
-            wp_die(esc_html__('Error uploading file.', 'dailybuddy'));
-        }
+        // Note: Upload error check removed - already validated by validate_uploaded_file()
 
         // Get file extension
         $new_file_ext = strtolower(pathinfo($uploaded_file['name'], PATHINFO_EXTENSION));
@@ -348,6 +355,92 @@ class WP_Dailybuddy_Media_Replace
     }
 
     /**
+     * Validate uploaded file from $_FILES
+     * 
+     * Performs comprehensive security validation on uploaded files:
+     * - Validates array structure
+     * - Checks for upload errors
+     * - Validates file size against WordPress limits
+     * - Validates MIME type and file extension
+     * - Verifies it's an actual uploaded file
+     * 
+     * @param array $file File array from $_FILES
+     * @return array|WP_Error Sanitized file array or WP_Error on failure
+     */
+    private function validate_uploaded_file($file)
+    {
+        // Validate array structure - all required keys must exist
+        $required_keys = array('name', 'type', 'tmp_name', 'error', 'size');
+        foreach ($required_keys as $key) {
+            if (!isset($file[$key])) {
+                return new WP_Error(
+                    'invalid_file_structure',
+                    __('Invalid file upload structure.', 'dailybuddy')
+                );
+            }
+        }
+
+        // Check for upload errors
+        if ($file['error'] !== UPLOAD_ERR_OK) {
+            $error_messages = array(
+                UPLOAD_ERR_INI_SIZE   => __('File exceeds maximum upload size.', 'dailybuddy'),
+                UPLOAD_ERR_FORM_SIZE  => __('File exceeds form maximum size.', 'dailybuddy'),
+                UPLOAD_ERR_PARTIAL    => __('File was only partially uploaded.', 'dailybuddy'),
+                UPLOAD_ERR_NO_FILE    => __('No file was uploaded.', 'dailybuddy'),
+                UPLOAD_ERR_NO_TMP_DIR => __('Missing temporary upload directory.', 'dailybuddy'),
+                UPLOAD_ERR_CANT_WRITE => __('Failed to write file to disk.', 'dailybuddy'),
+                UPLOAD_ERR_EXTENSION  => __('File upload stopped by PHP extension.', 'dailybuddy'),
+            );
+
+            $message = isset($error_messages[$file['error']]) 
+                ? $error_messages[$file['error']] 
+                : __('Unknown upload error.', 'dailybuddy');
+
+            return new WP_Error('upload_error', $message);
+        }
+
+        // Validate file size
+        $max_size = wp_max_upload_size();
+        if ($file['size'] > $max_size) {
+            return new WP_Error(
+                'file_too_large',
+                sprintf(
+                    /* translators: %s: Maximum upload size */
+                    __('File size exceeds maximum allowed size of %s.', 'dailybuddy'),
+                    size_format($max_size)
+                )
+            );
+        }
+
+        // Verify this is an actual uploaded file (security check)
+        if (!is_uploaded_file($file['tmp_name'])) {
+            return new WP_Error(
+                'not_uploaded_file',
+                __('Security error: File was not properly uploaded.', 'dailybuddy')
+            );
+        }
+
+        // Validate MIME type and extension using WordPress's security function
+        $filetype = wp_check_filetype_and_ext($file['tmp_name'], $file['name']);
+
+        if (!$filetype['type'] || !$filetype['ext']) {
+            return new WP_Error(
+                'invalid_file_type',
+                __('Sorry, this file type is not permitted for security reasons.', 'dailybuddy')
+            );
+        }
+
+        // Return sanitized file array with validated MIME type
+        return array(
+            'name'     => sanitize_file_name($file['name']),
+            'type'     => $filetype['type'],
+            'tmp_name' => $file['tmp_name'],
+            'error'    => $file['error'],
+            'size'     => absint($file['size']),
+        );
+    }
+
+    /**
      * AJAX handler for media replacement
      */
     public function ajax_replace_media()
@@ -364,10 +457,17 @@ class WP_Dailybuddy_Media_Replace
 
         $attachment_id = absint($_POST['attachment_id']);
 
+        // Validate and sanitize uploaded file
+        // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized -- Validated by validate_uploaded_file()
+        $validated_file = $this->validate_uploaded_file($_FILES['file']);
+
+        if (is_wp_error($validated_file)) {
+            wp_send_json_error(array('message' => $validated_file->get_error_message()));
+            return;
+        }
+
         try {
-            // Raw file array from $_FILES, unslashed and then restricted to allowed keys only.
-            // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
-            $this->process_file_replacement($attachment_id, $_FILES['file']);
+            $this->process_file_replacement($attachment_id, $validated_file);
             wp_send_json_success(array(
                 'message' => __('File replaced successfully!', 'dailybuddy'),
                 'attachment_id' => $attachment_id,
@@ -380,4 +480,4 @@ class WP_Dailybuddy_Media_Replace
 }
 
 // Initialize module
-new WP_Dailybuddy_Media_Replace();
+new Dailybuddy_Media_Replace();
