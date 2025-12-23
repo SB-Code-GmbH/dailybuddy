@@ -45,181 +45,12 @@ class Dailybuddy_Recent_Activity_Widget
             return;
         }
 
-        $css = "
-        #dailybuddy_recent_activity .hndle::before {
-            content: '\\f463';
-            font-family: dashicons;
-            margin-right: 12px;
-            font-size: 20px;
-            color: #000;
-        }
-
-        #dailybuddy_recent_activity .activity-timeline {
-            margin: 15px 0;
-            padding: 0;
-        }
-        
-        #dailybuddy_recent_activity .activity-item {
-            display: flex;
-            gap: 15px;
-            padding: 12px 0;
-            border-bottom: 1px solid #f0f0f1;
-            transition: background 0.2s ease;
-        }
-        
-        #dailybuddy_recent_activity .activity-item:last-child {
-            border-bottom: none;
-        }
-        
-        #dailybuddy_recent_activity .activity-item:hover {
-            background: #f6f7f7;
-            margin: 0 -12px;
-            padding: 12px 12px;
-        }
-        
-        #dailybuddy_recent_activity .activity-icon {
-            flex-shrink: 0;
-            width: 32px;
-            height: 32px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border-radius: 50%;
-            font-size: 14px;
-        }
-        
-        #dailybuddy_recent_activity .activity-icon.post {
-            background: #e7f3ff;
-            color: #2271b1;
-        }
-        
-        #dailybuddy_recent_activity .activity-icon.page {
-            background: #e6f7ec;
-            color: #00a32a;
-        }
-        
-        #dailybuddy_recent_activity .activity-icon.comment {
-            background: #ffe7e7;
-            color: #d63638;
-        }
-        
-        #dailybuddy_recent_activity .activity-icon.user {
-            background: #f3e7ff;
-            color: #8c44b3;
-        }
-        
-        #dailybuddy_recent_activity .activity-icon.plugin {
-            background: #fff7e6;
-            color: #f0b849;
-        }
-        
-        #dailybuddy_recent_activity .activity-icon.theme {
-            background: #ffe6f0;
-            color: #e91e63;
-        }
-        
-        #dailybuddy_recent_activity .activity-icon.media {
-            background: #fff7e6;
-            color: #f0b849;
-        }
-        
-        #dailybuddy_recent_activity .activity-content {
-            flex: 1;
-            min-width: 0;
-        }
-        
-        #dailybuddy_recent_activity .activity-title {
-            font-size: 13px;
-            font-weight: 500;
-            color: #1d2327;
-            margin: 0 0 4px 0;
-            line-height: 1.4;
-        }
-        
-        #dailybuddy_recent_activity .activity-title a {
-            color: #2271b1;
-            text-decoration: none;
-        }
-        
-        #dailybuddy_recent_activity .activity-title a:hover {
-            color: #135e96;
-            text-decoration: underline;
-        }
-        
-        #dailybuddy_recent_activity .activity-meta {
-            font-size: 12px;
-            color: #646970;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            flex-wrap: wrap;
-        }
-        
-        #dailybuddy_recent_activity .activity-time {
-            display: flex;
-            align-items: center;
-            gap: 4px;
-        }
-        
-        #dailybuddy_recent_activity .activity-time .dashicons {
-            font-size: 14px;
-            width: 14px;
-            height: 14px;
-        }
-        
-        #dailybuddy_recent_activity .activity-author {
-            display: flex;
-            align-items: center;
-            gap: 4px;
-        }
-        
-        #dailybuddy_recent_activity .activity-author .dashicons {
-            font-size: 14px;
-            width: 14px;
-            height: 14px;
-        }
-        
-        #dailybuddy_recent_activity .activity-badge {
-            display: inline-block;
-            padding: 2px 8px;
-            background: #f0f0f1;
-            border-radius: 3px;
-            font-size: 11px;
-            font-weight: 500;
-            text-transform: uppercase;
-        }
-        
-        #dailybuddy_recent_activity .activity-badge.new {
-            background: #e6f7ec;
-            color: #00a32a;
-        }
-        
-        #dailybuddy_recent_activity .activity-badge.updated {
-            background: #e7f3ff;
-            color: #2271b1;
-        }
-        
-        #dailybuddy_recent_activity .activity-badge.deleted {
-            background: #ffe7e7;
-            color: #d63638;
-        }
-        
-        #dailybuddy_recent_activity .no-activity {
-            text-align: center;
-            padding: 40px 20px;
-            color: #646970;
-        }
-        
-        #dailybuddy_recent_activity .no-activity .dashicons {
-            font-size: 48px;
-            width: 48px;
-            height: 48px;
-            opacity: 0.3;
-            margin-bottom: 10px;
-        }
-        ";
-
-        wp_add_inline_style('dashboard', $css);
+        wp_enqueue_style(
+            'recent-activity',
+            DAILYBUDDY_URL . 'modules/dashboard-widgets/recent-activity/assets/style.css',
+            array(),
+            DAILYBUDDY_VERSION
+        );
     }
 
     /**
@@ -311,7 +142,7 @@ class Dailybuddy_Recent_Activity_Widget
     private function get_post_activities()
     {
         $activities = array();
-        
+
         // Get post status based on user capabilities
         $post_status = array('publish');
         if (current_user_can('edit_private_posts')) {
@@ -319,7 +150,7 @@ class Dailybuddy_Recent_Activity_Widget
             $post_status[] = 'future';
             $post_status[] = 'private';
         }
-        
+
         $posts = get_posts(array(
             'post_type'      => 'post',
             'posts_per_page' => 5,
@@ -333,10 +164,10 @@ class Dailybuddy_Recent_Activity_Widget
             if (!current_user_can('edit_post', $post->ID)) {
                 continue;
             }
-            
+
             $author = get_userdata($post->post_author);
             $edit_link = get_edit_post_link($post->ID);
-            
+
             // Skip if no edit link available
             if (!$edit_link) {
                 continue;
@@ -380,14 +211,14 @@ class Dailybuddy_Recent_Activity_Widget
     private function get_page_activities()
     {
         $activities = array();
-        
+
         // Get page status based on user capabilities
         $post_status = array('publish');
         if (current_user_can('edit_pages')) {
             $post_status[] = 'draft';
             $post_status[] = 'private';
         }
-        
+
         $pages = get_posts(array(
             'post_type'      => 'page',
             'posts_per_page' => 3,
@@ -401,10 +232,10 @@ class Dailybuddy_Recent_Activity_Widget
             if (!current_user_can('edit_page', $page->ID)) {
                 continue;
             }
-            
+
             $author = get_userdata($page->post_author);
             $edit_link = get_edit_post_link($page->ID);
-            
+
             // Skip if no edit link available
             if (!$edit_link) {
                 continue;
@@ -438,7 +269,7 @@ class Dailybuddy_Recent_Activity_Widget
         if (!current_user_can('moderate_comments')) {
             return array();
         }
-        
+
         $activities = array();
         $comments = get_comments(array(
             'number' => 5,
@@ -449,12 +280,12 @@ class Dailybuddy_Recent_Activity_Widget
 
         foreach ($comments as $comment) {
             $post = get_post($comment->comment_post_ID);
-            
+
             // Skip if post doesn't exist
             if (!$post) {
                 continue;
             }
-            
+
             $edit_link = admin_url('comment.php?action=editcomment&c=' . $comment->comment_ID);
 
             $badge = '';
@@ -499,7 +330,7 @@ class Dailybuddy_Recent_Activity_Widget
         if (!current_user_can('upload_files')) {
             return array();
         }
-        
+
         $activities = array();
         $media = get_posts(array(
             'post_type'      => 'attachment',
@@ -512,7 +343,7 @@ class Dailybuddy_Recent_Activity_Widget
         foreach ($media as $item) {
             $author = get_userdata($item->post_author);
             $edit_link = get_edit_post_link($item->ID);
-            
+
             // Skip if no edit link available
             if (!$edit_link) {
                 continue;
@@ -559,7 +390,7 @@ class Dailybuddy_Recent_Activity_Widget
         if (!current_user_can('list_users')) {
             return array();
         }
-        
+
         $activities = array();
         $users = get_users(array(
             'number'  => 3,
@@ -569,7 +400,7 @@ class Dailybuddy_Recent_Activity_Widget
 
         foreach ($users as $user) {
             $edit_link = get_edit_user_link($user->ID);
-            
+
             // Skip if no edit link available
             if (!$edit_link) {
                 continue;
