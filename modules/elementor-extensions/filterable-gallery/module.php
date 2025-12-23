@@ -30,6 +30,7 @@ class Dailybuddy_Elementor_Filterable_Gallery
         add_action('elementor/frontend/after_enqueue_styles', array($this, 'enqueue_widget_styles'));
         add_action('elementor/frontend/after_enqueue_scripts', array($this, 'enqueue_widget_scripts'));
         add_action('elementor/editor/after_enqueue_styles', array($this, 'enqueue_editor_styles'));
+        add_action('elementor/editor/after_enqueue_scripts', array($this, 'enqueue_editor_scripts'));
     }
 
     /**
@@ -67,6 +68,14 @@ class Dailybuddy_Elementor_Filterable_Gallery
             'dailybuddy-filterable-gallery',
             DAILYBUDDY_URL . 'modules/elementor-extensions/filterable-gallery/assets/style.css',
             array(),
+            DAILYBUDDY_VERSION
+        );
+        
+        // Enqueue responsive CSS (uses CSS Custom Properties for dynamic columns)
+        wp_enqueue_style(
+            'dailybuddy-filterable-gallery-responsive',
+            DAILYBUDDY_URL . 'modules/elementor-extensions/filterable-gallery/assets/responsive.css',
+            array('dailybuddy-filterable-gallery'),
             DAILYBUDDY_VERSION
         );
     }
@@ -123,6 +132,22 @@ class Dailybuddy_Elementor_Filterable_Gallery
             DAILYBUDDY_URL . 'modules/elementor-extensions/filterable-gallery/assets/editor.css',
             array(),
             DAILYBUDDY_VERSION
+        );
+    }
+
+    /**
+     * Enqueue editor scripts
+     * Moved from inline <script> tag in widget.php for WordPress.org compliance
+     */
+    public function enqueue_editor_scripts()
+    {
+        // Enqueue the editor script (isotope initialization for editor preview)
+        wp_enqueue_script(
+            'dailybuddy-filterable-gallery-editor',
+            DAILYBUDDY_URL . 'modules/elementor-extensions/filterable-gallery/assets/editor.js',
+            array('jquery', 'isotope', 'imagesloaded'),
+            DAILYBUDDY_VERSION,
+            true
         );
     }
 }

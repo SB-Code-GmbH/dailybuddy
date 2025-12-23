@@ -1,0 +1,32 @@
+/**
+ * Filterable Gallery - Responsive Grid CSS
+ * 
+ * Uses CSS Custom Properties (CSS Variables) for dynamic column counts
+ * JavaScript sets these variables based on Elementor breakpoints and widget settings
+ */
+
+/* Default desktop columns */
+.dailybuddy-filterable-gallery-item-wrap {
+    width: calc(100% / var(--fg-columns-desktop, 3));
+}
+
+/* Tablet breakpoint */
+@media only screen and (max-width: 1024px) {
+    .dailybuddy-filterable-gallery-item-wrap {
+        width: calc(100% / var(--fg-columns-tablet, 2));
+    }
+}
+
+/* Mobile breakpoint */
+@media only screen and (max-width: 767px) {
+    .dailybuddy-filterable-gallery-item-wrap {
+        width: calc(100% / var(--fg-columns-mobile, 1));
+    }
+}
+
+/* Widescreen support */
+@media only screen and (min-width: 2400px) {
+    .dailybuddy-filterable-gallery-item-wrap {
+        width: calc(100% / var(--fg-columns-desktop, 3));
+    }
+}

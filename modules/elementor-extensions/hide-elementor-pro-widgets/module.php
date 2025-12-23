@@ -212,54 +212,17 @@ class Dailybuddy_Elementor_Hide_Pro_Widgets
 
     /**
      * Add JavaScript to remove promotion widgets after page load
+     * Moved from inline <script> tag to external file for WordPress.org compliance
      */
     public function add_editor_js()
     {
-?>
-        <script>
-            document.addEventListener('DOMContentLoaded', function() {
-                // Function to remove promotion widgets
-                function removePromotionWidgets() {
-                    // Remove all promotion widgets
-                    const promotionWidgets = document.querySelectorAll('.elementor-element-wrapper.elementor-element--promotion');
-                    promotionWidgets.forEach(widget => {
-                        widget.remove();
-                    });
-
-                    // Remove widgets with lock icons
-                    const lockedWidgets = document.querySelectorAll('.elementor-element-wrapper:has(.eicon-lock)');
-                    lockedWidgets.forEach(widget => {
-                        widget.remove();
-                    });
-                }
-
-                // Run immediately
-                removePromotionWidgets();
-
-                // Run again after a short delay (for dynamically loaded content)
-                setTimeout(removePromotionWidgets, 1000);
-                setTimeout(removePromotionWidgets, 3000);
-
-                // Observer for dynamically added content
-                const observer = new MutationObserver(function(mutations) {
-                    mutations.forEach(function(mutation) {
-                        if (mutation.addedNodes.length > 0) {
-                            removePromotionWidgets();
-                        }
-                    });
-                });
-
-                // Observe changes in the widget panel
-                const widgetPanel = document.querySelector('#elementor-panel-elements');
-                if (widgetPanel) {
-                    observer.observe(widgetPanel, {
-                        childList: true,
-                        subtree: true
-                    });
-                }
-            });
-        </script>
-<?php
+        wp_enqueue_script(
+            'dailybuddy-hide-pro-widgets-editor',
+            DAILYBUDDY_URL . 'modules/elementor-extensions/hide-elementor-pro-widgets/assets/editor.js',
+            array(),
+            DAILYBUDDY_VERSION,
+            true
+        );
     }
 }
 
