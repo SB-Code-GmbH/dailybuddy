@@ -99,31 +99,3 @@ if (!defined('ABSPATH')) {
     </div>
 </div>
 
-<script>
-jQuery(document).ready(function($) {
-    // Show selected filename
-    $('#replace_file').on('change', function() {
-        const fileName = $(this).val().split('\\').pop();
-        $('#file-chosen').text(fileName || '<?php esc_html_e('No file chosen', 'dailybuddy'); ?>');
-    });
-    
-    // Form validation (fallback if external script doesn't load)
-    $('#dailybuddy-replace-form').on('submit', function(e) {
-        const fileInput = $('#replace_file')[0];
-        
-        if (!fileInput.files || fileInput.files.length === 0) {
-            e.preventDefault();
-            alert('<?php esc_html_e('Please select a file.', 'dailybuddy'); ?>');
-            return false;
-        }
-        
-        if (!confirm('<?php esc_html_e('Are you sure you want to replace this file? This action cannot be undone.', 'dailybuddy'); ?>')) {
-            e.preventDefault();
-            return false;
-        }
-        
-        $('#upload-progress').show();
-        $('.submit-actions').hide();
-    });
-});
-</script>

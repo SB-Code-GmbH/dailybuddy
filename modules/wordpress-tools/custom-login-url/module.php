@@ -51,6 +51,9 @@ class Dailybuddy_Custom_Login_URL
 
         // Enqueue admin styles
         add_action('admin_enqueue_scripts', array($this, 'enqueue_admin_styles'));
+        
+        // Enqueue admin scripts
+        add_action('admin_enqueue_scripts', array($this, 'enqueue_admin_scripts'));
     }
 
     /**
@@ -69,6 +72,39 @@ class Dailybuddy_Custom_Login_URL
                 DAILYBUDDY_URL . 'assets/css/modul-settings.css',
                 array(),
                 DAILYBUDDY_VERSION
+            );
+        }
+    }
+
+    /**
+     * Enqueue admin scripts
+     * Moved from inline <script> tag in templates/settings-page.php for WordPress.org compliance
+     */
+    public function enqueue_admin_scripts($hook)
+    {
+        // Only load on DailyBuddy settings page
+        if (strpos($hook, 'dailybuddy') === false) {
+            return;
+        }
+
+        if (defined('DAILYBUDDY_URL') && defined('DAILYBUDDY_VERSION')) {
+            wp_enqueue_script(
+                'dailybuddy-custom-login-url-settings',
+                DAILYBUDDY_URL . 'modules/wordpress-tools/custom-login-url/assets/settings.js',
+                array('jquery'),
+                DAILYBUDDY_VERSION,
+                true
+            );
+
+            // Localize script for translations
+            wp_localize_script(
+                'dailybuddy-custom-login-url-settings',
+                'dailybuddyCustomLoginUrl',
+                array(
+                    'copiedText' => esc_html__('Copied!', 'dailybuddy'),
+                    'errorSameSlugs' => esc_js(__('Error: Login slug and redirect slug cannot be the same!', 'dailybuddy')),
+                    'errorRequiredSlugs' => esc_js(__('Error: Both slugs are required!', 'dailybuddy')),
+                )
             );
         }
     }

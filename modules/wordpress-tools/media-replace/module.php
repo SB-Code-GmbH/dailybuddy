@@ -75,6 +75,7 @@ class Dailybuddy_Media_Replace
 
     /**
      * Enqueue admin scripts and styles
+     * Moved inline script from templates/replace-form.php for WordPress.org compliance
      */
     public function enqueue_admin_assets($hook)
     {
@@ -88,8 +89,24 @@ class Dailybuddy_Media_Replace
                 DAILYBUDDY_VERSION
             );
 
-            // jQuery is needed for the inline script in the template
-            wp_enqueue_script('jquery');
+            wp_enqueue_script(
+                'dailybuddy-media-replace',
+                DAILYBUDDY_URL . 'modules/wordpress-tools/media-replace/assets/replace-form.js',
+                array('jquery'),
+                DAILYBUDDY_VERSION,
+                true
+            );
+
+            // Localize script for translations
+            wp_localize_script(
+                'dailybuddy-media-replace',
+                'dailybuddyMediaReplace',
+                array(
+                    'noFileChosen' => esc_html__('No file chosen', 'dailybuddy'),
+                    'pleaseSelectFile' => esc_html__('Please select a file.', 'dailybuddy'),
+                    'confirmReplace' => esc_html__('Are you sure you want to replace this file? This action cannot be undone.', 'dailybuddy'),
+                )
+            );
 
             return;
         }

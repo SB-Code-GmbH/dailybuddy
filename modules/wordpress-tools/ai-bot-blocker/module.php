@@ -135,6 +135,9 @@ class Dailybuddy_AI_Bot_Blocker
 
         // Enqueue admin styles
         add_action('admin_enqueue_scripts', array($this, 'enqueue_admin_styles'));
+        
+        // Enqueue admin scripts
+        add_action('admin_enqueue_scripts', array($this, 'enqueue_admin_scripts'));
 
         // Clean up on deactivation
         register_deactivation_hook(__FILE__, array('Dailybuddy_AI_Bot_Blocker', 'cleanup_robots_txt'));
@@ -156,6 +159,37 @@ class Dailybuddy_AI_Bot_Blocker
                 DAILYBUDDY_URL . 'assets/css/modul-settings.css',
                 array(),
                 DAILYBUDDY_VERSION
+            );
+        }
+    }
+
+    /**
+     * Enqueue admin scripts
+     * Moved from inline <script> tag in templates/settings-page.php for WordPress.org compliance
+     */
+    public function enqueue_admin_scripts($hook)
+    {
+        // Only load on DailyBuddy settings page
+        if (strpos($hook, 'dailybuddy') === false) {
+            return;
+        }
+
+        if (defined('DAILYBUDDY_URL') && defined('DAILYBUDDY_VERSION')) {
+            wp_enqueue_script(
+                'dailybuddy-ai-bot-blocker-settings',
+                DAILYBUDDY_URL . 'modules/wordpress-tools/ai-bot-blocker/assets/settings.js',
+                array('jquery'),
+                DAILYBUDDY_VERSION,
+                true
+            );
+
+            // Localize script for translations
+            wp_localize_script(
+                'dailybuddy-ai-bot-blocker-settings',
+                'dailybuddyAiBotBlocker',
+                array(
+                    'copiedText' => esc_html__('Copied!', 'dailybuddy'),
+                )
             );
         }
     }

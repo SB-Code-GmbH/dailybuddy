@@ -19,11 +19,12 @@ use Elementor\Core\Kits\Documents\Tabs\Global_Typography;
 use Elementor\Utils;
 use Elementor\Plugin;
 
+// phpcs:disable WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedFunctionFound
 class Dailybuddy_Elementor_Filterable_Gallery_Widget extends Widget_Base
 {
-    private $popup_status = false;
-    private $default_control_key = 0;
-    private $custom_default_control = false;
+    private $dailybuddy_filterable_gallery_popup_status = false;
+    private $dailybuddy_filterable_gallery_default_control_key = 0;
+    private $dailybuddy_filterable_gallery_custom_default_control = false;
 
     public function get_name()
     {
@@ -3947,383 +3948,383 @@ class Dailybuddy_Elementor_Filterable_Gallery_Widget extends Widget_Base
                 $this->add_link_attributes($link_key, $item['link']);
                 $this->add_render_attribute($link_key, 'aria-label', 'dailybuddy-item-maybe-link');
             ?>
-                <a <?php $this->print_render_attribute_string($link_key); ?>> <?php
-                                                                                echo '<span class="fg-item-icon-inner">';
+                <a <?php $this->print_render_attribute_string($link_key); ?>>
+            <?php
+                echo '<span class="fg-item-icon-inner">';
 
-                                                                                if ($link_icon_is_new || $link_icon_migrated) {
-                                                                                    if (isset($settings['dailybuddy_section_fg_link_icon_new']['value']['url'])) {
-                                                                                        echo '<img src="' . esc_url($settings['dailybuddy_section_fg_link_icon_new']['value']['url']) . '" alt="' . esc_attr(get_post_meta($settings['dailybuddy_section_fg_link_icon_new']['value']['id'], '_wp_attachment_image_alt', true)) . '" />';
-                                                                                    } else {
-                                                                                        echo '<i class="' . esc_attr($settings['dailybuddy_section_fg_link_icon_new']['value']) . '" aria-hidden="true"></i>';
-                                                                                    }
-                                                                                } else {
-                                                                                    echo '<i class="' . esc_attr($settings['dailybuddy_section_fg_link_icon']) . '" aria-hidden="true"></i>';
-                                                                                }
+                if ($link_icon_is_new || $link_icon_migrated) {
+                    if (isset($settings['dailybuddy_section_fg_link_icon_new']['value']['url'])) {
+                        echo '<img src="' . esc_url($settings['dailybuddy_section_fg_link_icon_new']['value']['url']) . '" alt="' . esc_attr(get_post_meta($settings['dailybuddy_section_fg_link_icon_new']['value']['id'], '_wp_attachment_image_alt', true)) . '" />';
+                    } else {
+                        echo '<i class="' . esc_attr($settings['dailybuddy_section_fg_link_icon_new']['value']) . '" aria-hidden="true"></i>';
+                    }
+                } else {
+                    echo '<i class="' . esc_attr($settings['dailybuddy_section_fg_link_icon']) . '" aria-hidden="true"></i>';
+                }
 
-                                                                                echo '</span>';
-                                                                                echo '</a>';
-                                                                            }
-                                                                        }
+                echo '</span>';
+                echo '</a>';
+            }
+        }
 
-                                                                        echo '</div>';
+        echo '</div>';
 
-                                                                        return ob_get_clean();
-                                                                    }
+        return ob_get_clean();
+    }
 
-                                                                    protected function render_layout_3_gallery_items($init_show = 0)
-                                                                    {
-                                                                        $settings = $this->get_settings_for_display();
-                                                                        $gallery = $this->gallery_item_store();
-                                                                        $caption_style  = $settings['dailybuddy_fg_caption_style'] == 'card' ? 'caption-style-card' : 'caption-style-hoverer';
-                                                                        $gallery_markup = [];
+    protected function render_layout_3_gallery_items($init_show = 0)
+    {
+        $settings = $this->get_settings_for_display();
+        $gallery = $this->gallery_item_store();
+        $caption_style  = $settings['dailybuddy_fg_caption_style'] == 'card' ? 'caption-style-card' : 'caption-style-hoverer';
+        $gallery_markup = [];
 
-                                                                        foreach ($gallery as $item) {
-                                                                            $html = '<div class="dailybuddy-filterable-gallery-item-wrap dailybuddy-cf-' . esc_attr($item['controls']) . '" data-search-key="' . esc_attr(strtolower(str_replace(" ", "-", $item['title']))) . '">';
-                                                                            $html .= '<div class="fg-layout-3-item dailybuddy-gallery-grid-item">';
+        foreach ($gallery as $item) {
+            $html = '<div class="dailybuddy-filterable-gallery-item-wrap dailybuddy-cf-' . esc_attr($item['controls']) . '" data-search-key="' . esc_attr(strtolower(str_replace(" ", "-", $item['title']))) . '">';
+            $html .= '<div class="fg-layout-3-item dailybuddy-gallery-grid-item">';
 
-                                                                            if ($settings['dailybuddy_section_fg_full_image_clickable'] && 'true' !== $item['video_gallery_switch']) {
-                                                                                $html .= $this->gallery_item_full_image_clickable_content($settings, $item, false);
-                                                                            }
+            if ($settings['dailybuddy_section_fg_full_image_clickable'] && 'true' !== $item['video_gallery_switch']) {
+                $html .= $this->gallery_item_full_image_clickable_content($settings, $item, false);
+            }
 
-                                                                            if (
-                                                                                isset($item['video_gallery_switch']) && ($item['video_gallery_switch'] === 'true')
-                                                                                && isset($settings['dailybuddy_section_fg_full_image_clickable']) && $settings['dailybuddy_section_fg_full_image_clickable'] === 'yes'
-                                                                            ) {
-                                                                                $html .= '<div class="gallery-item-thumbnail-wrap fg-layout-3-item-thumb video_gallery_switch_on">';
-                                                                            } else {
-                                                                                $html .= '<div class="gallery-item-thumbnail-wrap fg-layout-3-item-thumb">';
-                                                                            }
+            if (
+                isset($item['video_gallery_switch']) && ($item['video_gallery_switch'] === 'true')
+                && isset($settings['dailybuddy_section_fg_full_image_clickable']) && $settings['dailybuddy_section_fg_full_image_clickable'] === 'yes'
+            ) {
+                $html .= '<div class="gallery-item-thumbnail-wrap fg-layout-3-item-thumb video_gallery_switch_on">';
+            } else {
+                $html .= '<div class="gallery-item-thumbnail-wrap fg-layout-3-item-thumb">';
+            }
 
-                                                                            $alt_text = get_post_meta($item['image_id'], '_wp_attachment_image_alt', true);
-                                                                            $alt_text = ! empty($alt_text) ? $alt_text : $item['title'];
-                                                                            $html .= '<img src="' . esc_url($item['image']) . '" data-lazy-src="' . esc_url($item['image']) . '" alt="' . esc_attr($alt_text) . '" class="gallery-item-thumbnail">';
+            $alt_text = get_post_meta($item['image_id'], '_wp_attachment_image_alt', true);
+            $alt_text = ! empty($alt_text) ? $alt_text : $item['title'];
+            $html .= '<img src="' . esc_url($item['image']) . '" data-lazy-src="' . esc_url($item['image']) . '" alt="' . esc_attr($alt_text) . '" class="gallery-item-thumbnail">';
 
-                                                                            $html .= '<div class="gallery-item-caption-wrap card-hover-bg caption-style-hoverer">';
-                                                                            $html .= '<div class="fg-caption-head">';
-                                                                            if (isset($item['price_switch']) && $item['price_switch'] == 'true') {
-                                                                                $html .= '<div class="fg-item-price">' . $item['price'] . '</div>';
-                                                                            }
-                                                                            if (isset($item['ratings_switch']) && $item['ratings_switch'] == 'true') {
-                                                                                $html .= '<div class="fg-item-ratings"><i class="fas fa-star"></i> ' . $item['ratings'] . '</div>';
-                                                                            }
-                                                                            $html .= '</div>';
+            $html .= '<div class="gallery-item-caption-wrap card-hover-bg caption-style-hoverer">';
+            $html .= '<div class="fg-caption-head">';
+            if (isset($item['price_switch']) && $item['price_switch'] == 'true') {
+                $html .= '<div class="fg-item-price">' . $item['price'] . '</div>';
+            }
+            if (isset($item['ratings_switch']) && $item['ratings_switch'] == 'true') {
+                $html .= '<div class="fg-item-ratings"><i class="fas fa-star"></i> ' . $item['ratings'] . '</div>';
+            }
+            $html .= '</div>';
 
-                                                                            if (isset($item['video_gallery_switch']) && ($item['video_gallery_switch'] === 'true')) {
-                                                                                $html .= $this->video_gallery_switch_content($item, $caption_style, false);
-                                                                            } else {
-                                                                                if (empty($settings['dailybuddy_section_fg_full_image_clickable'])) {
-                                                                                    $html .= $this->render_fg_buttons($settings, $item);
-                                                                                }
-                                                                            }
+            if (isset($item['video_gallery_switch']) && ($item['video_gallery_switch'] === 'true')) {
+                $html .= $this->video_gallery_switch_content($item, $caption_style, false);
+            } else {
+                if (empty($settings['dailybuddy_section_fg_full_image_clickable'])) {
+                    $html .= $this->render_fg_buttons($settings, $item);
+                }
+            }
 
-                                                                            $html .= '</div>';
+            $html .= '</div>';
 
-                                                                            $html .= '</div>';
+            $html .= '</div>';
 
-                                                                            if ($settings['dailybuddy_section_fg_full_image_clickable']) $html .= '</a>';
+            if ($settings['dailybuddy_section_fg_full_image_clickable']) $html .= '</a>';
 
-                                                                            $html .= '<div class="fg-layout-3-item-content">';
+            $html .= '<div class="fg-layout-3-item-content">';
 
-                                                                            if (isset($item['category_switch']) && $item['category_switch'] == 'true') {
-                                                                                $html .= '<div class="fg-item-category"><span>' . $item['category'] . '</span></div>';
-                                                                            }
-                                                                            $title_link_open = $title_link_close = '';
-                                                                            if ($settings['dailybuddy_title_clickable'] === 'yes') {
-                                                                                static $ea_link_repeater_index = 0;
-                                                                                $link_key = 'link_' . $ea_link_repeater_index++;
-                                                                                if (empty($this->get_render_attribute_string($link_key))) {
-                                                                                    $link_key = 'dailybuddy_link_' . $ea_link_repeater_index++;
-                                                                                    $this->add_link_attributes($link_key, $item['link']);
-                                                                                }
-                                                                                $title_link_open = '<a ' . $this->get_render_attribute_string($link_key) . '>';
-                                                                                $title_link_close = '</a>';
-                                                                            }
+            if (isset($item['category_switch']) && $item['category_switch'] == 'true') {
+                $html .= '<div class="fg-item-category"><span>' . $item['category'] . '</span></div>';
+            }
+            $title_link_open = $title_link_close = '';
+            if ($settings['dailybuddy_title_clickable'] === 'yes') {
+                static $ea_link_repeater_index = 0;
+                $link_key = 'link_' . $ea_link_repeater_index++;
+                if (empty($this->get_render_attribute_string($link_key))) {
+                    $link_key = 'dailybuddy_link_' . $ea_link_repeater_index++;
+                    $this->add_link_attributes($link_key, $item['link']);
+                }
+                $title_link_open = '<a ' . $this->get_render_attribute_string($link_key) . '>';
+                $title_link_close = '</a>';
+            }
 
-                                                                            $title_tag = esc_attr($settings['title_tag']);
-                                                                            $html .= $title_link_open . '<' . $title_tag . ' class="fg-item-title">' . $item['title'] . '</' . $title_tag . '>' . $title_link_close;
-                                                                            $html .= '<div class="fg-item-content">' . wpautop($item['content']) . '</div>';
-                                                                            $html .= '</div>';
+            $title_tag = esc_attr($settings['title_tag']);
+            $html .= $title_link_open . '<' . $title_tag . ' class="fg-item-title">' . $item['title'] . '</' . $title_tag . '>' . $title_link_close;
+            $html .= '<div class="fg-item-content">' . wpautop($item['content']) . '</div>';
+            $html .= '</div>';
 
-                                                                            $html .= '</div>';
-                                                                            $html .= '</div>';
+            $html .= '</div>';
+            $html .= '</div>';
 
-                                                                            $gallery_markup[] = $html;
-                                                                        }
-                                                                        return $gallery_markup;
-                                                                    }
+            $gallery_markup[] = $html;
+        }
+        return $gallery_markup;
+    }
 
-                                                                    protected function render_gallery_items($init_show = 0)
-                                                                    {
-                                                                        $settings       = $this->get_settings_for_display();
-                                                                        $gallery        = $this->gallery_item_store();
-                                                                        $gallery_markup = [];
-                                                                        $caption_style  = $settings['dailybuddy_fg_caption_style'] == 'card' ? 'caption-style-card' : 'caption-style-hoverer';
-                                                                        $magnific_class = "dailybuddy-magnific-link dailybuddy-magnific-link-clone active";
-                                                                        $is_lightbox    = 'yes';
+    protected function render_gallery_items($init_show = 0)
+    {
+        $settings       = $this->get_settings_for_display();
+        $gallery        = $this->gallery_item_store();
+        $gallery_markup = [];
+        $caption_style  = $settings['dailybuddy_fg_caption_style'] == 'card' ? 'caption-style-card' : 'caption-style-hoverer';
+        $magnific_class = "dailybuddy-magnific-link dailybuddy-magnific-link-clone active";
+        $is_lightbox    = 'yes';
 
-                                                                        if ($settings['dailybuddy_fg_show_popup'] === 'media' && $settings['dailybuddy_section_fg_full_image_action'] === 'link') {
-                                                                            $magnific_class = '';
-                                                                            $is_lightbox = 'no';
-                                                                        }
+        if ($settings['dailybuddy_fg_show_popup'] === 'media' && $settings['dailybuddy_section_fg_full_image_action'] === 'link') {
+            $magnific_class = '';
+            $is_lightbox = 'no';
+        }
 
-                                                                        foreach ($gallery as $item) {
-                                                                            $this->popup_status = false;
-                                                                            $close_media_content_wrap = false;
+        foreach ($gallery as $item) {
+            $this->popup_status = false;
+            $close_media_content_wrap = false;
 
-                                                                            $title = '';
+            $title = '';
 
-                                                                            if ($settings['dailybuddy_section_fg_mfp_caption'] === 'yes') {
-                                                                                $title = $item['title'];
-                                                                            }
+            if ($settings['dailybuddy_section_fg_mfp_caption'] === 'yes') {
+                $title = $item['title'];
+            }
 
-                                                                            if ($item['controls'] != '') {
-                                                                                $html = '<div class="dailybuddy-filterable-gallery-item-wrap dailybuddy-cf-' . $item['controls'] . '">
+            if ($item['controls'] != '') {
+                $html = '<div class="dailybuddy-filterable-gallery-item-wrap dailybuddy-cf-' . $item['controls'] . '">
 				<div class="dailybuddy-gallery-grid-item">';
-                                                                            } else {
-                                                                                $html = '<div class="dailybuddy-filterable-gallery-item-wrap">
+            } else {
+                $html = '<div class="dailybuddy-filterable-gallery-item-wrap">
 				<div class="dailybuddy-gallery-grid-item">';
-                                                                            }
+            }
 
-                                                                            if (
-                                                                                $settings['dailybuddy_fg_caption_style'] === 'card'
-                                                                                && $item['video_gallery_switch'] != 'true'
-                                                                                && $settings['dailybuddy_fg_show_popup'] === 'media'
-                                                                            ) {
-                                                                                $this->popup_status = true;
-                                                                                $close_media_content_wrap = true;
-                                                                                $html .= '<a  aria-hidden="true" aria-label="dailybuddy-magnific-link" href="' . esc_url($item['image']) . '" class="' . $magnific_class . ' media-content-wrap" data-elementor-open-lightbox="' . esc_attr($is_lightbox) . '" title="' . esc_attr($title) . '">';
-                                                                            }
+            if (
+                $settings['dailybuddy_fg_caption_style'] === 'card'
+                && $item['video_gallery_switch'] != 'true'
+                && $settings['dailybuddy_fg_show_popup'] === 'media'
+            ) {
+                $this->popup_status = true;
+                $close_media_content_wrap = true;
+                $html .= '<a  aria-hidden="true" aria-label="dailybuddy-magnific-link" href="' . esc_url($item['image']) . '" class="' . $magnific_class . ' media-content-wrap" data-elementor-open-lightbox="' . esc_attr($is_lightbox) . '" title="' . esc_attr($title) . '">';
+            }
 
-                                                                            if ($settings['dailybuddy_section_fg_full_image_clickable'] && 'true' !== $item['video_gallery_switch']) {
-                                                                                $html .= $this->gallery_item_full_image_clickable_content($settings, $item);
-                                                                            }
+            if ($settings['dailybuddy_section_fg_full_image_clickable'] && 'true' !== $item['video_gallery_switch']) {
+                $html .= $this->gallery_item_full_image_clickable_content($settings, $item);
+            }
 
-                                                                            if (
-                                                                                isset($item['video_gallery_switch']) && ($item['video_gallery_switch'] === 'true')
-                                                                                && isset($settings['dailybuddy_section_fg_full_image_clickable']) && $settings['dailybuddy_section_fg_full_image_clickable'] === 'yes'
-                                                                            ) {
-                                                                                $html .= '<div class="gallery-item-thumbnail-wrap video_gallery_switch_on">';
-                                                                            } else {
-                                                                                $html .= '<div class="gallery-item-thumbnail-wrap">';
-                                                                            }
+            if (
+                isset($item['video_gallery_switch']) && ($item['video_gallery_switch'] === 'true')
+                && isset($settings['dailybuddy_section_fg_full_image_clickable']) && $settings['dailybuddy_section_fg_full_image_clickable'] === 'yes'
+            ) {
+                $html .= '<div class="gallery-item-thumbnail-wrap video_gallery_switch_on">';
+            } else {
+                $html .= '<div class="gallery-item-thumbnail-wrap">';
+            }
 
-                                                                            $html .= $this->gallery_item_thumbnail_content($settings, $item);
+            $html .= $this->gallery_item_thumbnail_content($settings, $item);
 
-                                                                            $html .= '</div>';
+            $html .= '</div>';
 
-                                                                            if ($settings['dailybuddy_section_fg_full_image_clickable'] && 'card' === $settings['dailybuddy_fg_caption_style']) {
-                                                                                $html .= '</a>';
-                                                                            }
-                                                                            if ($close_media_content_wrap) {
-                                                                                $html .= '</a>';
-                                                                            }
+            if ($settings['dailybuddy_section_fg_full_image_clickable'] && 'card' === $settings['dailybuddy_fg_caption_style']) {
+                $html .= '</a>';
+            }
+            if ($close_media_content_wrap) {
+                $html .= '</a>';
+            }
 
-                                                                            if ($settings['dailybuddy_fg_show_popup'] == 'media' && $settings['dailybuddy_fg_caption_style'] !== 'card' && !$this->popup_status) {
-                                                                                $html .= '<a area-hidden="true" aria-label="dailybuddy-magnific-link" href="' . esc_url($item['image']) . '" class="' . $magnific_class . ' media-content-wrap" data-elementor-open-lightbox="' . esc_attr($is_lightbox) . '" title="' . esc_attr($title) . '">';
-                                                                            }
+            if ($settings['dailybuddy_fg_show_popup'] == 'media' && $settings['dailybuddy_fg_caption_style'] !== 'card' && !$this->popup_status) {
+                $html .= '<a area-hidden="true" aria-label="dailybuddy-magnific-link" href="' . esc_url($item['image']) . '" class="' . $magnific_class . ' media-content-wrap" data-elementor-open-lightbox="' . esc_attr($is_lightbox) . '" title="' . esc_attr($title) . '">';
+            }
 
-                                                                            // Overlay
-                                                                            if ($settings['dailybuddy_fg_caption_style'] === 'hoverer') {
-                                                                                if ($item['video_gallery_switch'] !== 'true') {
-                                                                                    $html .= $this->gallery_item_caption_content($settings, $item, $caption_style);
-                                                                                }
-                                                                            }
+            // Overlay
+            if ($settings['dailybuddy_fg_caption_style'] === 'hoverer') {
+                if ($item['video_gallery_switch'] !== 'true') {
+                    $html .= $this->gallery_item_caption_content($settings, $item, $caption_style);
+                }
+            }
 
-                                                                            if ($settings['dailybuddy_fg_show_popup'] == 'media') {
-                                                                                $html .= '</a>';
-                                                                            }
+            if ($settings['dailybuddy_fg_show_popup'] == 'media') {
+                $html .= '</a>';
+            }
 
-                                                                            if ($settings['dailybuddy_section_fg_full_image_clickable'] && 'card' !== $settings['dailybuddy_fg_caption_style']) {
-                                                                                $html .= '</a>';
-                                                                            }
+            if ($settings['dailybuddy_section_fg_full_image_clickable'] && 'card' !== $settings['dailybuddy_fg_caption_style']) {
+                $html .= '</a>';
+            }
 
-                                                                            // Card
-                                                                            if ($settings['dailybuddy_fg_caption_style'] === 'card') {
-                                                                                $html .= $this->gallery_item_caption_content($settings, $item, $caption_style);
-                                                                            }
+            // Card
+            if ($settings['dailybuddy_fg_caption_style'] === 'card') {
+                $html .= $this->gallery_item_caption_content($settings, $item, $caption_style);
+            }
 
-                                                                            $html .= '</div></div>';
+            $html .= '</div></div>';
 
-                                                                            $gallery_markup[] = $html;
-                                                                        }
+            $gallery_markup[] = $html;
+        }
 
-                                                                        return $gallery_markup;
-                                                                    }
+        return $gallery_markup;
+    }
 
-                                                                    protected function render_media_query($settings)
-                                                                    {
-                                                                        $section_id  = esc_html($this->get_id());
-                                                                        $breakpoints = method_exists(Plugin::$instance->breakpoints, 'get_breakpoints_config') ? Plugin::$instance->breakpoints->get_breakpoints_config() : [];
-                                                                        
-                                                                        // Set default column values
-                                                                        $columns_desktop = isset($settings['columns']) ? $settings['columns'] : 3;
-                                                                        $columns_tablet = isset($settings['columns_tablet']) ? $settings['columns_tablet'] : 2;
-                                                                        $columns_mobile = isset($settings['columns_mobile']) ? $settings['columns_mobile'] : 1;
-                                                                        
-                                                                        // Set CSS Custom Properties on the gallery element
-                                                                        // These will be used by the responsive.css file
-                                                                        $this->add_render_attribute('gallery', 'style', 
-                                                                            '--fg-columns-desktop:' . esc_attr($columns_desktop) . ';' .
-                                                                            '--fg-columns-tablet:' . esc_attr($columns_tablet) . ';' .
-                                                                            '--fg-columns-mobile:' . esc_attr($columns_mobile) . ';'
-                                                                        );
-                                                                    }
+    protected function render_media_query($settings)
+    {
+        $section_id  = esc_html($this->get_id());
+        $breakpoints = method_exists(Plugin::$instance->breakpoints, 'get_breakpoints_config') ? Plugin::$instance->breakpoints->get_breakpoints_config() : [];
 
-                                                                    /**
-                                                                     * Render gallery items
-                                                                     *
-                                                                     * @param [type] $settings
-                                                                     * @param [type] $gallery_items
-                                                                     * @return void
-                                                                     */
-                                                                    public function dailybuddy_render_gallery_item_wrap($settings, $gallery_items)
-                                                                    {
-                                                                                ?>
+        // Set default column values
+        $columns_desktop = isset($settings['columns']) ? $settings['columns'] : 3;
+        $columns_tablet = isset($settings['columns_tablet']) ? $settings['columns_tablet'] : 2;
+        $columns_mobile = isset($settings['columns_mobile']) ? $settings['columns_mobile'] : 1;
+
+        // Set CSS Custom Properties on the gallery element
+        // These will be used by the responsive.css file
+        $this->add_render_attribute(
+            'gallery',
+            'style',
+            '--fg-columns-desktop:' . esc_attr($columns_desktop) . ';' .
+                '--fg-columns-tablet:' . esc_attr($columns_tablet) . ';' .
+                '--fg-columns-mobile:' . esc_attr($columns_mobile) . ';'
+        );
+    }
+
+    /**
+     * Render gallery items
+     *
+     * @param [type] $settings
+     * @param [type] $gallery_items
+     * @return void
+     */
+    public function dailybuddy_render_gallery_item_wrap($settings, $gallery_items)
+    {
+            ?>
             <div <?php $this->print_render_attribute_string('gallery-items-wrap'); ?>>
                 <?php
-                                                                        $init_show = absint($settings['dailybuddy_fg_items_to_show']);
+                $init_show = absint($settings['dailybuddy_fg_items_to_show']);
 
-                                                                        for ($i = 0; $i < $init_show; $i++) {
+                for ($i = 0; $i < $init_show; $i++) {
 
-                                                                            if (array_key_exists($i, $gallery_items)) {
-                                                                                /**
-                                                                                 * Output gallery item HTML
-                                                                                 * 
-                                                                                 * $gallery_items contains self-generated HTML from render_gallery_items()
-                                                                                 * or render_layout_3_gallery_items() functions. The HTML is already
-                                                                                 * escaped at generation time (esc_url, esc_attr, etc.).
-                                                                                 * 
-                                                                                 * Using wp_kses_post() to allow safe HTML tags while filtering
-                                                                                 * any potentially dangerous content.
-                                                                                 */
-                                                                                echo wp_kses_post($gallery_items[$i]);
-                                                                            }
-                                                                        }
-                                                                        if ($settings['dailybuddy_fg_caption_style'] === 'layout_3'):
+                    if (array_key_exists($i, $gallery_items)) {
+                        /**
+                         * Output gallery item HTML
+                         * 
+                         * $gallery_items contains self-generated HTML from render_gallery_items()
+                         * or render_layout_3_gallery_items() functions. The HTML is already
+                         * escaped at generation time (esc_url, esc_attr, etc.).
+                         * 
+                         * Using wp_kses_post() to allow safe HTML tags while filtering
+                         * any potentially dangerous content.
+                         */
+                        echo wp_kses_post($gallery_items[$i]);
+                    }
+                }
+                if ($settings['dailybuddy_fg_caption_style'] === 'layout_3'):
                 ?>
                     <div id="dailybuddy-fg-no-items-found" style="display:none;">
                         <?php
-                                                                            echo wp_kses($settings['dailybuddy_fg_not_found_text'], wp_kses_allowed_html("post"));
+                        echo wp_kses($settings['dailybuddy_fg_not_found_text'], wp_kses_allowed_html("post"));
                         ?>
                     </div>
                 <?php endif; ?>
             </div>
         <?php
-                                                                    }
+    }
 
-                                                                    protected function render()
-                                                                    {
-                                                                        $settings = $this->get_settings_for_display();
+    protected function render()
+    {
+        $settings = $this->get_settings_for_display();
 
-                                                                        if (!empty($settings['dailybuddy_fg_filter_duration'])) {
-                                                                            $filter_duration = $settings['dailybuddy_fg_filter_duration'];
-                                                                        } else {
-                                                                            $filter_duration = 500;
-                                                                        }
+        if (!empty($settings['dailybuddy_fg_filter_duration'])) {
+            $filter_duration = $settings['dailybuddy_fg_filter_duration'];
+        } else {
+            $filter_duration = 500;
+        }
 
-                                                                        $this->add_render_attribute(
-                                                                            'gallery',
-                                                                            [
-                                                                                'id' => 'dailybuddy-filter-gallery-wrapper-' . esc_attr($this->get_id()),
-                                                                                'class' => 'dailybuddy-filter-gallery-wrapper',
-                                                                                'data-layout-mode'  => $settings['dailybuddy_fg_caption_style']
-                                                                            ]
-                                                                        );
+        $this->add_render_attribute(
+            'gallery',
+            [
+                'id' => 'dailybuddy-filter-gallery-wrapper-' . esc_attr($this->get_id()),
+                'class' => 'dailybuddy-filter-gallery-wrapper',
+                'data-layout-mode'  => $settings['dailybuddy_fg_caption_style']
+            ]
+        );
 
-                                                                        $gallery_settings = [
-                                                                            'grid_style' => $settings['dailybuddy_fg_grid_style'],
-                                                                            'popup' => $settings['dailybuddy_fg_show_popup'],
-                                                                            'duration' => $filter_duration,
-                                                                            'gallery_enabled' => $settings['photo_gallery'],
-                                                                            'video_gallery_yt_privacy' => $settings['video_gallery_yt_privacy'],
-                                                                            'control_all_text' => $settings['dailybuddy_fg_all_label_text'],
-                                                                        ];
+        $gallery_settings = [
+            'grid_style' => $settings['dailybuddy_fg_grid_style'],
+            'popup' => $settings['dailybuddy_fg_show_popup'],
+            'duration' => $filter_duration,
+            'gallery_enabled' => $settings['photo_gallery'],
+            'video_gallery_yt_privacy' => $settings['video_gallery_yt_privacy'],
+            'control_all_text' => $settings['dailybuddy_fg_all_label_text'],
+        ];
 
-                                                                        if (Plugin::$instance->editor->is_edit_mode()) {
-                                                                            $gallery_settings['post_id'] =  Plugin::$instance->editor->get_post_id();
-                                                                        } else {
-                                                                            $gallery_settings['post_id'] = get_the_ID();
-                                                                        }
-                                                                        if (method_exists(Plugin::$instance->breakpoints, 'get_breakpoints_config') && ! empty($breakpoints = \Elementor\Plugin::$instance->breakpoints->get_breakpoints_config())) {
+        if (Plugin::$instance->editor->is_edit_mode()) {
+            $gallery_settings['post_id'] =  Plugin::$instance->editor->get_post_id();
+        } else {
+            $gallery_settings['post_id'] = get_the_ID();
+        }
+        if (method_exists(Plugin::$instance->breakpoints, 'get_breakpoints_config') && ! empty($breakpoints = \Elementor\Plugin::$instance->breakpoints->get_breakpoints_config())) {
 
-                                                                            $this->add_render_attribute('gallery', 'data-breakpoints', wp_json_encode($breakpoints));
-                                                                        }
+            $this->add_render_attribute('gallery', 'data-breakpoints', wp_json_encode($breakpoints));
+        }
 
-                                                                        $gallery_settings['widget_id'] = $this->get_id();
+        $gallery_settings['widget_id'] = $this->get_id();
 
-                                                                        $no_more_items_text = esc_html($settings['nomore_items_text']);
-                                                                        $grid_class = $settings['dailybuddy_fg_grid_style'] == 'grid' ? 'dailybuddy-filter-gallery-grid' : 'masonry';
+        $no_more_items_text = esc_html($settings['nomore_items_text']);
+        $grid_class = $settings['dailybuddy_fg_grid_style'] == 'grid' ? 'dailybuddy-filter-gallery-grid' : 'masonry';
 
-                                                                        if ('layout_3' == $settings['dailybuddy_fg_caption_style']) {
-                                                                            $gallery_items = $items = $this->render_layout_3_gallery_items();
-                                                                        } else {
-                                                                            $gallery_items = $items = $this->render_gallery_items();
-                                                                        }
+        if ('layout_3' == $settings['dailybuddy_fg_caption_style']) {
+            $gallery_items = $items = $this->render_layout_3_gallery_items();
+        } else {
+            $gallery_items = $items = $this->render_gallery_items();
+        }
 
-                                                                        $this->add_render_attribute('gallery-items-wrap', [
-                                                                            'class' => [
-                                                                                'dailybuddy-filter-gallery-container',
-                                                                                $grid_class
-                                                                            ],
-                                                                            'data-images-per-page' => $settings['images_per_page'],
-                                                                            'data-total-gallery-items' => count($settings['dailybuddy_fg_gallery_items']),
-                                                                            'data-nomore-item-text' => $no_more_items_text,
-                                                                            'data-is-randomize' => 'yes' === $settings['dailybuddy_item_randomize'] ? 'yes' : 'no',
-                                                                        ]);
+        $this->add_render_attribute('gallery-items-wrap', [
+            'class' => [
+                'dailybuddy-filter-gallery-container',
+                $grid_class
+            ],
+            'data-images-per-page' => $settings['images_per_page'],
+            'data-total-gallery-items' => count($settings['dailybuddy_fg_gallery_items']),
+            'data-nomore-item-text' => $no_more_items_text,
+            'data-is-randomize' => 'yes' === $settings['dailybuddy_item_randomize'] ? 'yes' : 'no',
+        ]);
 
-                                                                        if ('yes' === $settings['dailybuddy_privacy_notice_control'] && !empty($settings['dailybuddy_privacy_notice'])) {
-                                                                            $this->add_render_attribute('gallery-items-wrap', 'data-privacy-notice', esc_html($settings['dailybuddy_privacy_notice']));
-                                                                        }
+        if ('yes' === $settings['dailybuddy_privacy_notice_control'] && !empty($settings['dailybuddy_privacy_notice'])) {
+            $this->add_render_attribute('gallery-items-wrap', 'data-privacy-notice', esc_html($settings['dailybuddy_privacy_notice']));
+        }
 
-                                                                        $html_json   = wp_json_encode($gallery_items);
-                                                                        $json_base64 = base64_encode($html_json);
+        $html_json   = wp_json_encode($gallery_items);
+        $json_base64 = base64_encode($html_json);
 
-                                                                        $this->add_render_attribute('gallery-items-wrap', 'data-settings', wp_json_encode($gallery_settings));
-                                                                        $this->add_render_attribute('gallery-items-wrap', 'data-search-all', esc_attr($settings['dailybuddy_search_among_all']));
-                                                                        $this->add_render_attribute('gallery-items-wrap', 'data-gallery-items', esc_attr($json_base64));
-                                                                        $this->add_render_attribute('gallery-items-wrap', 'data-init-show', esc_attr($settings['dailybuddy_fg_items_to_show']));
-                                                                        $this->render_media_query($settings);
+        $this->add_render_attribute('gallery-items-wrap', 'data-settings', wp_json_encode($gallery_settings));
+        $this->add_render_attribute('gallery-items-wrap', 'data-search-all', esc_attr($settings['dailybuddy_search_among_all']));
+        $this->add_render_attribute('gallery-items-wrap', 'data-gallery-items', esc_attr($json_base64));
+        $this->add_render_attribute('gallery-items-wrap', 'data-init-show', esc_attr($settings['dailybuddy_fg_items_to_show']));
+        $this->render_media_query($settings);
 
-                                                                        $this->custom_default_control = empty($settings['dailybuddy_fg_all_label_text']) ? true : false;
+        $this->custom_default_control = empty($settings['dailybuddy_fg_all_label_text']) ? true : false;
 
-                                                                        foreach ($settings['dailybuddy_fg_controls'] as $key_default => $control_default) :
-                                                                            if (! empty($control_default['dailybuddy_fg_control_active_as_default']) && 'yes' === $control_default['dailybuddy_fg_control_active_as_default']) {
-                                                                                $this->default_control_key = $key_default;
-                                                                                $this->custom_default_control = true;
-                                                                            }
-                                                                        endforeach;
+        foreach ($settings['dailybuddy_fg_controls'] as $key_default => $control_default) :
+            if (! empty($control_default['dailybuddy_fg_control_active_as_default']) && 'yes' === $control_default['dailybuddy_fg_control_active_as_default']) {
+                $this->default_control_key = $key_default;
+                $this->custom_default_control = true;
+            }
+        endforeach;
 
-                                                                        $this->add_render_attribute('gallery', 'data-default_control_key', esc_attr($this->default_control_key));
-                                                                        $this->add_render_attribute('gallery', 'data-custom_default_control', esc_attr($this->custom_default_control));
+        $this->add_render_attribute('gallery', 'data-default_control_key', esc_attr($this->default_control_key));
+        $this->add_render_attribute('gallery', 'data-custom_default_control', esc_attr($this->custom_default_control));
         ?>
             <div <?php $this->print_render_attribute_string('gallery'); ?>>
                 <?php
-                                                                        if (in_array($settings['dailybuddy_fg_caption_style'], ['grid_flow_gallery', 'harmonic_gallery'])) {
-                                                                            $gallery_items_in = $this->gallery_item_store();
-                                                                            $this->render_filters();
-                                                                            do_action(
-                                                                                'dailybuddy_add_filterable_gallery_style_block',
-                                                                                $settings,
-                                                                                $this,
-                                                                                $gallery_items_in
-                                                                            );
-                                                                        } elseif ('layout_3' == $settings['dailybuddy_fg_caption_style']) {
-                                                                            $this->render_layout_3_filters();
-                                                                            $this->dailybuddy_render_gallery_item_wrap($settings, $gallery_items);
-                                                                        } else {
-                                                                            $this->render_filters();
-                                                                            $this->dailybuddy_render_gallery_item_wrap($settings, $gallery_items);
-                                                                        }
-                                                                        // gallery-items-wrap
+                if (in_array($settings['dailybuddy_fg_caption_style'], ['grid_flow_gallery', 'harmonic_gallery'])) {
+                    $gallery_items_in = $this->gallery_item_store();
+                    $this->render_filters();
+                    do_action(
+                        'dailybuddy_add_filterable_gallery_style_block',
+                        $settings,
+                        $this,
+                        $gallery_items_in
+                    );
+                } elseif ('layout_3' == $settings['dailybuddy_fg_caption_style']) {
+                    $this->render_layout_3_filters();
+                    $this->dailybuddy_render_gallery_item_wrap($settings, $gallery_items);
+                } else {
+                    $this->render_filters();
+                    $this->dailybuddy_render_gallery_item_wrap($settings, $gallery_items);
+                }
+                // gallery-items-wrap
 
-                                                                        // Editor script now loaded via wp_enqueue_script in module.php
-                                                                        $this->render_loadmore_button();
+                // Editor script now loaded via wp_enqueue_script in module.php
+                $this->render_loadmore_button();
                 ?>
             </div>
 
-        <?php
-                                                                    }
-
-                                                                    /**
-                                                                     * Render masonry script
-                                                                }
+    <?php
+    }
+}

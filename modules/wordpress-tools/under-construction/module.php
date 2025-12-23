@@ -31,6 +31,7 @@ class Dailybuddy_Under_Construction
         );
 
         add_action('admin_enqueue_scripts', array($this, 'enqueue_uc_code_editor'));
+        add_action('admin_enqueue_scripts', array($this, 'enqueue_admin_scripts'));
     }
 
     public function enqueue_uc_code_editor($hook)
@@ -82,6 +83,70 @@ class Dailybuddy_Under_Construction
                     window.dailybuddyUcCssEditor = wp.codeEditor.initialize("uc_custom_css", ' . wp_json_encode($settings) . ');
                 } 
             });'
+        );
+    }
+
+    /**
+     * Enqueue admin scripts
+     * Moved from inline <script> tags for WordPress.org compliance
+     */
+    public function enqueue_admin_scripts($hook)
+    {
+        // Enqueue settings page script
+        // phpcs:disable WordPress.Security.NonceVerification.Recommended -- read-only admin routing
+        $dailybuddy_page   = isset($_GET['page']) ? sanitize_key(wp_unslash($_GET['page'])) : '';
+        $dailybuddy_view   = isset($_GET['view']) ? sanitize_key(wp_unslash($_GET['view'])) : '';
+        $dailybuddy_module = isset($_GET['module']) ? sanitize_text_field(wp_unslash($_GET['module'])) : '';
+        // phpcs:enable
+
+        if (
+            'dailybuddy' === $dailybuddy_page
+            && 'settings' === $dailybuddy_view
+            && 'wordpress-tools/under-construction' === $dailybuddy_module
+        ) {
+            wp_enqueue_script(
+                'dailybuddy-uc-settings',
+                DAILYBUDDY_URL . 'modules/wordpress-tools/under-construction/assets/settings.js',
+                array('jquery'),
+                DAILYBUDDY_VERSION,
+                true
+            );
+
+            // Get current settings
+            $settings = get_option('dailybuddy_under_construction_settings', array());
+            // phpcs:ignore WordPress.Security.NonceVerification.Missing -- Only checking if form was submitted, not processing data
+            $settings_saved = isset($_POST['dailybuddy_save_uc_settings']);
+            $maintenance_active = isset($settings['maintenance_active']) && $settings['maintenance_active'];
+
+            wp_localize_script(
+                'dailybuddy-uc-settings',
+                'dailybuddyUnderConstruction',
+                array(
+                    'settingsSaved' => $settings_saved,
+                    'maintenanceActive' => $maintenance_active,
+                    'activeText' => esc_html__('Maintenance Mode Active', 'dailybuddy'),
+                    'inactiveText' => esc_html__('Maintenance Mode Inactive', 'dailybuddy'),
+                )
+            );
+        }
+
+        // Enqueue admin bar toggle script (for all admin pages)
+        wp_enqueue_script(
+            'dailybuddy-uc-admin-bar-toggle',
+            DAILYBUDDY_URL . 'modules/wordpress-tools/under-construction/assets/admin-bar-toggle.js',
+            array('jquery'),
+            DAILYBUDDY_VERSION,
+            true
+        );
+
+        wp_localize_script(
+            'dailybuddy-uc-admin-bar-toggle',
+            'dailybuddyUcToggle',
+            array(
+                'nonce' => wp_create_nonce('dailybuddy_toggle_maintenance'),
+                'activeText' => esc_html__('Maintenance Mode Active', 'dailybuddy'),
+                'inactiveText' => esc_html__('Maintenance Mode Inactive', 'dailybuddy'),
+            )
         );
     }
 
@@ -244,11 +309,7 @@ class Dailybuddy_Under_Construction
             'href'   => admin_url('admin.php?page=dailybuddy&view=settings&module=wordpress-tools/under-construction'),
         ));
 
-        // ---------------------------
-        // Toggle-Script für Admin-Bar
-        // ---------------------------
-        add_action('admin_footer', array($this, 'admin_bar_toggle_script'));
-        add_action('wp_footer', array($this, 'admin_bar_toggle_script'));
+        // Toggle script moved to assets/admin-bar-toggle.js and enqueued in enqueue_admin_scripts()
     }
 
     /**
@@ -269,120 +330,6 @@ class Dailybuddy_Under_Construction
         exit;
     }
 
-    /**
-     * Admin bar toggle script
-     */
-    public function admin_bar_toggle_script()
-    {
-
-
-
-
-?>
-        <script>
-            jQuery(document).ready(function($) {
-
-                var $toggle = $('#dailybuddy-uc-toggle-switch');
-                var $statusText = $('#dailybuddy-uc-status');
-
-                if (!$toggle.length) {
-                    return;
-                }
-
-                // Knopf + Hintergrund visuell an den Checkbox-Status anpassen
-                function updateSwitchVisual() {
-                    var label = $toggle.parent()[0];
-                    if (!label) return;
-
-                    var spans = label.getElementsByTagName('span');
-                    if (spans.length < 2) return;
-
-                    var track = spans[0]; // Hintergrund
-                    var knob = spans[1]; // runde "Kugel"
-
-                    if ($toggle.is(':checked')) {
-                        track.style.backgroundColor = '#00a32a';
-                        knob.style.left = '22px';
-                    } else {
-                        track.style.backgroundColor = '#8c8f94';
-                        knob.style.left = '2px';
-                    }
-                }
-
-                // Initialer Zustand beim Laden
-                updateSwitchVisual();
-
-                $toggle.on('change', function(e) {
-                    e.preventDefault();
-                    e.stopPropagation();
-
-                    var isChecked = $toggle.is(':checked');
-
-                    // Optimistic UI – Status-Text
-                    if (isChecked) {
-                        $statusText
-                            .css('color', '#00a32a')
-                            .html('✓ <?php echo esc_js(__('Maintenance Mode Active', 'dailybuddy')); ?>');
-                    } else {
-                        $statusText
-                            .css('color', '#646970')
-                            .html('○ <?php echo esc_js(__('Maintenance Mode Inactive', 'dailybuddy')); ?>');
-                    }
-
-                    // Optik des Switches direkt anpassen
-                    updateSwitchVisual();
-
-                    $.ajax({
-                        url: ajaxurl,
-                        type: 'POST',
-                        data: {
-                            action: 'dailybuddy_toggle_maintenance',
-                            enabled: isChecked ? 1 : 0,
-                            nonce: '<?php echo esc_js(wp_create_nonce('dailybuddy_toggle_maintenance')); ?>'
-                        },
-                        success: function(response) {
-                            if (!response || !response.success) {
-                                // Revert on error
-                                $toggle.prop('checked', !isChecked);
-                                updateSwitchVisual();
-
-                                if (!isChecked) {
-                                    $statusText
-                                        .css('color', '#00a32a')
-                                        .html('✓ <?php echo esc_js(__('Maintenance Mode Active', 'dailybuddy')); ?>');
-                                } else {
-                                    $statusText
-                                        .css('color', '#646970')
-                                        .html('○ <?php echo esc_js(__('Maintenance Mode Inactive', 'dailybuddy')); ?>');
-                                }
-                            }
-                        },
-                        error: function() {
-                            // Revert on error
-                            $toggle.prop('checked', !isChecked);
-                            updateSwitchVisual();
-
-                            if (!isChecked) {
-                                $statusText
-                                    .css('color', '#00a32a')
-                                    .html('✓ <?php echo esc_js(__('Maintenance Mode Active', 'dailybuddy')); ?>');
-                            } else {
-                                $statusText
-                                    .css('color', '#646970')
-                                    .html('○ <?php echo esc_js(__('Maintenance Mode Inactive', 'dailybuddy')); ?>');
-                            }
-                        }
-                    });
-                });
-
-                // Verhindern, dass das Dropdown schließt, wenn man den Switch klickt
-                $('#dailybuddy-uc-toggle').on('click', function(e) {
-                    e.stopPropagation();
-                });
-            });
-        </script>
-    <?php
-    }
 
     /**
      * Show under construction page
@@ -446,9 +393,31 @@ class Dailybuddy_Under_Construction
         $layout = esc_attr($settings['layout']);
 
         // Generate social HTML
-        $social_html = $this->get_social_html($settings);
+        $dailybuddy_social_html = $this->get_social_html($settings);
 
-    ?>
+        // Enqueue layout-specific CSS
+        $layout_css_file = DAILYBUDDY_URL . 'modules/wordpress-tools/under-construction/assets/layouts/' . $layout . '.css';
+        wp_enqueue_style(
+            'dailybuddy-uc-layout-' . $layout,
+            $layout_css_file,
+            array(),
+            DAILYBUDDY_VERSION
+        );
+
+        // Enqueue layout-specific JS (if countdown is enabled)
+        $has_countdown = !empty($settings['auto_end_enabled']) && !empty($settings['auto_end_datetime']);
+        if ($has_countdown && in_array($layout, array('clean-minimal', 'parallax-rocket'))) {
+            $layout_js_file = DAILYBUDDY_URL . 'modules/wordpress-tools/under-construction/assets/layouts/' . $layout . '.js';
+            wp_enqueue_script(
+                'dailybuddy-uc-layout-' . $layout,
+                $layout_js_file,
+                array(),
+                DAILYBUDDY_VERSION,
+                true
+            );
+        }
+
+?>
         <!DOCTYPE html>
         <html <?php language_attributes(); ?>>
 
@@ -458,94 +427,17 @@ class Dailybuddy_Under_Construction
             <meta name="robots" content="noindex, nofollow">
             <title><?php esc_html_e('Maintenance Mode', 'dailybuddy'); ?> - <?php bloginfo('name'); ?></title>
             <?php
-            // NUR Frontend
-            if (! is_admin()) {
-
-                // Pfad anpassen, je nachdem wo die Datei liegt:
-                // z.B. DAILYBUDDY_URL . 'assets/css/font-awesome/css/all.min.css'
-                wp_register_style(
+            // Font Awesome
+            if (!is_admin()) {
+                wp_enqueue_style(
                     'dailybuddy-fontawesome',
                     DAILYBUDDY_URL . 'assets/css/font-awesome/css/all.min.css',
                     array(),
                     '6.5.1'
                 );
-
-                // in die Queue hängen
-                wp_enqueue_style('dailybuddy-fontawesome');
-
-                // und JETZT direkt ausgeben – ohne wp_head()
-                wp_print_styles('dailybuddy-fontawesome');
             }
             ?>
-            <style>
-                * {
-                    margin: 0;
-                    padding: 0;
-                    box-sizing: border-box;
-                }
-
-                body {
-                    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
-                    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-                    color: #ffffff;
-                    min-height: 100vh;
-                }
-
-                /* Social Links */
-                .social-links {
-                    display: flex;
-                    gap: 20px;
-                    margin-top: 30px;
-                    justify-content: center;
-                }
-
-                .social-links a {
-                    color: #ffffff;
-                    font-size: 1.5rem;
-                    transition: opacity 0.3s, transform 0.3s;
-                    opacity: 0.8;
-                }
-
-                .social-links a:hover {
-                    opacity: 1;
-                    transform: scale(1.2);
-                }
-
-                /* Login Button */
-                .login-button {
-                    position: fixed;
-                    bottom: 20px;
-                    right: 20px;
-                    background: rgba(255, 255, 255, 0.2);
-                    backdrop-filter: blur(10px);
-                    padding: 12px 24px;
-                    border-radius: 50px;
-                    text-decoration: none;
-                    color: #ffffff;
-                    font-size: 0.9rem;
-                    transition: all 0.3s;
-                    border: 1px solid rgba(255, 255, 255, 0.3);
-                }
-
-                .login-button:hover {
-                    background: rgba(255, 255, 255, 0.3);
-                    transform: translateY(-2px);
-                }
-
-                <?php
-                /**
-                 * Custom CSS output
-                 * 
-                 * User-provided CSS from admin settings.
-                 * wp_strip_all_tags() prevents XSS by removing HTML tags
-                 * while preserving CSS syntax (selectors, properties, values).
-                 * 
-                 * This is the recommended approach for outputting CSS code
-                 * within <style> tags per WordPress security guidelines.
-                 */
-                echo wp_strip_all_tags($settings['custom_css']);
-                ?>
-            </style>
+            <?php wp_head(); ?>
         </head>
 
         <body>
@@ -562,6 +454,7 @@ class Dailybuddy_Under_Construction
                     <i class="fas fa-sign-in-alt"></i> <?php esc_html_e('Admin Login', 'dailybuddy'); ?>
                 </a>
             <?php endif; ?>
+            <?php wp_footer(); ?>
         </body>
 
         </html>
