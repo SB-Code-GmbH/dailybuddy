@@ -391,8 +391,8 @@ class Dailybuddy_Elementor_Filterable_Gallery_Widget extends Widget_Base
             [
                 'label'        => __('Caption in Popup', 'dailybuddy'),
                 'type'         => Controls_Manager::SWITCHER,
-                'label_on'     => __('Show', 'dailybuddy'),
-                'label_off'    => __('Hide', 'dailybuddy'),
+                'label_on'     => __('Yes', 'dailybuddy'),
+                'label_off'    => __('No', 'dailybuddy'),
                 'return_value' => 'yes',
                 'default'      => '',
                 'condition'    => [
@@ -3516,22 +3516,22 @@ class Dailybuddy_Elementor_Filterable_Gallery_Widget extends Widget_Base
             <div class="dailybuddy-filter-gallery-control">
                 <ul><?php
                     if ($settings['dailybuddy_fg_all_label_text']) {
-                    ?><li data-load-more-status="0" data-first-init="1" class="control all-control <?php if (! $this->custom_default_control) : ?> active <?php endif; ?>" data-filter="*"><?php echo wp_kses($all_text, wp_kses_allowed_html("post")); ?></li><?php
-                                                                                                                                                                                                                                                            }
+                    ?><li data-load-more-status="0" data-first-init="1" class="control all-control <?php if (! $this->dailybuddy_filterable_gallery_custom_default_control) : ?> active <?php endif; ?>" data-filter="*"><?php echo wp_kses($all_text, wp_kses_allowed_html("post")); ?></li><?php
+                                                                                                                                                                                                                                                                                            }
 
-                                                                                                                                                                                                                                                            foreach ($settings['dailybuddy_fg_controls'] as $key => $control) :
-                                                                                                                                                                                                                                                                $sorter_filter = $this->sorter_class($control['dailybuddy_fg_control']);
-                                                                                                                                                                                                                                                                $sorter_label  = $control['dailybuddy_fg_control_label'] != '' ? $control['dailybuddy_fg_control_label'] : $control['dailybuddy_fg_control'];
-                                                                                                                                                                                                                                                                $custom_id = sanitize_text_field($control['dailybuddy_fg_control_custom_id']) ?? "";
+                                                                                                                                                                                                                                                                                            foreach ($settings['dailybuddy_fg_controls'] as $key => $control) :
+                                                                                                                                                                                                                                                                                                $sorter_filter = $this->sorter_class($control['dailybuddy_fg_control']);
+                                                                                                                                                                                                                                                                                                $sorter_label  = $control['dailybuddy_fg_control_label'] != '' ? $control['dailybuddy_fg_control_label'] : $control['dailybuddy_fg_control'];
+                                                                                                                                                                                                                                                                                                $custom_id = sanitize_text_field($control['dailybuddy_fg_control_custom_id']) ?? "";
 
-                                                                                                                                                                                                                                                                ?><li <?php if ($custom_id) : ?> id="<?php echo esc_attr($custom_id); ?>" <?php endif; ?> data-load-more-status="0" data-first-init="0"
-                            class="control <?php if ($this->custom_default_control) {
-                                                                                                                                                                                                                                                                    if ($this->default_control_key === $key) {
-                                                                                                                                                                                                                                                                        echo 'active';
-                                                                                                                                                                                                                                                                    }
-                                                                                                                                                                                                                                                                } ?>" data-filter=".dailybuddy-cf-<?php echo esc_attr($sorter_filter); ?>"><?php echo esc_html($sorter_label); ?></li><?php
-                                                                                                                                                                                                                                                                                                                                                                                    endforeach;
-                                                                                                                                                                                                                                                                                                                                                                                        ?></ul>
+                                                                                                                                                                                                                                                                                                ?><li <?php if ($custom_id) : ?> id="<?php echo esc_attr($custom_id); ?>" <?php endif; ?> data-load-more-status="0" data-first-init="0"
+                            class="control <?php if ($this->dailybuddy_filterable_gallery_custom_default_control) {
+                                                                                                                                                                                                                                                                                                    if ($this->dailybuddy_filterable_gallery_default_control_key === $key) {
+                                                                                                                                                                                                                                                                                                        echo 'active';
+                                                                                                                                                                                                                                                                                                    }
+                                                                                                                                                                                                                                                                                                } ?>" data-filter=".dailybuddy-cf-<?php echo esc_attr($sorter_filter); ?>"><?php echo esc_html($sorter_label); ?></li><?php
+                                                                                                                                                                                                                                                                                                                                                                                                                    endforeach;
+                                                                                                                                                                                                                                                                                                                                                                                                                        ?></ul>
             </div>
         <?php
         }
@@ -3569,15 +3569,15 @@ class Dailybuddy_Elementor_Filterable_Gallery_Widget extends Widget_Base
                     </button>
                     <ul class="fg-layout-3-filter-controls">
                         <?php if ($settings['dailybuddy_fg_all_label_text']) { ?>
-                            <li class="control <?php if (! $this->custom_default_control) : ?> active <?php endif; ?>" data-filter="*"><?php echo wp_kses($settings['dailybuddy_fg_all_label_text'], wp_kses_allowed_html("post")); ?></li>
+                            <li class="control <?php if (! $this->dailybuddy_filterable_gallery_custom_default_control) : ?> active <?php endif; ?>" data-filter="*"><?php echo wp_kses($settings['dailybuddy_fg_all_label_text'], wp_kses_allowed_html("post")); ?></li>
                         <?php } ?>
 
                         <?php foreach ($settings['dailybuddy_fg_controls'] as $key => $control) :
                             $sorter_filter = $this->sorter_class($control['dailybuddy_fg_control']);
                             $custom_id = sanitize_text_field($control['dailybuddy_fg_control_custom_id']) ?? "";
                         ?>
-                            <li <?php if ($custom_id) : ?> id="<?php echo esc_attr($custom_id); ?>" <?php endif; ?> class="control <?php if ($this->custom_default_control) {
-                                                                                                                                        if ($this->default_control_key === $key) {
+                            <li <?php if ($custom_id) : ?> id="<?php echo esc_attr($custom_id); ?>" <?php endif; ?> class="control <?php if ($this->dailybuddy_filterable_gallery_custom_default_control) {
+                                                                                                                                        if ($this->dailybuddy_filterable_gallery_default_control_key === $key) {
                                                                                                                                             echo 'active';
                                                                                                                                         }
                                                                                                                                     } ?>" data-filter=".dailybuddy-cf-<?php echo esc_attr($sorter_filter); ?>">echo esc_html($control['dailybuddy_fg_control']);
@@ -3730,8 +3730,8 @@ class Dailybuddy_Elementor_Filterable_Gallery_Widget extends Widget_Base
         }
 
         if ($check_popup_status) {
-            if ($settings['dailybuddy_section_fg_full_image_action'] === 'lightbox' && !$this->popup_status) {
-                $this->popup_status = true;
+            if ($settings['dailybuddy_section_fg_full_image_action'] === 'lightbox' && !$this->dailybuddy_filterable_gallery_popup_status) {
+                $this->dailybuddy_filterable_gallery_popup_status = true;
                 $html .= '<a area-hidden="true" href="' . esc_url($item['image']) . '" class="' . $magnific_class . ' media-content-wrap active" data-elementor-open-lightbox="' . esc_attr($is_lightbox) . '" title="' . esc_attr($title) . '">';
             }
         } else {
@@ -4069,7 +4069,7 @@ class Dailybuddy_Elementor_Filterable_Gallery_Widget extends Widget_Base
         }
 
         foreach ($gallery as $item) {
-            $this->popup_status = false;
+            $this->dailybuddy_filterable_gallery_popup_status = false;
             $close_media_content_wrap = false;
 
             $title = '';
@@ -4091,7 +4091,7 @@ class Dailybuddy_Elementor_Filterable_Gallery_Widget extends Widget_Base
                 && $item['video_gallery_switch'] != 'true'
                 && $settings['dailybuddy_fg_show_popup'] === 'media'
             ) {
-                $this->popup_status = true;
+                $this->dailybuddy_filterable_gallery_popup_status = true;
                 $close_media_content_wrap = true;
                 $html .= '<a  aria-hidden="true" aria-label="dailybuddy-magnific-link" href="' . esc_url($item['image']) . '" class="' . $magnific_class . ' media-content-wrap" data-elementor-open-lightbox="' . esc_attr($is_lightbox) . '" title="' . esc_attr($title) . '">';
             }
@@ -4120,7 +4120,7 @@ class Dailybuddy_Elementor_Filterable_Gallery_Widget extends Widget_Base
                 $html .= '</a>';
             }
 
-            if ($settings['dailybuddy_fg_show_popup'] == 'media' && $settings['dailybuddy_fg_caption_style'] !== 'card' && !$this->popup_status) {
+            if ($settings['dailybuddy_fg_show_popup'] == 'media' && $settings['dailybuddy_fg_caption_style'] !== 'card' && !$this->dailybuddy_filterable_gallery_popup_status) {
                 $html .= '<a area-hidden="true" aria-label="dailybuddy-magnific-link" href="' . esc_url($item['image']) . '" class="' . $magnific_class . ' media-content-wrap" data-elementor-open-lightbox="' . esc_attr($is_lightbox) . '" title="' . esc_attr($title) . '">';
             }
 
@@ -4288,17 +4288,17 @@ class Dailybuddy_Elementor_Filterable_Gallery_Widget extends Widget_Base
         $this->add_render_attribute('gallery-items-wrap', 'data-init-show', esc_attr($settings['dailybuddy_fg_items_to_show']));
         $this->render_media_query($settings);
 
-        $this->custom_default_control = empty($settings['dailybuddy_fg_all_label_text']) ? true : false;
+        $this->dailybuddy_filterable_gallery_custom_default_control = empty($settings['dailybuddy_fg_all_label_text']) ? true : false;
 
         foreach ($settings['dailybuddy_fg_controls'] as $key_default => $control_default) :
             if (! empty($control_default['dailybuddy_fg_control_active_as_default']) && 'yes' === $control_default['dailybuddy_fg_control_active_as_default']) {
-                $this->default_control_key = $key_default;
-                $this->custom_default_control = true;
+                $this->dailybuddy_filterable_gallery_default_control_key = $key_default;
+                $this->dailybuddy_filterable_gallery_custom_default_control = true;
             }
         endforeach;
 
-        $this->add_render_attribute('gallery', 'data-default_control_key', esc_attr($this->default_control_key));
-        $this->add_render_attribute('gallery', 'data-custom_default_control', esc_attr($this->custom_default_control));
+        $this->add_render_attribute('gallery', 'data-default_control_key', esc_attr($this->dailybuddy_filterable_gallery_default_control_key));
+        $this->add_render_attribute('gallery', 'data-custom_default_control', esc_attr($this->dailybuddy_filterable_gallery_custom_default_control));
         ?>
             <div <?php $this->print_render_attribute_string('gallery'); ?>>
                 <?php

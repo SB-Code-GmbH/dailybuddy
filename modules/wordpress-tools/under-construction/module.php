@@ -436,8 +436,12 @@ class Dailybuddy_Under_Construction
                     '6.5.1'
                 );
             }
+            wp_head();
             ?>
-            <?php wp_head(); ?>
+            <style>
+                <?php echo esc_html($settings['custom_css']); ?>
+            </style>
+
         </head>
 
         <body>

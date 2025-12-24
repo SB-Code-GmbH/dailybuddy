@@ -161,10 +161,6 @@
     fill: currentColor;
 }
 
-.dailybuddy-logo-carousel-wrap .swiper-button-prev svg {
-    transform: rotate(180deg);
-}
-
 /* Disabled State */
 .dailybuddy-logo-carousel-wrap .swiper-button-disabled {
     opacity: 0.35;

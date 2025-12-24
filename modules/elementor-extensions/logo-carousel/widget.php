@@ -369,12 +369,27 @@ class Dailybuddy_Elementor_Logo_Carousel_Widget extends Widget_Base
         );
 
         $this->add_control(
-            'arrow_icon',
+            'arrow_icon_next',
             array(
-                'label'     => __('Arrow Icon', 'dailybuddy'),
+                'label'     => __('Next Arrow Icon', 'dailybuddy'),
                 'type'      => Controls_Manager::ICONS,
                 'default'   => array(
                     'value'   => 'fas fa-chevron-right',
+                    'library' => 'solid',
+                ),
+                'condition' => array(
+                    'arrows' => 'yes',
+                ),
+            )
+        );
+
+        $this->add_control(
+            'arrow_icon_prev',
+            array(
+                'label'     => __('Previous Arrow Icon', 'dailybuddy'),
+                'type'      => Controls_Manager::ICONS,
+                'default'   => array(
+                    'value'   => 'fas fa-chevron-left',
                     'library' => 'solid',
                 ),
                 'condition' => array(
@@ -1065,15 +1080,15 @@ class Dailybuddy_Elementor_Logo_Carousel_Widget extends Widget_Base
         ?>
             <div class="swiper-button-next swiper-button-next-<?php echo esc_attr($id); ?>">
                 <?php
-                if (!empty($settings['arrow_icon']['value'])) {
-                    Icons_Manager::render_icon($settings['arrow_icon'], array('aria-hidden' => 'true'));
+                if (!empty($settings['arrow_icon_next']['value'])) {
+                    Icons_Manager::render_icon($settings['arrow_icon_next'], array('aria-hidden' => 'true'));
                 }
                 ?>
             </div>
             <div class="swiper-button-prev swiper-button-prev-<?php echo esc_attr($id); ?>">
                 <?php
-                if (!empty($settings['arrow_icon']['value'])) {
-                    Icons_Manager::render_icon($settings['arrow_icon'], array('aria-hidden' => 'true'));
+                if (!empty($settings['arrow_icon_prev']['value'])) {
+                    Icons_Manager::render_icon($settings['arrow_icon_prev'], array('aria-hidden' => 'true'));
                 }
                 ?>
             </div>
