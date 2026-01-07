@@ -15,6 +15,15 @@ if (defined('DAILYBUDDY_URL') && defined('DAILYBUDDY_VERSION')) {
         array(),
         DAILYBUDDY_VERSION
     );
+
+    // Enqueue settings page script
+    wp_enqueue_script(
+        'dailybuddy-content-folders-settings',
+        DAILYBUDDY_URL . 'assets/js/modul-settings.js',
+        array('jquery'),
+        DAILYBUDDY_VERSION,
+        true
+    );
 }
 
 // Read-only GET parameter: switches visible tab.
@@ -245,19 +254,3 @@ if (! isset($dailybuddy_modules) || ! is_array($dailybuddy_modules)) {
         </form>
     </div>
 </div>
-
-<script>
-    jQuery(document).ready(function($) {
-        $('.dailybuddy-uc-tab').on('click', function() {
-            var tab = $(this).data('tab');
-
-            $('#current_tab').val(tab);
-
-            $('.dailybuddy-uc-tab').removeClass('active');
-            $(this).addClass('active');
-
-            $('.dailybuddy-uc-tab-content').removeClass('active');
-            $('.dailybuddy-uc-tab-content[data-tab="' + tab + '"]').addClass('active');
-        });
-    });
-</script>

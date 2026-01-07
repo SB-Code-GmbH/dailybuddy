@@ -42,14 +42,6 @@ class Dailybuddy_Admin_Page
 
         add_action('admin_head', function () {
 ?>
-            <style>
-                #toplevel_page_dailybuddy .wp-menu-image img {
-                    width: 19px;
-                    height: 19px;
-                    opacity: 1;
-                    padding: 8px 0 0 3px;
-                }
-            </style>
         <?php
         });
 

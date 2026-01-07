@@ -18,6 +18,41 @@ wp_enqueue_style('dailybuddy-admin', DAILYBUDDY_URL . 'assets/css/admin.css', ar
 wp_enqueue_style('dailybuddy-dev-mode', DAILYBUDDY_URL . 'assets/css/modul-settings.css', array(), DAILYBUDDY_VERSION);
 wp_enqueue_style('dailybuddy-scanner', DAILYBUDDY_URL . 'assets/css/translation-scanner.css', array(), DAILYBUDDY_VERSION);
 
+// Zeile 17, nach den Style-Enqueues:
+wp_enqueue_script(
+    'dailybuddy-development-page',
+    DAILYBUDDY_URL . 'assets/js/development-page.js',
+    array('jquery'),
+    DAILYBUDDY_VERSION,
+    true
+);
+
+// AJAX-Daten für das Script bereitstellen
+wp_localize_script(
+    'dailybuddy-development-page',
+    'dailybuddyDev',
+    array(
+        'ajaxurl' => admin_url('admin-ajax.php'),
+        'nonce' => wp_create_nonce('dailybuddy_translation_scanner'),
+        'i18n' => array(
+            'pleaseEnterLocale' => __('Please enter a locale code.', 'dailybuddy'),
+            'invalidLocaleFormat' => __('Invalid locale format. Use format like: de_DE, fr_FR, en_US', 'dailybuddy'),
+            'creatingLanguageFiles' => __('Creating language files...', 'dailybuddy'),
+            'errorOccurred' => __('An error occurred. Please try again.', 'dailybuddy'),
+            'found' => __('Found', 'dailybuddy'),
+            'translatableStringsIn' => __('translatable strings in', 'dailybuddy'),
+            'files' => __('files.', 'dailybuddy'),
+            'stringsAreMissing' => __('strings are missing from at least one translation file.', 'dailybuddy'),
+            'allStringsTranslated' => __('All strings are translated!', 'dailybuddy'),
+            'selectAtLeastOne' => __('Please select at least one string to add.', 'dailybuddy'),
+            'adding' => __('Adding...', 'dailybuddy'),
+            'addTo' => __('Add to', 'dailybuddy'),
+            'untranslated' => __('untranslated', 'dailybuddy'),
+            'complete' => __('Complete', 'dailybuddy'),
+        )
+    )
+);
+
 // Read-only GET parameter: switches visible tab.
 // Safe without nonce because no data is being changed.
 // phpcs:disable WordPress.Security.NonceVerification.Recommended
@@ -519,324 +554,3 @@ $dailybuddy_current_tab = isset($_GET['tab'])
     </div>
 
 </div>
-
-<!-- Tab Switching Script -->
-<script>
-    jQuery(document).ready(function($) {
-        // Tab Switching
-        $('.dailybuddy-uc-tab').on('click', function() {
-            var tab = $(this).data('tab');
-
-            // Update tabs
-            $('.dailybuddy-uc-tab').removeClass('active');
-            $(this).addClass('active');
-
-            // Update content
-            $('.dailybuddy-uc-tab-content').removeClass('active');
-            $('.dailybuddy-uc-tab-content[data-tab="' + tab + '"]').addClass('active');
-
-            // Update URL without page reload
-            if (history.pushState) {
-                var newUrl = '<?php echo esc_js(admin_url('admin.php?page=dailybuddy-development')); ?>&tab=' + tab;
-                history.pushState(null, '', newUrl);
-            }
-        });
-
-        // Load empty translations count on page load
-        if ($('.empty-translations-cell').length > 0) {
-            loadEmptyTranslations();
-        }
-
-        // Load empty translations count
-        function loadEmptyTranslations() {
-            $.ajax({
-                url: ajaxurl,
-                type: 'POST',
-                data: {
-                    action: 'dailybuddy_get_empty_translations',
-                    nonce: '<?php echo esc_js(wp_create_nonce('dailybuddy_translation_scanner')); ?>'
-                },
-                success: function(response) {
-                    if (response.success && response.data.empty_counts) {
-                        $.each(response.data.empty_counts, function(locale, count) {
-                            var $cell = $('.empty-translations-cell[data-locale="' + locale + '"]');
-                            $cell.find('.spinner').hide();
-
-                            var $countSpan = $cell.find('.empty-count');
-                            if (count > 0) {
-                                $countSpan.html('<span style="color: #d63638; font-weight: 600;">' + count + '</span> ' +
-                                    '<?php echo esc_js(__('untranslated', 'dailybuddy')); ?>');
-                            } else {
-                                $countSpan.html('<span style="color: #46b450;">✓ <?php echo esc_js(__('Complete', 'dailybuddy')); ?></span>');
-                            }
-                            $countSpan.show();
-                        });
-                    }
-                },
-                error: function() {
-                    $('.empty-translations-cell .spinner').hide();
-                    $('.empty-translations-cell .empty-count').html('—').show();
-                }
-            });
-        }
-
-        // Create New Language
-        $('#dailybuddy-create-language').on('click', function() {
-            var $btn = $(this);
-            var $input = $('#new-locale-input');
-            var $status = $('#create-language-status');
-            var locale = $input.val().trim();
-
-            // Validate input
-            if (!locale) {
-                alert('<?php echo esc_js(__('Please enter a locale code.', 'dailybuddy')); ?>');
-                $input.focus();
-                return;
-            }
-
-            // Validate format (e.g., de_DE)
-            var localePattern = /^[a-z]{2}_[A-Z]{2}$/;
-            if (!localePattern.test(locale)) {
-                alert('<?php echo esc_js(__('Invalid locale format. Use format like: de_DE, fr_FR, en_US', 'dailybuddy')); ?>');
-                $input.focus();
-                return;
-            }
-
-            $btn.prop('disabled', true);
-            $status.show().find('.status-text').text('<?php echo esc_js(__('Creating language files...', 'dailybuddy')); ?>');
-
-            $.ajax({
-                url: ajaxurl,
-                type: 'POST',
-                data: {
-                    action: 'dailybuddy_create_language',
-                    nonce: '<?php echo esc_js(wp_create_nonce('dailybuddy_translation_scanner')); ?>',
-                    locale: locale
-                },
-                success: function(response) {
-                    if (response.success) {
-                        alert(response.data.message);
-                        // Reload page to show new language
-                        location.reload();
-                    } else {
-                        alert('Error: ' + (response.data.message || 'Unknown error'));
-                        $btn.prop('disabled', false);
-                        $status.hide();
-                    }
-                },
-                error: function() {
-                    alert('<?php echo esc_js(__('An error occurred. Please try again.', 'dailybuddy')); ?>');
-                    $btn.prop('disabled', false);
-                    $status.hide();
-                }
-            });
-        });
-
-        // Allow Enter key in locale input
-        $('#new-locale-input').on('keypress', function(e) {
-            if (e.which === 13) {
-                e.preventDefault();
-                $('#dailybuddy-create-language').click();
-            }
-        });
-
-        // Translation Scanner
-        var scanResults = null;
-
-        // Scan Button
-        $('#dailybuddy-scan-translations').on('click', function() {
-            var $btn = $(this);
-            var $status = $('#dailybuddy-scanner-status');
-            var $results = $('#dailybuddy-scanner-results');
-
-            $btn.prop('disabled', true);
-            $status.show();
-            $results.hide();
-
-            $.ajax({
-                url: ajaxurl,
-                type: 'POST',
-                data: {
-                    action: 'dailybuddy_scan_translations',
-                    nonce: '<?php echo esc_js(wp_create_nonce('dailybuddy_translation_scanner')); ?>'
-                },
-                success: function(response) {
-                    if (response.success) {
-                        scanResults = response.data;
-                        displayScanResults(response.data);
-                        $results.fadeIn();
-                    } else {
-                        alert('Error: ' + (response.data.message || 'Unknown error'));
-                    }
-                },
-                error: function() {
-                    alert('<?php echo esc_js(__('An error occurred while scanning. Please try again.', 'dailybuddy')); ?>');
-                },
-                complete: function() {
-                    $btn.prop('disabled', false);
-                    $status.hide();
-                }
-            });
-        });
-
-        // Display Scan Results
-        function displayScanResults(data) {
-            var totalMissing = data.missing_strings.length;
-            var locales = Object.keys(data.available_locales);
-
-            // Summary
-            var summaryText = '<?php echo esc_js(__('Found', 'dailybuddy')); ?> <strong>' + data.total_strings + '</strong> ' +
-                '<?php echo esc_js(__('translatable strings in', 'dailybuddy')); ?> <strong>' + data.files_scanned + '</strong> ' +
-                '<?php echo esc_js(__('files.', 'dailybuddy')); ?><br>';
-
-            if (totalMissing > 0) {
-                summaryText += '<strong>' + totalMissing + '</strong> ' +
-                    '<?php echo esc_js(__('strings are missing from at least one translation file.', 'dailybuddy')); ?>';
-            } else {
-                summaryText += '<span style="color: #46b450;">✓ <?php echo esc_js(__('All strings are translated!', 'dailybuddy')); ?></span>';
-            }
-
-            $('#summary-text').html(summaryText);
-
-            // Missing Strings Table
-            if (totalMissing > 0) {
-                var tableHtml = '<table class="widefat striped">' +
-                    '<thead><tr>' +
-                    '<th style="width: 40px;"><input type="checkbox" id="select-all-strings"></th>' +
-                    '<th><?php echo esc_html__('String', 'dailybuddy'); ?></th>' +
-                    '<th><?php echo esc_html__('Context', 'dailybuddy'); ?></th>' +
-                    '<th><?php echo esc_html__('Missing in', 'dailybuddy'); ?></th>' +
-                    '</tr></thead><tbody>';
-
-                $.each(data.missing_strings, function(index, item) {
-                    var missingLocales = item.missing_in.join(', ');
-                    tableHtml += '<tr>' +
-                        '<td><input type="checkbox" class="string-checkbox" data-string-id="' + index + '" checked></td>' +
-                        '<td><code>' + escapeHtml(item.string) + '</code></td>' +
-                        '<td style="font-size: 11px; color: #646970;">' + escapeHtml(item.context) + '</td>' +
-                        '<td><span class="locale-badges">' + missingLocales + '</span></td>' +
-                        '</tr>';
-                });
-
-                tableHtml += '</tbody></table>';
-                $('#missing-strings-content').html(tableHtml);
-
-                // Select All Checkbox
-                $('#select-all-strings').on('change', function() {
-                    $('.string-checkbox').prop('checked', $(this).is(':checked'));
-                });
-
-                // Locale Buttons
-                var buttonsHtml = '';
-                $.each(locales, function(index, locale) {
-                    buttonsHtml += '<button type="button" class="button button-secondary add-to-locale" data-locale="' + locale + '" style="margin-right: 10px; margin-bottom: 10px;">' +
-                        '<span class="dashicons dashicons-plus" style="margin-top: 3px;"></span> ' +
-                        '<?php echo esc_js(__('Add to', 'dailybuddy')); ?> ' + locale + '.po' +
-                        '</button>';
-                });
-                $('#locale-buttons').html(buttonsHtml);
-
-                $('#dailybuddy-scanner-actions').show();
-            } else {
-                $('#missing-strings-content').html('<p style="color: #46b450;">✓ <?php echo esc_js(__('No missing translations found!', 'dailybuddy')); ?></p>');
-                $('#dailybuddy-scanner-actions').hide();
-            }
-        }
-
-        // Add to specific locale
-        $(document).on('click', '.add-to-locale', function() {
-            var locale = $(this).data('locale');
-            var selectedStrings = getSelectedStrings();
-
-            if (selectedStrings.length === 0) {
-                alert('<?php echo esc_js(__('Please select at least one string to add.', 'dailybuddy')); ?>');
-                return;
-            }
-
-            addStringsToLocale([locale], selectedStrings, $(this));
-        });
-
-        // Add to all locales
-        $('#dailybuddy-add-to-all').on('click', function() {
-            var selectedStrings = getSelectedStrings();
-
-            if (selectedStrings.length === 0) {
-                alert('<?php echo esc_js(__('Please select at least one string to add.', 'dailybuddy')); ?>');
-                return;
-            }
-
-            var locales = Object.keys(scanResults.available_locales);
-            addStringsToLocale(locales, selectedStrings, $(this));
-        });
-
-        // Get Selected Strings
-        function getSelectedStrings() {
-            var selected = [];
-            $('.string-checkbox:checked').each(function() {
-                var index = $(this).data('string-id');
-                selected.push(scanResults.missing_strings[index]);
-            });
-            return selected;
-        }
-
-        // Add Strings to Locale(s)
-        // Add Strings to Locale(s)
-        function addStringsToLocale(locales, strings, $btn) {
-            var originalText = $btn.html();
-            $btn.prop('disabled', true).html('<span class="spinner" style="float:none;visibility:visible;margin:0;"></span> <?php echo esc_js(__('Adding...', 'dailybuddy')); ?>');
-
-            // Debug output
-            console.log('Locales:', locales);
-            console.log('Strings:', strings);
-
-            $.ajax({
-                url: ajaxurl,
-                type: 'POST',
-                dataType: 'json',
-                data: {
-                    action: 'dailybuddy_add_translations',
-                    nonce: '<?php echo esc_js(wp_create_nonce('dailybuddy_translation_scanner')); ?>',
-                    locales: JSON.stringify(locales),
-                    strings: JSON.stringify(strings)
-                },
-                success: function(response) {
-                    console.log('Response:', response);
-                    if (response.success) {
-                        alert(response.data.message);
-                        // Re-scan to update results
-                        $('#dailybuddy-scan-translations').click();
-                    } else {
-                        alert('Error: ' + (response.data.message || 'Unknown error'));
-                        $btn.prop('disabled', false).html(originalText);
-                    }
-                },
-                error: function(xhr, status, error) {
-                    console.error('AJAX Error:', status, error);
-                    console.error('Response:', xhr.responseText);
-                    alert('<?php echo esc_js(__('An error occurred. Please try again.', 'dailybuddy')); ?>');
-                    $btn.prop('disabled', false).html(originalText);
-                }
-            });
-        }
-
-        // Clear Results
-        $('#dailybuddy-clear-results').on('click', function() {
-            $('#dailybuddy-scanner-results').fadeOut();
-            scanResults = null;
-        });
-
-        // Helper function
-        function escapeHtml(text) {
-            var map = {
-                '&': '&amp;',
-                '<': '&lt;',
-                '>': '&gt;',
-                '"': '&quot;',
-                "'": '&#039;'
-            };
-            return text.replace(/[&<>"']/g, function(m) {
-                return map[m];
-            });
-        }
-    });
-</script>

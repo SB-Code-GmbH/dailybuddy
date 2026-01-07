@@ -20,6 +20,15 @@ $dailybuddy_settings = get_option('dailybuddy_content_folders_settings', array(
     'show_icons'    => true,
 ));
 
+// Enqueue settings page script
+wp_enqueue_script(
+    'dailybuddy-content-folders-settings',
+    DAILYBUDDY_URL . 'modules/wordpress-tools/content-folders/assets/settings-page.js',
+    array('jquery'),
+    DAILYBUDDY_VERSION,
+    true
+);
+
 // Aktiven Tab merken
 $dailybuddy_current_tab = isset($_POST['current_tab'])
     ? sanitize_text_field(wp_unslash($_POST['current_tab']))
@@ -221,28 +230,3 @@ if (isset($_POST['dailybuddy_save_folder_settings'])) {
         </ol>
     </div>
 </div>
-
-<script>
-    jQuery(document).ready(function($) {
-        // Tab switching
-        $('.dailybuddy-uc-tab').on('click', function() {
-            var tab = $(this).data('tab');
-
-            $('#current_tab').val(tab);
-
-            $('.dailybuddy-uc-tab').removeClass('active');
-            $(this).addClass('active');
-
-            $('.dailybuddy-uc-tab-content').removeClass('active');
-            $('.dailybuddy-uc-tab-content[data-tab="' + tab + '"]').addClass('active');
-        });
-
-        // Color picker text sync
-        $('#primary_color').on('change input', function() {
-            $('#primary_color_text').val($(this).val());
-        });
-        $('#accent_color').on('change input', function() {
-            $('#accent_color_text').val($(this).val());
-        });
-    });
-</script>

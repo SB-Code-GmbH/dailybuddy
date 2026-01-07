@@ -4,7 +4,7 @@ Tags: tools, admin, dashboard, elementor, widgets
 Requires at least: 5.0
 Tested up to: 6.9
 Requires PHP: 7.4
-Stable tag: 1.0.7
+Stable tag: 1.0.8
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -96,6 +96,9 @@ Yes, and it even includes an option to hide Elementor Pro widgets from the edito
 ---
 
 == Changelog ==
+= 1.0.8 =
+* Improved security, compatibility, and code quality
+
 = 1.0.7 =
 * WordPress.org review fixes and compliance updates
 * Improved security, compatibility, and code quality

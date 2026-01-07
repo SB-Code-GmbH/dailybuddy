@@ -436,11 +436,18 @@ class Dailybuddy_Under_Construction
                     '6.5.1'
                 );
             }
+
+            // Custom CSS for Under Construction
+            if (!empty($settings['custom_css'])) {
+                // Register an empty style handle
+                wp_register_style('dailybuddy-uc-custom', false);
+                wp_enqueue_style('dailybuddy-uc-custom');
+
+                // Add the custom CSS as an inline style
+                wp_add_inline_style('dailybuddy-uc-custom', wp_strip_all_tags($settings['custom_css']));
+            }
             wp_head();
             ?>
-            <style>
-                <?php echo esc_html($settings['custom_css']); ?>
-            </style>
 
         </head>
 
