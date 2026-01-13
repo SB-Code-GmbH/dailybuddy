@@ -438,13 +438,18 @@ class Dailybuddy_Under_Construction
             }
 
             // Custom CSS for Under Construction
+            // WordPress.org Compliance: Using enhanced multi-layer CSS sanitization
             if (!empty($settings['custom_css'])) {
-                // Register an empty style handle
-                wp_register_style('dailybuddy-uc-custom', false);
+                // Register an empty style handle with version for cache busting
+                wp_register_style('dailybuddy-uc-custom', false, array(), DAILYBUDDY_VERSION);
                 wp_enqueue_style('dailybuddy-uc-custom');
 
-                // Add the custom CSS as an inline style
-                wp_add_inline_style('dailybuddy-uc-custom', wp_strip_all_tags($settings['custom_css']));
+                // Sanitize CSS with multiple security layers before output
+                $sanitized_css = $this->sanitize_custom_css($settings['custom_css']);
+
+                // Add the sanitized CSS as an inline style
+                // Additional escaping for defense in depth
+                wp_add_inline_style('dailybuddy-uc-custom', esc_html($sanitized_css));
             }
             wp_head();
             ?>
@@ -470,6 +475,94 @@ class Dailybuddy_Under_Construction
 
         </html>
 <?php
+    }
+
+    /**
+     * Sanitize custom CSS with multiple security layers
+     * 
+     * WordPress.org Compliance: Enhanced CSS sanitization beyond wp_strip_all_tags()
+     * 
+     * This multi-layered approach prevents:
+     * - JavaScript injection (javascript:, expression())
+     * - External resource loading (@import, url() with external domains)
+     * - Browser-specific hacks that could enable XSS
+     * - HTML/Script tag injection
+     * - CSS-based attacks (behavior:, -moz-binding:)
+     * 
+     * @param string $css Raw CSS input from user
+     * @return string Sanitized CSS safe for inline output
+     */
+    private function sanitize_custom_css($css)
+    {
+        if (empty($css)) {
+            return '';
+        }
+
+        // Layer 1: Remove all HTML tags (including <style>, <script>)
+        $css = wp_strip_all_tags($css);
+
+        // Layer 2: Remove dangerous CSS features that could enable XSS
+        $dangerous_patterns = array(
+            'javascript:',      // JavaScript protocol
+            'data:text/html',   // Data URI that could contain HTML
+            'expression(',      // IE CSS expressions
+            'behavior:',        // IE behaviors
+            '-moz-binding:',    // XBL bindings
+            '@import',          // Prevent loading external stylesheets
+            'eval(',            // JavaScript eval
+            '<script',          // Script tags
+            '</script>',        // Script closing tags
+            'onclick',          // Event handlers
+            'onerror',          // Error handlers
+            'onload',           // Load handlers
+            'vbscript:',        // VBScript protocol
+        );
+
+        foreach ($dangerous_patterns as $pattern) {
+            $css = str_ireplace($pattern, '', $css);
+        }
+
+        // Layer 3: Additional HTML entity protection
+        $css = wp_kses($css, array());
+
+        // Layer 4: Remove any remaining HTML-like structures (using WordPress function)
+        $css = wp_strip_all_tags($css);
+
+        // Layer 5: Sanitize URLs in CSS (allow only relative or safe domains)
+        // This prevents loading external resources while keeping background images working
+        $css = preg_replace_callback(
+            '/url\s*\(\s*[\'"]?([^\'"]*)[\'"]?\s*\)/i',
+            function ($matches) {
+                $url = trim($matches[1]);
+
+                // Allow relative URLs (starting with /)
+                if (strpos($url, '/') === 0 && strpos($url, '//') !== 0) {
+                    return 'url(' . esc_url($url) . ')';
+                }
+
+                // Allow data URIs for small images (but only safe types)
+                if (strpos($url, 'data:image/') === 0) {
+                    // Check if it's a safe image type
+                    if (preg_match('/^data:image\/(png|jpg|jpeg|gif|svg\+xml);base64,/', $url)) {
+                        return 'url(' . $url . ')';
+                    }
+                }
+
+                // Allow URLs from the same domain (using WordPress function)
+                $site_url = wp_parse_url(site_url(), PHP_URL_HOST);
+                $parsed_url = wp_parse_url($url, PHP_URL_HOST);
+
+                if ($parsed_url === $site_url || empty($parsed_url)) {
+                    return 'url(' . esc_url($url) . ')';
+                }
+
+                // Remove all other external URLs
+                return '';
+            },
+            $css
+        );
+
+        return $css;
     }
 
     /**

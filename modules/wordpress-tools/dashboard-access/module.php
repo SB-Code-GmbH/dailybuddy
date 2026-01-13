@@ -38,7 +38,7 @@ class Dailybuddy_Dashboard_Access
 
         // Register settings
         add_action('admin_init', array($this, 'register_settings'));
-        
+
         // Enqueue admin styles
         add_action('admin_enqueue_scripts', array($this, 'enqueue_admin_styles'));
     }
@@ -253,6 +253,7 @@ class Dailybuddy_Dashboard_Access
             'dailybuddy_dashboard_access_settings',
             'dailybuddy_dashboard_access_settings',
             array(
+                'type'              => 'array',
                 'sanitize_callback' => array($this, 'sanitize_settings'),
             )
         );
@@ -260,19 +261,37 @@ class Dailybuddy_Dashboard_Access
 
     /**
      * Sanitize settings
+     * 
+     * WordPress.org compliance: Use sanitize_key() for role slugs
+     * and validate against existing WordPress roles
      */
     public function sanitize_settings($input)
     {
         $sanitized = array();
 
-        // Sanitize allowed roles
+        // Get all available WordPress roles for validation
+        global $wp_roles;
+        $available_roles = array_keys($wp_roles->roles);
+
+        // Sanitize allowed roles with validation
         if (isset($input['allowed_roles']) && is_array($input['allowed_roles'])) {
-            $sanitized['allowed_roles'] = array_map('sanitize_text_field', $input['allowed_roles']);
-        } else {
+            foreach ($input['allowed_roles'] as $role) {
+                // Use sanitize_key() for role slugs (not sanitize_text_field)
+                $sanitized_role = sanitize_key($role);
+
+                // Only store if it's a valid WordPress role
+                if (in_array($sanitized_role, $available_roles, true)) {
+                    $sanitized['allowed_roles'][] = $sanitized_role;
+                }
+            }
+        }
+
+        // Initialize as empty array if not set
+        if (!isset($sanitized['allowed_roles'])) {
             $sanitized['allowed_roles'] = array();
         }
 
-        // Always include administrator
+        // Always include administrator role
         if (!in_array('administrator', $sanitized['allowed_roles'])) {
             $sanitized['allowed_roles'][] = 'administrator';
         }

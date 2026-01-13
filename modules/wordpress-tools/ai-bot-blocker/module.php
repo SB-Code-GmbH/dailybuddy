@@ -135,7 +135,7 @@ class Dailybuddy_AI_Bot_Blocker
 
         // Enqueue admin styles
         add_action('admin_enqueue_scripts', array($this, 'enqueue_admin_styles'));
-        
+
         // Enqueue admin scripts
         add_action('admin_enqueue_scripts', array($this, 'enqueue_admin_scripts'));
 
@@ -240,20 +240,6 @@ class Dailybuddy_AI_Bot_Blocker
     /**
      * Manage physical robots.txt file
      * 
-     * IMPORTANT: This function MUST use ABSPATH for robots.txt location
-     * 
-     * Why ABSPATH is correct and necessary here:
-     * - robots.txt is a web standard that MUST be located at the domain root (example.com/robots.txt)
-     * - This is NOT a WordPress-specific file but a universal web crawling protocol (RFC 9309)
-     * - Search engines and bots expect robots.txt at the site root, not in wp-content or uploads
-     * - ABSPATH represents the WordPress installation root, which is the correct location
-     * 
-     * We cannot use:
-     * - plugin_dir_path() - would place file in plugin directory (incorrect)
-     * - wp_upload_dir() - would place file in uploads directory (incorrect)
-     * - WP_CONTENT_DIR - would place file in wp-content directory (incorrect)
-     * 
-     * Reference: https://www.robotstxt.org/robotstxt.html
      * 
      * @param array|null $settings Optional settings array
      */
@@ -263,11 +249,16 @@ class Dailybuddy_AI_Bot_Blocker
             $settings = get_option('dailybuddy_ai_bot_blocker_settings', array());
         }
 
+        // Load file.php first - it contains get_home_path() function
+        require_once ABSPATH . 'wp-admin/includes/file.php';
+
         /**
-         * ABSPATH usage is intentional and correct here for robots.txt
-         * robots.txt must be at domain root per web standards (RFC 9309)
+         * Use get_home_path() to ensure robots.txt is at the website root
+         * This is crucial for WordPress installations in subdirectories
          */
-        $robots_file = ABSPATH . 'robots.txt';
+        $home_path = get_home_path();
+        $robots_file = $home_path . 'robots.txt';
+
         $blocked_bots = isset($settings['blocked_bots']) ? $settings['blocked_bots'] : array();
         $use_robots_txt = !empty($settings['use_robots_txt']);
 
@@ -296,8 +287,7 @@ class Dailybuddy_AI_Bot_Blocker
         // Combine existing content with our rules
         $new_content = trim($existing_content) . "\n\n" . $our_rules;
 
-        require_once ABSPATH . 'wp-admin/includes/file.php';
-
+        // Initialize WP_Filesystem
         global $wp_filesystem;
 
         if (! $wp_filesystem) {
@@ -305,11 +295,10 @@ class Dailybuddy_AI_Bot_Blocker
         }
 
         /**
-         * Check if WordPress root directory or robots.txt file is writable
-         * ABSPATH usage is correct here - robots.txt must be in WordPress root directory
-         * to comply with Robots Exclusion Standard (RFC 9309)
+         * Check if website root or robots.txt file is writable
+         * Using get_home_path() ensures we check the correct location
          */
-        if (wp_is_writable(ABSPATH) || wp_is_writable($robots_file)) {
+        if (wp_is_writable($home_path) || wp_is_writable($robots_file)) {
             // Use WP_Filesystem instead of direct PHP file operations.
             $wp_filesystem->put_contents($robots_file, $new_content, FS_CHMOD_FILE);
         }
@@ -399,6 +388,7 @@ class Dailybuddy_AI_Bot_Blocker
             'dailybuddy_ai_bot_blocker_settings',
             'dailybuddy_ai_bot_blocker_settings',
             array(
+                'type'              => 'array',
                 'sanitize_callback' => array($this, 'sanitize_settings'),
             )
         );
@@ -406,15 +396,32 @@ class Dailybuddy_AI_Bot_Blocker
 
     /**
      * Sanitize settings
+     * 
+     * WordPress.org compliance: Use sanitize_key() for bot identifiers
+     * and validate against known $ai_bots array
      */
     public function sanitize_settings($input)
     {
         $sanitized = array();
 
-        // Sanitize blocked bots
+        // Sanitize blocked bots with validation
         if (isset($input['blocked_bots']) && is_array($input['blocked_bots'])) {
-            $sanitized['blocked_bots'] = array_map('sanitize_text_field', $input['blocked_bots']);
-        } else {
+            // Get list of valid bot keys
+            $valid_bot_keys = array_keys($this->ai_bots);
+
+            foreach ($input['blocked_bots'] as $bot) {
+                // Use sanitize_key() for identifiers (not sanitize_text_field)
+                $sanitized_bot = sanitize_key($bot);
+
+                // Only store if it's a valid bot key
+                if (in_array($sanitized_bot, $valid_bot_keys, true)) {
+                    $sanitized['blocked_bots'][] = $sanitized_bot;
+                }
+            }
+        }
+
+        // If no valid bots selected, initialize as empty array
+        if (!isset($sanitized['blocked_bots'])) {
             $sanitized['blocked_bots'] = array();
         }
 
