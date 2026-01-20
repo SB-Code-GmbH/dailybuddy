@@ -1,6 +1,22 @@
 /**
  * dailybuddy Admin Styles - Modern Sidebar Layout
  */
+.mt-1 {
+    margin-top: 0.5rem;
+}
+
+.mt-2 {
+    margin-top: 1rem;
+}
+
+.mt-3 {
+    margin-top: 1.5rem;
+}
+
+.mt-4 {
+    margin-top: 2rem;
+}
+
 #toplevel_page_dailybuddy .wp-menu-image img {
     width: 19px;
     height: 19px;

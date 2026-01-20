@@ -4,7 +4,7 @@ Tags: tools, admin, dashboard, elementor, widgets
 Requires at least: 5.0
 Tested up to: 6.9
 Requires PHP: 7.4
-Stable tag: 1.0.9
+Stable tag: 1.0.10
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -38,7 +38,6 @@ Additional Elementor widgets and editor enhancements (Elementor required):
 - Content Timeline – Displays content in a horizontal or vertical timeline layout, supporting dynamic posts and custom content.
 - Filterable Gallery – Create filterable image galleries with multiple layout styles, search functionality, and lightbox support.
 - FlipBox – Animated flip box widget for presenting content on front and back sides.
-- Hide Elementor Pro Widgets – Option to hide Elementor Pro widgets, categories, and upsell elements from the editor interface.
 - Logo Carousel – Responsive logo carousel/slider with configurable animation options.
 - Product Card – Product-style content widget with configurable layout elements such as badges, countdowns, and call-to-action buttons.
 - Content Switcher – Toggle between two content sections within a single layout (e.g. pricing tables or light/dark sections).
@@ -88,14 +87,20 @@ Yes, and it even includes an option to hide Elementor Pro widgets from the edito
 
 == Screenshots ==
 
-1. **Module Overview** – Manage all modules and enable or disable features.  
-2. **Dashboard Widgets** – Notes, statistics, activities, security info, and more.  
-3. **Elementor Extensions** – Additional widgets like FlipBox, Logo Carousel, Product Card, etc.  
-4. **WordPress Tools** – Duplicate posts/pages and easy maintenance mode.
+1. **Dashboard Widgets Overview** – Displays all currently activated dashboard widgets, providing quick access to notes, statistics, activities, security information, and other essential insights.
+2. **Dashboard Widgets** – Notes, statistics, activities, security information, and more.
+3. **Resource Folder Module** – Activated resource folder feature that allows you to organize media, pages, or posts into folders for better content management.
+4. **WordPress Modules Overview**– Overview of various WordPress modules that can be easily activated or deactivated to extend functionality.
 
 ---
 
 == Changelog ==
+= 1.0.10 =
+* Add Branding
+* Add Mega Menu Elementor Extension
+* Bugfixes resource folder Module
+* Bugfixes Vertical Nav Bar Elementor Extension
+
 = 1.0.9 =
 * Improved security, compatibility, and code quality
 

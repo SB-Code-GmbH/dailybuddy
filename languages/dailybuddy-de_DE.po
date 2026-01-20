@@ -4086,3 +4086,279 @@ msgstr "Platzhalterfarbe"
 #: (Line 2977)
 msgid "Dropdown"
 msgstr "Dropdown"
+
+msgid "If you like this free plugin and want to support its development, feel free to check out %s."
+msgstr "Wenn Ihnen dieses kostenlose Plugin gefällt und Sie dessen Entwicklung unterstützen möchten, schauen Sie sich gerne %s an."
+
+msgid "JSON decoding error"
+msgstr "Fehler beim Dekodieren von JSON"
+
+msgid "Next Arrow Icon"
+msgstr "Symbol für nächsten Pfeil"
+
+msgid "Previous Arrow Icon"
+msgstr "Symbol für vorherigen Pfeil"
+
+msgid "Create beautiful navigation menus with editable dropdown content and mobile toggle."
+msgstr "Erstelle ansprechende Navigationsmenüs mit bearbeitbaren Dropdown-Inhalten und mobilem Umschalter."
+
+msgid "menu"
+msgstr "Menü"
+
+msgid "Mega Menu"
+msgstr "Mega-Menü"
+
+msgid "Item #1"
+msgstr "Element #1"
+
+msgid "Item #2"
+msgstr "Element #2"
+
+msgid "Item #3"
+msgstr "Element #3"
+
+msgid "Item #%d"
+msgstr "Element #%d"
+
+msgid "Open Dropdown On"
+msgstr "Dropdown öffnen bei"
+
+msgid "Click"
+msgstr "Klick"
+
+msgid "Item Position"
+msgstr "Element-Position"
+
+msgid "Start"
+msgstr "Anfang"
+
+msgid "End"
+msgstr "Ende"
+
+msgid "Space Between"
+msgstr "Abstand dazwischen"
+
+msgid "Menu Items"
+msgstr "Menüelemente"
+
+msgid "Menu Item"
+msgstr "Menüelement"
+
+msgid "Dropdown Content"
+msgstr "Dropdown-Inhalt"
+
+msgid "ON"
+msgstr "EIN"
+
+msgid "OFF"
+msgstr "AUS"
+
+msgid "Click on this menu item in the editor to edit the Mega Menu content."
+msgstr "Klicke im Editor auf dieses Menüelement, um den Inhalt des Mega-Menüs zu bearbeiten."
+
+msgid "CSS ID"
+msgstr "CSS-ID"
+
+msgid "Home"
+msgstr "Startseite"
+
+msgid "About"
+msgstr "Über uns"
+
+msgid "Services"
+msgstr "Leistungen"
+
+msgid "Add Item"
+msgstr "Element hinzufügen"
+
+msgid "Action Button"
+msgstr "Aktions-Button"
+
+msgid "Show Action Button"
+msgstr "Aktions-Button anzeigen"
+
+msgid "Register Now"
+msgstr "Jetzt registrieren"
+
+msgid "Position"
+msgstr "Position"
+
+msgid "Desktop Position"
+msgstr "Desktop-Position"
+
+msgid "Mobile Position"
+msgstr "Mobile Position"
+
+msgid "Top"
+msgstr "Oben"
+
+msgid "Bottom"
+msgstr "Unten"
+
+msgid "Mobile Menu"
+msgstr "Mobiles Menü"
+
+msgid "Mobile Menu Only"
+msgstr "Nur mobiles Menü"
+
+msgid "Show only the mobile/hamburger menu on all screen sizes."
+msgstr "Zeigt auf allen Bildschirmgrößen nur das mobile/Hamburger-Menü an."
+
+msgid "Breakpoint"
+msgstr "Breakpoint"
+
+msgid "Mobile (< 768px)"
+msgstr "Mobil (< 768px)"
+
+msgid "Tablet (< 1025px)"
+msgstr "Tablet (< 1025px)"
+
+msgid "Switch to mobile menu at this breakpoint."
+msgstr "Wechselt bei diesem Breakpoint zum mobilen Menü."
+
+msgid "Slide Left"
+msgstr "Nach links schieben"
+
+msgid "Slide Right"
+msgstr "Nach rechts schieben"
+
+msgid "Slide Down"
+msgstr "Nach unten schieben"
+
+msgid "Full Screen"
+msgstr "Vollbild"
+
+msgid "Toggle Icons"
+msgstr "Umschalt-Symbole"
+
+msgid "Toggle Position"
+msgstr "Position des Umschalters"
+
+msgid "Normal Icon"
+msgstr "Normales Symbol"
+
+msgid "Active Icon"
+msgstr "Aktives Symbol"
+
+msgid "Toggle Title"
+msgstr "Titel umschalten"
+
+msgid "Title Text"
+msgstr "Titeltext"
+
+msgid "Menu"
+msgstr "Menü"
+
+msgid "Title Position"
+msgstr "Titelposition"
+
+msgid "Before Icon"
+msgstr "Vor dem Symbol"
+
+msgid "After Icon"
+msgstr "Nach dem Symbol"
+
+msgid "Space Between Items"
+msgstr "Abstand zwischen Elementen"
+
+msgid "Distance from Dropdown"
+msgstr "Abstand zum Dropdown"
+
+msgid "Divider"
+msgstr "Trennlinie"
+
+msgid "Divider Color"
+msgstr "Farbe der Trennlinie"
+
+msgid "Dropdown Indicator"
+msgstr "Dropdown-Indikator"
+
+msgid "Rotate"
+msgstr "Drehen"
+
+msgid "Menu Toggle"
+msgstr "Menü-Umschalter"
+
+msgid "Spacing (Icon to Title)"
+msgstr "Abstand (Symbol zu Titel)"
+
+msgid "Title Color"
+msgstr "Titelfarbe"
+
+msgid "Toggle Button"
+msgstr "Umschalt-Button"
+
+msgid "Styles applied to menu items when in mobile/dropdown layout."
+msgstr "Stile, die auf Menüelemente im mobilen/Dropdown-Layout angewendet werden."
+
+msgid "Menu Container"
+msgstr "Menü-Container"
+
+msgid "Dropdown Box"
+msgstr "Dropdown-Box"
+
+msgid "Style the dropdown container that holds menu content."
+msgstr "Gestalte den Dropdown-Container, der den Menüinhalt enthält."
+
+msgid "Close Menu"
+msgstr "Menü schließen"
+
+msgid "Close %s"
+msgstr "%s schließen"
+
+msgid "Open %s"
+msgstr "%s öffnen"
+
+msgid "Login slug cannot be empty."
+msgstr "Der Login-Slug darf nicht leer sein."
+
+msgid "This slug is reserved by WordPress and cannot be used."
+msgstr "Dieser Slug ist von WordPress reserviert und kann nicht verwendet werden."
+
+msgid "This slug is reserved and cannot be used for security reasons."
+msgstr "Dieser Slug ist reserviert und kann aus Sicherheitsgründen nicht verwendet werden."
+
+msgid "Login slug cannot be the same as redirect slug."
+msgstr "Der Login-Slug darf nicht mit dem Weiterleitungs-Slug identisch sein."
+
+msgid "This slug is reserved and cannot be used."
+msgstr "Dieser Slug ist reserviert und kann nicht verwendet werden."
+
+msgid "Redirect slug cannot be the same as login slug."
+msgstr "Der Weiterleitungs-Slug darf nicht mit dem Login-Slug identisch sein."
+
+msgid "Invalid file upload structure."
+msgstr "Ungültige Datei-Upload-Struktur."
+
+msgid "File exceeds maximum upload size."
+msgstr "Die Datei überschreitet die maximale Upload-Größe."
+
+msgid "File exceeds form maximum size."
+msgstr "Die Datei überschreitet die im Formular erlaubte Maximalgröße."
+
+msgid "File was only partially uploaded."
+msgstr "Die Datei wurde nur teilweise hochgeladen."
+
+msgid "No file was uploaded."
+msgstr "Es wurde keine Datei hochgeladen."
+
+msgid "Missing temporary upload directory."
+msgstr "Das temporäre Upload-Verzeichnis fehlt."
+
+msgid "Failed to write file to disk."
+msgstr "Die Datei konnte nicht auf die Festplatte geschrieben werden."
+
+msgid "File upload stopped by PHP extension."
+msgstr "Der Datei-Upload wurde durch eine PHP-Erweiterung gestoppt."
+
+msgid "Unknown upload error."
+msgstr "Unbekannter Upload-Fehler."
+
+msgid "File size exceeds maximum allowed size of %s."
+msgstr "Die Dateigröße überschreitet die maximal erlaubte Größe von %s."
+
+msgid "Security error: File was not properly uploaded."
+msgstr "Sicherheitsfehler: Die Datei wurde nicht korrekt hochgeladen."
+
+msgid "Sorry, this file type is not permitted for security reasons."
+msgstr "Dieser Dateityp ist aus Sicherheitsgründen nicht erlaubt."

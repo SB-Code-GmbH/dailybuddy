@@ -3909,3 +3909,369 @@ msgstr ""
 #: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\elementor-extensions\filterable-gallery\widget.php (Line 2977)
 msgid "Dropdown"
 msgstr ""
+
+msgid "If you like this free plugin and want to support its development, feel free to check out %s."
+msgstr ""
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\includes\class-translation-scanner.php (Line 122)
+msgid "JSON decoding error"
+msgstr ""
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\elementor-extensions\logo-carousel\widget.php (Line 374)
+msgid "Next Arrow Icon"
+msgstr ""
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\elementor-extensions\logo-carousel\widget.php (Line 389)
+msgid "Previous Arrow Icon"
+msgstr ""
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\elementor-extensions\mega-menu\config.php (Line 4)
+msgid "Mega Menu"
+msgstr ""
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\elementor-extensions\mega-menu\config.php (Line 9)
+msgid "Create beautiful navigation menus with editable dropdown content and mobile toggle."
+msgstr ""
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\elementor-extensions\mega-menu\config.php (Line 9)
+msgid "menu"
+msgstr ""
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\elementor-extensions\mega-menu\widget.php (Line 68)
+msgid "Item #1"
+msgstr ""
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\elementor-extensions\mega-menu\widget.php (Line 74)
+msgid "Item #2"
+msgstr ""
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\elementor-extensions\mega-menu\widget.php (Line 80)
+msgid "Item #3"
+msgstr ""
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\elementor-extensions\mega-menu\widget.php (Line 93)
+msgid "Item #%d"
+msgstr ""
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\elementor-extensions\mega-menu\widget.php (Line 139)
+msgid "Open Dropdown On"
+msgstr ""
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\elementor-extensions\mega-menu\widget.php (Line 144)
+msgid "Click"
+msgstr ""
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\elementor-extensions\mega-menu\widget.php (Line 153)
+msgid "Item Position"
+msgstr ""
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\elementor-extensions\mega-menu\widget.php (Line 158)
+msgid "Start"
+msgstr ""
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\elementor-extensions\mega-menu\widget.php (Line 166)
+msgid "End"
+msgstr ""
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\elementor-extensions\mega-menu\widget.php (Line 170)
+msgid "Space Between"
+msgstr ""
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\elementor-extensions\mega-menu\widget.php (Line 182)
+msgid "Menu Items"
+msgstr ""
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\elementor-extensions\mega-menu\widget.php (Line 182)
+msgid "Menu Item"
+msgstr ""
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\elementor-extensions\mega-menu\widget.php (Line 222)
+msgid "Dropdown Content"
+msgstr ""
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\elementor-extensions\mega-menu\widget.php (Line 4)
+msgid "ON"
+msgstr ""
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\elementor-extensions\mega-menu\widget.php (Line 225)
+msgid "OFF"
+msgstr ""
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\elementor-extensions\mega-menu\widget.php (Line 237)
+msgid "Click on this menu item in the editor to edit the Mega Menu content."
+msgstr ""
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\elementor-extensions\mega-menu\widget.php (Line 259)
+msgid "CSS ID"
+msgstr ""
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\elementor-extensions\mega-menu\widget.php (Line 272)
+msgid "Home"
+msgstr ""
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\elementor-extensions\mega-menu\widget.php (Line 276)
+msgid "About"
+msgstr ""
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\elementor-extensions\mega-menu\widget.php (Line 280)
+msgid "Services"
+msgstr ""
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\elementor-extensions\mega-menu\widget.php (Line 286)
+msgid "Add Item"
+msgstr ""
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\elementor-extensions\mega-menu\widget.php (Line 292)
+msgid "Action Button"
+msgstr ""
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\elementor-extensions\mega-menu\widget.php (Line 303)
+msgid "Show Action Button"
+msgstr ""
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\elementor-extensions\mega-menu\widget.php (Line 317)
+msgid "Register Now"
+msgstr ""
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\elementor-extensions\mega-menu\widget.php (Line 153)
+msgid "Position"
+msgstr ""
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\elementor-extensions\mega-menu\widget.php (Line 393)
+msgid "Desktop Position"
+msgstr ""
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\elementor-extensions\mega-menu\widget.php (Line 415)
+msgid "Mobile Position"
+msgstr ""
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\elementor-extensions\mega-menu\widget.php (Line 420)
+msgid "Top"
+msgstr ""
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\elementor-extensions\mega-menu\widget.php (Line 424)
+msgid "Bottom"
+msgstr ""
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\elementor-extensions\mega-menu\widget.php (Line 436)
+msgid "Mobile Menu"
+msgstr ""
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\elementor-extensions\mega-menu\widget.php (Line 447)
+msgid "Mobile Menu Only"
+msgstr ""
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\elementor-extensions\mega-menu\widget.php (Line 453)
+msgid "Show only the mobile/hamburger menu on all screen sizes."
+msgstr ""
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\elementor-extensions\mega-menu\widget.php (Line 461)
+msgid "Breakpoint"
+msgstr ""
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\elementor-extensions\mega-menu\widget.php (Line 466)
+msgid "Mobile (&lt; 768px)"
+msgstr ""
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\elementor-extensions\mega-menu\widget.php (Line 467)
+msgid "Tablet (&lt; 1025px)"
+msgstr ""
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\elementor-extensions\mega-menu\widget.php (Line 469)
+msgid "Switch to mobile menu at this breakpoint."
+msgstr ""
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\elementor-extensions\mega-menu\widget.php (Line 484)
+msgid "Slide Left"
+msgstr ""
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\elementor-extensions\mega-menu\widget.php (Line 485)
+msgid "Slide Right"
+msgstr ""
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\elementor-extensions\mega-menu\widget.php (Line 486)
+msgid "Slide Down"
+msgstr ""
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\elementor-extensions\mega-menu\widget.php (Line 487)
+msgid "Full Screen"
+msgstr ""
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\elementor-extensions\mega-menu\widget.php (Line 497)
+msgid "Toggle Icons"
+msgstr ""
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\elementor-extensions\mega-menu\widget.php (Line 506)
+msgid "Toggle Position"
+msgstr ""
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\elementor-extensions\mega-menu\widget.php (Line 532)
+msgid "Normal Icon"
+msgstr ""
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\elementor-extensions\mega-menu\widget.php (Line 545)
+msgid "Active Icon"
+msgstr ""
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\elementor-extensions\mega-menu\widget.php (Line 558)
+msgid "Toggle Title"
+msgstr ""
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\elementor-extensions\mega-menu\widget.php (Line 567)
+msgid "Title Text"
+msgstr ""
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\elementor-extensions\mega-menu\widget.php (Line 4)
+msgid "Menu"
+msgstr ""
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\elementor-extensions\mega-menu\widget.php (Line 578)
+msgid "Title Position"
+msgstr ""
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\elementor-extensions\mega-menu\widget.php (Line 582)
+msgid "Before Icon"
+msgstr ""
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\elementor-extensions\mega-menu\widget.php (Line 586)
+msgid "After Icon"
+msgstr ""
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\elementor-extensions\mega-menu\widget.php (Line 615)
+msgid "Space Between Items"
+msgstr ""
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\elementor-extensions\mega-menu\widget.php (Line 631)
+msgid "Distance from Dropdown"
+msgstr ""
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\elementor-extensions\mega-menu\widget.php (Line 795)
+msgid "Divider"
+msgstr ""
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\elementor-extensions\mega-menu\widget.php (Line 807)
+msgid "Divider Color"
+msgstr ""
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\elementor-extensions\mega-menu\widget.php (Line 978)
+msgid "Dropdown Indicator"
+msgstr ""
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\elementor-extensions\mega-menu\widget.php (Line 1007)
+msgid "Rotate"
+msgstr ""
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\elementor-extensions\mega-menu\widget.php (Line 1097)
+msgid "Menu Toggle"
+msgstr ""
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\elementor-extensions\mega-menu\widget.php (Line 1142)
+msgid "Spacing (Icon to Title)"
+msgstr ""
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\elementor-extensions\mega-menu\widget.php (Line 1166)
+msgid "Title Color"
+msgstr ""
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\elementor-extensions\mega-menu\widget.php (Line 1177)
+msgid "Toggle Button"
+msgstr ""
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\elementor-extensions\mega-menu\widget.php (Line 1605)
+msgid "Styles applied to menu items when in mobile/dropdown layout."
+msgstr ""
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\elementor-extensions\mega-menu\widget.php (Line 1690)
+msgid "Menu Container"
+msgstr ""
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\elementor-extensions\mega-menu\widget.php (Line 1748)
+msgid "Dropdown Box"
+msgstr ""
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\elementor-extensions\mega-menu\widget.php (Line 1758)
+msgid "Style the dropdown container that holds menu content."
+msgstr ""
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\elementor-extensions\mega-menu\widget.php (Line 1926)
+msgid "Close Menu"
+msgstr ""
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\elementor-extensions\mega-menu\widget.php (Line 2106)
+msgid "Close %s"
+msgstr ""
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\elementor-extensions\mega-menu\widget.php (Line 2110)
+msgid "Open %s"
+msgstr ""
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\wordpress-tools\custom-login-url\module.php (Line 656)
+msgid "Login slug cannot be empty."
+msgstr ""
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\wordpress-tools\custom-login-url\module.php (Line 667)
+msgid "This slug is reserved by WordPress and cannot be used."
+msgstr ""
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\wordpress-tools\custom-login-url\module.php (Line 694)
+msgid "This slug is reserved and cannot be used for security reasons."
+msgstr ""
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\wordpress-tools\custom-login-url\module.php (Line 706)
+msgid "Login slug cannot be the same as redirect slug."
+msgstr ""
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\wordpress-tools\custom-login-url\module.php (Line 764)
+msgid "This slug is reserved and cannot be used."
+msgstr ""
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\wordpress-tools\custom-login-url\module.php (Line 776)
+msgid "Redirect slug cannot be the same as login slug."
+msgstr ""
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\wordpress-tools\media-replace\module.php (Line 395)
+msgid "Invalid file upload structure."
+msgstr ""
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\wordpress-tools\media-replace\module.php (Line 403)
+msgid "File exceeds maximum upload size."
+msgstr ""
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\wordpress-tools\media-replace\module.php (Line 404)
+msgid "File exceeds form maximum size."
+msgstr ""
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\wordpress-tools\media-replace\module.php (Line 405)
+msgid "File was only partially uploaded."
+msgstr ""
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\wordpress-tools\media-replace\module.php (Line 406)
+msgid "No file was uploaded."
+msgstr ""
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\wordpress-tools\media-replace\module.php (Line 407)
+msgid "Missing temporary upload directory."
+msgstr ""
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\wordpress-tools\media-replace\module.php (Line 408)
+msgid "Failed to write file to disk."
+msgstr ""
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\wordpress-tools\media-replace\module.php (Line 409)
+msgid "File upload stopped by PHP extension."
+msgstr ""
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\wordpress-tools\media-replace\module.php (Line 414)
+msgid "Unknown upload error."
+msgstr ""
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\wordpress-tools\media-replace\module.php (Line 426)
+msgid "File size exceeds maximum allowed size of %s."
+msgstr ""
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\wordpress-tools\media-replace\module.php (Line 436)
+msgid "Security error: File was not properly uploaded."
+msgstr ""
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\wordpress-tools\media-replace\module.php (Line 446)
+msgid "Sorry, this file type is not permitted for security reasons."
+msgstr ""

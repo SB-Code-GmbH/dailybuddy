@@ -234,7 +234,7 @@ if (! isset($dailybuddy_modules) || ! is_array($dailybuddy_modules)) {
                     <?php $dailybuddy_support_url = '#'; ?>
 
                     <p>
-                        <a href="<?php echo esc_url($dailybuddy_support_url); ?>" target="_blank" rel="noopener noreferrer"
+                        <a href="https://wordpress.org/support/plugin/dailybuddy" target="_blank" rel="noopener noreferrer"
                             class="button button-secondary">
                             <?php esc_html_e('Open support & feedback page', 'dailybuddy'); ?>
                         </a>
@@ -247,6 +247,25 @@ if (! isset($dailybuddy_modules) || ! is_array($dailybuddy_modules)) {
                         ); ?>
                     </p>
 
+                </div>
+
+                <div class="dailybuddy-support links">
+                    <?php
+                    $dailybuddy_url  = 'https://dailybuddy.net';
+                    $dailybuddy_link = sprintf(
+                        '<a href="%1$s" target="_blank" rel="noopener noreferrer">%2$s</a>',
+                        esc_url($dailybuddy_url),
+                        esc_html('dailybuddy.net')
+                    );
+
+                    echo wp_kses_post(
+                        sprintf(
+                            /* translators: %s: Link to the developer's website */
+                            __('If you like this free plugin and want to support its development, feel free to check out %s.', 'dailybuddy'),
+                            $dailybuddy_link
+                        )
+                    );
+                    ?>
                 </div>
 
             </div>

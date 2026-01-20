@@ -1,0 +1,260 @@
+/**
+ * Dailybuddy Mega Menu - Editor Styles
+ * Using unique db-mega-menu-* classes to avoid Elementor Pro conflicts
+ */
+
+/* ========================================
+   POSITIONING:
+   - .db-mega-menu-heading = positioning parent (relative)
+   - .db-mega-menu-item = static (so content escapes it)
+   - .db-mega-menu-content = absolute, under heading
+   ======================================== */
+
+/* Make heading the positioning parent */
+.elementor-editor-active .elementor-widget-dailybuddy-mega-menu .db-mega-menu-heading {
+    position: relative !important;
+}
+
+/* CRITICAL: Item must be static so content positions to heading, not item */
+.elementor-editor-active .elementor-widget-dailybuddy-mega-menu .db-mega-menu-item {
+    position: static !important;
+}
+
+/* ========================================
+   HIDE ALL .db-mega-menu-content by default
+   ======================================== */
+.elementor-editor-active .elementor-widget-dailybuddy-mega-menu .db-mega-menu-content {
+    display: none !important;
+}
+
+/* Hide close button in editor */
+.elementor-editor-active .elementor-widget-dailybuddy-mega-menu .db-mega-menu-close {
+    display: none !important;
+}
+
+/* ========================================
+   SHOW ACTIVE - FULL VIEWPORT WIDTH (OVERLAY)
+   ======================================== */
+.elementor-editor-active .elementor-widget-dailybuddy-mega-menu .db-mega-menu-content.e-active,
+.elementor-editor-active .elementor-widget-dailybuddy-mega-menu .db-mega-menu-item.e-active>.db-mega-menu-content {
+    display: flex !important;
+    flex-direction: column;
+
+    /* POSITIONING - FULL VIEWPORT WIDTH */
+    position: absolute !important;
+    top: 100% !important;
+    left: 50% !important;
+    transform: translateX(-50%) !important;
+    width: 100vw !important;
+    max-width: 100vw !important;
+
+    /* Styling */
+    min-height: 100px;
+    z-index: 9999 !important;
+}
+
+/* Container inside must be visible */
+.elementor-editor-active .elementor-widget-dailybuddy-mega-menu .db-mega-menu-content.e-active>.e-con,
+.elementor-editor-active .elementor-widget-dailybuddy-mega-menu .db-mega-menu-item.e-active>.db-mega-menu-content>.e-con {
+    display: flex !important;
+    width: 100% !important;
+}
+
+/* ========================================
+   Keep wrapper visible by default
+   ======================================== */
+.elementor-editor-active .elementor-widget-dailybuddy-mega-menu .db-mega-menu-wrapper {
+    display: flex !important;
+}
+
+/* ========================================
+   Dropdown icons
+   ======================================== */
+.elementor-editor-active .elementor-widget-dailybuddy-mega-menu .db-mega-menu-item.e-active .db-mega-menu-dropdown-icon-opened {
+    display: flex !important;
+}
+
+.elementor-editor-active .elementor-widget-dailybuddy-mega-menu .db-mega-menu-item.e-active .db-mega-menu-dropdown-icon-closed {
+    display: none !important;
+}
+
+.elementor-editor-active .elementor-widget-dailybuddy-mega-menu .db-mega-menu-item:not(.e-active) .db-mega-menu-dropdown-icon-opened {
+    display: none !important;
+}
+
+.elementor-editor-active .elementor-widget-dailybuddy-mega-menu .db-mega-menu-item:not(.e-active) .db-mega-menu-dropdown-icon-closed {
+    display: flex !important;
+}
+
+/* ========================================
+   HIDE content for items with dropdown disabled
+   ======================================== */
+.elementor-editor-active .elementor-widget-dailybuddy-mega-menu .db-mega-menu-item[data-has-dropdown="false"]>.db-mega-menu-content {
+    display: none !important;
+}
+
+.elementor-editor-active .elementor-widget-dailybuddy-mega-menu .db-mega-menu-item[data-has-dropdown="false"].e-active>.db-mega-menu-content {
+    display: none !important;
+}
+
+/* ========================================
+   Mobile Menu Only - Show toggle in editor
+   ======================================== */
+.elementor-editor-active .db-mega-menu.mobile-menu-only {
+    flex-direction: row !important;
+}
+
+.elementor-editor-active .db-mega-menu.mobile-menu-only .db-mega-menu-toggle {
+    display: flex !important;
+}
+
+.elementor-editor-active .db-mega-menu.mobile-menu-only .db-mega-menu-wrapper {
+    display: none !important;
+}
+
+.elementor-editor-active .db-mega-menu.mobile-menu-only .db-mega-menu-heading {
+    display: none !important;
+}
+
+/* ========================================
+   Breakpoint: Tablet - Editor Responsive Preview
+   ======================================== */
+@media (max-width: 1024px) {
+    .elementor-editor-active .elementor-widget-dailybuddy-mega-menu .db-mega-menu.breakpoint-tablet .db-mega-menu-toggle {
+        display: flex !important;
+    }
+
+    .elementor-editor-active .elementor-widget-dailybuddy-mega-menu .db-mega-menu.breakpoint-tablet .db-mega-menu-wrapper {
+        display: none !important;
+    }
+
+    .elementor-editor-active .elementor-widget-dailybuddy-mega-menu .db-mega-menu.breakpoint-tablet .db-mega-menu-heading {
+        display: none !important;
+    }
+}
+
+/* ========================================
+   Breakpoint: Mobile - Editor Responsive Preview
+   ======================================== */
+@media (max-width: 767px) {
+    .elementor-editor-active .elementor-widget-dailybuddy-mega-menu .db-mega-menu.breakpoint-mobile .db-mega-menu-toggle {
+        display: flex !important;
+    }
+
+    .elementor-editor-active .elementor-widget-dailybuddy-mega-menu .db-mega-menu.breakpoint-mobile .db-mega-menu-wrapper {
+        display: none !important;
+    }
+
+    .elementor-editor-active .elementor-widget-dailybuddy-mega-menu .db-mega-menu.breakpoint-mobile .db-mega-menu-heading {
+        display: none !important;
+    }
+
+    /* Also apply tablet breakpoint on mobile */
+    .elementor-editor-active .elementor-widget-dailybuddy-mega-menu .db-mega-menu.breakpoint-tablet .db-mega-menu-toggle {
+        display: flex !important;
+    }
+
+    .elementor-editor-active .elementor-widget-dailybuddy-mega-menu .db-mega-menu.breakpoint-tablet .db-mega-menu-wrapper {
+        display: none !important;
+    }
+
+    .elementor-editor-active .elementor-widget-dailybuddy-mega-menu .db-mega-menu.breakpoint-tablet .db-mega-menu-heading {
+        display: none !important;
+    }
+}
+
+/* ========================================
+   Mobile Menu Toggle in Editor
+   ======================================== */
+.elementor-editor-active .elementor-widget-dailybuddy-mega-menu .db-mega-menu.e-open .db-mega-menu-wrapper.e-open {
+    display: flex !important;
+    flex-direction: column;
+    position: fixed !important;
+    z-index: 99999;
+    background: #fff;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+    padding: 0;
+    overflow-y: auto;
+}
+
+/* Slide Left */
+.elementor-editor-active .elementor-widget-dailybuddy-mega-menu .db-mega-menu.mobile-layout-slide-left.e-open .db-mega-menu-wrapper.e-open {
+    top: 0 !important;
+    left: 0 !important;
+    bottom: 0 !important;
+    width: 300px !important;
+    max-width: 80vw !important;
+    border-radius: 0 !important;
+}
+
+/* Slide Right */
+.elementor-editor-active .elementor-widget-dailybuddy-mega-menu .db-mega-menu.mobile-layout-slide-right.e-open .db-mega-menu-wrapper.e-open {
+    top: 0 !important;
+    right: 0 !important;
+    bottom: 0 !important;
+    width: 300px !important;
+    max-width: 80vw !important;
+    border-radius: 0 !important;
+}
+
+/* Full Screen */
+.elementor-editor-active .elementor-widget-dailybuddy-mega-menu .db-mega-menu.mobile-layout-full-screen.e-open .db-mega-menu-wrapper.e-open {
+    top: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    bottom: 0 !important;
+    width: 100% !important;
+    border-radius: 0 !important;
+}
+
+/* Slide Down */
+.elementor-editor-active .elementor-widget-dailybuddy-mega-menu .db-mega-menu.mobile-layout-slide-down.e-open .db-mega-menu-wrapper.e-open {
+    position: absolute !important;
+    top: 100% !important;
+    left: 0 !important;
+    right: 0 !important;
+    width: 100% !important;
+    max-height: 80vh !important;
+    border-radius: 0 0 8px 8px !important;
+}
+
+/* Mobile menu heading in editor */
+.elementor-editor-active .elementor-widget-dailybuddy-mega-menu .db-mega-menu.e-open .db-mega-menu-wrapper.e-open .db-mega-menu-heading {
+    display: flex !important;
+    flex-direction: column !important;
+    width: 100% !important;
+    padding: 0 !important;
+}
+
+/* Mobile menu item in editor */
+.elementor-editor-active .elementor-widget-dailybuddy-mega-menu .db-mega-menu.e-open .db-mega-menu-wrapper.e-open .db-mega-menu-item {
+    width: 100% !important;
+    flex-direction: column !important;
+    position: static !important;
+    margin: 0 !important;
+}
+
+/* Mobile header in editor */
+.elementor-editor-active .elementor-widget-dailybuddy-mega-menu .db-mega-menu.e-open .db-mega-menu-wrapper.e-open .db-mega-menu-mobile-header {
+    display: flex !important;
+}
+
+/* Close button in editor - show when menu open */
+.elementor-editor-active .elementor-widget-dailybuddy-mega-menu .db-mega-menu.e-open .db-mega-menu-close {
+    display: flex !important;
+    cursor: pointer;
+}
+
+/* Dropdown content in mobile menu editor */
+.elementor-editor-active .elementor-widget-dailybuddy-mega-menu .db-mega-menu.e-open .db-mega-menu-wrapper.e-open .db-mega-menu-content {
+    position: relative !important;
+    width: 100% !important;
+    left: 0 !important;
+    top: auto !important;
+    transform: none !important;
+}
+
+/* Action button in mobile menu editor */
+.elementor-editor-active .elementor-widget-dailybuddy-mega-menu .db-mega-menu.e-open .db-mega-menu-wrapper.e-open .db-action-button-mobile {
+    display: flex !important;
+}

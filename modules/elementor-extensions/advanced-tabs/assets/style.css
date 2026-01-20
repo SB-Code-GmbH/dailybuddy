@@ -77,10 +77,6 @@
     gap: 30px;
 }
 
-.dailybuddy-tabs-vertical .dailybuddy-tabs-nav {
-    flex: 0 0 250px;
-}
-
 .dailybuddy-tabs-vertical .dailybuddy-tabs-nav ul {
     flex-direction: column;
     border-right: none;

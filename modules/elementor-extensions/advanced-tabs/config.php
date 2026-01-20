@@ -7,7 +7,7 @@
 return array(
     'name'        => __('Advanced Tabs', 'dailybuddy'),
     'description' => __('Create beautiful tabbed content with multiple design styles. Supports icons, images, scheduled tabs, and Elementor templates.', 'dailybuddy'),
-    'version'     => '1.0.0',
+    'version'     => '1.0.1',
     'icon'        => 'fa-solid fa-folder-tree',
     'is_premium'  => false,
     'requires'    => array('elementor'),

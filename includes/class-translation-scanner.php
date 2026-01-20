@@ -140,20 +140,20 @@ class Dailybuddy_Translation_Scanner
         $dailybuddy_locales = array_map('sanitize_text_field', $dailybuddy_locales);
 
         // Sanitize translation strings
-        // Each string entry should be an array with 'msgid' and optionally 'context'
-        $strings = array_map(function($string) {
+        // Each string entry should be an array with 'string' and optionally 'context'
+        $strings = array_map(function ($string) {
             if (!is_array($string)) {
                 return array();
             }
             return array(
-                'msgid' => isset($string['msgid']) ? sanitize_text_field($string['msgid']) : '',
+                'string' => isset($string['string']) ? sanitize_text_field($string['string']) : '',
                 'context' => isset($string['context']) ? sanitize_text_field($string['context']) : '',
             );
         }, $strings);
 
         // Remove empty strings after sanitization
-        $strings = array_filter($strings, function($string) {
-            return !empty($string['msgid']);
+        $strings = array_filter($strings, function ($string) {
+            return !empty($string['string']);
         });
 
         // Validate data

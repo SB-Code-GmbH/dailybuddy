@@ -121,6 +121,25 @@ $dailybuddy_activate_url = add_query_arg(
             }
             ?>
 
+            <div class="dailybuddy-support mt-2">
+                <?php
+                $dailybuddy_url  = 'https://dailybuddy.net';
+                $dailybuddy_link = sprintf(
+                    '<a href="%1$s" target="_blank" rel="noopener noreferrer">%2$s</a>',
+                    esc_url($dailybuddy_url),
+                    esc_html('dailybuddy.net')
+                );
+
+                echo wp_kses_post(
+                    sprintf(
+                        /* translators: %s: Link to the developer's website */
+                        __('If you like this free plugin and want to support its development, feel free to check out %s.', 'dailybuddy'),
+                        $dailybuddy_link
+                    )
+                );
+                ?>
+            </div>
+
         </div>
 
     <?php endif; ?>
