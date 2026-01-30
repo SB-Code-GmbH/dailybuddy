@@ -41,6 +41,10 @@ body.folded {
 }
 
 /* ========== SIDEBAR CONTAINER ========== */
+.tablenav-pages,
+.load-more-count {
+    display: none !important;
+}
 
 .dailybuddy-folders-sidebar {
     position: fixed;
@@ -1176,3 +1180,135 @@ body.post-type-post .wp-list-table td.column-title {
     background: #ffd2d2;
     border: 1px dashed var(--folder-primary-color, #ffacac);
 }
+
+/* ==========================================
+   MEDIA MODAL FOLDER DROPDOWN
+   ========================================== */
+
+.dailybuddy-folder-dropdown {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    margin-top: 20px;
+    padding: 12px 20px;
+    background: #f6f7f7;
+    border-radius: 6px;
+    max-width: 420px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.dailybuddy-folder-dropdown .folder-dropdown-label {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-weight: 500;
+    color: #1e1e1e;
+    white-space: nowrap;
+    font-size: 13px;
+}
+
+.dailybuddy-folder-dropdown .folder-dropdown-label .dashicons {
+    color: var(--folder-primary-color, #91CE00);
+    font-size: 18px;
+    width: 18px;
+    height: 18px;
+}
+
+.dailybuddy-folder-dropdown .folder-dropdown-select {
+    flex: 1;
+    min-width: 200px;
+    max-width: 300px;
+    padding: 10px 30px 10px 12px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 14px;
+    line-height: 1.4;
+    background: #fff;
+    cursor: pointer;
+    transition: border-color 0.2s ease;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%23666' d='M6 8L1 3h10z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 10px center;
+    text-overflow: ellipsis;
+    height: auto;
+}
+
+.dailybuddy-folder-dropdown .folder-dropdown-select:hover {
+    border-color: #999;
+}
+
+.dailybuddy-folder-dropdown .folder-dropdown-select:focus {
+    border-color: var(--folder-primary-color, #91CE00);
+    outline: none;
+    box-shadow: 0 0 0 1px var(--folder-primary-color, #91CE00);
+}
+
+.dailybuddy-folder-dropdown .folder-dropdown-select:disabled {
+    opacity: 0.6;
+    cursor: wait;
+}
+
+/* Dark mode support */
+@media (prefers-color-scheme: dark) {
+    .dailybuddy-folder-dropdown {
+        background: #2c3338;
+    }
+
+    .dailybuddy-folder-dropdown .folder-dropdown-label {
+        color: #f0f0f1;
+    }
+
+    .dailybuddy-folder-dropdown .folder-dropdown-select {
+        background-color: #3c434a;
+        border-color: #4f5861;
+        color: #f0f0f1;
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%23f0f0f1' d='M6 8L1 3h10z'/%3E%3C/svg%3E");
+    }
+}
+
+/* Elementor Editor dark UI */
+.elementor-editor-active .dailybuddy-folder-dropdown,
+.media-modal .dailybuddy-folder-dropdown {
+    background: #404349;
+}
+
+.elementor-editor-active .dailybuddy-folder-dropdown .folder-dropdown-label,
+.media-modal .dailybuddy-folder-dropdown .folder-dropdown-label {
+    color: #f0f0f1;
+}
+
+.elementor-editor-active .dailybuddy-folder-dropdown .folder-dropdown-select,
+.media-modal .dailybuddy-folder-dropdown .folder-dropdown-select {
+    background-color: #5b5e66;
+    border-color: #6d7177;
+    color: #f0f0f1;
+    padding: 10px 30px 10px 12px;
+    font-size: 14px;
+    line-height: 1.4;
+    height: auto;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%23f0f0f1' d='M6 8L1 3h10z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 10px center;
+}
+
+
+/* ========== GRID DRAG STYLES ========== */
+/* Make entire attachment draggable */
+.attachments-browser .attachment {
+    cursor: grab;
+}
+
+.attachments-browser .attachment:active,
+.attachments-browser .attachment.sb-dragging {
+    cursor: grabbing;
+}
+
+.attachment.sb-dragging {
+    opacity: 0.5;
+}
+

@@ -77,6 +77,13 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Click outside to close dropdowns
     document.addEventListener('click', function(e) {
+        // Don't handle click-outside in Elementor Editor
+        if (window.elementor || window.elementorFrontend?.isEditMode?.() || 
+            document.body.classList.contains('elementor-editor-active') ||
+            document.body.classList.contains('elementor-editor-preview')) {
+            return;
+        }
+        
         if (!e.target.closest('.db-mega-menu')) {
             document.querySelectorAll('.db-mega-menu-item').forEach(function(el) {
                 el.classList.remove('e-active');
@@ -142,10 +149,19 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // ========== CLICK OUTSIDE TO CLOSE ==========
     document.addEventListener('click', function(e) {
+        // Don't handle click-outside in Elementor Editor
+        if (window.elementor || window.elementorFrontend?.isEditMode?.() || 
+            document.body.classList.contains('elementor-editor-active') ||
+            document.body.classList.contains('elementor-editor-preview')) {
+            return;
+        }
+        
         var openMenus = document.querySelectorAll('.db-mega-menu.e-open');
         openMenus.forEach(function(menu) {
+            // Don't close if clicking inside wrapper, toggle, or any content area
             if (!e.target.closest('.db-mega-menu-wrapper') && 
-                !e.target.closest('.db-mega-menu-toggle')) {
+                !e.target.closest('.db-mega-menu-toggle') &&
+                !e.target.closest('.db-mega-menu-content')) {
                 var toggle = menu.querySelector('.db-mega-menu-toggle');
                 var wrapper = menu.querySelector('.db-mega-menu-wrapper');
                 

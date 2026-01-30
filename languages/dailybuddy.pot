@@ -4275,3 +4275,43 @@ msgstr ""
 #: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\wordpress-tools\media-replace\module.php (Line 446)
 msgid "Sorry, this file type is not permitted for security reasons."
 msgstr ""
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\elementor-extensions\mega-menu\widget.php (Line 1606)
+msgid "Close Button"
+msgstr ""
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\elementor-extensions\mega-menu\widget.php (Line 1645)
+msgid "Header"
+msgstr ""
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\elementor-extensions\mega-menu\widget.php (Line 1659)
+msgid "Solid"
+msgstr ""
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\elementor-extensions\mega-menu\widget.php (Line 1660)
+msgid "Dashed"
+msgstr ""
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\elementor-extensions\mega-menu\widget.php (Line 1661)
+msgid "Dotted"
+msgstr ""
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\elementor-extensions\mega-menu\widget.php (Line 1763)
+msgid "Item Padding"
+msgstr ""
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\wordpress-tools\content-folders\module.php (Line 350)
+msgid "Upload to folder:"
+msgstr ""
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\wordpress-tools\content-folders\module.php (Line 351)
+msgid "Select folder..."
+msgstr ""
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\wordpress-tools\content-folders\module.php (Line 352)
+msgid "No folder"
+msgstr ""
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\wordpress-tools\content-folders\module.php (Line 353)
+msgid "Loading..."
+msgstr ""

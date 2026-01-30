@@ -1,11 +1,16 @@
 /**
- * dailybuddy Content Folders - COMPLETE FUNCTIONAL VERSION
+ * dailybuddy Content Folders v5.0 - PERFORMANCE OPTIMIZED
+ * 
+ * Improvements:
+ * - URL parameter support (no page reload, uses History API)
+ * - Batch API for grid labels (100 images = 1 request instead of 100)
+ * - Better performance and caching
  */
 
 (function ($) {
     'use strict';
 
-    var SBToolboxFolders = {
+    var dailybuddyFolders = {
         sidebarWidth: 275,
         minWidth: 200,
         maxWidth: 500,
@@ -31,11 +36,21 @@
                 $('body').addClass('sb-folders-ready');
             });
 
-            // Set initial active folder (All Files)
-            this.currentFolderId = 'all';
+            // ★ NEW: Check URL parameter for initial folder
+            var initialFolder = (typeof sbToolboxFolders !== 'undefined' && sbToolboxFolders.currentFolder)
+                ? sbToolboxFolders.currentFolder
+                : 'all';
+
+            this.currentFolderId = initialFolder;
+
+            // Apply initial filter after folders are loaded
             setTimeout(function () {
-                $('.folder-item[data-folder-id="all"]').addClass('active');
-            }, 100);
+                if (initialFolder !== 'all') {
+                    self.filterByFolder(initialFolder);
+                } else {
+                    $('.folder-item[data-folder-id="all"]').addClass('active');
+                }
+            }, 300);
         },
 
         cacheDom: function () {
@@ -769,12 +784,9 @@
 
             // Filter GRID VIEW (attachment items)
             if ($('.attachments-browser').length) {
-                var gridVisibleCount = 0;
-
                 if (folderId === 'all') {
                     // Show all grid items
                     $('.attachment').show();
-                    gridVisibleCount = $('.attachment').length;
                 } else if (folderId === 'unassigned') {
                     // Show only unassigned
                     $('.attachment').each(function () {
@@ -784,7 +796,6 @@
 
                         if (!labelFolderId || labelFolderId === 'unassigned') {
                             $attachment.show();
-                            gridVisibleCount++;
                         } else {
                             $attachment.hide();
                         }
@@ -799,7 +810,6 @@
 
                         if (labelFolderId == folderId) {
                             $attachment.show();
-                            gridVisibleCount++;
                         } else {
                             $attachment.hide();
                         }
@@ -811,8 +821,37 @@
             // Show empty message if no items
             this.showEmptyMessage(visibleCount, folderId);
 
+            // ★ NEW: Update URL without page reload (History API)
+            this.updateUrlParameter(folderId);
+
             // Update counts in badges if items were moved
             this.loadFolders();
+        },
+
+        /**
+         * ★ NEW: Update URL parameter without page reload
+         */
+        updateUrlParameter: function (folderId) {
+            if (typeof history === 'undefined' || !history.replaceState) {
+                return; // Browser doesn't support History API
+            }
+
+            try {
+                var url = new URL(window.location.href);
+
+                if (folderId === 'all') {
+                    // Remove parameter for "all"
+                    url.searchParams.delete('dailybuddy_folder');
+                } else {
+                    // Set parameter for specific folder
+                    url.searchParams.set('dailybuddy_folder', folderId);
+                }
+
+                // Update URL without reload
+                history.replaceState(null, '', url.toString());
+            } catch (e) {
+                // Fallback for older browsers
+            }
         },
 
         showEmptyMessage: function (visibleCount, folderId) {
@@ -1217,7 +1256,7 @@
             alert('Color picker coming in v4.4');
         },
 
-        // ========== GRID VIEW SUPPORT (MEDIA LIBRARY) ==========
+        // ========== GRID VIEW SUPPORT ==========
         initGridView: function () {
             var self = this;
 
@@ -1230,15 +1269,23 @@
             var checkInterval = setInterval(function () {
                 if ($('.attachment').length > 0) {
                     clearInterval(checkInterval);
-                    self.addFolderLabelsToGrid(function () {
+                    self.addFolderLabelsToGridBatch(function () {
                         self.initGridDragDrop();
+                        // ★ Apply initial filter after labels are loaded
+                        if (self.currentFolderId && self.currentFolderId !== 'all') {
+                            self.filterByFolder(self.currentFolderId);
+                        }
                     });
                 }
             }, 500);
 
-            // Watch for grid changes (pagination, search, etc.)
+            // Watch for grid changes (pagination, search, etc.) with debounce
+            var debounceTimer = null;
             var gridObserver = new MutationObserver(function () {
-                self.addFolderLabelsToGrid();
+                clearTimeout(debounceTimer);
+                debounceTimer = setTimeout(function () {
+                    self.addFolderLabelsToGridBatch();
+                }, 300);
             });
 
             setTimeout(function () {
@@ -1252,99 +1299,119 @@
             }, 2000);
         },
 
-        addFolderLabelsToGrid: function (callback) {
+        /**
+         * Refresh page after upload when folder filter is active
+         */
+        initUploadRefresh: function () {
             var self = this;
-            var attachments = $('.attachment').toArray();
-            var totalAttachments = attachments.length;
-            var processedCount = 0;
+            var refreshScheduled = false;
 
-            if (totalAttachments === 0) {
+            // Only listen for async-upload.php responses (the actual file upload)
+            $(document).ajaxSuccess(function (event, xhr, settings) {
+                // Only react to actual file uploads
+                if (!settings.url || settings.url.indexOf('async-upload.php') === -1) {
+                    return;
+                }
+
+                // Schedule ONE refresh after uploads complete
+                if (!refreshScheduled) {
+                    refreshScheduled = true;
+
+                    // Wait 2 seconds for multiple uploads to finish
+                    setTimeout(function () {
+                        window.location.reload();
+                    }, 2000);
+                }
+            });
+        },
+
+        /**
+         * ★ NEW: Batch API - Load all folder labels in ONE request
+         * This replaces the old method that made 1 request per image
+         */
+        addFolderLabelsToGridBatch: function (callback) {
+            var self = this;
+
+            // Collect all attachment IDs that need labels
+            var attachmentIds = [];
+            var attachmentMap = {};
+
+            $('.attachment').each(function () {
+                var $attachment = $(this);
+
+                // Skip if already has label
+                if ($attachment.find('.sb-folder-label').length) {
+                    return;
+                }
+
+                var attachmentId = $attachment.data('id');
+                if (attachmentId) {
+                    attachmentIds.push(attachmentId);
+                    attachmentMap[attachmentId] = $attachment;
+                }
+            });
+
+            if (attachmentIds.length === 0) {
                 if (callback) callback();
                 return;
             }
 
-            attachments.forEach(function (attachmentEl) {
-                var $attachment = $(attachmentEl);
+            // ★ ONE request for ALL attachments instead of N requests!
+            $.ajax({
+                url: sbToolboxFolders.ajaxurl,
+                type: 'POST',
+                data: {
+                    action: 'dailybuddy_get_posts_folders_batch',
+                    nonce: sbToolboxFolders.nonce,
+                    post_ids: attachmentIds,
+                    taxonomy: sbToolboxFolders.taxonomy
+                },
+                success: function (response) {
+                    if (response.success && response.data.folders) {
+                        $.each(response.data.folders, function (postId, folderInfo) {
+                            var $attachment = attachmentMap[postId];
+                            if (!$attachment) return;
 
-                // Skip if already has label
-                if ($attachment.find('.sb-folder-label').length) {
-                    processedCount++;
-                    if (processedCount === totalAttachments && callback) {
-                        callback();
-                    }
-                    return;
-                }
+                            var folderName = folderInfo.folder_name;
+                            var folderId = folderInfo.folder_id;
 
-                // Get attachment ID
-                var attachmentId = $attachment.data('id');
-                if (!attachmentId) {
-                    processedCount++;
-                    if (processedCount === totalAttachments && callback) {
-                        callback();
-                    }
-                    return;
-                }
-
-                // Get folder info via AJAX
-                $.ajax({
-                    url: sbToolboxFolders.ajaxurl,
-                    type: 'POST',
-                    data: {
-                        action: 'dailybuddy_get_post_folder',
-                        nonce: sbToolboxFolders.nonce,
-                        post_id: attachmentId,
-                        taxonomy: sbToolboxFolders.taxonomy
-                    },
-                    success: function (response) {
-                        processedCount++;
-
-                        if (response.success) {
-                            var folderName = response.data.folder_name;
-                            var folderId = response.data.folder_id;
-
-                            // Add folder label below thumbnail
+                            var $label;
                             if (folderName && folderId) {
-                                var $label = $('<div class="sb-folder-label" data-folder-id="' + folderId + '">' +
+                                $label = $('<div class="sb-folder-label" data-folder-id="' + folderId + '">' +
                                     '<span class="dashicons dashicons-category"></span>' +
                                     '<span>' + folderName + '</span>' +
                                     '</div>');
-                                $attachment.find('.attachment-preview').append($label);
-
-                                // Make label clickable to filter
-                                $label.on('click', function (e) {
-                                    e.preventDefault();
-                                    e.stopPropagation();
-                                    self.filterByFolder(folderId);
-                                });
                             } else {
-                                var $label = $('<div class="sb-folder-label unassigned" data-folder-id="unassigned">' +
+                                $label = $('<div class="sb-folder-label unassigned" data-folder-id="unassigned">' +
                                     '<span class="dashicons dashicons-category"></span>' +
                                     '<span>Unassigned</span>' +
                                     '</div>');
-                                $attachment.find('.attachment-preview').append($label);
+                            }
 
-                                // Make label clickable to filter
+                            $attachment.find('.attachment-preview').append($label);
+
+                            // Click handler for filtering
+                            (function (id) {
                                 $label.on('click', function (e) {
                                     e.preventDefault();
                                     e.stopPropagation();
-                                    self.filterByFolder('unassigned');
+                                    self.filterByFolder(id || 'unassigned');
                                 });
-                            }
-                        }
-
-                        // Call callback when all done
-                        if (processedCount === totalAttachments && callback) {
-                            callback();
-                        }
-                    },
-                    error: function () {
-                        processedCount++;
-                        if (processedCount === totalAttachments && callback) {
-                            callback();
-                        }
+                            })(folderId);
+                        });
                     }
-                });
+
+                    if (callback) callback();
+                },
+                error: function () {
+                    if (callback) callback();
+                }
             });
+        },
+
+        // Keep old method for backwards compatibility
+        addFolderLabelsToGrid: function (callback) {
+            this.addFolderLabelsToGridBatch(callback);
         },
 
         initGridDragDrop: function () {
@@ -1354,58 +1421,81 @@
                 var $attachment = $(this);
 
                 $attachment.on('mousedown', function (e) {
-                    // Only on folder label
-                    if (!$(e.target).closest('.sb-folder-label').length) {
+                    // ★ Don't start drag on interactive elements (checkbox, buttons)
+                    if ($(e.target).closest('button, input, .check').length) {
                         return;
                     }
 
+                    // ★ Allow drag from anywhere on the attachment
                     e.preventDefault();
                     var attachmentId = $attachment.data('id');
-
-                    // Create small drag helper
-                    var $helper = $attachment.clone();
-                    $helper.addClass('sb-grid-drag-helper');
-                    $helper.css({
-                        position: 'fixed',
-                        left: e.pageX + 10,
-                        top: e.pageY + 10,
-                        width: '100px',
-                        opacity: 0.8,
-                        zIndex: 10000,
-                        pointerEvents: 'none',
-                        transform: 'scale(0.5)'
-                    });
-                    $('body').append($helper);
+                    var startX = e.pageX;
+                    var startY = e.pageY;
+                    var isDragging = false;
+                    var $helper = null;
 
                     $(document).on('mousemove.griddrag', function (e) {
-                        $helper.css({
-                            left: e.pageX + 10,
-                            top: e.pageY + 10
-                        });
+                        // ★ Only start drag after moving 5+ pixels (to allow normal clicks)
+                        var distance = Math.sqrt(Math.pow(e.pageX - startX, 2) + Math.pow(e.pageY - startY, 2));
 
-                        // Highlight folder on hover
-                        var $folderItem = $(e.target).closest('.folder-tree-item, .folder-item');
-                        $('.folder-tree-item, .folder-item').removeClass('drop-hover');
-                        if ($folderItem.length) {
-                            $folderItem.addClass('drop-hover');
+                        if (!isDragging && distance > 5) {
+                            isDragging = true;
+
+                            // Create small drag helper
+                            $helper = $attachment.clone();
+                            $helper.addClass('sb-grid-drag-helper');
+                            $helper.css({
+                                position: 'fixed',
+                                left: e.pageX + 10,
+                                top: e.pageY + 10,
+                                width: '100px',
+                                opacity: 0.8,
+                                zIndex: 10000,
+                                pointerEvents: 'none',
+                                transform: 'scale(0.5)'
+                            });
+                            $('body').append($helper);
+
+                            // Add dragging class to original
+                            $attachment.addClass('sb-dragging');
+                        }
+
+                        if (isDragging && $helper) {
+                            $helper.css({
+                                left: e.pageX + 10,
+                                top: e.pageY + 10
+                            });
+
+                            // Highlight folder on hover
+                            var $folderItem = $(e.target).closest('.folder-tree-item, .folder-item');
+                            $('.folder-tree-item, .folder-item').removeClass('drop-hover');
+                            if ($folderItem.length) {
+                                $folderItem.addClass('drop-hover');
+                            }
                         }
                     });
 
                     $(document).on('mouseup.griddrag', function (e) {
-                        var $folderItem = $(e.target).closest('.folder-tree-item, .folder-item');
-                        if ($folderItem.length) {
-                            var folderId = $folderItem.data('folder-id');
-                            if (folderId && folderId !== 'all') {
-                                if (folderId === 'unassigned') {
-                                    folderId = 0;
-                                }
+                        if (isDragging) {
+                            var $folderItem = $(e.target).closest('.folder-tree-item, .folder-item');
+                            if ($folderItem.length) {
+                                var folderId = $folderItem.data('folder-id');
+                                if (folderId && folderId !== 'all') {
+                                    if (folderId === 'unassigned') {
+                                        folderId = 0;
+                                    }
 
-                                self.assignToFolder(attachmentId, folderId, null, $attachment);
+                                    self.assignToFolder(attachmentId, folderId, null, $attachment);
+                                }
                             }
+
+                            if ($helper) {
+                                $helper.remove();
+                            }
+                            $attachment.removeClass('sb-dragging');
                         }
 
                         $(document).off('mousemove.griddrag mouseup.griddrag');
-                        $helper.remove();
                         $('.folder-tree-item, .folder-item').removeClass('drop-hover');
                     });
 
@@ -1505,14 +1595,238 @@
 
     };
 
-    // Initialize on document ready
+    // ==========================================
+    // MEDIA MODAL FOLDER DROPDOWN (MINIMAL)
+    // Only for modals (Elementor, Gutenberg, etc.)
+    // Media library uploads use PHP hook instead
+    // ==========================================
+
+    var MediaModalFolders = {
+        folders: null,
+        selectedFolderId: 0,
+
+        init: function () {
+            // Only initialize for modals, not on media library page
+            if (window.location.href.indexOf('upload.php') === -1) {
+                this.observeMediaModal();
+                this.hookUploader();
+            }
+        },
+
+        observeMediaModal: function () {
+            var self = this;
+
+            var observer = new MutationObserver(function (mutations) {
+                mutations.forEach(function (mutation) {
+                    if (mutation.addedNodes.length) {
+                        mutation.addedNodes.forEach(function (node) {
+                            if (node.nodeType === 1) {
+                                var $node = $(node);
+                                // Check if modal opened or upload UI appeared
+                                if ($node.hasClass('media-modal') ||
+                                    $node.find('.media-modal').length ||
+                                    $node.hasClass('upload-ui') ||
+                                    $node.find('.upload-ui').length) {
+                                    setTimeout(function () {
+                                        self.injectDropdown();
+                                    }, 300);
+                                }
+                            }
+                        });
+                    }
+                });
+            });
+
+            observer.observe(document.body, { childList: true, subtree: true });
+
+            // ★ Also periodically check for new upload UIs (backup for dynamic content)
+            setInterval(function () {
+                if ($('.media-modal:visible').length) {
+                    self.injectDropdown();
+                }
+            }, 1000);
+        },
+
+        injectDropdown: function () {
+            var self = this;
+
+            // ★ Check all upload-ui elements (in modal and standalone)
+            $('.media-modal .upload-ui, .media-frame .upload-ui').each(function () {
+                var $uploadUI = $(this);
+
+                // Skip if already has dropdown
+                if ($uploadUI.find('.dailybuddy-folder-dropdown').length) return;
+
+                // Skip if not visible
+                if (!$uploadUI.is(':visible')) return;
+
+                var html = '<div class="dailybuddy-folder-dropdown">' +
+                    '<label class="folder-dropdown-label">' +
+                    '<span class="dashicons dashicons-category"></span>' +
+                    '<span>' + (sbToolboxFolders.strings.uploadToFolder || 'Upload to folder:') + '</span>' +
+                    '</label>' +
+                    '<select class="folder-dropdown-select">' +
+                    '<option value="0">' + (sbToolboxFolders.strings.noFolder || 'No folder') + '</option>' +
+                    '</select>' +
+                    '</div>';
+
+                var $maxSize = $uploadUI.find('.max-upload-size');
+                if ($maxSize.length) {
+                    $maxSize.after(html);
+                } else {
+                    $uploadUI.append(html);
+                }
+
+            });
+
+            // Load folders for all dropdowns
+            this.loadFolders();
+
+            // ★ Use event delegation for change events
+            $(document).off('change.dailybuddyModal', '.folder-dropdown-select');
+            $(document).on('change.dailybuddyModal', '.folder-dropdown-select', function () {
+                self.selectedFolderId = parseInt($(this).val()) || 0;
+
+                // ★ Store in sessionStorage for persistence
+                try {
+                    sessionStorage.setItem('dailybuddy_modal_folder', self.selectedFolderId);
+                } catch (e) { }
+            });
+
+            // ★ Restore from sessionStorage
+            try {
+                var storedFolder = sessionStorage.getItem('dailybuddy_modal_folder');
+                if (storedFolder) {
+                    self.selectedFolderId = parseInt(storedFolder) || 0;
+                }
+            } catch (e) { }
+        },
+
+        loadFolders: function () {
+            var self = this;
+            var $selects = $('.folder-dropdown-select');
+            if (!$selects.length) return;
+
+            // ★ Try to restore from sessionStorage first
+            try {
+                var storedFolder = sessionStorage.getItem('dailybuddy_modal_folder');
+                if (storedFolder) {
+                    self.selectedFolderId = parseInt(storedFolder) || 0;
+                }
+            } catch (e) { }
+
+            $.ajax({
+                url: sbToolboxFolders.ajaxurl,
+                type: 'POST',
+                data: {
+                    action: 'dailybuddy_get_folder_tree',
+                    nonce: sbToolboxFolders.nonce,
+                    taxonomy: 'dailybuddy_media_folder'
+                },
+                success: function (response) {
+                    if (response.success && response.data.tree) {
+                        // ★ Update all dropdowns
+                        $selects.each(function () {
+                            var $select = $(this);
+                            // Keep first option, remove others
+                            $select.find('option:not(:first)').remove();
+                            self.renderFolderOptions(response.data.tree, $select, 0);
+
+                            // ★ Restore selected value if any
+                            if (self.selectedFolderId > 0) {
+                                $select.val(self.selectedFolderId);
+                            }
+                        });
+                    }
+                }
+            });
+        },
+
+        renderFolderOptions: function (folders, $select, level) {
+            var self = this;
+            var prefix = '';
+            for (var i = 0; i < level; i++) {
+                prefix += '— ';
+            }
+
+            folders.forEach(function (folder) {
+                $select.append($('<option>', {
+                    value: folder.id,
+                    text: prefix + folder.name + ' (' + folder.count + ')'
+                }));
+
+                if (folder.children && folder.children.length) {
+                    self.renderFolderOptions(folder.children, $select, level + 1);
+                }
+            });
+        },
+
+        hookUploader: function () {
+            var self = this;
+
+            if (window._modalFolderHooked) return;
+            window._modalFolderHooked = true;
+
+            if (typeof wp !== 'undefined' && wp.Uploader) {
+                var origSuccess = wp.Uploader.prototype.success;
+                wp.Uploader.prototype.success = function (attachment) {
+                    if (origSuccess) {
+                        origSuccess.apply(this, arguments);
+                    }
+
+                    // ★ Get the currently selected folder from ANY visible dropdown
+                    var $visibleDropdown = $('.dailybuddy-folder-dropdown:visible .folder-dropdown-select');
+                    var folderId = $visibleDropdown.length ? parseInt($visibleDropdown.val()) : self.selectedFolderId;
+
+
+                    if (folderId > 0) {
+                        self.assignToFolder(attachment.id, folderId);
+                    }
+                };
+            }
+        },
+
+        assignToFolder: function (attachmentId, folderId) {
+            if (!attachmentId || !folderId) return;
+
+
+            $.ajax({
+                url: sbToolboxFolders.ajaxurl,
+                type: 'POST',
+                data: {
+                    action: 'dailybuddy_assign_to_folder',
+                    nonce: sbToolboxFolders.nonce,
+                    post_id: attachmentId,
+                    folder_id: folderId,
+                    taxonomy: 'dailybuddy_media_folder'
+                },
+                success: function (response) {
+                },
+                error: function (xhr, status, error) {
+                }
+            });
+        }
+    };
+
+    // Initialize
     $(document).ready(function () {
         if (typeof sbToolboxFolders !== 'undefined') {
-            SBToolboxFolders.init();
+            if (sbToolboxFolders.isMediaModal) {
+                MediaModalFolders.init();
+            } else {
+                dailybuddyFolders.init();
 
-            // Init grid view if on media library
-            if (sbToolboxFolders.postType === 'attachment') {
-                SBToolboxFolders.initGridView();
+                if (sbToolboxFolders.postType === 'attachment') {
+                    dailybuddyFolders.initGridView();
+
+                    // Refresh page after upload if folder filter is active
+                    if (sbToolboxFolders.currentFolder &&
+                        sbToolboxFolders.currentFolder !== 'all') {
+                        dailybuddyFolders.initUploadRefresh();
+                    }
+                }
+
+                MediaModalFolders.init();
             }
         }
     });

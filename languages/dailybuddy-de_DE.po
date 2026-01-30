@@ -4362,3 +4362,53 @@ msgstr "Sicherheitsfehler: Die Datei wurde nicht korrekt hochgeladen."
 
 msgid "Sorry, this file type is not permitted for security reasons."
 msgstr "Dieser Dateityp ist aus Sicherheitsgründen nicht erlaubt."
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\elementor-extensions\mega-menu\widget.php
+#: (Line 1606)
+msgid "Close Button"
+msgstr "Schließen-Button"
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\elementor-extensions\mega-menu\widget.php
+#: (Line 1645)
+msgid "Header"
+msgstr "Kopfzeile"
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\elementor-extensions\mega-menu\widget.php
+#: (Line 1659)
+msgid "Solid"
+msgstr "Fest"
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\elementor-extensions\mega-menu\widget.php
+#: (Line 1660)
+msgid "Dashed"
+msgstr "Gestrichelt"
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\elementor-extensions\mega-menu\widget.php
+#: (Line 1661)
+msgid "Dotted"
+msgstr "Gepunktet"
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\elementor-extensions\mega-menu\widget.php
+#: (Line 1763)
+msgid "Item Padding"
+msgstr "Item-Padding"
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\wordpress-tools\content-folders\module.php
+#: (Line 350)
+msgid "Upload to folder:"
+msgstr "In Ordner hochladen:"
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\wordpress-tools\content-folders\module.php
+#: (Line 351)
+msgid "Select folder..."
+msgstr "Ordner auswählen..."
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\wordpress-tools\content-folders\module.php
+#: (Line 352)
+msgid "No folder"
+msgstr "Kein Ordner"
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\wordpress-tools\content-folders\module.php
+#: (Line 353)
+msgid "Loading..."
+msgstr "Wird geladen..."

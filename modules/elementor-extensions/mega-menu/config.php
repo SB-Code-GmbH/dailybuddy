@@ -7,7 +7,7 @@
 return array(
     'name'        => __('Mega Menu', 'dailybuddy'),
     'description' => __('Create beautiful navigation menus with editable dropdown content and mobile toggle.', 'dailybuddy'),
-    'version'     => '1.0.0',
+    'version'     => '1.0.1',
     'icon'        => 'fa-solid fa-bars',
     'is_premium'  => false,
     'requires'    => array('elementor'),

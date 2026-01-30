@@ -954,8 +954,10 @@
     display: none;
     align-items: center;
     justify-content: space-between;
-    padding: 15px 20px;
-    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    padding: var(--db-mobile-header-padding, 15px 20px);
+    border-bottom-style: var(--db-mobile-header-border-style, solid);
+    border-bottom-width: var(--db-mobile-header-border-width, 1px);
+    border-bottom-color: var(--db-mobile-header-border-color, rgba(0, 0, 0, 0.1));
     position: sticky;
     top: 0;
     background: inherit;
@@ -1028,7 +1030,8 @@
     cursor: pointer;
     padding: 6px;
     color: inherit;
-    transition: background-color 0.2s ease;
+    font-size: 24px;
+    transition: background-color 0.2s ease, color 0.2s ease;
 }
 
 .elementor-widget-dailybuddy-mega-menu .db-mega-menu-mobile-header .db-mega-menu-close:hover {
@@ -1055,9 +1058,9 @@
 
 .elementor-widget-dailybuddy-mega-menu .db-mega-menu-close i,
 .elementor-widget-dailybuddy-mega-menu .db-mega-menu-close svg {
-    font-size: 20px;
-    width: 20px;
-    height: 20px;
+    font-size: inherit;
+    width: 1em;
+    height: 1em;
     fill: currentColor;
 }
 
@@ -1174,4 +1177,28 @@
     .elementor-widget-dailybuddy-mega-menu .db-mega-menu.breakpoint-mobile .db-mega-menu-wrapper.e-open .db-mega-menu-action-button.mobile-bottom {
         display: flex;
     }
+}
+/* ========================================
+   Mobile Menu - Alignment Support
+   ======================================== */
+/* Menu title takes full width for alignment control */
+.elementor-widget-dailybuddy-mega-menu .db-mega-menu.e-open .db-mega-menu-title,
+.elementor-widget-dailybuddy-mega-menu .db-mega-menu.mobile-menu-only .db-mega-menu-title {
+    width: 100%;
+    display: flex;
+    flex-wrap: nowrap;
+}
+
+/* Title container should NOT stretch - arrow stays next to text */
+.elementor-widget-dailybuddy-mega-menu .db-mega-menu.e-open .db-mega-menu-title-container,
+.elementor-widget-dailybuddy-mega-menu .db-mega-menu.mobile-menu-only .db-mega-menu-title-container {
+    width: auto;
+    flex: 0 0 auto;
+}
+
+/* Dropdown icon stays next to title container */
+.elementor-widget-dailybuddy-mega-menu .db-mega-menu.e-open .db-mega-menu-dropdown-icon,
+.elementor-widget-dailybuddy-mega-menu .db-mega-menu.mobile-menu-only .db-mega-menu-dropdown-icon {
+    flex-shrink: 0;
+    margin-left: 0;
 }

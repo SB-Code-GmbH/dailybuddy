@@ -1599,11 +1599,126 @@ class Dailybuddy_Mega_Menu_Widget extends Widget_Nested_Base
             )
         );
 
+        // ========== CLOSE BUTTON ==========
+        $this->add_control(
+            'mobile_close_button_heading',
+            array(
+                'label' => __('Close Button', 'dailybuddy'),
+                'type'  => Controls_Manager::HEADING,
+            )
+        );
+
+        $this->add_control(
+            'mobile_close_button_color',
+            array(
+                'label'     => __('Color', 'dailybuddy'),
+                'type'      => Controls_Manager::COLOR,
+                'selectors' => array(
+                    '{{WRAPPER}} .db-mega-menu-close' => 'color: {{VALUE}};',
+                    '{{WRAPPER}} .db-mega-menu-close svg' => 'fill: {{VALUE}};',
+                ),
+            )
+        );
+
+        $this->add_responsive_control(
+            'mobile_close_button_size',
+            array(
+                'label'      => __('Size', 'dailybuddy'),
+                'type'       => Controls_Manager::SLIDER,
+                'size_units' => array('px', 'em'),
+                'range'      => array(
+                    'px' => array('min' => 10, 'max' => 60),
+                    'em' => array('min' => 0.5, 'max' => 4),
+                ),
+                'default'    => array('size' => 24, 'unit' => 'px'),
+                'selectors'  => array(
+                    '{{WRAPPER}} .db-mega-menu-close' => 'font-size: {{SIZE}}{{UNIT}};',
+                    '{{WRAPPER}} .db-mega-menu-close svg' => 'width: {{SIZE}}{{UNIT}}; height: {{SIZE}}{{UNIT}};',
+                ),
+            )
+        );
+
+        // ========== HEADER (Title + Border) ==========
+        $this->add_control(
+            'mobile_header_heading',
+            array(
+                'label'     => __('Header', 'dailybuddy'),
+                'type'      => Controls_Manager::HEADING,
+                'separator' => 'before',
+            )
+        );
+
+        $this->add_control(
+            'mobile_header_border_type',
+            array(
+                'label'   => __('Border', 'dailybuddy'),
+                'type'    => Controls_Manager::SELECT,
+                'default' => 'solid',
+                'options' => array(
+                    'none'   => __('None', 'dailybuddy'),
+                    'solid'  => __('Solid', 'dailybuddy'),
+                    'dashed' => __('Dashed', 'dailybuddy'),
+                    'dotted' => __('Dotted', 'dailybuddy'),
+                ),
+                'selectors' => array(
+                    '{{WRAPPER}} .db-mega-menu-mobile-header' => 'border-bottom-style: {{VALUE}};',
+                ),
+            )
+        );
+
+        $this->add_control(
+            'mobile_header_border_color',
+            array(
+                'label'     => __('Border Color', 'dailybuddy'),
+                'type'      => Controls_Manager::COLOR,
+                'default'   => '#e0e0e0',
+                'condition' => array(
+                    'mobile_header_border_type!' => 'none',
+                ),
+                'selectors' => array(
+                    '{{WRAPPER}} .db-mega-menu-mobile-header' => 'border-bottom-color: {{VALUE}};',
+                ),
+            )
+        );
+
+        $this->add_responsive_control(
+            'mobile_header_border_width',
+            array(
+                'label'      => __('Border Width', 'dailybuddy'),
+                'type'       => Controls_Manager::SLIDER,
+                'size_units' => array('px'),
+                'range'      => array(
+                    'px' => array('min' => 1, 'max' => 10),
+                ),
+                'default'    => array('size' => 1, 'unit' => 'px'),
+                'condition'  => array(
+                    'mobile_header_border_type!' => 'none',
+                ),
+                'selectors'  => array(
+                    '{{WRAPPER}} .db-mega-menu-mobile-header' => 'border-bottom-width: {{SIZE}}{{UNIT}};',
+                ),
+            )
+        );
+
+        $this->add_responsive_control(
+            'mobile_header_padding',
+            array(
+                'label'      => __('Padding', 'dailybuddy'),
+                'type'       => Controls_Manager::DIMENSIONS,
+                'size_units' => array('px', 'em', '%'),
+                'selectors'  => array(
+                    '{{WRAPPER}} .db-mega-menu-mobile-header' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                ),
+            )
+        );
+
+        // ========== MENU ITEMS ==========
         $this->add_control(
             'mobile_menu_items_heading',
             array(
-                'label' => __('Menu Items', 'dailybuddy'),
-                'type'  => Controls_Manager::HEADING,
+                'label'     => __('Menu Items', 'dailybuddy'),
+                'type'      => Controls_Manager::HEADING,
+                'separator' => 'before',
             )
         );
 
@@ -1612,6 +1727,46 @@ class Dailybuddy_Mega_Menu_Widget extends Widget_Nested_Base
             array(
                 'type' => Controls_Manager::RAW_HTML,
                 'raw'  => '<p class="elementor-control-field-description">' . __('Styles applied to menu items when in mobile/dropdown layout.', 'dailybuddy') . '</p>',
+            )
+        );
+
+        $this->add_responsive_control(
+            'mobile_menu_items_alignment',
+            array(
+                'label'   => __('Alignment', 'dailybuddy'),
+                'type'    => Controls_Manager::CHOOSE,
+                'options' => array(
+                    'flex-start' => array(
+                        'title' => __('Left', 'dailybuddy'),
+                        'icon'  => 'eicon-text-align-left',
+                    ),
+                    'center' => array(
+                        'title' => __('Center', 'dailybuddy'),
+                        'icon'  => 'eicon-text-align-center',
+                    ),
+                    'flex-end' => array(
+                        'title' => __('Right', 'dailybuddy'),
+                        'icon'  => 'eicon-text-align-right',
+                    ),
+                ),
+                'default'   => 'flex-start',
+                'selectors' => array(
+                    '{{WRAPPER}} .db-mega-menu.e-open .db-mega-menu-title' => 'justify-content: {{VALUE}};',
+                    '{{WRAPPER}} .db-mega-menu.mobile-menu-only .db-mega-menu-title' => 'justify-content: {{VALUE}};',
+                ),
+            )
+        );
+
+        $this->add_responsive_control(
+            'mobile_menu_items_padding',
+            array(
+                'label'      => __('Item Padding', 'dailybuddy'),
+                'type'       => Controls_Manager::DIMENSIONS,
+                'size_units' => array('px', 'em', '%'),
+                'selectors'  => array(
+                    '{{WRAPPER}} .db-mega-menu.e-open .db-mega-menu-title' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                    '{{WRAPPER}} .db-mega-menu.mobile-menu-only .db-mega-menu-title' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                ),
             )
         );
 

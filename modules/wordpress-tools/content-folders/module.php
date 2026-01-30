@@ -1,14 +1,13 @@
 <?php
 
 /**
- * Module: Content Folders v4.2
+ * Module: Content Folders v5.0
  * 
- * COMPLETE REWRITE with all fixes:
- * - Proper column registration for drag handle
- * - Proper column for folder display
- * - Works on Posts, Pages AND Media
- * - Settings page
- * - No "undefined" folders
+ * PERFORMANCE OPTIMIZED VERSION:
+ * - URL parameter support (?dailybuddy_folder=123) - without page reload
+ * - Batch API for grid labels (one request for all images)
+ * - Optimized counts with single GROUP BY query
+ * - Transient caching for folder tree
  */
 
 if (!defined('ABSPATH')) {
@@ -49,6 +48,12 @@ class Dailybuddy_Content_Folders
         // Enqueue assets
         add_action('admin_enqueue_scripts', array($this, 'enqueue_admin_assets'));
 
+        // Enqueue media modal assets on all admin pages
+        add_action('admin_enqueue_scripts', array($this, 'enqueue_media_modal_assets'), 20);
+
+        // Enqueue for Elementor Editor
+        add_action('elementor/editor/before_enqueue_scripts', array($this, 'enqueue_elementor_media_modal_assets'));
+
         // Render sidebar
         add_action('admin_footer', array($this, 'render_folder_sidebar'));
 
@@ -60,6 +65,12 @@ class Dailybuddy_Content_Folders
         add_action('wp_ajax_dailybuddy_rename_folder', array($this, 'ajax_rename_folder'));
         add_action('wp_ajax_dailybuddy_get_post_folder', array($this, 'ajax_get_post_folder'));
         add_action('wp_ajax_dailybuddy_move_folder', array($this, 'ajax_move_folder'));
+
+        // ★ NEW: Batch API for grid labels
+        add_action('wp_ajax_dailybuddy_get_posts_folders_batch', array($this, 'ajax_get_posts_folders_batch'));
+
+        // ★ NEW: Auto-assign uploads to folder based on referer URL
+        add_action('add_attachment', array($this, 'auto_assign_upload_to_folder'));
 
         add_action('admin_menu', array($this, 'maybe_add_tools_menu'));
 
@@ -310,24 +321,157 @@ class Dailybuddy_Content_Folders
 
         wp_enqueue_script('dailybuddy-folders');
 
+        // ★ NEW: Get current folder from URL parameter
+        // phpcs:ignore WordPress.Security.NonceVerification.Recommended
+        $current_folder = isset($_GET['dailybuddy_folder']) 
+            ? sanitize_text_field(wp_unslash($_GET['dailybuddy_folder'])) 
+            : 'all';
+
         // Localize script
         wp_localize_script('dailybuddy-folders', 'sbToolboxFolders', array(
+            'ajaxurl'       => admin_url('admin-ajax.php'),
+            'nonce'         => wp_create_nonce('dailybuddy_folders'),
+            'taxonomy'      => $this->get_taxonomy_name($screen->post_type),
+            'postType'      => $screen->post_type,
+            'currentFolder' => $current_folder, // ★ NEW
+            'strings'       => array(
+                'newFolder'       => __('New Folder', 'dailybuddy'),
+                'allFiles'        => __('All Files', 'dailybuddy'),
+                'unassigned'      => __('Unassigned', 'dailybuddy'),
+                'createFolder'    => __('Create', 'dailybuddy'),
+                'cancel'          => __('Cancel', 'dailybuddy'),
+                'folderName'      => __('Folder name...', 'dailybuddy'),
+                'confirmDelete'   => __('Delete this folder?', 'dailybuddy'),
+                'emptyTitle'      => __('This folder is empty', 'dailybuddy'),
+                /* translators: %s: folder name */
+                'emptyTemplate'   => __('Drag items here to organize them into "%s"', 'dailybuddy'),
+                'rootDrop'        => __('Drag here to move the folder to the root level', 'dailybuddy'),
+                // Media Modal Strings
+                'uploadToFolder'  => __('Upload to folder:', 'dailybuddy'),
+                'selectFolder'    => __('Select folder...', 'dailybuddy'),
+                'noFolder'        => __('No folder', 'dailybuddy'),
+                'loading'         => __('Loading...', 'dailybuddy'),
+            ),
+        ));
+    }
+
+    /**
+     * Enqueue assets for Media Modal on pages that use it
+     */
+    public function enqueue_media_modal_assets($hook)
+    {
+        // Check if media folders are enabled
+        $settings = get_option('dailybuddy_content_folders_settings', array(
+            'enable_media' => true,
+        ));
+
+        if (empty($settings['enable_media'])) {
+            return;
+        }
+
+        // Skip if main folders script already loaded (on media library page)
+        if (wp_script_is('dailybuddy-folders', 'enqueued')) {
+            return;
+        }
+
+        // Skip if modal script already loaded
+        if (wp_script_is('dailybuddy-folders-modal', 'enqueued')) {
+            return;
+        }
+
+        // Load on ALL admin pages - media modal can be opened anywhere
+        // We use a lightweight approach that only activates when modal opens
+
+        // Enqueue CSS
+        wp_enqueue_style(
+            'dailybuddy-folders-modal',
+            DAILYBUDDY_URL . 'modules/wordpress-tools/content-folders/assets/folders.css',
+            array(),
+            '4.3.0'
+        );
+
+        // Add custom colors
+        $custom_css = ':root {';
+        $custom_css .= '--folder-primary-color: ' . esc_attr($settings['primary_color'] ?? '#91CE00') . ';';
+        $custom_css .= '--folder-accent-color: ' . esc_attr($settings['accent_color'] ?? '#478d63') . ';';
+        $custom_css .= '}';
+        wp_add_inline_style('dailybuddy-folders-modal', $custom_css);
+
+        // Enqueue JS
+        wp_enqueue_script(
+            'dailybuddy-folders-modal',
+            DAILYBUDDY_URL . 'modules/wordpress-tools/content-folders/assets/folders.js',
+            array('jquery'),
+            '4.3.0',
+            true
+        );
+
+        // Localize
+        wp_localize_script('dailybuddy-folders-modal', 'sbToolboxFolders', array(
             'ajaxurl'  => admin_url('admin-ajax.php'),
             'nonce'    => wp_create_nonce('dailybuddy_folders'),
-            'taxonomy' => $this->get_taxonomy_name($screen->post_type),
-            'postType' => $screen->post_type,
+            'taxonomy' => 'dailybuddy_media_folder',
+            'postType' => 'attachment',
+            'isMediaModal' => true,
             'strings'  => array(
-                'newFolder'     => __('New Folder', 'dailybuddy'),
-                'allFiles'      => __('All Files', 'dailybuddy'),
-                'unassigned'    => __('Unassigned', 'dailybuddy'),
-                'createFolder'  => __('Create', 'dailybuddy'),
-                'cancel'        => __('Cancel', 'dailybuddy'),
-                'folderName'    => __('Folder name...', 'dailybuddy'),
-                'confirmDelete' => __('Delete this folder?', 'dailybuddy'),
-                'emptyTitle'     => __('This folder is empty', 'dailybuddy'),
-                /* translators: %s: folder name */
-                'emptyTemplate'  => __('Drag items here to organize them into "%s"', 'dailybuddy'),
-                'rootDrop' => __('Drag here to move the folder to the root level', 'dailybuddy'),
+                'uploadToFolder'  => __('Upload to folder:', 'dailybuddy'),
+                'selectFolder'    => __('Select folder...', 'dailybuddy'),
+                'noFolder'        => __('No folder', 'dailybuddy'),
+                'loading'         => __('Loading...', 'dailybuddy'),
+            ),
+        ));
+    }
+
+    /**
+     * Enqueue assets for Elementor Editor Media Modal
+     */
+    public function enqueue_elementor_media_modal_assets()
+    {
+        // Check if media folders are enabled
+        $settings = get_option('dailybuddy_content_folders_settings', array(
+            'enable_media' => true,
+        ));
+
+        if (empty($settings['enable_media'])) {
+            return;
+        }
+
+        // Enqueue CSS
+        wp_enqueue_style(
+            'dailybuddy-folders-modal',
+            DAILYBUDDY_URL . 'modules/wordpress-tools/content-folders/assets/folders.css',
+            array(),
+            '4.3.1'
+        );
+
+        // Add custom colors
+        $custom_css = ':root {';
+        $custom_css .= '--folder-primary-color: ' . esc_attr($settings['primary_color'] ?? '#91CE00') . ';';
+        $custom_css .= '--folder-accent-color: ' . esc_attr($settings['accent_color'] ?? '#478d63') . ';';
+        $custom_css .= '}';
+        wp_add_inline_style('dailybuddy-folders-modal', $custom_css);
+
+        // Enqueue JS
+        wp_enqueue_script(
+            'dailybuddy-folders-modal',
+            DAILYBUDDY_URL . 'modules/wordpress-tools/content-folders/assets/folders.js',
+            array('jquery'),
+            '4.3.1',
+            true
+        );
+
+        // Localize
+        wp_localize_script('dailybuddy-folders-modal', 'sbToolboxFolders', array(
+            'ajaxurl'  => admin_url('admin-ajax.php'),
+            'nonce'    => wp_create_nonce('dailybuddy_folders'),
+            'taxonomy' => 'dailybuddy_media_folder',
+            'postType' => 'attachment',
+            'isMediaModal' => true,
+            'strings'  => array(
+                'uploadToFolder'  => __('Upload to folder:', 'dailybuddy'),
+                'selectFolder'    => __('Select folder...', 'dailybuddy'),
+                'noFolder'        => __('No folder', 'dailybuddy'),
+                'loading'         => __('Loading...', 'dailybuddy'),
             ),
         ));
     }
@@ -675,6 +819,114 @@ class Dailybuddy_Content_Folders
                 'folder_name' => $term->name,
             ));
         }
+    }
+
+    /**
+     * ★ NEW: AJAX Batch API - Get folders for multiple posts at once
+     * This dramatically improves performance for grid view (1 request instead of N)
+     */
+    public function ajax_get_posts_folders_batch()
+    {
+        check_ajax_referer('dailybuddy_folders', 'nonce');
+
+        $post_ids = isset($_POST['post_ids']) ? array_map('intval', (array) $_POST['post_ids']) : array();
+        $taxonomy = isset($_POST['taxonomy'])
+            ? sanitize_text_field(wp_unslash($_POST['taxonomy']))
+            : '';
+
+        if (empty($post_ids) || empty($taxonomy)) {
+            wp_send_json_error(array('message' => __('Invalid parameters', 'dailybuddy')));
+        }
+
+        // Limit to prevent abuse
+        $post_ids = array_slice($post_ids, 0, 200);
+
+        global $wpdb;
+
+        // Single query to get all folder assignments
+        $placeholders = implode(',', array_fill(0, count($post_ids), '%d'));
+
+        // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.PreparedSQLPlaceholders.UnfinishedPrepare
+        $results = $wpdb->get_results($wpdb->prepare(
+            "SELECT tr.object_id as post_id, t.term_id as folder_id, t.name as folder_name
+             FROM {$wpdb->term_relationships} tr
+             INNER JOIN {$wpdb->term_taxonomy} tt ON tr.term_taxonomy_id = tt.term_taxonomy_id
+             INNER JOIN {$wpdb->terms} t ON tt.term_id = t.term_id
+             WHERE tr.object_id IN ({$placeholders})
+             AND tt.taxonomy = %s",
+            array_merge($post_ids, array($taxonomy))
+        ));
+
+        // Build response map
+        $folders_map = array();
+        foreach ($post_ids as $pid) {
+            $folders_map[$pid] = array(
+                'folder_id'   => null,
+                'folder_name' => null,
+            );
+        }
+
+        foreach ($results as $row) {
+            $folders_map[$row->post_id] = array(
+                'folder_id'   => (int) $row->folder_id,
+                'folder_name' => $row->folder_name,
+            );
+        }
+
+        wp_send_json_success(array('folders' => $folders_map));
+    }
+
+    /**
+     * Auto-assign uploaded media to folder based on HTTP referer
+     * This is called via add_attachment hook when any media is uploaded
+     */
+    public function auto_assign_upload_to_folder($attachment_id)
+    {
+        // Only for media uploads
+        $post = get_post($attachment_id);
+        if (!$post || $post->post_type !== 'attachment') {
+            return;
+        }
+
+        // Check HTTP referer for folder parameter
+        $referer = isset($_SERVER['HTTP_REFERER']) ? sanitize_text_field(wp_unslash($_SERVER['HTTP_REFERER'])) : '';
+        
+        if (empty($referer)) {
+            return;
+        }
+
+        // Parse referer URL for dailybuddy_folder parameter
+        $parsed = wp_parse_url($referer);
+        if (empty($parsed['query'])) {
+            return;
+        }
+
+        parse_str($parsed['query'], $query_params);
+        
+        if (empty($query_params['dailybuddy_folder'])) {
+            return;
+        }
+
+        $folder_id = $query_params['dailybuddy_folder'];
+        
+        // Skip 'all' and 'unassigned'
+        if ($folder_id === 'all' || $folder_id === 'unassigned') {
+            return;
+        }
+
+        $folder_id = intval($folder_id);
+        if ($folder_id <= 0) {
+            return;
+        }
+
+        // Verify folder exists
+        $term = get_term($folder_id, 'dailybuddy_media_folder');
+        if (!$term || is_wp_error($term)) {
+            return;
+        }
+
+        // Assign to folder
+        wp_set_object_terms($attachment_id, $folder_id, 'dailybuddy_media_folder');
     }
 
     /**
