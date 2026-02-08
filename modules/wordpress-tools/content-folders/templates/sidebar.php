@@ -1,3 +1,4 @@
+<?php if ( ! defined( 'ABSPATH' ) ) { exit; } ?>
 <div id="dailybuddy-folders-sidebar" class="dailybuddy-folders-sidebar">
     <div class="dailybuddy-folders-resizer"></div>
 

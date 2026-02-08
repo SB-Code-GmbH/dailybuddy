@@ -7,7 +7,7 @@
 return array(
     'name'        => __('Logo Carousel', 'dailybuddy'),
     'description' => __('Display logos in an animated carousel/slider. Perfect for showcasing clients, partners, or sponsors with various animation effects.', 'dailybuddy'),
-    'version'     => '1.0.0',
+    'version'     => '1.0.1',
     'icon'        => 'fa-solid fa-images',
     'is_premium'  => false,
     'requires'    => array('elementor'),

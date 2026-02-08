@@ -141,6 +141,27 @@ class Dailybuddy_Elementor_Filterable_Gallery
      */
     public function enqueue_editor_scripts()
     {
+        // Register dependencies that are normally only available on the frontend
+        if (!wp_script_is('isotope', 'registered')) {
+            wp_register_script(
+                'isotope',
+                DAILYBUDDY_URL . 'vendor/isotope/isotope.pkgd.min.js',
+                array('jquery'),
+                '3.0.6',
+                true
+            );
+        }
+
+        if (!wp_script_is('imagesloaded', 'registered')) {
+            wp_register_script(
+                'imagesloaded',
+                DAILYBUDDY_URL . 'vendor/imagesloaded/imagesloaded.pkgd.min.js',
+                array('jquery'),
+                '5.0.0',
+                true
+            );
+        }
+
         // Enqueue the editor script (isotope initialization for editor preview)
         wp_enqueue_script(
             'dailybuddy-filterable-gallery-editor',

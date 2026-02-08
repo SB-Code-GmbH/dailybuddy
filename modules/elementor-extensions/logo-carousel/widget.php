@@ -66,7 +66,7 @@ class Dailybuddy_Elementor_Logo_Carousel_Widget extends Widget_Base
      */
     public function get_style_depends()
     {
-        return array('swiper');
+        return array('swiper', 'font-awesome-5-all', 'font-awesome-4-shim');
     }
 
     /**
@@ -74,7 +74,7 @@ class Dailybuddy_Elementor_Logo_Carousel_Widget extends Widget_Base
      */
     public function get_script_depends()
     {
-        return array('swiper');
+        return array('swiper', 'font-awesome-4-shim');
     }
 
     /**

@@ -69,6 +69,9 @@ class Dailybuddy_Content_Folders
         // ★ NEW: Batch API for grid labels
         add_action('wp_ajax_dailybuddy_get_posts_folders_batch', array($this, 'ajax_get_posts_folders_batch'));
 
+        // ★ NEW: Batch assign multiple posts to a folder
+        add_action('wp_ajax_dailybuddy_assign_to_folder_batch', array($this, 'ajax_assign_to_folder_batch'));
+
         // ★ NEW: Auto-assign uploads to folder based on referer URL
         add_action('add_attachment', array($this, 'auto_assign_upload_to_folder'));
 
@@ -260,7 +263,7 @@ class Dailybuddy_Content_Folders
      */
     public function enqueue_admin_assets($hook)
     {
-        $allowed_hooks = array('edit.php', 'upload.php', 'post.php', 'post-new.php');
+        $allowed_hooks = array('edit.php', 'upload.php');
 
         if (!in_array($hook, $allowed_hooks)) {
             return;
@@ -321,31 +324,38 @@ class Dailybuddy_Content_Folders
 
         wp_enqueue_script('dailybuddy-folders');
 
-        // ★ NEW: Get current folder from URL parameter
-        // phpcs:ignore WordPress.Security.NonceVerification.Recommended
-        $current_folder = isset($_GET['dailybuddy_folder']) 
-            ? sanitize_text_field(wp_unslash($_GET['dailybuddy_folder'])) 
-            : 'all';
-
         // Localize script
         wp_localize_script('dailybuddy-folders', 'sbToolboxFolders', array(
             'ajaxurl'       => admin_url('admin-ajax.php'),
             'nonce'         => wp_create_nonce('dailybuddy_folders'),
             'taxonomy'      => $this->get_taxonomy_name($screen->post_type),
             'postType'      => $screen->post_type,
-            'currentFolder' => $current_folder, // ★ NEW
             'strings'       => array(
                 'newFolder'       => __('New Folder', 'dailybuddy'),
                 'allFiles'        => __('All Files', 'dailybuddy'),
                 'unassigned'      => __('Unassigned', 'dailybuddy'),
+                'unassignedFiles' => __('Unassigned Files', 'dailybuddy'),
                 'createFolder'    => __('Create', 'dailybuddy'),
                 'cancel'          => __('Cancel', 'dailybuddy'),
                 'folderName'      => __('Folder name...', 'dailybuddy'),
                 'confirmDelete'   => __('Delete this folder?', 'dailybuddy'),
+                /* translators: %s: folder name */
+                'confirmDeleteNamed' => __('Delete folder "%s"? Items will be unassigned.', 'dailybuddy'),
                 'emptyTitle'      => __('This folder is empty', 'dailybuddy'),
                 /* translators: %s: folder name */
                 'emptyTemplate'   => __('Drag items here to organize them into "%s"', 'dailybuddy'),
                 'rootDrop'        => __('Drag here to move the folder to the root level', 'dailybuddy'),
+                'enterFolderName' => __('Please enter a folder name.', 'dailybuddy'),
+                'errorMoving'     => __('Error moving folder', 'dailybuddy'),
+                'errorAssigning'  => __('Error assigning to folder', 'dailybuddy'),
+                'errorRenaming'   => __('Error renaming folder', 'dailybuddy'),
+                'errorDeleting'   => __('Error deleting folder', 'dailybuddy'),
+                'errorCreating'   => __('Error creating folder.', 'dailybuddy'),
+                /* translators: %d: number of selected items */
+                'itemsCount'      => __('%d items', 'dailybuddy'),
+                'oneItem'         => __('1 item', 'dailybuddy'),
+                'rename'          => __('Rename', 'dailybuddy'),
+                'delete'          => __('Delete', 'dailybuddy'),
                 // Media Modal Strings
                 'uploadToFolder'  => __('Upload to folder:', 'dailybuddy'),
                 'selectFolder'    => __('Select folder...', 'dailybuddy'),
@@ -526,33 +536,41 @@ class Dailybuddy_Content_Folders
         $tree   = $this->build_folder_tree($terms, $counts);
         $post_type = $this->get_post_type_from_taxonomy($taxonomy);
 
-        // Count ALL posts including drafts, pending, etc.
-        $all_posts_args = array(
-            'post_type' => $post_type,
-            'numberposts' => -1,
-            'fields' => 'ids',
-            'post_status' => 'any', // ← WICHTIG: Alle Status!
-        );
-
-        // For attachments, use get_posts with specific status
+        // Total post count via WordPress API
+        $count_obj = wp_count_posts($post_type);
         if ($post_type === 'attachment') {
-            $all_posts_args['post_status'] = 'inherit'; // Attachments use 'inherit'
-        }
-
-        $all_posts = get_posts($all_posts_args);
-
-        $unassigned_count = 0;
-        foreach ($all_posts as $post_id) {
-            $post_terms = wp_get_post_terms($post_id, $taxonomy);
-            if (empty($post_terms) || is_wp_error($post_terms)) {
-                $unassigned_count++;
+            $total_count = (int) $count_obj->inherit;
+        } else {
+            $total_count = 0;
+            foreach (get_post_stati(array('show_in_admin_all_list' => true)) as $status) {
+                if (isset($count_obj->$status)) {
+                    $total_count += (int) $count_obj->$status;
+                }
             }
         }
+
+        // Assigned count = sum of all folder counts (posts in at least one folder)
+        // Since a post can be in multiple folders, we use WP_Query with tax_query EXISTS
+        $assigned_query = new WP_Query(array(
+            'post_type'      => $post_type,
+            'post_status'    => ($post_type === 'attachment') ? 'inherit' : 'any',
+            'posts_per_page' => -1,
+            'fields'         => 'ids',
+            'no_found_rows'  => false,
+            'tax_query'      => array( // phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_tax_query
+                array(
+                    'taxonomy' => $taxonomy,
+                    'operator' => 'EXISTS',
+                ),
+            ),
+        ));
+        $assigned_count   = $assigned_query->found_posts;
+        $unassigned_count = max(0, $total_count - $assigned_count);
 
         wp_send_json_success(array(
             'tree' => $tree,
             'counts' => $counts,
-            'total' => count($all_posts),
+            'total' => $total_count,
             'unassigned' => $unassigned_count,
         ));
     }
@@ -596,37 +614,16 @@ class Dailybuddy_Content_Folders
 
 
     /**
-     * Get folder counts
+     * Get folder counts using WordPress term count API
      */
     private function get_folder_counts($terms, $taxonomy)
     {
-        $counts    = array();
-        $post_type = $this->get_post_type_from_taxonomy($taxonomy);
+        $counts = array();
 
+        // WordPress maintains term counts automatically via $term->count
+        // Since each post type has its own taxonomy, these counts are accurate
         foreach ($terms as $term) {
-            $args = array(
-                'post_type'              => $post_type,
-                'posts_per_page'         => -1,
-                'fields'                 => 'ids',
-                'post_status'            => ($post_type === 'attachment') ? 'inherit' : 'any',
-                'no_found_rows'          => true,
-                'update_post_meta_cache' => false,
-                'update_post_term_cache' => false,
-
-                // This tax_query is necessary to determine the exact number of posts per folder.
-                // phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_tax_query
-                'tax_query'              => array(
-                    array(
-                        'taxonomy'         => $taxonomy,
-                        'field'            => 'term_id',
-                        'terms'            => $term->term_id,
-                        'include_children' => false,
-                    ),
-                ),
-            );
-
-            $posts = get_posts($args);
-            $counts[$term->term_id] = count($posts);
+            $counts[$term->term_id] = (int) $term->count;
         }
 
         return $counts;
@@ -714,6 +711,55 @@ class Dailybuddy_Content_Folders
         wp_send_json_success(array(
             'folder_name' => $folder_name,
             'folder_id' => $folder_id,
+        ));
+    }
+
+    /**
+     * AJAX: Batch assign multiple posts to a folder
+     */
+    public function ajax_assign_to_folder_batch()
+    {
+        check_ajax_referer('dailybuddy_folders', 'nonce');
+
+        if (!current_user_can('edit_posts')) {
+            wp_send_json_error(array('message' => __('Permission denied', 'dailybuddy')));
+        }
+
+        $post_ids = isset($_POST['post_ids']) ? array_map('intval', (array) $_POST['post_ids']) : array();
+        $folder_id = isset($_POST['folder_id']) ? intval($_POST['folder_id']) : 0;
+        $taxonomy = isset($_POST['taxonomy'])
+            ? sanitize_text_field(wp_unslash($_POST['taxonomy']))
+            : '';
+
+        if (empty($post_ids) || empty($taxonomy)) {
+            wp_send_json_error(array('message' => __('Invalid parameters', 'dailybuddy')));
+        }
+
+        // Limit to prevent abuse
+        $post_ids = array_slice($post_ids, 0, 200);
+
+        $folder_name = '';
+
+        foreach ($post_ids as $post_id) {
+            if ($folder_id > 0) {
+                wp_set_object_terms($post_id, $folder_id, $taxonomy);
+            } else {
+                wp_delete_object_term_relationships($post_id, $taxonomy);
+            }
+        }
+
+        if ($folder_id > 0) {
+            $term = get_term($folder_id, $taxonomy);
+            if ($term && !is_wp_error($term)) {
+                $folder_name = $term->name;
+            }
+        }
+
+        wp_send_json_success(array(
+            'folder_name' => $folder_name,
+            'folder_id' => $folder_id,
+            'post_ids' => $post_ids,
+            'count' => count($post_ids),
         ));
     }
 
@@ -841,36 +887,29 @@ class Dailybuddy_Content_Folders
         // Limit to prevent abuse
         $post_ids = array_slice($post_ids, 0, 200);
 
-        global $wpdb;
+        // Prime the term cache for all post IDs at once (single query internally)
+        update_object_term_cache($post_ids, get_post_type($post_ids[0]));
 
-        // Single query to get all folder assignments
-        $placeholders = implode(',', array_fill(0, count($post_ids), '%d'));
-
-        // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.PreparedSQLPlaceholders.UnfinishedPrepare
-        $results = $wpdb->get_results($wpdb->prepare(
-            "SELECT tr.object_id as post_id, t.term_id as folder_id, t.name as folder_name
-             FROM {$wpdb->term_relationships} tr
-             INNER JOIN {$wpdb->term_taxonomy} tt ON tr.term_taxonomy_id = tt.term_taxonomy_id
-             INNER JOIN {$wpdb->terms} t ON tt.term_id = t.term_id
-             WHERE tr.object_id IN ({$placeholders})
-             AND tt.taxonomy = %s",
-            array_merge($post_ids, array($taxonomy))
-        ));
-
-        // Build response map
+        // Build response map using WordPress API
         $folders_map = array();
         foreach ($post_ids as $pid) {
-            $folders_map[$pid] = array(
-                'folder_id'   => null,
-                'folder_name' => null,
-            );
-        }
+            $terms = wp_get_object_terms($pid, $taxonomy, array(
+                'fields'  => 'all',
+                'number'  => 1,
+                'orderby' => 'term_id',
+            ));
 
-        foreach ($results as $row) {
-            $folders_map[$row->post_id] = array(
-                'folder_id'   => (int) $row->folder_id,
-                'folder_name' => $row->folder_name,
-            );
+            if (!empty($terms) && !is_wp_error($terms)) {
+                $folders_map[$pid] = array(
+                    'folder_id'   => (int) $terms[0]->term_id,
+                    'folder_name' => $terms[0]->name,
+                );
+            } else {
+                $folders_map[$pid] = array(
+                    'folder_id'   => null,
+                    'folder_name' => null,
+                );
+            }
         }
 
         wp_send_json_success(array('folders' => $folders_map));

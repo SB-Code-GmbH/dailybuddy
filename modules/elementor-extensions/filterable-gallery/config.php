@@ -7,7 +7,7 @@
 return array(
     'name'        => __('Filterable Gallery', 'dailybuddy'),
     'description' => __('Create beautiful filterable image galleries with multiple layout styles, search functionality, and lightbox support.', 'dailybuddy'),
-    'version'     => '1.0.0',
+    'version'     => '1.0.1',
     'icon'        => 'fa-solid fa-images',
     'is_premium'  => false,
     'requires'    => array('elementor'),

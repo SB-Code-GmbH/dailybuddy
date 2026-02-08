@@ -2,11 +2,16 @@
  * Filterable Gallery - Elementor Editor Script
  * 
  * Handles gallery initialization and interactions in Elementor editor preview
+ * ES5 Compatible - No Build Tools Required
  */
 
 (function($) {
     'use strict';
     
+    function escapeRegExp(string) {
+        return string.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+    }
+
     /**
      * Initialize filterable gallery in editor
      */
@@ -19,10 +24,10 @@
                 $gallery_enabled = ($settings.gallery_enabled == 'yes' ? true : false),
                 input = $scope.find('#fg-search-box-input'),
                 searchRegex, buttonFilter, timer;
-            $init_show_setting = $gallery.data("init-show");
+            var $init_show_setting = $gallery.data("init-show");
 
-            fg_items.splice(0, $init_show_setting)
-            var filterControls = $scope.find(".fg-layout-3-filter-controls").eq(0)
+            fg_items.splice(0, $init_show_setting);
+            var filterControls = $scope.find(".fg-layout-3-filter-controls").eq(0);
 
             if ($gallery.closest($scope).length < 1) {
                 return;
@@ -31,7 +36,7 @@
             // init isotope
             var layoutMode = $('.dailybuddy-filter-gallery-wrapper').data('layout-mode');
 
-            let $galleryWrap = $(".dailybuddy-filter-gallery-wrapper", $scope);
+            var $galleryWrap = $(".dailybuddy-filter-gallery-wrapper", $scope);
             var custom_default_control = $galleryWrap.data('custom_default_control');
             var default_control_key = $galleryWrap.data('default_control_key');
             custom_default_control = typeof(custom_default_control) !== 'undefined' ? parseInt(custom_default_control) : 0;
@@ -73,12 +78,10 @@
                 }, 500);
             }
 
-            // Note: Using Elementor's native lightbox via data-elementor-open-lightbox attribute
-
             // filter
             $scope.on("click", ".control", function() {
                 var $this = $(this);
-                const firstInit = parseInt($this.data('first-init'));
+                var firstInit = parseInt($this.data('first-init'));
                 buttonFilter = $(this).attr('data-filter');
 
                 if ($scope.find('#fg-filter-trigger > span')) {
@@ -87,15 +90,17 @@
 
                 if (!firstInit) {
                     $this.data('first-init', 1);
-                    let item_found = 0;
-                    let index_list = $items = [];
-                    for (const [index, item] of fg_items.entries()) {
+                    var item_found = 0;
+                    var index_list = [];
+                    var $items = [];
+                    for (var i = 0; i < fg_items.length; i++) {
+                        var item = fg_items[i];
                         if (buttonFilter !== '' && buttonFilter !== '*') {
-                            let element = $($(item)[0]);
+                            var element = $($(item)[0]);
                             if (element.is(buttonFilter)) {
                                 ++item_found;
                                 $items.push($(item)[0]);
-                                index_list.push(index);
+                                index_list.push(i);
                             }
                         }
 
@@ -106,7 +111,7 @@
 
                     if (index_list.length > 0) {
                         fg_items = fg_items.filter(function(item, index) {
-                            return !index_list.includes(index);
+                            return index_list.indexOf(index) === -1;
                         });
                     }
                 }
@@ -125,7 +130,6 @@
                 }
 
                 if ($this.hasClass('all-control')) {
-                    //All items are active
                     $('.dailybuddy-filterable-gallery-item-wrap .dailybuddy-magnific-link-clone').removeClass('active').addClass('active');
                 } else {
                     $('.dailybuddy-filterable-gallery-item-wrap .dailybuddy-magnific-link-clone').removeClass('active');
@@ -133,16 +137,14 @@
                 }
             });
 
-            //quick search
+            // quick search
             input.on('input', function() {
                 var $this = $(this);
-
                 clearTimeout(timer);
                 timer = setTimeout(function() {
-                    searchRegex = new RegExp($this.val(), 'gi');
+                    searchRegex = new RegExp(escapeRegExp($this.val()), 'gi');
                     $isotope_gallery.isotope();
                 }, 600);
-
             });
 
             // not necessary, just in case
@@ -157,7 +159,7 @@
             // layout gal, on click tabs
             $isotope_gallery.on("arrangeComplete", function() {
                 $isotope_gallery.isotope("layout");
-                let notFoundDiv = $('#dailybuddy-fg-no-items-found', $scope),
+                var notFoundDiv = $('#dailybuddy-fg-no-items-found', $scope),
                     minHeight = notFoundDiv.css('font-size');
 
                 $('.dailybuddy-filter-gallery-container', $scope).css('min-height', parseInt(minHeight) * 2 + 'px');
@@ -187,24 +189,25 @@
                     filter_name = $(".fg-layout-3-filter-controls li.active", $scope).data('filter');
                 }
 
-                let item_found = 0;
-                let index_list = []
-                for (const [index, item] of fg_items.entries()) {
+                var item_found = 0;
+                var index_list = [];
+                for (var i = 0; i < fg_items.length; i++) {
+                    var item = fg_items[i];
                     if (filter_name !== '' && filter_name !== '*' && filter_enable) {
-                        let element = $($(item)[0]);
+                        var element = $($(item)[0]);
                         if (element.is(filter_name)) {
                             ++item_found;
                             $items.push($(item)[0]);
-                            index_list.push(index);
+                            index_list.push(i);
                         }
-                        if ((fg_items.length - 1) === index) {
-                            $(".dailybuddy-filter-gallery-control li.active", $scope).data('load-more-status', 1)
-                            $this.hide()
+                        if ((fg_items.length - 1) === i) {
+                            $(".dailybuddy-filter-gallery-control li.active", $scope).data('load-more-status', 1);
+                            $this.hide();
                         }
                     } else {
                         ++item_found;
                         $items.push($(item)[0]);
-                        index_list.push(index);
+                        index_list.push(i);
                     }
 
                     if (item_found === $images_per_page) {
@@ -214,7 +217,7 @@
 
                 if (index_list.length > 0) {
                     fg_items = fg_items.filter(function(item, index) {
-                        return !index_list.includes(index);
+                        return index_list.indexOf(index) === -1;
                     });
                 }
 
@@ -234,9 +237,9 @@
                 });
 
                 if (custom_default_control) {
-                    let increment = $settings.control_all_text ? 2 : 1;
+                    var increment = $settings.control_all_text ? 2 : 1;
                     default_control_key = default_control_key + increment;
-                    jQuery(`.dailybuddy-filter-gallery-control li:nth-child(${default_control_key})`).trigger('click');
+                    jQuery('.dailybuddy-filter-gallery-control li:nth-child(' + default_control_key + ')').trigger('click');
                 }
             });
         });
@@ -244,7 +247,6 @@
     
     // Run on document ready
     $(document).ready(function() {
-        // Initialize for each gallery widget on the page
         $('.elementor-widget-dailybuddy-filterable-gallery').each(function() {
             initFilterableGallery($(this));
         });

@@ -7,7 +7,7 @@
 return array(
     'name'        => __('Content Folders', 'dailybuddy'),
     'description' => __('Organize your Posts, Pages, and Media files in folders with drag & drop functionality.', 'dailybuddy'),
-    'version'     => '1.0.1',
+    'version'     => '1.0.2',
     'icon'        => 'fa-solid fa-folder',
     'is_premium'  => false,
     'requires'    => array(),

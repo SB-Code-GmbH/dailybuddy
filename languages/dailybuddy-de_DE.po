@@ -4412,3 +4412,83 @@ msgstr "Kein Ordner"
 #: (Line 353)
 msgid "Loading..."
 msgstr "Wird geladen..."
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\wordpress-tools\content-folders\module.php
+#: (Line 350)
+msgid "Delete folder \"%s\"? Items will be unassigned."
+msgstr "Ordner „%s“ löschen? Elemente werden nicht mehr zugewiesen."
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\wordpress-tools\content-folders\module.php
+#: (Line 355)
+msgid "Please enter a folder name."
+msgstr "Bitte geben Sie einen Ordnernamen ein."
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\wordpress-tools\content-folders\module.php
+#: (Line 356)
+msgid "Error moving folder"
+msgstr "Fehler beim Verschieben des Ordners"
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\wordpress-tools\content-folders\module.php
+#: (Line 357)
+msgid "Error assigning to folder"
+msgstr "Fehler beim Zuweisen zum Ordner"
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\wordpress-tools\content-folders\module.php
+#: (Line 358)
+msgid "Error renaming folder"
+msgstr "Fehler beim Umbenennen des Ordners"
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\wordpress-tools\content-folders\module.php
+#: (Line 359)
+msgid "Error deleting folder"
+msgstr "Fehler beim Löschen des Ordners"
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\wordpress-tools\content-folders\module.php
+#: (Line 360)
+msgid "Error creating folder."
+msgstr "Fehler beim Erstellen des Ordners."
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\wordpress-tools\content-folders\module.php
+#: (Line 362)
+msgid "%d items"
+msgstr "%d Elemente"
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\wordpress-tools\content-folders\module.php
+#: (Line 363)
+msgid "1 item"
+msgstr "ein Element"
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\wordpress-tools\classic-editor\config.php
+#: (Line 4)
+msgid "Classic Editor"
+msgstr "Klassischer Editor"
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\wordpress-tools\classic-editor\config.php
+#: (Line 9)
+msgid "Replaces the Gutenberg block editor with the classic TinyMCE editor for all post types."
+msgstr "Ersetzt den Gutenberg-Block-Editor durch den klassischen TinyMCE-Editor für alle Beitragstypen."
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\wordpress-tools\classic-editor\config.php
+#: (Line 15)
+msgid "wordpress"
+msgstr "WordPress"
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\wordpress-tools\classic-editor\config.php
+#: (Line 9)
+msgid "editor"
+msgstr "Redakteur"
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\wordpress-tools\classic-editor\config.php
+#: (Line 9)
+msgid "classic"
+msgstr "klassisch"
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\wordpress-tools\classic-editor\config.php
+#: (Line 18)
+msgid "gutenberg"
+msgstr "gutenberg"
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\wordpress-tools\classic-editor\config.php
+#: (Line 19)
+msgid "tinymce"
+msgstr "tinymce"

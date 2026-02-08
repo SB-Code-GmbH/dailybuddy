@@ -20,6 +20,12 @@
 
         init: function () {
             this.cacheDom();
+
+            // ★ Skip full sidebar init if sidebar doesn't exist (e.g. post.php/Classic Editor)
+            if (!this.$sidebar || !this.$sidebar.length) {
+                return;
+            }
+
             this.expandedFolders = this.loadExpandedFolders();
             this.detectWPAdminWidth();
             this.bindEvents();
@@ -36,10 +42,9 @@
                 $('body').addClass('sb-folders-ready');
             });
 
-            // ★ NEW: Check URL parameter for initial folder
-            var initialFolder = (typeof sbToolboxFolders !== 'undefined' && sbToolboxFolders.currentFolder)
-                ? sbToolboxFolders.currentFolder
-                : 'all';
+            // ★ Read current folder from URL parameter (no PHP needed)
+            var urlParams = new URLSearchParams(window.location.search);
+            var initialFolder = urlParams.get('dailybuddy_folder') || 'all';
 
             this.currentFolderId = initialFolder;
 
@@ -316,11 +321,11 @@
                         // Reload folder tree
                         self.loadFolders();
                     } else {
-                        alert(response.data.message || 'Error moving folder');
+                        alert(response.data.message || sbToolboxFolders.strings.errorMoving);
                     }
                 },
                 error: function () {
-                    alert('Error moving folder');
+                    alert(sbToolboxFolders.strings.errorMoving);
                 }
             });
         },
@@ -571,6 +576,12 @@
         },
 
         checkSidebarState: function () {
+            // Don't apply sidebar state if sidebar doesn't exist (e.g. on post.php/Classic Editor)
+            if (!this.$sidebar || !this.$sidebar.length) {
+                $('body').removeClass('dailybuddy-folders-active');
+                return;
+            }
+
             var active = localStorage.getItem('sbToolboxFoldersSidebarActive');
             if (active === '1') {
                 this.$sidebar.addClass('active');
@@ -675,11 +686,11 @@
 
                 // Context menu
                 html += '<div class="folder-actions">';
-                html += '<a href="#" class="folder-action folder-action-rename" title="Rename">';
-                html += '<span class="context-menu-icon dashicons dashicons-edit"></span> Rename';
+                html += '<a href="#" class="folder-action folder-action-rename" title="' + (sbToolboxFolders.strings.rename || 'Rename') + '">';
+                html += '<span class="context-menu-icon dashicons dashicons-edit"></span> ' + (sbToolboxFolders.strings.rename || 'Rename');
                 html += '</a>';
-                html += '<a href="#" class="folder-action folder-action-delete" title="Delete">';
-                html += '<span class="context-menu-icon dashicons dashicons-trash"></span> Delete';
+                html += '<a href="#" class="folder-action folder-action-delete" title="' + (sbToolboxFolders.strings.delete || 'Delete') + '">';
+                html += '<span class="context-menu-icon dashicons dashicons-trash"></span> ' + (sbToolboxFolders.strings.delete || 'Delete');
                 html += '</a>';
                 html += '</div>';
 
@@ -823,9 +834,6 @@
 
             // ★ NEW: Update URL without page reload (History API)
             this.updateUrlParameter(folderId);
-
-            // Update counts in badges if items were moved
-            this.loadFolders();
         },
 
         /**
@@ -861,7 +869,7 @@
             if (visibleCount === 0 && folderId !== 'all') {
                 var folderName = '';
                 if (folderId === 'unassigned') {
-                    folderName = 'Unassigned Files';
+                    folderName = sbToolboxFolders.strings.unassignedFiles || sbToolboxFolders.strings.unassigned;
                 } else {
                     folderName = $('.folder-tree-item[data-folder-id="' + folderId + '"] .folder-name').text();
                 }
@@ -961,7 +969,7 @@
 
                         self.hideRenameFolderForm();
                     } else {
-                        alert(response.data && response.data.message ? response.data.message : 'Error renaming folder');
+                        alert(response.data && response.data.message ? response.data.message : (sbToolboxFolders.strings.errorRenaming || 'Error renaming folder'));
                     }
                 },
                 complete: function () {
@@ -976,7 +984,7 @@
             var folderName = this.$folderNameInput.val().trim();
 
             if (!folderName) {
-                alert('Please enter a folder name.');
+                alert(sbToolboxFolders.strings.enterFolderName || 'Please enter a folder name.');
                 return;
             }
 
@@ -994,7 +1002,7 @@
                         self.hideNewFolderForm();
                         self.loadFolders(); // Reload tree
                     } else {
-                        alert(response.data.message || 'Error creating folder.');
+                        alert(response.data.message || sbToolboxFolders.strings.errorCreating || 'Error creating folder.');
                     }
                 }
             });
@@ -1036,33 +1044,61 @@
         startDrag: function ($row, startEvent) {
             var self = this;
 
-            // 1. Standard: Posts/Seiten
-            var pageTitle = $row.find('.row-title').text().trim();
-
-            // 2. Mediathek (Listenansicht): Dateiname
-            if (!pageTitle) {
-                pageTitle = $row.find('.filename strong').text().trim();
-            }
-
-            // 3. Fallback: erster Link/strong in Titelspalte
-            if (!pageTitle) {
-                pageTitle = $row.find('td.column-title a, td.column-title strong')
-                    .first()
-                    .text()
-                    .trim();
-            }
-
-            var pageIcon = $row.find('.dailybuddy-drag-handle').html() || '';
-
-            var $dragHelper = $('<div class="dailybuddy-drag-helper-minimal">' +
-                '<span class="drag-icon">' + pageIcon + '</span>' +
-                '<span class="drag-title">' + pageTitle + '</span>' +
-                '</div>');
-
             var postId = $row.attr('id') ? $row.attr('id').replace(/^(post|media)-/, '') : null;
-
             if (!postId) return;
 
+            // ★ Multi-select: Check if multiple rows are checked
+            var $checkedBoxes = self.$wpList.find('input[id^="cb-select-"]:checked');
+            var isMultiDrag = false;
+            var selectedPostIds = [];
+            var $selectedRows = $();
+
+            if ($checkedBoxes.length > 1) {
+                // Check if the dragged row is among selected
+                var draggedIsChecked = $row.find('input[id^="cb-select-"]:checked').length > 0;
+                if (draggedIsChecked) {
+                    isMultiDrag = true;
+                    $checkedBoxes.each(function () {
+                        var pid = $(this).val();
+                        selectedPostIds.push(parseInt(pid, 10));
+                        $selectedRows = $selectedRows.add($(this).closest('tr'));
+                    });
+                }
+            }
+
+            if (!isMultiDrag) {
+                selectedPostIds = [parseInt(postId, 10)];
+                $selectedRows = $row;
+            }
+
+            // Build drag helper
+            var helperContent;
+            if (isMultiDrag) {
+                var countText = selectedPostIds.length === 1
+                    ? (sbToolboxFolders.strings.oneItem || '1 item')
+                    : (sbToolboxFolders.strings.itemsCount || '%d items').replace('%d', selectedPostIds.length);
+                helperContent = '<span class="drag-icon"><span class="dashicons dashicons-move"></span></span>' +
+                    '<span class="drag-title">' + countText + '</span>';
+            } else {
+                // 1. Standard: Posts/Seiten
+                var pageTitle = $row.find('.row-title').text().trim();
+                // 2. Mediathek (Listenansicht): Dateiname
+                if (!pageTitle) {
+                    pageTitle = $row.find('.filename strong').text().trim();
+                }
+                // 3. Fallback: erster Link/strong in Titelspalte
+                if (!pageTitle) {
+                    pageTitle = $row.find('td.column-title a, td.column-title strong')
+                        .first()
+                        .text()
+                        .trim();
+                }
+                var pageIcon = $row.find('.dailybuddy-drag-handle').html() || '';
+                helperContent = '<span class="drag-icon">' + pageIcon + '</span>' +
+                    '<span class="drag-title">' + pageTitle + '</span>';
+            }
+
+            var $dragHelper = $('<div class="dailybuddy-drag-helper-minimal">' + helperContent + '</div>');
             $dragHelper.addClass('dailybuddy-drag-helper');
             $dragHelper.css({
                 position: 'fixed',
@@ -1075,7 +1111,7 @@
             });
             $('body').append($dragHelper);
 
-            $row.addClass('dailybuddy-dragging');
+            $selectedRows.addClass('dailybuddy-dragging');
 
             $(document).on('mousemove.drag', function (e) {
                 $dragHelper.css({
@@ -1094,7 +1130,7 @@
             $(document).on('mouseup.drag', function (e) {
                 $(document).off('mousemove.drag mouseup.drag');
                 $dragHelper.remove();
-                $row.removeClass('dailybuddy-dragging');
+                $selectedRows.removeClass('dailybuddy-dragging');
 
                 // Check if dropped on folder
                 var $folderItem = $(e.target).closest('.folder-tree-item, .folder-item');
@@ -1102,10 +1138,14 @@
 
                 if ($folderItem.length) {
                     var folderId = $folderItem.data('folder-id');
-                    if (folderId && folderId !== 'all' && folderId !== 'unassigned') {
-                        self.assignToFolder(postId, folderId, $row);
-                    } else if (folderId === 'unassigned') {
-                        self.assignToFolder(postId, 0, $row); // Remove from folder
+                    var targetFolderId = (folderId === 'unassigned') ? 0 : folderId;
+
+                    if (folderId && folderId !== 'all') {
+                        if (isMultiDrag) {
+                            self.assignMultipleToFolder(selectedPostIds, targetFolderId, $selectedRows);
+                        } else {
+                            self.assignToFolder(postId, targetFolderId, $row);
+                        }
                     }
                 }
             });
@@ -1126,7 +1166,7 @@
                 },
                 success: function (response) {
                     if (!response.success) {
-                        alert(response.data && response.data.message ? response.data.message : 'Error assigning to folder');
+                        alert(response.data && response.data.message ? response.data.message : (sbToolboxFolders.strings.errorAssigning || 'Error assigning to folder'));
                         return;
                     }
 
@@ -1152,7 +1192,7 @@
                         } else {
                             $label = $('<div class="sb-folder-label unassigned" data-folder-id="unassigned">' +
                                 '<span class="dashicons dashicons-category"></span>' +
-                                '<span>Unassigned</span>' +
+                                '<span>' + (sbToolboxFolders.strings.unassigned || 'Unassigned') + '</span>' +
                                 '</div>');
                         }
 
@@ -1173,9 +1213,83 @@
 
                     if (self.currentFolderId) {
                         self.filterByFolder(self.currentFolderId);
-                    } else {
-                        self.loadFolders();
                     }
+
+                    // Refresh counts after assignment changed
+                    self.loadFolders();
+                }
+            });
+        },
+
+        /**
+         * ★ Batch assign multiple posts to a folder (multi-select drag & drop)
+         */
+        assignMultipleToFolder: function (postIds, folderId, $rows, $attachments) {
+            var self = this;
+
+            $.ajax({
+                url: sbToolboxFolders.ajaxurl,
+                type: 'POST',
+                data: {
+                    action: 'dailybuddy_assign_to_folder_batch',
+                    nonce: sbToolboxFolders.nonce,
+                    post_ids: postIds,
+                    folder_id: folderId,
+                    taxonomy: sbToolboxFolders.taxonomy
+                },
+                success: function (response) {
+                    if (!response.success) {
+                        alert(response.data && response.data.message ? response.data.message : (sbToolboxFolders.strings.errorAssigning || 'Error assigning to folder'));
+                        return;
+                    }
+
+                    var folderName = response.data.folder_name;
+                    var newFolderId = response.data.folder_id;
+
+                    /* 1. LISTENANSICHT: Update badges for all rows */
+                    if ($rows && $rows.length) {
+                        $rows.each(function () {
+                            self.updateFolderBadge($(this), newFolderId, folderName);
+                        });
+                    }
+
+                    /* 2. GRIDANSICHT: Update labels for all attachments */
+                    if ($attachments && $attachments.length) {
+                        $attachments.each(function () {
+                            var $attachment = $(this);
+                            $attachment.find('.sb-folder-label').remove();
+
+                            var $label;
+                            if (folderName && newFolderId) {
+                                $label = $('<div class="sb-folder-label" data-folder-id="' + newFolderId + '">' +
+                                    '<span class="dashicons dashicons-category"></span>' +
+                                    '<span>' + folderName + '</span>' +
+                                    '</div>');
+                            } else {
+                                $label = $('<div class="sb-folder-label unassigned" data-folder-id="unassigned">' +
+                                    '<span class="dashicons dashicons-category"></span>' +
+                                    '<span>' + (sbToolboxFolders.strings.unassigned || 'Unassigned') + '</span>' +
+                                    '</div>');
+                            }
+
+                            $attachment.find('.attachment-preview').append($label);
+
+                            (function (id) {
+                                $label.on('click', function (e) {
+                                    e.preventDefault();
+                                    e.stopPropagation();
+                                    self.filterByFolder(id || 'unassigned');
+                                });
+                            })(newFolderId);
+                        });
+                    }
+
+                    if (self.currentFolderId) {
+                        self.filterByFolder(self.currentFolderId);
+                    }
+
+                    // Refresh counts after batch assignment
+                    self.loadFolders();
                 }
             });
         },
@@ -1217,7 +1331,11 @@
             var folderId = $item.data('folder-id');
             var folderName = $item.find('.folder-name').text();
 
-            if (!confirm('Delete folder "' + folderName + '"? Items will be unassigned.')) {
+            var confirmMsg = sbToolboxFolders.strings.confirmDeleteNamed
+                ? sbToolboxFolders.strings.confirmDeleteNamed.replace('%s', folderName)
+                : 'Delete folder "' + folderName + '"? Items will be unassigned.';
+
+            if (!confirm(confirmMsg)) {
                 return;
             }
 
@@ -1245,7 +1363,7 @@
                         // Reload counts
                         self.loadFolders();
                     } else {
-                        alert(response.data.message || 'Error deleting folder');
+                        alert(response.data.message || sbToolboxFolders.strings.errorDeleting || 'Error deleting folder');
                     }
                 }
             });
@@ -1384,7 +1502,7 @@
                             } else {
                                 $label = $('<div class="sb-folder-label unassigned" data-folder-id="unassigned">' +
                                     '<span class="dashicons dashicons-category"></span>' +
-                                    '<span>Unassigned</span>' +
+                                    '<span>' + (sbToolboxFolders.strings.unassigned || 'Unassigned') + '</span>' +
                                     '</div>');
                             }
 
@@ -1434,6 +1552,32 @@
                     var isDragging = false;
                     var $helper = null;
 
+                    // ★ Multi-select: Check if multiple attachments are selected (bulk select mode)
+                    var $selectedAttachments = $('.attachment[aria-checked="true"], .attachment.selected');
+                    var isMultiDrag = false;
+                    var selectedIds = [];
+                    var $draggedAttachments = $();
+
+                    if ($selectedAttachments.length > 1) {
+                        // Check if the dragged attachment is among selected
+                        var draggedIsSelected = $attachment.is('[aria-checked="true"]') || $attachment.hasClass('selected');
+                        if (draggedIsSelected) {
+                            isMultiDrag = true;
+                            $selectedAttachments.each(function () {
+                                var id = $(this).data('id');
+                                if (id) {
+                                    selectedIds.push(parseInt(id, 10));
+                                    $draggedAttachments = $draggedAttachments.add($(this));
+                                }
+                            });
+                        }
+                    }
+
+                    if (!isMultiDrag) {
+                        selectedIds = [parseInt(attachmentId, 10)];
+                        $draggedAttachments = $attachment;
+                    }
+
                     $(document).on('mousemove.griddrag', function (e) {
                         // ★ Only start drag after moving 5+ pixels (to allow normal clicks)
                         var distance = Math.sqrt(Math.pow(e.pageX - startX, 2) + Math.pow(e.pageY - startY, 2));
@@ -1441,23 +1585,35 @@
                         if (!isDragging && distance > 5) {
                             isDragging = true;
 
-                            // Create small drag helper
-                            $helper = $attachment.clone();
-                            $helper.addClass('sb-grid-drag-helper');
+                            if (isMultiDrag) {
+                                // Multi-select helper: show count
+                                var countText = selectedIds.length === 1
+                                    ? (sbToolboxFolders.strings.oneItem || '1 item')
+                                    : (sbToolboxFolders.strings.itemsCount || '%d items').replace('%d', selectedIds.length);
+                                $helper = $('<div class="dailybuddy-drag-helper-minimal dailybuddy-drag-helper">' +
+                                    '<span class="drag-icon"><span class="dashicons dashicons-move"></span></span>' +
+                                    '<span class="drag-title">' + countText + '</span>' +
+                                    '</div>');
+                            } else {
+                                // Single item helper: clone attachment thumbnail
+                                $helper = $attachment.clone();
+                                $helper.addClass('sb-grid-drag-helper');
+                            }
+
                             $helper.css({
                                 position: 'fixed',
                                 left: e.pageX + 10,
                                 top: e.pageY + 10,
-                                width: '100px',
+                                width: isMultiDrag ? 'auto' : '100px',
                                 opacity: 0.8,
                                 zIndex: 10000,
                                 pointerEvents: 'none',
-                                transform: 'scale(0.5)'
+                                transform: isMultiDrag ? 'none' : 'scale(0.5)'
                             });
                             $('body').append($helper);
 
-                            // Add dragging class to original
-                            $attachment.addClass('sb-dragging');
+                            // Add dragging class to all dragged attachments
+                            $draggedAttachments.addClass('sb-dragging');
                         }
 
                         if (isDragging && $helper) {
@@ -1481,18 +1637,20 @@
                             if ($folderItem.length) {
                                 var folderId = $folderItem.data('folder-id');
                                 if (folderId && folderId !== 'all') {
-                                    if (folderId === 'unassigned') {
-                                        folderId = 0;
-                                    }
+                                    var targetFolderId = (folderId === 'unassigned') ? 0 : folderId;
 
-                                    self.assignToFolder(attachmentId, folderId, null, $attachment);
+                                    if (isMultiDrag) {
+                                        self.assignMultipleToFolder(selectedIds, targetFolderId, null, $draggedAttachments);
+                                    } else {
+                                        self.assignToFolder(attachmentId, targetFolderId, null, $attachment);
+                                    }
                                 }
                             }
 
                             if ($helper) {
                                 $helper.remove();
                             }
-                            $attachment.removeClass('sb-dragging');
+                            $draggedAttachments.removeClass('sb-dragging');
                         }
 
                         $(document).off('mousemove.griddrag mouseup.griddrag');
@@ -1820,8 +1978,9 @@
                     dailybuddyFolders.initGridView();
 
                     // Refresh page after upload if folder filter is active
-                    if (sbToolboxFolders.currentFolder &&
-                        sbToolboxFolders.currentFolder !== 'all') {
+                    var urlCheck = new URLSearchParams(window.location.search);
+                    var activeFolder = urlCheck.get('dailybuddy_folder');
+                    if (activeFolder && activeFolder !== 'all') {
                         dailybuddyFolders.initUploadRefresh();
                     }
                 }

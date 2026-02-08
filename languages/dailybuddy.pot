@@ -4315,3 +4315,67 @@ msgstr ""
 #: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\wordpress-tools\content-folders\module.php (Line 353)
 msgid "Loading..."
 msgstr ""
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\wordpress-tools\content-folders\module.php (Line 350)
+msgid "Delete folder \"%s\"? Items will be unassigned."
+msgstr ""
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\wordpress-tools\content-folders\module.php (Line 355)
+msgid "Please enter a folder name."
+msgstr ""
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\wordpress-tools\content-folders\module.php (Line 356)
+msgid "Error moving folder"
+msgstr ""
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\wordpress-tools\content-folders\module.php (Line 357)
+msgid "Error assigning to folder"
+msgstr ""
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\wordpress-tools\content-folders\module.php (Line 358)
+msgid "Error renaming folder"
+msgstr ""
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\wordpress-tools\content-folders\module.php (Line 359)
+msgid "Error deleting folder"
+msgstr ""
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\wordpress-tools\content-folders\module.php (Line 360)
+msgid "Error creating folder."
+msgstr ""
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\wordpress-tools\content-folders\module.php (Line 362)
+msgid "%d items"
+msgstr ""
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\wordpress-tools\content-folders\module.php (Line 363)
+msgid "1 item"
+msgstr ""
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\wordpress-tools\classic-editor\config.php (Line 4)
+msgid "Classic Editor"
+msgstr ""
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\wordpress-tools\classic-editor\config.php (Line 9)
+msgid "Replaces the Gutenberg block editor with the classic TinyMCE editor for all post types."
+msgstr ""
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\wordpress-tools\classic-editor\config.php (Line 15)
+msgid "wordpress"
+msgstr ""
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\wordpress-tools\classic-editor\config.php (Line 9)
+msgid "editor"
+msgstr ""
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\wordpress-tools\classic-editor\config.php (Line 9)
+msgid "classic"
+msgstr ""
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\wordpress-tools\classic-editor\config.php (Line 18)
+msgid "gutenberg"
+msgstr ""
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\wordpress-tools\classic-editor\config.php (Line 19)
+msgid "tinymce"
+msgstr ""

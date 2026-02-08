@@ -4,7 +4,7 @@ Tags: tools, admin, dashboard, elementor, widgets
 Requires at least: 5.0
 Tested up to: 6.9
 Requires PHP: 7.4
-Stable tag: 1.0.11
+Stable tag: 1.1.12
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -95,6 +95,13 @@ Yes, and it even includes an option to hide Elementor Pro widgets from the edito
 ---
 
 == Changelog ==
+= 1.1.12 =
+* Improve Folder selection speed - Content Folders
+* Multi Select Drag & Drop - Content Folders
+* Background Color Fix - Elementor Filtered galleries
+* Icon not Show Fix - Elementor Logo Carousel
+* Add Option for activate Classic Editor
+
 = 1.0.11 =
 * Add Mega Menu Mobile Menü Icon Color
 * Add Choose Folder on Media Upload Modal

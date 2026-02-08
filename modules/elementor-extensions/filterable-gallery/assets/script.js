@@ -47,6 +47,10 @@ jQuery(window).on("elementor/frontend/init", function () {
     return null;
   }
   
+  function escapeRegExp(string) {
+    return string.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+  }
+  
   function shuffleGalleryItems(items) {
     for (var i = 0; i < items.length - 1; i++) {
       var j = i + Math.floor(Math.random() * (items.length - i));
@@ -142,7 +146,7 @@ jQuery(window).on("elementor/frontend/init", function () {
       var $init_show_setting = $gallery.data("init-show");
       var $is_randomize = $gallery.data("is-randomize");
       
-      isRTL = $("body").hasClass("rtl");
+      var isRTL = $("body").hasClass("rtl");
       
       fg_items = fg_items.map(function (item) {
         return DOMPurify.sanitize(item);
@@ -315,7 +319,7 @@ jQuery(window).on("elementor/frontend/init", function () {
         }
         clearTimeout(timer);
         timer = setTimeout(function () {
-          searchRegex = new RegExp($this.val(), "gi");
+          searchRegex = new RegExp(escapeRegExp($this.val()), "gi");
           $isotope_gallery.isotope();
         }, 600);
       });

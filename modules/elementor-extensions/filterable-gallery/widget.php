@@ -86,7 +86,7 @@ class Dailybuddy_Elementor_Filterable_Gallery_Widget extends Widget_Base
 
     public function has_widget_inner_wrapper(): bool
     {
-        return ! false;
+        return true;
     }
 
     public function get_custom_help_url()
@@ -387,21 +387,6 @@ class Dailybuddy_Elementor_Filterable_Gallery_Widget extends Widget_Base
         );
 
         $this->add_control(
-            'dailybuddy_section_fg_mfp_caption',
-            [
-                'label'        => __('Caption in Popup', 'dailybuddy'),
-                'type'         => Controls_Manager::SWITCHER,
-                'label_on'     => __('Yes', 'dailybuddy'),
-                'label_off'    => __('No', 'dailybuddy'),
-                'return_value' => 'yes',
-                'default'      => '',
-                'condition'    => [
-                    'dailybuddy_fg_caption_style' => ['hoverer', 'card', 'layout_3'],
-                ],
-            ]
-        );
-
-        $this->add_control(
             'dailybuddy_section_fg_zoom_icon_new',
             [
                 'label' => esc_html__('Lightbox Icon', 'dailybuddy'),
@@ -470,8 +455,8 @@ class Dailybuddy_Elementor_Filterable_Gallery_Widget extends Widget_Base
             [
                 'label' => __('Filter', 'dailybuddy'),
                 'type' => Controls_Manager::SWITCHER,
-                'label_on'     => __('Enable', 'dailybuddy'),
-                'label_off'    => __('Disable', 'dailybuddy'),
+                'label_on'     => __('Yes', 'dailybuddy'),
+                'label_off'    => __('No', 'dailybuddy'),
                 'default' => 'yes',
             ]
         );
@@ -641,8 +626,8 @@ class Dailybuddy_Elementor_Filterable_Gallery_Widget extends Widget_Base
             [
                 'label'              => __('Photo Gallery', 'dailybuddy'),
                 'type'               => Controls_Manager::SWITCHER,
-                'label_on'           => __('Enable', 'dailybuddy'),
-                'label_off'          => __('Disable', 'dailybuddy'),
+                'label_on'     => __('Yes', 'dailybuddy'),
+                'label_off'    => __('No', 'dailybuddy'),
                 'default'            => 'yes',
                 'frontend_available' => true,
                 'condition'          => [
@@ -672,8 +657,8 @@ class Dailybuddy_Elementor_Filterable_Gallery_Widget extends Widget_Base
             [
                 'label'        => esc_html__('Consent Notice', 'dailybuddy'),
                 'type'         => Controls_Manager::SWITCHER,
-                'label_on'     => __('Show', 'dailybuddy'),
-                'label_off'    => __('Hide', 'dailybuddy'),
+                'label_on'     => __('Yes', 'dailybuddy'),
+                'label_off'    => __('No', 'dailybuddy'),
                 'description'  => esc_html__('If enabled, The consent notice will appear before playing the video.', 'dailybuddy'),
                 'default'      => '',
                 'condition'    => [
@@ -821,8 +806,8 @@ class Dailybuddy_Elementor_Filterable_Gallery_Widget extends Widget_Base
                 'label'        => __('Price', 'dailybuddy'),
                 'type'         => Controls_Manager::SWITCHER,
                 'default'      => 'false',
-                'label_on'     => esc_html__('Show', 'dailybuddy'),
-                'label_off'    => esc_html__('Hide', 'dailybuddy'),
+                'label_on'     => esc_html__('Yes', 'dailybuddy'),
+                'label_off'    => esc_html__('No', 'dailybuddy'),
                 'return_value' => 'true',
                 'separator'    => 'before',
             ]
@@ -851,8 +836,8 @@ class Dailybuddy_Elementor_Filterable_Gallery_Widget extends Widget_Base
                 'label'        => __('Ratings', 'dailybuddy'),
                 'type'         => Controls_Manager::SWITCHER,
                 'default'      => 'false',
-                'label_on'     => esc_html__('Show', 'dailybuddy'),
-                'label_off'    => esc_html__('Hide', 'dailybuddy'),
+                'label_on'     => esc_html__('Yes', 'dailybuddy'),
+                'label_off'    => esc_html__('No', 'dailybuddy'),
                 'return_value' => 'true'
             ]
         );
@@ -880,8 +865,8 @@ class Dailybuddy_Elementor_Filterable_Gallery_Widget extends Widget_Base
                 'label'        => __('Category', 'dailybuddy'),
                 'type'         => Controls_Manager::SWITCHER,
                 'default'      => 'false',
-                'label_on'     => esc_html__('Show', 'dailybuddy'),
-                'label_off'    => esc_html__('Hide', 'dailybuddy'),
+                'label_on'     => esc_html__('Yes', 'dailybuddy'),
+                'label_off'    => esc_html__('No', 'dailybuddy'),
                 'return_value' => 'true'
             ]
         );
@@ -967,8 +952,8 @@ class Dailybuddy_Elementor_Filterable_Gallery_Widget extends Widget_Base
                 'label'        => __('Lightbox Button?', 'dailybuddy'),
                 'type'         => Controls_Manager::SWITCHER,
                 'default'      => 'true',
-                'label_on'     => esc_html__('Show', 'dailybuddy'),
-                'label_off'    => esc_html__('Hide', 'dailybuddy'),
+                'label_on'     => esc_html__('Yes', 'dailybuddy'),
+                'label_off'    => esc_html__('No', 'dailybuddy'),
                 'return_value' => 'true',
                 'condition'    => [
                     'fg_video_gallery_switch!' => 'true',
@@ -982,8 +967,8 @@ class Dailybuddy_Elementor_Filterable_Gallery_Widget extends Widget_Base
                 'label'        => __('Link Button?', 'dailybuddy'),
                 'type'         => Controls_Manager::SWITCHER,
                 'default'      => 'true',
-                'label_on'     => esc_html__('Show', 'dailybuddy'),
-                'label_off'    => esc_html__('Hide', 'dailybuddy'),
+                'label_on'     => esc_html__('Yes', 'dailybuddy'),
+                'label_off'    => esc_html__('No', 'dailybuddy'),
                 'return_value' => 'true',
                 'condition'    => [
                     'fg_video_gallery_switch!' => 'true',
@@ -1199,7 +1184,7 @@ class Dailybuddy_Elementor_Filterable_Gallery_Widget extends Widget_Base
             [
                 'label' => esc_html__('Background Color', 'dailybuddy'),
                 'type' => Controls_Manager::COLOR,
-                'default' => '#fff',
+                'default' => '',
                 'selectors' => [
                     '{{WRAPPER}} .dailybuddy-filter-gallery-wrapper' => 'background-color: {{VALUE}};',
                 ],
@@ -3467,40 +3452,16 @@ class Dailybuddy_Elementor_Filterable_Gallery_Widget extends Widget_Base
     public function sorter_class($string)
     {
         $sorter_class = strtolower($string);
+
+        // Order-dependent replacements (must run sequentially)
         $sorter_class = str_replace(' ', '-', $sorter_class);
         $sorter_class = str_replace(',-', ' dailybuddy-cf-', $sorter_class);
-        $sorter_class = str_replace(',', 'comma', $sorter_class);
-        $sorter_class = str_replace('&', 'and', $sorter_class);
-        $sorter_class = str_replace('+', 'plus', $sorter_class);
-        $sorter_class = str_replace('amp;', '', $sorter_class);
-        $sorter_class = str_replace('/', 'slash', $sorter_class);
-        $sorter_class = str_replace("'", 'apostrophe', $sorter_class);
-        $sorter_class = str_replace('"', 'apostrophe', $sorter_class);
-        $sorter_class = str_replace('.', '-', $sorter_class);
-        $sorter_class = str_replace('~', 'tilde', $sorter_class);
-        $sorter_class = str_replace('!', 'exclamation', $sorter_class);
-        $sorter_class = str_replace('@', 'at', $sorter_class);
-        $sorter_class = str_replace('#', 'hash', $sorter_class);
-        $sorter_class = str_replace('(', 'parenthesis', $sorter_class);
-        $sorter_class = str_replace(')', 'parenthesis', $sorter_class);
-        $sorter_class = str_replace('=', 'equal', $sorter_class);
-        $sorter_class = str_replace(';', 'semicolon', $sorter_class);
-        $sorter_class = str_replace(':', 'colon', $sorter_class);
-        $sorter_class = str_replace('<', 'lessthan', $sorter_class);
-        $sorter_class = str_replace('>', 'greaterthan', $sorter_class);
-        $sorter_class = str_replace('|', 'pipe', $sorter_class);
-        $sorter_class = str_replace('\\', 'backslash', $sorter_class);
-        $sorter_class = str_replace('^', 'caret', $sorter_class);
-        $sorter_class = str_replace('*', 'asterisk', $sorter_class);
-        $sorter_class = str_replace('$', 'dollar', $sorter_class);
-        $sorter_class = str_replace('%', 'percent', $sorter_class);
-        $sorter_class = str_replace('`', 'backtick', $sorter_class);
-        $sorter_class = str_replace('[', 'bracket', $sorter_class);
-        $sorter_class = str_replace(']', 'bracket', $sorter_class);
-        $sorter_class = str_replace('{', 'curlybracket', $sorter_class);
-        $sorter_class = str_replace('}', 'curlybracket', $sorter_class);
-        $sorter_class = str_replace('?', 'questionmark', $sorter_class);
 
+        // Batch replacements for special characters
+        $search  = array(',', '&', '+', 'amp;', '/', "'", '"', '.', '~', '!', '@', '#', '(', ')', '=', ';', ':', '<', '>', '|', '\\', '^', '*', '$', '%', '`', '[', ']', '{', '}', '?');
+        $replace = array('comma', 'and', 'plus', '', 'slash', 'apostrophe', 'apostrophe', '-', 'tilde', 'exclamation', 'at', 'hash', 'parenthesis', 'parenthesis', 'equal', 'semicolon', 'colon', 'lessthan', 'greaterthan', 'pipe', 'backslash', 'caret', 'asterisk', 'dollar', 'percent', 'backtick', 'bracket', 'bracket', 'curlybracket', 'curlybracket', 'questionmark');
+
+        $sorter_class = str_replace($search, $replace, $sorter_class);
         $sorter_class = mb_convert_encoding($sorter_class, 'UTF-8');
 
         return $sorter_class;
@@ -3580,7 +3541,7 @@ class Dailybuddy_Elementor_Filterable_Gallery_Widget extends Widget_Base
                                                                                                                                         if ($this->dailybuddy_filterable_gallery_default_control_key === $key) {
                                                                                                                                             echo 'active';
                                                                                                                                         }
-                                                                                                                                    } ?>" data-filter=".dailybuddy-cf-<?php echo esc_attr($sorter_filter); ?>">echo esc_html($control['dailybuddy_fg_control']);
+                                                                                                                                    } ?>" data-filter=".dailybuddy-cf-<?php echo esc_attr($sorter_filter); ?>"><?php echo esc_html($control['dailybuddy_fg_control']); ?>
                             </li>
                         <?php endforeach; ?>
                     </ul>
@@ -3667,7 +3628,7 @@ class Dailybuddy_Elementor_Filterable_Gallery_Widget extends Widget_Base
             $gallery_store[$counter]['video_gallery_switch'] = isset($gallery['fg_video_gallery_switch']) ? $gallery['fg_video_gallery_switch'] : '';
 
             $gallery['dailybuddy_fg_gallery_item_video_link'] = empty($gallery['dailybuddy_fg_gallery_item_video_link']) ? '' : $gallery['dailybuddy_fg_gallery_item_video_link'];
-            if (strpos($gallery['dailybuddy_fg_gallery_item_video_link'], 'youtu.be') != false) {
+            if (strpos($gallery['dailybuddy_fg_gallery_item_video_link'], 'youtu.be') !== false) {
                 preg_match('/(?:youtube\.com\/(?:[^\/]+\/.+\/|(?:v|e(?:mbed)?)\/|.*[?&]v=)|youtu\.be\/)([^"&?\/\s]{11})/', $gallery['dailybuddy_fg_gallery_item_video_link'], $matches);
                 $video_link = !empty($matches) ? sprintf('https://www.youtube.com/watch?v=%s', $matches[1]) : '';
                 $gallery_store[$counter]['video_link'] = $video_link;
@@ -3680,11 +3641,11 @@ class Dailybuddy_Elementor_Filterable_Gallery_Widget extends Widget_Base
             }
 
             if ($video_gallery_yt_privacy) {
-                if (strpos($gallery_store[$counter]['video_link'], 'youtube') != false) {
+                if (strpos($gallery_store[$counter]['video_link'], 'youtube') !== false) {
                     $gallery_store[$counter]['video_link'] = str_replace('youtube.com/watch?v=', 'youtube-nocookie.com/embed/', $gallery_store[$counter]['video_link']);
                 }
 
-                if (strpos($gallery_store[$counter]['video_link'], 'vimeo') != false) {
+                if (strpos($gallery_store[$counter]['video_link'], 'vimeo') !== false) {
                     $gallery_store[$counter]['video_link'] = esc_url(add_query_arg(['dnt' => 1], $gallery_store[$counter]['video_link']));
                 }
             }
@@ -3716,13 +3677,10 @@ class Dailybuddy_Elementor_Filterable_Gallery_Widget extends Widget_Base
      */
     public function gallery_item_full_image_clickable_content($settings, $item, $check_popup_status = true)
     {
-        $html = $title = '';
+        $html = '';
+        $title = $item['title'];
         $magnific_class = "dailybuddy-magnific-link dailybuddy-magnific-link-clone active";
         $is_lightbox = 'yes';
-
-        if ($settings['dailybuddy_section_fg_mfp_caption'] === 'yes') {
-            $title = $item['title'];
-        }
 
         if ($settings['dailybuddy_fg_show_popup'] === 'media' && $settings['dailybuddy_section_fg_full_image_action'] === 'link') {
             $magnific_class = '';
@@ -3732,11 +3690,11 @@ class Dailybuddy_Elementor_Filterable_Gallery_Widget extends Widget_Base
         if ($check_popup_status) {
             if ($settings['dailybuddy_section_fg_full_image_action'] === 'lightbox' && !$this->dailybuddy_filterable_gallery_popup_status) {
                 $this->dailybuddy_filterable_gallery_popup_status = true;
-                $html .= '<a area-hidden="true" href="' . esc_url($item['image']) . '" class="' . $magnific_class . ' media-content-wrap active" data-elementor-open-lightbox="' . esc_attr($is_lightbox) . '" title="' . esc_attr($title) . '">';
+                $html .= '<a aria-hidden="true" href="' . esc_url($item['image']) . '" class="' . esc_attr($magnific_class) . ' media-content-wrap active" data-elementor-open-lightbox="' . esc_attr($is_lightbox) . '" title="' . esc_attr($title) . '">';
             }
         } else {
             if ($settings['dailybuddy_section_fg_full_image_action'] === 'lightbox') {
-                $html .= '<a area-hidden="true" href="' . esc_url($item['image']) . '" class="' . $magnific_class . ' media-content-wrap active" data-elementor-open-lightbox="' . esc_attr($is_lightbox) . '" title="' . esc_attr($title) . '">';
+                $html .= '<a aria-hidden="true" href="' . esc_url($item['image']) . '" class="' . esc_attr($magnific_class) . ' media-content-wrap active" data-elementor-open-lightbox="' . esc_attr($is_lightbox) . '" title="' . esc_attr($title) . '">';
             }
         }
 
@@ -3804,7 +3762,7 @@ class Dailybuddy_Elementor_Filterable_Gallery_Widget extends Widget_Base
         $title      = isset($item['title']) ? $item['title'] : '';
         $classes    = "video-popup dailybuddy-magnific-link dailybuddy-magnific-link-clone active dailybuddy-magnific-video-link mfp-iframe playout-" . $item['video_layout'];
 
-        $html .= '<a area-hidden="true"  title="' . esc_attr(wp_strip_all_tags($title)) . '" aria-label="dailybuddy-magnific-video-link" href="' . esc_url($video_url) . '" class="' . esc_attr($classes) . '" data-id="' . esc_attr($item['id']) . '" data-elementor-open-lightbox="yes">';
+        $html .= '<a aria-hidden="true"  title="' . esc_attr(wp_strip_all_tags($title)) . '" aria-label="dailybuddy-magnific-video-link" href="' . esc_url($video_url) . '" class="' . esc_attr($classes) . '" data-id="' . esc_attr($item['id']) . '" data-elementor-open-lightbox="yes">';
 
         if ($show_video_popup_bg) {
             if ('caption-style-card' === $caption_style) {
@@ -3913,18 +3871,14 @@ class Dailybuddy_Elementor_Filterable_Gallery_Widget extends Widget_Base
         $zoom_icon_is_new = empty($settings['dailybuddy_section_fg_zoom_icon']);
         $link_icon_migrated = isset($settings['__fa4_migrated']['dailybuddy_section_fg_link_icon_new']);
         $link_icon_is_new = empty($settings['dailybuddy_section_fg_link_icon']);
-        $title = '';
-
-        if ($settings['dailybuddy_section_fg_mfp_caption'] === 'yes') {
-            $title = $item['title'];
-        }
+        $title = $item['title'];
 
         ob_start();
 
         echo '<div class="gallery-item-buttons">';
 
         if ($item['show_lightbox'] == true) {
-            echo '<a area-hidden="true" aria-label="dailybuddy-magnific-link" href="' . esc_url($item['image']) . '" class="dailybuddy-magnific-link dailybuddy-magnific-link-clone active" data-elementor-open-lightbox="yes" title="' . esc_attr($title) . '">';
+            echo '<a aria-hidden="true" aria-label="dailybuddy-magnific-link" href="' . esc_url($item['image']) . '" class="dailybuddy-magnific-link dailybuddy-magnific-link-clone active" data-elementor-open-lightbox="yes" title="' . esc_attr($title) . '">';
 
             echo '<span class="fg-item-icon-inner">';
             if ($zoom_icon_is_new || $zoom_icon_migrated) {
@@ -4003,10 +3957,10 @@ class Dailybuddy_Elementor_Filterable_Gallery_Widget extends Widget_Base
             $html .= '<div class="gallery-item-caption-wrap card-hover-bg caption-style-hoverer">';
             $html .= '<div class="fg-caption-head">';
             if (isset($item['price_switch']) && $item['price_switch'] == 'true') {
-                $html .= '<div class="fg-item-price">' . $item['price'] . '</div>';
+                $html .= '<div class="fg-item-price">' . esc_html($item['price']) . '</div>';
             }
             if (isset($item['ratings_switch']) && $item['ratings_switch'] == 'true') {
-                $html .= '<div class="fg-item-ratings"><i class="fas fa-star"></i> ' . $item['ratings'] . '</div>';
+                $html .= '<div class="fg-item-ratings"><i class="fas fa-star"></i> ' . esc_html($item['ratings']) . '</div>';
             }
             $html .= '</div>';
 
@@ -4027,7 +3981,7 @@ class Dailybuddy_Elementor_Filterable_Gallery_Widget extends Widget_Base
             $html .= '<div class="fg-layout-3-item-content">';
 
             if (isset($item['category_switch']) && $item['category_switch'] == 'true') {
-                $html .= '<div class="fg-item-category"><span>' . $item['category'] . '</span></div>';
+                $html .= '<div class="fg-item-category"><span>' . esc_html($item['category']) . '</span></div>';
             }
             $title_link_open = $title_link_close = '';
             if ($settings['dailybuddy_title_clickable'] === 'yes') {
@@ -4072,11 +4026,7 @@ class Dailybuddy_Elementor_Filterable_Gallery_Widget extends Widget_Base
             $this->dailybuddy_filterable_gallery_popup_status = false;
             $close_media_content_wrap = false;
 
-            $title = '';
-
-            if ($settings['dailybuddy_section_fg_mfp_caption'] === 'yes') {
-                $title = $item['title'];
-            }
+            $title = $item['title'];
 
             if ($item['controls'] != '') {
                 $html = '<div class="dailybuddy-filterable-gallery-item-wrap dailybuddy-cf-' . $item['controls'] . '">
@@ -4093,7 +4043,7 @@ class Dailybuddy_Elementor_Filterable_Gallery_Widget extends Widget_Base
             ) {
                 $this->dailybuddy_filterable_gallery_popup_status = true;
                 $close_media_content_wrap = true;
-                $html .= '<a  aria-hidden="true" aria-label="dailybuddy-magnific-link" href="' . esc_url($item['image']) . '" class="' . $magnific_class . ' media-content-wrap" data-elementor-open-lightbox="' . esc_attr($is_lightbox) . '" title="' . esc_attr($title) . '">';
+                $html .= '<a  aria-hidden="true" aria-label="dailybuddy-magnific-link" href="' . esc_url($item['image']) . '" class="' . esc_attr($magnific_class) . ' media-content-wrap" data-elementor-open-lightbox="' . esc_attr($is_lightbox) . '" title="' . esc_attr($title) . '">';
             }
 
             if ($settings['dailybuddy_section_fg_full_image_clickable'] && 'true' !== $item['video_gallery_switch']) {
@@ -4121,7 +4071,7 @@ class Dailybuddy_Elementor_Filterable_Gallery_Widget extends Widget_Base
             }
 
             if ($settings['dailybuddy_fg_show_popup'] == 'media' && $settings['dailybuddy_fg_caption_style'] !== 'card' && !$this->dailybuddy_filterable_gallery_popup_status) {
-                $html .= '<a area-hidden="true" aria-label="dailybuddy-magnific-link" href="' . esc_url($item['image']) . '" class="' . $magnific_class . ' media-content-wrap" data-elementor-open-lightbox="' . esc_attr($is_lightbox) . '" title="' . esc_attr($title) . '">';
+                $html .= '<a aria-hidden="true" aria-label="dailybuddy-magnific-link" href="' . esc_url($item['image']) . '" class="' . esc_attr($magnific_class) . ' media-content-wrap" data-elementor-open-lightbox="' . esc_attr($is_lightbox) . '" title="' . esc_attr($title) . '">';
             }
 
             // Overlay
