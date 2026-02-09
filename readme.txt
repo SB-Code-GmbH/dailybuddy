@@ -4,7 +4,7 @@ Tags: tools, admin, dashboard, elementor, widgets
 Requires at least: 5.0
 Tested up to: 6.9
 Requires PHP: 7.4
-Stable tag: 1.1.12
+Stable tag: 1.1.13
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -43,7 +43,7 @@ Additional Elementor widgets and editor enhancements (Elementor required):
 - Content Switcher – Toggle between two content sections within a single layout (e.g. pricing tables or light/dark sections).
 
 
-#### WordPress Tools (7 modules)
+#### WordPress Tools (8 modules)
 Small utilities to improve everyday WordPress workflows:
 
 - AI Bot Signals – Adds robots.txt and meta directives to provide guidance signals for AI crawlers regarding content handling.
@@ -53,6 +53,7 @@ Small utilities to improve everyday WordPress workflows:
 - Duplicate Posts/Pages – Adds an option to duplicate posts and pages within the admin interface.
 - Media Replace – Replace media files while keeping existing URLs intact.
 - Maintenance Mode – Displays a temporary maintenance page for visitors who are not logged in.
+- Classic Editor - Replaces the Gutenberg block editor with the classic TinyMCE editor for all post types.
 
 ### Modular by Design
 Every feature can be individually enabled or disabled, allowing you to use only what you need — keeping your site clean and efficient.
@@ -95,6 +96,9 @@ Yes, and it even includes an option to hide Elementor Pro widgets from the edito
 ---
 
 == Changelog ==
+= 1.1.13 =
+* Pagination Bugfix - Content Folders
+
 = 1.1.12 =
 * Improve Folder selection speed - Content Folders
 * Multi Select Drag & Drop - Content Folders

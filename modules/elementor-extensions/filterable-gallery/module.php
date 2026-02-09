@@ -29,7 +29,7 @@ class Dailybuddy_Elementor_Filterable_Gallery
         add_action('elementor/elements/categories_registered', array($this, 'register_category'));
         add_action('elementor/frontend/after_enqueue_styles', array($this, 'enqueue_widget_styles'));
         add_action('elementor/frontend/after_enqueue_scripts', array($this, 'enqueue_widget_scripts'));
-        add_action('elementor/editor/after_enqueue_styles', array($this, 'enqueue_editor_styles'));
+        add_action('elementor/editor/after_enqueue_styles', array($this, 'enqueue_editor_styles'), 99);
         add_action('elementor/editor/after_enqueue_scripts', array($this, 'enqueue_editor_scripts'));
     }
 
@@ -128,11 +128,65 @@ class Dailybuddy_Elementor_Filterable_Gallery
     public function enqueue_editor_styles()
     {
         wp_enqueue_style(
-            'dailybuddy-editor',
+            'dailybuddy-fg-editor',
             DAILYBUDDY_URL . 'modules/elementor-extensions/filterable-gallery/assets/editor.css',
             array(),
             DAILYBUDDY_VERSION
         );
+
+        // Inject dbicon CSS as inline style – cache-proof, always loads.
+        // EAEL injects .eael-choices globally and hides custom icons.
+        $dbicon_css = '
+.elementor-choices.eael-choices .elementor-choices-label i[class*="dbicon-"],
+.elementor-control .elementor-choices-label i[class*="dbicon-"],
+.elementor-choices-label i[class*="dbicon-"] {
+    font-family: Arial, Helvetica, sans-serif !important;
+    font-style: normal !important;
+    font-weight: 700 !important;
+    font-size: 12px !important;
+    line-height: 1 !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    width: auto !important;
+    height: auto !important;
+    min-width: 0 !important;
+    overflow: visible !important;
+    color: inherit !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    -webkit-font-smoothing: auto !important;
+}
+.elementor-choices.eael-choices .elementor-choices-label i[class*="dbicon-"]::before,
+.elementor-control .elementor-choices-label i[class*="dbicon-"]::before,
+.elementor-choices-label i[class*="dbicon-"]::before {
+    font-family: Arial, Helvetica, sans-serif !important;
+    font-style: normal !important;
+    font-weight: 700 !important;
+    font-size: 12px !important;
+    line-height: 1 !important;
+    display: inline !important;
+    visibility: visible !important;
+    color: inherit !important;
+    -webkit-font-smoothing: auto !important;
+}
+i.dbicon-1::before{content:"1"!important}
+i.dbicon-2::before{content:"2"!important}
+i.dbicon-3::before{content:"3"!important}
+i.dbicon-4::before{content:"4"!important}
+i.dbicon-5::before{content:"5"!important}
+i.dbicon-6::before{content:"6"!important}
+i.dbicon-h1::before{content:"H1"!important}
+i.dbicon-h2::before{content:"H2"!important}
+i.dbicon-h3::before{content:"H3"!important}
+i.dbicon-h4::before{content:"H4"!important}
+i.dbicon-h5::before{content:"H5"!important}
+i.dbicon-h6::before{content:"H6"!important}
+i.dbicon-span::before{content:"SP"!important}
+i.dbicon-p::before{content:"P"!important}
+i.dbicon-div::before{content:"DIV"!important;font-size:10px!important}
+';
+        wp_add_inline_style('dailybuddy-fg-editor', $dbicon_css);
     }
 
     /**

@@ -2,6 +2,81 @@
  * dailybuddy Filterable Gallery - Editor Styles
  */
 
+/*
+ * Custom text-icon classes for CHOOSE controls.
+ *
+ * EAEL (Essential Addons) injects "eael-choices" class into ALL Elementor
+ * choose controls globally. Its CSS targets .eael-choices i and i::before,
+ * hiding our custom icons. We must override with maximum specificity.
+ */
+.elementor-choices.eael-choices .elementor-choices-label i[class*="dbicon-"],
+.elementor-control .elementor-choices .elementor-choices-label i[class*="dbicon-"],
+.elementor-choices-label i[class*="dbicon-"] {
+    font-family: Arial, Helvetica, sans-serif !important;
+    font-style: normal !important;
+    font-weight: 700 !important;
+    font-size: 12px !important;
+    line-height: 1 !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    width: auto !important;
+    height: auto !important;
+    min-width: 0 !important;
+    overflow: visible !important;
+    color: inherit !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    -webkit-font-smoothing: auto !important;
+    -moz-osx-font-smoothing: auto !important;
+}
+
+.elementor-choices.eael-choices .elementor-choices-label i[class*="dbicon-"]::before,
+.elementor-control .elementor-choices .elementor-choices-label i[class*="dbicon-"]::before,
+.elementor-choices-label i[class*="dbicon-"]::before {
+    font-family: Arial, Helvetica, sans-serif !important;
+    font-style: normal !important;
+    font-weight: 700 !important;
+    font-size: 12px !important;
+    line-height: 1 !important;
+    display: inline !important;
+    visibility: visible !important;
+    color: inherit !important;
+    opacity: 1 !important;
+    -webkit-font-smoothing: auto !important;
+}
+
+.elementor-choices.eael-choices .elementor-choices-label i.dbicon-1::before,
+.elementor-choices-label i.dbicon-1::before { content: "1" !important; }
+.elementor-choices.eael-choices .elementor-choices-label i.dbicon-2::before,
+.elementor-choices-label i.dbicon-2::before { content: "2" !important; }
+.elementor-choices.eael-choices .elementor-choices-label i.dbicon-3::before,
+.elementor-choices-label i.dbicon-3::before { content: "3" !important; }
+.elementor-choices.eael-choices .elementor-choices-label i.dbicon-4::before,
+.elementor-choices-label i.dbicon-4::before { content: "4" !important; }
+.elementor-choices.eael-choices .elementor-choices-label i.dbicon-5::before,
+.elementor-choices-label i.dbicon-5::before { content: "5" !important; }
+.elementor-choices.eael-choices .elementor-choices-label i.dbicon-6::before,
+.elementor-choices-label i.dbicon-6::before { content: "6" !important; }
+.elementor-choices.eael-choices .elementor-choices-label i.dbicon-h1::before,
+.elementor-choices-label i.dbicon-h1::before { content: "H1" !important; }
+.elementor-choices.eael-choices .elementor-choices-label i.dbicon-h2::before,
+.elementor-choices-label i.dbicon-h2::before { content: "H2" !important; }
+.elementor-choices.eael-choices .elementor-choices-label i.dbicon-h3::before,
+.elementor-choices-label i.dbicon-h3::before { content: "H3" !important; }
+.elementor-choices.eael-choices .elementor-choices-label i.dbicon-h4::before,
+.elementor-choices-label i.dbicon-h4::before { content: "H4" !important; }
+.elementor-choices.eael-choices .elementor-choices-label i.dbicon-h5::before,
+.elementor-choices-label i.dbicon-h5::before { content: "H5" !important; }
+.elementor-choices.eael-choices .elementor-choices-label i.dbicon-h6::before,
+.elementor-choices-label i.dbicon-h6::before { content: "H6" !important; }
+.elementor-choices.eael-choices .elementor-choices-label i.dbicon-span::before,
+.elementor-choices-label i.dbicon-span::before { content: "SP" !important; }
+.elementor-choices.eael-choices .elementor-choices-label i.dbicon-p::before,
+.elementor-choices-label i.dbicon-p::before { content: "P" !important; }
+.elementor-choices.eael-choices .elementor-choices-label i.dbicon-div::before,
+.elementor-choices-label i.dbicon-div::before { content: "DIV" !important; font-size: 10px !important; }
+
 /* Elementor Editor Specific Styles */
 .elementor-element-edit-mode .dailybuddy-filter-gallery-wrapper {
     min-height: 200px;

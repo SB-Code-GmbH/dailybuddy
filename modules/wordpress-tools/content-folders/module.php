@@ -75,6 +75,12 @@ class Dailybuddy_Content_Folders
         // ★ NEW: Auto-assign uploads to folder based on referer URL
         add_action('add_attachment', array($this, 'auto_assign_upload_to_folder'));
 
+        // ★ Server-side folder filtering for list views (posts, pages, media list)
+        add_action('pre_get_posts', array($this, 'filter_by_folder_query'));
+
+        // ★ Server-side folder filtering for media grid (AJAX)
+        add_filter('ajax_query_attachments_args', array($this, 'filter_media_grid_by_folder'));
+
         add_action('admin_menu', array($this, 'maybe_add_tools_menu'));
 
         add_action(
@@ -161,9 +167,23 @@ class Dailybuddy_Content_Folders
                 'show_in_rest'      => true,
                 'query_var'         => false,
                 'rewrite'           => false,
+                // Count ALL post statuses (including 'inherit' for attachments, 'draft', etc.)
+                'update_count_callback' => '_update_generic_term_count',
             );
 
             register_taxonomy($taxonomy_name, $post_type, $args);
+        }
+
+        // One-time recount: update_count_callback changed to _update_generic_term_count
+        if ( ! get_option( 'dailybuddy_cf_recount_v2' ) ) {
+            foreach ( $this->active_post_types as $pt ) {
+                $tax = $this->get_taxonomy_name( $pt );
+                $terms = get_terms( array( 'taxonomy' => $tax, 'hide_empty' => false, 'fields' => 'ids' ) );
+                if ( ! is_wp_error( $terms ) && ! empty( $terms ) ) {
+                    wp_update_term_count_now( $terms, $tax );
+                }
+            }
+            update_option( 'dailybuddy_cf_recount_v2', true, false );
         }
     }
 
@@ -179,6 +199,144 @@ class Dailybuddy_Content_Folders
         );
 
         return isset($map[$post_type]) ? $map[$post_type] : 'dailybuddy_' . $post_type . '_folder';
+    }
+
+    /**
+     * ★ Server-side folder filtering for admin list views.
+     *
+     * Reads ?dailybuddy_folder= from URL and adds a tax_query so
+     * WordPress returns only posts in the selected folder.
+     * Pagination works automatically because WP_Query handles it.
+     */
+    public function filter_by_folder_query($query)
+    {
+        if ( ! is_admin() || ! $query->is_main_query() ) {
+            return;
+        }
+
+        // phpcs:ignore WordPress.Security.NonceVerification.Recommended
+        $folder_id = isset( $_GET['dailybuddy_folder'] ) ? sanitize_text_field( wp_unslash( $_GET['dailybuddy_folder'] ) ) : '';
+
+        if ( empty( $folder_id ) || 'all' === $folder_id ) {
+            return;
+        }
+
+        // Determine post type from query
+        $post_type = $query->get( 'post_type' );
+        if ( empty( $post_type ) ) {
+            $post_type = 'post';
+        }
+
+        // Skip if post_type is an array (e.g. search across types)
+        if ( is_array( $post_type ) ) {
+            return;
+        }
+
+        // Only filter our active post types
+        if ( ! in_array( $post_type, $this->active_post_types, true ) ) {
+            return;
+        }
+
+        $taxonomy = $this->get_taxonomy_name( $post_type );
+        if ( ! taxonomy_exists( $taxonomy ) ) {
+            return;
+        }
+
+        if ( 'unassigned' === $folder_id ) {
+            // Show posts NOT in any folder
+            $tax_query = array(
+                array(
+                    'taxonomy' => $taxonomy,
+                    'operator' => 'NOT EXISTS',
+                ),
+            );
+        } else {
+            $term_id = absint( $folder_id );
+            $term    = get_term( $term_id, $taxonomy );
+
+            if ( ! $term || is_wp_error( $term ) ) {
+                return;
+            }
+
+            // Include child folder terms for hierarchical filtering
+            $term_ids   = array( $term_id );
+            $child_terms = get_term_children( $term_id, $taxonomy );
+            if ( ! is_wp_error( $child_terms ) && ! empty( $child_terms ) ) {
+                $term_ids = array_merge( $term_ids, $child_terms );
+            }
+
+            $tax_query = array(
+                array(
+                    'taxonomy' => $taxonomy,
+                    'field'    => 'term_id',
+                    'terms'    => $term_ids,
+                ),
+            );
+        }
+
+        // Merge with existing tax_query if present
+        $existing = $query->get( 'tax_query' );
+        if ( ! empty( $existing ) ) {
+            $tax_query = array_merge( $existing, $tax_query );
+        }
+
+        // phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_tax_query
+        $query->set( 'tax_query', $tax_query );
+    }
+
+    /**
+     * ★ Server-side folder filtering for the media grid (AJAX).
+     *
+     * Hooks into wp_ajax_query-attachments to filter the backbone
+     * media library grid by folder.
+     *
+     * @param array $query The attachment query args.
+     * @return array Modified query args.
+     */
+    public function filter_media_grid_by_folder( $query )
+    {
+        // The media grid sends custom props as $_REQUEST['query'][...]
+        $folder_id = isset( $_REQUEST['query']['dailybuddy_folder'] ) // phpcs:ignore WordPress.Security.NonceVerification.Recommended
+            ? sanitize_text_field( wp_unslash( $_REQUEST['query']['dailybuddy_folder'] ) ) // phpcs:ignore WordPress.Security.NonceVerification.Recommended
+            : '';
+
+        if ( empty( $folder_id ) || 'all' === $folder_id ) {
+            return $query;
+        }
+
+        $taxonomy = $this->get_taxonomy_name( 'attachment' );
+
+        if ( 'unassigned' === $folder_id ) {
+            $query['tax_query'] = array( // phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_tax_query
+                array(
+                    'taxonomy' => $taxonomy,
+                    'operator' => 'NOT EXISTS',
+                ),
+            );
+        } else {
+            $term_id = absint( $folder_id );
+            $term    = get_term( $term_id, $taxonomy );
+
+            if ( ! $term || is_wp_error( $term ) ) {
+                return $query;
+            }
+
+            $term_ids   = array( $term_id );
+            $child_terms = get_term_children( $term_id, $taxonomy );
+            if ( ! is_wp_error( $child_terms ) && ! empty( $child_terms ) ) {
+                $term_ids = array_merge( $term_ids, $child_terms );
+            }
+
+            $query['tax_query'] = array( // phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_tax_query
+                array(
+                    'taxonomy' => $taxonomy,
+                    'field'    => 'term_id',
+                    'terms'    => $term_ids,
+                ),
+            );
+        }
+
+        return $query;
     }
 
     /**
@@ -325,11 +483,17 @@ class Dailybuddy_Content_Folders
         wp_enqueue_script('dailybuddy-folders');
 
         // Localize script
+        // phpcs:ignore WordPress.Security.NonceVerification.Recommended
+        $current_folder = isset( $_GET['dailybuddy_folder'] ) ? sanitize_text_field( wp_unslash( $_GET['dailybuddy_folder'] ) ) : 'all';
+        $is_media_grid  = ( 'upload.php' === $hook && ( ! isset( $_GET['mode'] ) || 'grid' === $_GET['mode'] ) ); // phpcs:ignore WordPress.Security.NonceVerification.Recommended
+
         wp_localize_script('dailybuddy-folders', 'sbToolboxFolders', array(
             'ajaxurl'       => admin_url('admin-ajax.php'),
             'nonce'         => wp_create_nonce('dailybuddy_folders'),
             'taxonomy'      => $this->get_taxonomy_name($screen->post_type),
             'postType'      => $screen->post_type,
+            'currentFolder' => $current_folder,
+            'isMediaGrid'   => $is_media_grid,
             'strings'       => array(
                 'newFolder'       => __('New Folder', 'dailybuddy'),
                 'allFiles'        => __('All Files', 'dailybuddy'),

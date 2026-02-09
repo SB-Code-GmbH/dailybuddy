@@ -160,27 +160,27 @@ class Dailybuddy_Elementor_Filterable_Gallery_Widget extends Widget_Base
                 'options' => [
                     '1' => [
                         'title' => '1',
-                        'text' => '1',
+                        'icon' => 'dbicon-1',
                     ],
                     '2' => [
                         'title' => '2',
-                        'text' => '2',
+                        'icon' => 'dbicon-2',
                     ],
                     '3' => [
                         'title' => '3',
-                        'text' => '3',
+                        'icon' => 'dbicon-3',
                     ],
                     '4' => [
                         'title' => '4',
-                        'text' => '4',
+                        'icon' => 'dbicon-4',
                     ],
                     '5' => [
                         'title' => '5',
-                        'text' => '5',
+                        'icon' => 'dbicon-5',
                     ],
                     '6' => [
                         'title' => '6',
-                        'text' => '6',
+                        'icon' => 'dbicon-6',
                     ],
                 ],
                 'default'        => '3',
@@ -503,39 +503,39 @@ class Dailybuddy_Elementor_Filterable_Gallery_Widget extends Widget_Base
                 'options' => [
                     'h1' => [
                         'title' => __('H1', 'dailybuddy'),
-                        'text' => 'H1',
+                        'icon' => 'dbicon-h1',
                     ],
                     'h2' => [
                         'title' => __('H2', 'dailybuddy'),
-                        'text' => 'H2',
+                        'icon' => 'dbicon-h2',
                     ],
                     'h3' => [
                         'title' => __('H3', 'dailybuddy'),
-                        'text' => 'H3',
+                        'icon' => 'dbicon-h3',
                     ],
                     'h4' => [
                         'title' => __('H4', 'dailybuddy'),
-                        'text' => 'H4',
+                        'icon' => 'dbicon-h4',
                     ],
                     'h5' => [
                         'title' => __('H5', 'dailybuddy'),
-                        'text' => 'H5',
+                        'icon' => 'dbicon-h5',
                     ],
                     'h6' => [
                         'title' => __('H6', 'dailybuddy'),
-                        'text' => 'H6',
+                        'icon' => 'dbicon-h6',
                     ],
                     'span' => [
                         'title' => __('SPAN', 'dailybuddy'),
-                        'text' => 'SPAN',
+                        'icon' => 'dbicon-span',
                     ],
                     'p' => [
                         'title' => __('P', 'dailybuddy'),
-                        'text' => 'P',
+                        'icon' => 'dbicon-p',
                     ],
                     'div' => [
                         'title' => __('DIV', 'dailybuddy'),
-                        'text' => 'DIV',
+                        'icon' => 'dbicon-div',
                     ],
                 ],
             ]
