@@ -4492,3 +4492,18 @@ msgstr "gutenberg"
 #: (Line 19)
 msgid "tinymce"
 msgstr "tinymce"
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\elementor-extensions\mega-menu\module.php
+#: (Line 183)
+msgid "Nested Elements"
+msgstr "Verschachtelte Elemente"
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\elementor-extensions\mega-menu\module.php
+#: (Line 200)
+msgid "DailyBuddy Mega Menu requires the following Elementor features to be enabled: %s. Please activate them in the Elementor settings."
+msgstr "Für das DailyBuddy Mega Menu müssen die folgenden Elementor-Funktionen aktiviert sein: %s. Bitte aktivieren Sie diese in den Elementor-Einstellungen."
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\elementor-extensions\mega-menu\module.php
+#: (Line 208)
+msgid "Open Elementor Settings"
+msgstr "Elementor-Einstellungen öffnen"

@@ -24,7 +24,16 @@ class Module {
     }
 
     public function __construct() {
-        if (!$this->is_nested_elements_active()) {
+        if ( ! class_exists( '\Elementor\Plugin' ) ) {
+            return;
+        }
+
+        // Check required Elementor features and show admin notice if missing
+        $missing = $this->get_missing_features();
+        if ( ! empty( $missing ) ) {
+            add_action( 'admin_notices', function () use ( $missing ) {
+                $this->render_missing_features_notice( $missing );
+            });
             return;
         }
 
@@ -49,6 +58,10 @@ class Module {
      * Must be loaded AFTER nested-elements script
      */
     public function editor_scripts() {
+        // Ensure nested-elements JS module is loaded
+        // Without Elementor Pro, this script may not be enqueued automatically
+        $this->ensure_nested_elements_script();
+
         $deps = array(
             'elementor-editor',
             'elementor-common',
@@ -57,9 +70,9 @@ class Module {
             'backbone',
         );
 
-        // Add nested-elements script as dependency if registered
-        // Handle name varies between Elementor versions
+        // Add nested-elements script as dependency if available
         $nested_handles = array(
+            'nested-elements',
             'elementor-nested-elements',
             'elementor-packages-editor-nested-elements',
         );
@@ -78,6 +91,52 @@ class Module {
             filemtime(__DIR__ . '/assets/editor.js'),
             true
         );
+    }
+
+    /**
+     * Ensure the nested-elements JS module is registered and enqueued.
+     * In Elementor Free (without Pro), this script is not loaded automatically
+     * because no built-in widget requires it.
+     */
+    private function ensure_nested_elements_script() {
+        $handle = 'nested-elements';
+
+        // Already enqueued or registered — nothing to do
+        if ( wp_script_is( $handle, 'enqueued' ) || wp_script_is( $handle, 'registered' ) ) {
+            wp_enqueue_script( $handle );
+            return;
+        }
+
+        // Check alternative handles (varies between Elementor versions)
+        $alt_handles = array(
+            'elementor-nested-elements',
+            'elementor-packages-editor-nested-elements',
+        );
+
+        foreach ( $alt_handles as $alt ) {
+            if ( wp_script_is( $alt, 'enqueued' ) || wp_script_is( $alt, 'registered' ) ) {
+                wp_enqueue_script( $alt );
+                return;
+            }
+        }
+
+        // Not registered at all — register and enqueue it manually
+        if ( defined( 'ELEMENTOR_URL' ) && defined( 'ELEMENTOR_VERSION' ) ) {
+            $script_url = ELEMENTOR_URL . 'assets/js/nested-elements.min.js';
+            $script_path = ELEMENTOR_PATH . 'assets/js/nested-elements.min.js';
+
+            // Only register if the file actually exists in this Elementor version
+            if ( file_exists( $script_path ) ) {
+                wp_register_script(
+                    $handle,
+                    $script_url,
+                    array( 'elementor-editor' ),
+                    ELEMENTOR_VERSION,
+                    true
+                );
+                wp_enqueue_script( $handle );
+            }
+        }
     }
     
     /**
@@ -104,22 +163,50 @@ class Module {
         );
     }
 
-    private function is_nested_elements_active() {
-        if (!class_exists('\Elementor\Plugin')) {
-            return false;
-        }
-
-        // In Elementor 3.16+ nested-elements is a stable feature (always active)
-        if (defined('ELEMENTOR_VERSION') && version_compare(ELEMENTOR_VERSION, '3.16.0', '>=')) {
-            return true;
-        }
-
-        // Older versions: check experiments
+    /**
+     * Check which required Elementor features are missing.
+     * Returns an array of missing feature names, or empty if all OK.
+     */
+    private function get_missing_features() {
+        $missing = array();
         $experiments = \Elementor\Plugin::$instance->experiments;
-        if (!$experiments) {
-            return false;
+
+        if ( ! $experiments ) {
+            return $missing;
         }
-        return $experiments->is_feature_active('nested-elements');
+
+        // Check Container feature
+        if ( ! $experiments->is_feature_active( 'container' ) ) {
+            $missing[] = __( 'Container', 'dailybuddy' );
+        }
+
+        // Check Nested Elements feature
+        if ( ! $experiments->is_feature_active( 'nested-elements' ) ) {
+            $missing[] = __( 'Nested Elements', 'dailybuddy' );
+        }
+
+        return $missing;
+    }
+
+    /**
+     * Render admin notice when required Elementor features are not active.
+     */
+    private function render_missing_features_notice( $missing ) {
+        $settings_url = admin_url( 'admin.php?page=elementor-settings#tab-experiments' );
+        $features_list = '<strong>' . implode( '</strong>, <strong>', array_map( 'esc_html', $missing ) ) . '</strong>';
+
+        $message = sprintf(
+            /* translators: %s: list of missing feature names */
+            __( 'DailyBuddy Mega Menu requires the following Elementor features to be enabled: %s. Please activate them in the Elementor settings.', 'dailybuddy' ),
+            $features_list
+        );
+
+        printf(
+            '<div class="notice notice-warning is-dismissible"><p>%s</p><p><a href="%s" class="button button-secondary">%s</a></p></div>',
+            wp_kses( $message, array( 'strong' => array() ) ),
+            esc_url( $settings_url ),
+            esc_html__( 'Open Elementor Settings', 'dailybuddy' )
+        );
     }
 
     public function register_widgets($widgets_manager) {

@@ -4379,3 +4379,15 @@ msgstr ""
 #: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\wordpress-tools\classic-editor\config.php (Line 19)
 msgid "tinymce"
 msgstr ""
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\elementor-extensions\mega-menu\module.php (Line 183)
+msgid "Nested Elements"
+msgstr ""
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\elementor-extensions\mega-menu\module.php (Line 200)
+msgid "DailyBuddy Mega Menu requires the following Elementor features to be enabled: %s. Please activate them in the Elementor settings."
+msgstr ""
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\elementor-extensions\mega-menu\module.php (Line 208)
+msgid "Open Elementor Settings"
+msgstr ""
