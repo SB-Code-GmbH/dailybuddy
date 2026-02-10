@@ -8,18 +8,36 @@
 (function() {
     'use strict';
 
-    // Wait for Elementor to be ready
-    if (typeof elementorCommon === 'undefined') {
-        return;
+    var _initialized = false;
+
+    function tryInit() {
+        // Wait for elementorCommon instead of bailing out
+        if (typeof elementorCommon === 'undefined') {
+            setTimeout(tryInit, 100);
+            return;
+        }
+
+        // Listen for the nested element type loaded event
+        elementorCommon.elements.$window.on('elementor/nested-element-type-loaded', function() {
+            initDailybuddyMegaMenuModule();
+        });
+
+        // CRITICAL: Also check immediately if NestedElementBase already exists
+        // (the event may have already fired before this script loaded)
+        if (elementor?.modules?.elements?.types?.NestedElementBase) {
+            initDailybuddyMegaMenuModule();
+        }
     }
 
-    // Listen for the nested element type loaded event
-    // This is the SAME event that Elementor Pro uses
-    elementorCommon.elements.$window.on('elementor/nested-element-type-loaded', function() {
-        initDailybuddyMegaMenuModule();
-    });
+    // Start initialization
+    tryInit();
 
     function initDailybuddyMegaMenuModule() {
+        // Prevent double initialization
+        if (_initialized) {
+            return;
+        }
+
         // Verify NestedElementBase is available
         if (!elementor.modules?.elements?.types?.NestedElementBase) {
             return;
@@ -131,6 +149,7 @@
 
         // Register the element type
         elementor.elementsManager.registerElementType(new DailybuddyMegaMenuNestedModule());
+        _initialized = true;
         
         
         // Setup click handlers for editor

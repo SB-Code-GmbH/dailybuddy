@@ -49,16 +49,32 @@ class Module {
      * Must be loaded AFTER nested-elements script
      */
     public function editor_scripts() {
+        $deps = array(
+            'elementor-editor',
+            'elementor-common',
+            'jquery',
+            'underscore',
+            'backbone',
+        );
+
+        // Add nested-elements script as dependency if registered
+        // Handle name varies between Elementor versions
+        $nested_handles = array(
+            'elementor-nested-elements',
+            'elementor-packages-editor-nested-elements',
+        );
+
+        foreach ( $nested_handles as $handle ) {
+            if ( wp_script_is( $handle, 'registered' ) || wp_script_is( $handle, 'enqueued' ) ) {
+                $deps[] = $handle;
+                break;
+            }
+        }
+
         wp_enqueue_script(
             'dailybuddy-mega-menu-editor',
             plugins_url('assets/editor.js', __FILE__),
-            array(
-                'elementor-editor',
-                'elementor-common',
-                'jquery',
-                'underscore',
-                'backbone'
-            ),
+            $deps,
             filemtime(__DIR__ . '/assets/editor.js'),
             true
         );
@@ -92,6 +108,13 @@ class Module {
         if (!class_exists('\Elementor\Plugin')) {
             return false;
         }
+
+        // In Elementor 3.16+ nested-elements is a stable feature (always active)
+        if (defined('ELEMENTOR_VERSION') && version_compare(ELEMENTOR_VERSION, '3.16.0', '>=')) {
+            return true;
+        }
+
+        // Older versions: check experiments
         $experiments = \Elementor\Plugin::$instance->experiments;
         if (!$experiments) {
             return false;
