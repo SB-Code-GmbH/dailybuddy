@@ -665,10 +665,6 @@
 
 /* ========== ANIMATIONS ========== */
 /* ========== MOBILE MENU WRAPPER DEFAULTS (low specificity for Elementor override) ========== */
-:where(.elementor-widget-dailybuddy-mega-menu .db-mega-menu-wrapper) {
-    background: #fff;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-}
 
 @keyframes db-mega-menu-fadeIn {
     from {
@@ -1163,6 +1159,7 @@
         display: flex;
     }
 }
+
 /* ========================================
    Mobile Menu - Alignment Support
    ======================================== */
