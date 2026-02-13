@@ -6,9 +6,6 @@
 
 /* ========== CSS VARIABLES ========== */
 .elementor-widget-dailybuddy-mega-menu {
-    --n-menu-direction: column;
-    --n-menu-wrapper-display: flex;
-    --n-menu-heading-justify-content: initial;
     --n-menu-title-color-normal: #1f2124;
     --n-menu-title-color-active: #58d0f5;
     --n-menu-title-color-hover: #1f2124;
@@ -40,7 +37,7 @@
 }
 
 .elementor-widget-dailybuddy-mega-menu .db-mega-menu-wrapper {
-    display: var(--n-menu-wrapper-display);
+    display: flex;
     flex-direction: column;
 }
 
@@ -206,7 +203,7 @@
     display: none;
     flex-direction: column;
     min-width: 0;
-    z-index: 2147483620;
+    z-index: 9999;
 }
 
 /* Horizontal menu: absolute positioning */
@@ -237,7 +234,7 @@
 /* Show container when item IS active */
 .elementor-widget-dailybuddy-mega-menu .db-mega-menu-item.e-active>.db-mega-menu-content>.e-con {
     display: flex;
-    animation: fadeIn var(--n-menu-open-animation-duration) ease-out;
+    animation: db-mega-menu-fadeIn var(--n-menu-open-animation-duration) ease-out;
 }
 
 /* ========== MENU TOGGLE (Hamburger) ========== */
@@ -341,11 +338,9 @@
         width: 80%;
         max-width: 300px;
         height: 100vh;
-        background: #fff;
         z-index: 9999;
         transition: left 0.3s ease;
         overflow-y: auto;
-        box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
     }
 
     .elementor-widget-dailybuddy-mega-menu .db-mega-menu.breakpoint-tablet.mobile-layout-slide-left.e-open .db-mega-menu-wrapper {
@@ -361,11 +356,9 @@
         width: 80%;
         max-width: 300px;
         height: 100vh;
-        background: #fff;
         z-index: 9999;
         transition: right 0.3s ease;
         overflow-y: auto;
-        box-shadow: -2px 0 10px rgba(0, 0, 0, 0.1);
     }
 
     .elementor-widget-dailybuddy-mega-menu .db-mega-menu.breakpoint-tablet.mobile-layout-slide-right.e-open .db-mega-menu-wrapper {
@@ -380,12 +373,10 @@
         right: 0;
         width: 100%;
         max-height: 0;
-        background: #fff;
         z-index: 9999;
         transition: max-height 0.3s ease, opacity 0.3s ease;
         overflow: hidden;
         opacity: 0;
-        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
     }
 
     .elementor-widget-dailybuddy-mega-menu .db-mega-menu.breakpoint-tablet.mobile-layout-slide-down.e-open .db-mega-menu-wrapper {
@@ -403,7 +394,6 @@
         bottom: 0;
         width: 100%;
         height: 100vh;
-        background: #fff;
         z-index: 9999;
         opacity: 0;
         visibility: hidden;
@@ -515,11 +505,9 @@
         width: 80%;
         max-width: 300px;
         height: 100vh;
-        background: #fff;
         z-index: 9999;
         transition: left 0.3s ease;
         overflow-y: auto;
-        box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
     }
 
     .elementor-widget-dailybuddy-mega-menu .db-mega-menu.breakpoint-mobile.mobile-layout-slide-left.e-open .db-mega-menu-wrapper {
@@ -535,11 +523,9 @@
         width: 80%;
         max-width: 300px;
         height: 100vh;
-        background: #fff;
         z-index: 9999;
         transition: right 0.3s ease;
         overflow-y: auto;
-        box-shadow: -2px 0 10px rgba(0, 0, 0, 0.1);
     }
 
     .elementor-widget-dailybuddy-mega-menu .db-mega-menu.breakpoint-mobile.mobile-layout-slide-right.e-open .db-mega-menu-wrapper {
@@ -554,12 +540,10 @@
         right: 0;
         width: 100%;
         max-height: 0;
-        background: #fff;
         z-index: 9999;
         transition: max-height 0.3s ease, opacity 0.3s ease;
         overflow: hidden;
         opacity: 0;
-        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
     }
 
     .elementor-widget-dailybuddy-mega-menu .db-mega-menu.breakpoint-mobile.mobile-layout-slide-down.e-open .db-mega-menu-wrapper {
@@ -577,7 +561,6 @@
         bottom: 0;
         width: 100%;
         height: 100vh;
-        background: #fff;
         z-index: 9999;
         opacity: 0;
         visibility: hidden;
@@ -681,7 +664,13 @@
 }
 
 /* ========== ANIMATIONS ========== */
-@keyframes fadeIn {
+/* ========== MOBILE MENU WRAPPER DEFAULTS (low specificity for Elementor override) ========== */
+:where(.elementor-widget-dailybuddy-mega-menu .db-mega-menu-wrapper) {
+    background: #fff;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+@keyframes db-mega-menu-fadeIn {
     from {
         opacity: 0;
         transform: translateY(-10px);
@@ -954,10 +943,7 @@
     display: none;
     align-items: center;
     justify-content: space-between;
-    padding: var(--db-mobile-header-padding, 15px 20px);
-    border-bottom-style: var(--db-mobile-header-border-style, solid);
-    border-bottom-width: var(--db-mobile-header-border-width, 1px);
-    border-bottom-color: var(--db-mobile-header-border-color, rgba(0, 0, 0, 0.1));
+    padding: 15px 20px;
     position: sticky;
     top: 0;
     background: inherit;
@@ -971,7 +957,7 @@
 }
 
 .elementor-widget-dailybuddy-mega-menu .db-mega-menu-mobile-header .db-mega-menu-close {
-    margin-left: auto;
+    margin-inline-start: auto;
 }
 
 .elementor-widget-dailybuddy-mega-menu .db-mega-menu-mobile-title {
@@ -986,7 +972,6 @@
 .elementor-widget-dailybuddy-mega-menu .db-mega-menu.mobile-layout-full-screen .db-mega-menu-wrapper.e-open .db-mega-menu-mobile-header,
 .elementor-widget-dailybuddy-mega-menu .db-mega-menu.mobile-layout-slide-down .db-mega-menu-wrapper.e-open .db-mega-menu-mobile-header {
     display: flex;
-    border-bottom: 1px solid;
 }
 
 /* Breakpoint mobile header */

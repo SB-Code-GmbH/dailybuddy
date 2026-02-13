@@ -40,8 +40,6 @@ class Module {
         add_action('elementor/widgets/register', array($this, 'register_widgets'));
         add_action('elementor/frontend/after_register_styles', array($this, 'register_styles'));
         add_action('elementor/frontend/after_register_scripts', array($this, 'register_scripts'));
-        add_action('elementor/frontend/after_enqueue_styles', array($this, 'enqueue_styles'));
-        add_action('elementor/frontend/after_enqueue_scripts', array($this, 'enqueue_scripts'));
         
         // CRITICAL: Load editor script with correct dependencies
         add_action('elementor/editor/before_enqueue_scripts', array($this, 'editor_scripts'));
@@ -233,13 +231,6 @@ class Module {
         );
     }
 
-    public function enqueue_styles() {
-        wp_enqueue_style('dailybuddy-mega-menu-style');
-    }
-
-    public function enqueue_scripts() {
-        wp_enqueue_script('dailybuddy-mega-menu-script');
-    }
 }
 
 Module::instance();

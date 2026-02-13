@@ -1859,12 +1859,29 @@ class Dailybuddy_Mega_Menu_Widget extends Widget_Nested_Base
             )
         );
 
+        $this->add_responsive_control(
+            'mobile_menu_box_width',
+            array(
+                'label'      => __('Width', 'dailybuddy'),
+                'type'       => Controls_Manager::SLIDER,
+                'size_units' => array('px', '%', 'vw'),
+                'range'      => array(
+                    'px' => array('min' => 200, 'max' => 1000),
+                    '%'  => array('min' => 10, 'max' => 100),
+                    'vw' => array('min' => 10, 'max' => 100),
+                ),
+                'selectors'  => array(
+                    '{{WRAPPER}} .db-mega-menu.e-open .db-mega-menu-wrapper, {{WRAPPER}} .db-mega-menu.mobile-menu-only .db-mega-menu-wrapper.e-open' => 'width: {{SIZE}}{{UNIT}}; max-width: min({{SIZE}}{{UNIT}}, 100vw);',
+                ),
+            )
+        );
+
         $this->add_group_control(
             Group_Control_Background::get_type(),
             array(
                 'name'     => 'mobile_menu_box_background',
                 'types'    => array('classic', 'gradient'),
-                'selector' => '{{WRAPPER}} .db-mega-menu.e-open .db-mega-menu-wrapper, {{WRAPPER}} .db-mega-menu.mobile-menu-only .db-mega-menu-wrapper',
+                'selector' => '{{WRAPPER}} .db-mega-menu.e-open .db-mega-menu-wrapper, {{WRAPPER}} .db-mega-menu.mobile-menu-only .db-mega-menu-wrapper.e-open',
             )
         );
 
@@ -1872,7 +1889,7 @@ class Dailybuddy_Mega_Menu_Widget extends Widget_Nested_Base
             Group_Control_Border::get_type(),
             array(
                 'name'     => 'mobile_menu_box_border',
-                'selector' => '{{WRAPPER}} .db-mega-menu.e-open .db-mega-menu-wrapper, {{WRAPPER}} .db-mega-menu.mobile-menu-only .db-mega-menu-wrapper',
+                'selector' => '{{WRAPPER}} .db-mega-menu.e-open .db-mega-menu-wrapper, {{WRAPPER}} .db-mega-menu.mobile-menu-only .db-mega-menu-wrapper.e-open',
             )
         );
 
@@ -1883,7 +1900,7 @@ class Dailybuddy_Mega_Menu_Widget extends Widget_Nested_Base
                 'type'       => Controls_Manager::DIMENSIONS,
                 'size_units' => array('px', '%', 'em'),
                 'selectors'  => array(
-                    '{{WRAPPER}} .db-mega-menu.e-open .db-mega-menu-wrapper, {{WRAPPER}} .db-mega-menu.mobile-menu-only .db-mega-menu-wrapper' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                    '{{WRAPPER}} .db-mega-menu.e-open .db-mega-menu-wrapper, {{WRAPPER}} .db-mega-menu.mobile-menu-only .db-mega-menu-wrapper.e-open' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
                 ),
             )
         );
@@ -1892,7 +1909,7 @@ class Dailybuddy_Mega_Menu_Widget extends Widget_Nested_Base
             Group_Control_Box_Shadow::get_type(),
             array(
                 'name'     => 'mobile_menu_box_shadow',
-                'selector' => '{{WRAPPER}} .db-mega-menu.e-open .db-mega-menu-wrapper, {{WRAPPER}} .db-mega-menu.mobile-menu-only .db-mega-menu-wrapper',
+                'selector' => '{{WRAPPER}} .db-mega-menu.e-open .db-mega-menu-wrapper, {{WRAPPER}} .db-mega-menu.mobile-menu-only .db-mega-menu-wrapper.e-open',
             )
         );
 
@@ -1903,7 +1920,7 @@ class Dailybuddy_Mega_Menu_Widget extends Widget_Nested_Base
                 'type'       => Controls_Manager::DIMENSIONS,
                 'size_units' => array('px', 'em', '%'),
                 'selectors'  => array(
-                    '{{WRAPPER}} .db-mega-menu.e-open .db-mega-menu-wrapper, {{WRAPPER}} .db-mega-menu.mobile-menu-only .db-mega-menu-wrapper' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                    '{{WRAPPER}} .db-mega-menu.e-open .db-mega-menu-wrapper, {{WRAPPER}} .db-mega-menu.mobile-menu-only .db-mega-menu-wrapper.e-open' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
                 ),
             )
         );
@@ -1979,7 +1996,7 @@ class Dailybuddy_Mega_Menu_Widget extends Widget_Nested_Base
 
     public function get_menu_widget_id()
     {
-        return substr($this->get_id(), 0, 3);
+        return substr($this->get_id(), 0, 6);
     }
 
     // ========== RENDER (FRONTEND) ==========
@@ -2391,8 +2408,9 @@ class Dailybuddy_Mega_Menu_Widget extends Widget_Nested_Base
             // Toggle title
             var toggleTitle=settings['toggle_title_text'] || '' ;
             var titlePosition=settings['toggle_title_position'] || 'after' ;
-            var titleBeforeHtml=(toggleTitle && titlePosition==='before' ) ? '<span class="db-mega-menu-toggle-title">' + toggleTitle + '</span>' : '' ;
-            var titleAfterHtml=(toggleTitle && titlePosition==='after' ) ? '<span class="db-mega-menu-toggle-title">' + toggleTitle + '</span>' : '' ;
+            var escapedToggleTitle = _.escape(toggleTitle);
+            var titleBeforeHtml=(toggleTitle && titlePosition==='before' ) ? '<span class="db-mega-menu-toggle-title">' + escapedToggleTitle + '</span>' : '' ;
+            var titleAfterHtml=(toggleTitle && titlePosition==='after' ) ? '<span class="db-mega-menu-toggle-title">' + escapedToggleTitle + '</span>' : '' ;
 
             // Action Button
             var actionButtonTitle = settings['action_button_title'] || '';
@@ -2418,10 +2436,10 @@ class Dailybuddy_Mega_Menu_Widget extends Widget_Nested_Base
                 var tag = context.indexOf('desktop') !== -1 ? 'li' : 'div';
                 var iconBefore = (actionButtonIconHtml && actionButtonIconPos === 'before') ? actionButtonIconHtml : '';
                 var iconAfter = (actionButtonIconHtml && actionButtonIconPos === 'after') ? actionButtonIconHtml : '';
-                var titleHtml = actionButtonTitle ? '<span class="db-action-button-text">' + actionButtonTitle + '</span>' : '';
+                var titleHtml = actionButtonTitle ? '<span class="db-action-button-text">' + _.escape(actionButtonTitle) + '</span>' : '';
                 
                 return '<' + tag + ' class="db-mega-menu-action-button ' + context + '">' +
-                    '<a href="' + actionButtonUrl + '" class="db-action-button-link">' +
+                    '<a href="' + _.escape(actionButtonUrl) + '" class="db-action-button-link">' +
                     iconBefore + titleHtml + iconAfter +
                     '</a></' + tag + '>';
             }
@@ -2443,7 +2461,7 @@ class Dailybuddy_Mega_Menu_Widget extends Widget_Nested_Base
                 <div class="db-mega-menu-wrapper">
                     <div class="db-mega-menu-mobile-header">
                         <# if (toggleTitle) { #>
-                            <span class="db-mega-menu-mobile-title">{{{ toggleTitle }}}</span>
+                            <span class="db-mega-menu-mobile-title">{{ toggleTitle }}</span>
                         <# } #>
                         <button class="db-mega-menu-close" aria-label="<?php esc_attr_e('Close Menu', 'dailybuddy'); ?>">
                             {{{ toggleIconActiveHtml }}}
@@ -2550,7 +2568,7 @@ class Dailybuddy_Mega_Menu_Widget extends Widget_Nested_Base
                                                             <span class="db-mega-menu-icon">{{{ menuIcon.value }}}</span>
                                                             <# } #>
 
-                                                                <span {{{ view.getRenderAttributeString( menuItemTitleKey ) }}}>{{{ item.item_title || '' }}}</span>
+                                                                <span {{{ view.getRenderAttributeString( menuItemTitleKey ) }}}>{{ item.item_title || '' }}</span>
 
                                                                 <# if ( menuItemLink ) { #>
                                         </a>
@@ -2679,7 +2697,7 @@ class Dailybuddy_Mega_Menu_Widget extends Widget_Nested_Base
                                                 <span class="db-mega-menu-icon">{{{ menuIcon.value }}}</span>
                                                 <# } #>
 
-                                                    <span {{{ view.getRenderAttributeString( menuItemTitleKey ) }}}>{{{ data.item_title || '' }}}</span>
+                                                    <span {{{ view.getRenderAttributeString( menuItemTitleKey ) }}}>{{ data.item_title || '' }}</span>
 
                                                     <# if ( menuItemLink ) { #>
                             </a>
