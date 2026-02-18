@@ -486,16 +486,22 @@
             // Context menu actions
             $(document).on('click', '.folder-action-rename', function (e) {
                 e.preventDefault();
+                e.stopPropagation();
+                $('.folder-actions').removeClass('active');
                 self.renameFolder($(this).closest('.folder-tree-item'));
             });
 
             $(document).on('click', '.folder-action-delete', function (e) {
                 e.preventDefault();
+                e.stopPropagation();
+                $('.folder-actions').removeClass('active');
                 self.deleteFolder($(this).closest('.folder-tree-item'));
             });
 
             $(document).on('click', '.folder-action-color', function (e) {
                 e.preventDefault();
+                e.stopPropagation();
+                $('.folder-actions').removeClass('active');
                 self.changeFolderColor($(this).closest('.folder-tree-item'));
             });
 
