@@ -22,6 +22,10 @@ class Dailybuddy_Admin_Page
         if (defined('DAILYBUDDY_DEV_MODE') && DAILYBUDDY_DEV_MODE) {
             add_action('admin_notices', array($this, 'show_dev_mode_notice'));
         }
+
+        // Review notice after 7 days.
+        add_action('admin_notices', array($this, 'maybe_show_review_notice'));
+        add_action('wp_ajax_dailybuddy_dismiss_review', array($this, 'ajax_dismiss_review'));
     }
 
     /**
@@ -241,5 +245,69 @@ class Dailybuddy_Admin_Page
         } else {
             wp_send_json_error(array('message' => __('Failed to save settings', 'dailybuddy')));
         }
+    }
+
+    /**
+     * Show a review notice after 7 days of usage.
+     */
+    public function maybe_show_review_notice()
+    {
+        if (! current_user_can('manage_options')) {
+            return;
+        }
+
+        if (get_option('dailybuddy_review_dismissed')) {
+            return;
+        }
+
+        $installed = get_option('dailybuddy_installed_at');
+        if (! $installed) {
+            update_option('dailybuddy_installed_at', time());
+            return;
+        }
+
+        if ((time() - (int) $installed) < 7 * DAY_IN_SECONDS) {
+            return;
+        }
+
+        ?>
+        <div class="notice notice-info is-dismissible" id="dailybuddy-review-notice" style="padding: 12px 16px;">
+            <p>
+                <strong><?php esc_html_e('Enjoying DailyBuddy?', 'dailybuddy'); ?></strong>
+                <?php esc_html_e('You\'ve been using DailyBuddy for over a week now. If it\'s been helpful, a quick review on wordpress.org would mean a lot!', 'dailybuddy'); ?>
+                <a href="https://wordpress.org/support/plugin/dailybuddy/reviews/#new-post" target="_blank" rel="noopener noreferrer" style="margin-left: 8px; font-weight: 600;">
+                    <?php esc_html_e('Leave a Review', 'dailybuddy'); ?> &rarr;
+                </a>
+            </p>
+        </div>
+        <script>
+        (function() {
+            var notice = document.getElementById('dailybuddy-review-notice');
+            if (!notice) return;
+            notice.addEventListener('click', function(e) {
+                if (e.target.classList.contains('notice-dismiss') || e.target.closest('.notice-dismiss')) {
+                    var xhr = new XMLHttpRequest();
+                    xhr.open('POST', '<?php echo esc_url(admin_url('admin-ajax.php')); ?>');
+                    xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+                    xhr.send('action=dailybuddy_dismiss_review&nonce=<?php echo esc_js(wp_create_nonce('dailybuddy_dismiss_review')); ?>');
+                }
+            });
+        })();
+        </script>
+        <?php
+    }
+
+    /**
+     * AJAX handler to dismiss the review notice permanently.
+     */
+    public function ajax_dismiss_review()
+    {
+        check_ajax_referer('dailybuddy_dismiss_review', 'nonce');
+
+        if (current_user_can('manage_options')) {
+            update_option('dailybuddy_review_dismissed', true);
+        }
+
+        wp_send_json_success();
     }
 }

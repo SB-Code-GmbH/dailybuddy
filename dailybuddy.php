@@ -1,10 +1,10 @@
 <?php
 
 /**
- * Plugin Name: DailyBuddy
+ * Plugin Name: DailyBuddy — Free All-in-One Toolkit
  * Plugin URI: https://dailybuddy.net/
- * Description: A modular collection of essential WordPress features that can be individually enabled or disabled. Includes tools for duplicating posts, maintenance mode, media organization, custom widgets, and Elementor extensions - all in one place.
- * Version: 1.1.18
+ * Description: Free all-in-one toolkit: content folders, duplicate posts, custom login URL, maintenance mode, media replace, classic editor, language detection, dashboard widgets & 9 Elementor extensions.
+ * Version: 1.2.0
  * Author: Ilja Becker
  * Author URI: https://profiles.wordpress.org/beckerilja/
  * Text Domain: dailybuddy
@@ -21,7 +21,7 @@ if (! defined('ABSPATH')) {
 }
 
 // Plugin constants
-define('DAILYBUDDY_VERSION', '1.1.18');
+define('DAILYBUDDY_VERSION', '1.2.0');
 define('DAILYBUDDY_PATH', plugin_dir_path(__FILE__));
 define('DAILYBUDDY_URL', plugin_dir_url(__FILE__));
 define('DAILYBUDDY_BASENAME', plugin_basename(__FILE__));
@@ -58,6 +58,11 @@ function dailybuddy_activate()
     // Set default options
     if (! get_option('dailybuddy_modules')) {
         add_option('dailybuddy_modules', array());
+    }
+
+    // Track installation time for review notice.
+    if (! get_option('dailybuddy_installed_at')) {
+        add_option('dailybuddy_installed_at', time());
     }
 }
 register_activation_hook(__FILE__, 'dailybuddy_activate');

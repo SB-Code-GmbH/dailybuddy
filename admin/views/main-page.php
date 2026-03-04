@@ -238,7 +238,7 @@ wp_localize_script(
                     echo wp_kses_post(
                         sprintf(
                             /* translators: %s: Link to the developer's website */
-                            __('If you like this free plugin and want to support its development, feel free to check out %s.', 'dailybuddy'),
+                            __('DailyBuddy is part of a full productivity suite — Projects, Tasks, File Transfer & more at %s.', 'dailybuddy'),
                             $dailybuddy_link
                         )
                     );

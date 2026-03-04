@@ -943,7 +943,7 @@
     position: sticky;
     top: 0;
     background: inherit;
-    z-index: 10;
+    z-index: 10001;
 }
 
 /* Ensure close button is always on the right */

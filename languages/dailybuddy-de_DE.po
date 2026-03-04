@@ -4507,3 +4507,231 @@ msgstr "Für das DailyBuddy Mega Menu müssen die folgenden Elementor-Funktionen
 #: (Line 208)
 msgid "Open Elementor Settings"
 msgstr "Elementor-Einstellungen öffnen"
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\admin\class-admin-page.php
+#: (Line 276)
+msgid "Enjoying DailyBuddy?"
+msgstr "Gefällt Ihnen DailyBuddy?"
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\admin\class-admin-page.php
+#: (Line 0)
+msgid "You've been using DailyBuddy for over a week now. If it's been helpful, a quick review on wordpress.org would mean a lot!"
+msgstr "Sie nutzen DailyBuddy bereits seit über einer Woche. Wenn es Ihnen geholfen hat, würde uns eine kurze Bewertung auf wordpress.org sehr freuen!"
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\admin\class-admin-page.php
+#: (Line 279)
+msgid "Leave a Review"
+msgstr "Bewertung hinterlassen"
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\admin\views\main-page.php
+#: (Line 241)
+msgid "DailyBuddy is part of a full productivity suite — Projects, Tasks, File Transfer & more at %s."
+msgstr "DailyBuddy ist Teil einer vollständigen Produktivitätssuite – Projekte, Aufgaben, Dateiübertragung und mehr unter %s."
+
+#: ...translatepress-tools\config.php (Line 9)
+msgid "Enhance TranslatePress with automatic language detection and SEO optimization. Includes hreflang tags, OG locale, canonical URLs, and multilingual sitemap support."
+msgstr "Erweitern Sie TranslatePress um automatische Spracherkennung und SEO-Optimierung. Enthält hreflang-Tags, OG-Locale, kanonische URLs und mehrsprachige Sitemap-Unterstützung."
+
+#: ...translatepress-tools\config.php (Line 9)
+msgid "language"
+msgstr "Sprache"
+
+#: ...translatepress-tools\config.php (Line 9)
+msgid "multilingual"
+msgstr "mehrsprachig"
+
+#: ...translatepress-tools\config.php (Line 18)
+msgid "redirect"
+msgstr "Weiterleitung"
+
+#: ...translatepress-tools\config.php (Line 4)
+msgid "TranslatePress"
+msgstr "TranslatePress"
+
+#: ...translatepress-tools\module.php (Line 278)
+msgid "We detected that your browser language is {language}. Would you like to switch?"
+msgstr "Wir haben festgestellt, dass Ihre Browsersprache {language} ist. Möchten Sie wechseln?"
+
+#: ...translatepress-tools\module.php (Line 279)
+msgid "This page is also available in {language}."
+msgstr "Diese Seite ist auch auf {language} verfügbar."
+
+#: ...translatepress-tools\module.php (Line 280)
+msgid "Switch Language"
+msgstr "Sprache wechseln"
+
+#: ...translatepress-tools\module.php (Line 281)
+msgid "No, thanks"
+msgstr "Nein, danke"
+
+#: ...templates\settings-page.php (Line 14)
+msgid "Popup Window"
+msgstr "Popup-Fenster"
+
+#: ...templates\settings-page.php (Line 15)
+msgid "Hello Bar"
+msgstr "Hinweisleiste"
+
+#: ...templates\settings-page.php (Line 16)
+msgid "Direct Redirect"
+msgstr "Direkte Weiterleitung"
+
+#: ...templates\settings-page.php (Line 4)
+msgid "TranslatePress Tools"
+msgstr "TranslatePress-Tools"
+
+#: ...templates\settings-page.php (Line 27)
+msgid "Automatic language detection for TranslatePress."
+msgstr "Automatische Spracherkennung für TranslatePress."
+
+#: ...templates\settings-page.php (Line 33)
+msgid "TranslatePress is not active!"
+msgstr "TranslatePress ist nicht aktiv!"
+
+#: ...templates\settings-page.php (Line 34)
+msgid "Please install and activate TranslatePress to use this module."
+msgstr "Bitte installieren und aktivieren Sie TranslatePress, um dieses Modul zu verwenden."
+
+#: ...templates\settings-page.php (Line 43)
+msgid "Not enough languages configured."
+msgstr "Nicht genügend Sprachen konfiguriert."
+
+#: ...templates\settings-page.php (Line 44)
+msgid "You need at least 2 languages in TranslatePress for auto-detection to work."
+msgstr "Sie benötigen mindestens 2 Sprachen in TranslatePress, damit die automatische Erkennung funktioniert."
+
+#: ...templates\settings-page.php (Line 57)
+msgid "Languages"
+msgstr "Sprachen"
+
+#: ...templates\settings-page.php (Line 63)
+msgid "Detection"
+msgstr "Erkennung"
+
+#: ...templates\settings-page.php (Line 71)
+msgid "GDPR-Safe"
+msgstr "DSGVO-konform"
+
+#: ...templates\settings-page.php (Line 83)
+msgid "Enable Auto-Detection"
+msgstr "Automatische Erkennung aktivieren"
+
+#: ...templates\settings-page.php (Line 89)
+msgid "Detect browser language automatically"
+msgstr "Browsersprache automatisch erkennen"
+
+#: ...templates\settings-page.php (Line 91)
+msgid "When enabled, visitors will be prompted or redirected based on their browser language."
+msgstr "Wenn aktiviert, werden Besucher basierend auf ihrer Browsersprache benachrichtigt oder weitergeleitet."
+
+#: ...templates\settings-page.php (Line 99)
+msgid "Action Type"
+msgstr "Aktionstyp"
+
+#: ...templates\settings-page.php (Line 109)
+msgid "Shows a small popup asking the visitor if they want to switch language."
+msgstr "Zeigt ein kleines Popup, das den Besucher fragt, ob er die Sprache wechseln möchte."
+
+#: ...templates\settings-page.php (Line 113)
+msgid "Shows a notification bar at the top or bottom of the page."
+msgstr "Zeigt eine Hinweisleiste am oberen oder unteren Seitenrand an."
+
+#: ...templates\settings-page.php (Line 116)
+msgid "SEO Risk"
+msgstr "SEO-Risiko"
+
+#: ...templates\settings-page.php (Line 118)
+msgid "Redirects visitors directly without asking. May cause issues with search engine indexing."
+msgstr "Leitet Besucher direkt weiter, ohne zu fragen. Kann Probleme bei der Suchmaschinenindexierung verursachen."
+
+#: ...templates\settings-page.php (Line 127)
+msgid "Storage"
+msgstr "Speicherung"
+
+#: ...templates\settings-page.php (Line 0)
+msgid "Uses sessionStorage (no cookies). The visitor's choice is remembered for the current browser session. A new session will show the prompt again."
+msgstr "Verwendet sessionStorage (keine Cookies). Die Auswahl des Besuchers wird für die aktuelle Browsersitzung gespeichert. Bei einer neuen Sitzung wird die Abfrage erneut angezeigt."
+
+#: ...templates\settings-page.php (Line 140)
+msgid "Hello Bar Settings"
+msgstr "Einstellungen der Hinweisleiste"
+
+#: ...templates\settings-page.php (Line 148)
+msgid "Bar Position"
+msgstr "Position der Leiste"
+
+#: ...templates\settings-page.php (Line 161)
+msgid "Appearance"
+msgstr "Erscheinungsbild"
+
+#: ...templates\settings-page.php (Line 165)
+msgid "Customize the look of the popup and hello bar."
+msgstr "Passen Sie das Erscheinungsbild des Popups und der Hinweisleiste an."
+
+#: ...templates\settings-page.php (Line 14)
+msgid "Popup"
+msgstr "Popup"
+
+#: ...templates\settings-page.php (Line 180)
+msgid "Border Radius (px)"
+msgstr "Eckenradius (px)"
+
+#: ...templates\settings-page.php (Line 184)
+msgid "Overlay Color"
+msgstr "Overlay-Farbe"
+
+#: ...templates\settings-page.php (Line 190)
+msgid "Overlay Opacity (%)"
+msgstr "Overlay-Deckkraft (%)"
+
+#: ...templates\settings-page.php (Line 228)
+msgid "Text Customization"
+msgstr "Textanpassung"
+
+#: ...templates\settings-page.php (Line 232)
+msgid "Customize the texts shown to visitors. Use {language} as a placeholder for the detected language name. Leave empty to use defaults."
+msgstr "Passen Sie die den Besuchern angezeigten Texte an. Verwenden Sie {language} als Platzhalter für den erkannten Sprachnamen. Leer lassen, um die Standardwerte zu verwenden."
+
+#: ...templates\settings-page.php (Line 239)
+msgid "Popup / Bar Text"
+msgstr "Popup- / Leistentext"
+
+#: ...templates\settings-page.php (Line 255)
+msgid "Dismiss Text"
+msgstr "Ablehnungstext"
+
+#: ...templates\settings-page.php (Line 265)
+msgid "Exclude Pages"
+msgstr "Seiten ausschließen"
+
+#: ...templates\settings-page.php (Line 273)
+msgid "Excluded URL Patterns"
+msgstr "Ausgeschlossene URL-Muster"
+
+#: ...templates\settings-page.php (Line 278)
+msgid "One URL pattern per line. Detection will be disabled on pages matching these patterns."
+msgstr "Ein URL-Muster pro Zeile. Die Erkennung wird auf Seiten deaktiviert, die diesen Mustern entsprechen."
+
+#: ...templates\settings-page.php (Line 290)
+msgid "How It Works"
+msgstr "So funktioniert es"
+
+#: ...templates\settings-page.php (Line 0)
+msgid "The visitor's browser language is detected via JavaScript (navigator.languages)."
+msgstr "Die Browsersprache des Besuchers wird über JavaScript (navigator.languages) erkannt."
+
+#: ...templates\settings-page.php (Line 294)
+msgid "It is matched against your configured TranslatePress languages."
+msgstr "Sie wird mit den konfigurierten TranslatePress-Sprachen abgeglichen."
+
+#: ...templates\settings-page.php (Line 295)
+msgid "If a match is found and differs from the current page language, the visitor is notified or redirected."
+msgstr "Wenn eine Übereinstimmung gefunden wird und diese von der aktuellen Seitensprache abweicht, wird der Besucher benachrichtigt oder weitergeleitet."
+
+#: ...templates\settings-page.php (Line 296)
+msgid "The choice is stored in sessionStorage (no cookies) and remembered for the current browser session."
+msgstr "Die Auswahl wird im sessionStorage gespeichert (keine Cookies) und für die aktuelle Browsersitzung gemerkt."
+
+#: ...templates\settings-page.php (Line 297)
+msgid "This approach is cache-friendly because detection happens client-side."
+msgstr "Dieser Ansatz ist cache-freundlich, da die Erkennung clientseitig erfolgt."

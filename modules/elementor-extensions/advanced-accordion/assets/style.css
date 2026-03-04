@@ -204,10 +204,6 @@
     background: linear-gradient(135deg, #764ba2 0%, #667eea 100%);
 }
 
-.dailybuddy-accordion.style-modern .dailybuddy-accordion-item.active .dailybuddy-accordion-title {
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-}
-
 .dailybuddy-accordion.style-modern .dailybuddy-accordion-content {
     background: #fff;
     border: none;

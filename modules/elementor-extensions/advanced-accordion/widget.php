@@ -528,7 +528,7 @@ class Dailybuddy_Elementor_Advanced_Accordion_Widget extends Widget_Base
             array(
                 'name'     => 'tab_background',
                 'types'    => array('classic', 'gradient'),
-                'selector' => '{{WRAPPER}} .dailybuddy-accordion-title',
+                'selector' => '{{WRAPPER}} .dailybuddy-accordion .dailybuddy-accordion-title',
             )
         );
 
@@ -566,7 +566,7 @@ class Dailybuddy_Elementor_Advanced_Accordion_Widget extends Widget_Base
             array(
                 'name'     => 'tab_hover_background',
                 'types'    => array('classic', 'gradient'),
-                'selector' => '{{WRAPPER}} .dailybuddy-accordion-title:hover',
+                'selector' => '{{WRAPPER}} .dailybuddy-accordion .dailybuddy-accordion-title:hover',
             )
         );
 
@@ -608,7 +608,7 @@ class Dailybuddy_Elementor_Advanced_Accordion_Widget extends Widget_Base
             array(
                 'name'     => 'tab_active_background',
                 'types'    => array('classic', 'gradient'),
-                'selector' => '{{WRAPPER}} .dailybuddy-accordion-item.active .dailybuddy-accordion-title',
+                'selector' => '{{WRAPPER}} .dailybuddy-accordion .dailybuddy-accordion-item.active .dailybuddy-accordion-title',
             )
         );
 
