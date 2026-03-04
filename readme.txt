@@ -119,7 +119,6 @@ It detects your visitors' browser language and shows a popup, hello bar, or auto
 = 1.2.0 =
 * Add TranslatePress Language Detection module with popup, hello bar, and redirect support
 * Add customizable appearance settings for language detection (colors, border radius, overlay opacity)
-* Add review notice after 7 days of usage
 * Update plugin description and tags for better wordpress.org discoverability
 * Expand FAQ to 10 keyword-rich questions
 * Update cross-promotion link to dailybuddy.net

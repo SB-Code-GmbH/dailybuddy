@@ -14,24 +14,24 @@
     var STORAGE_KEY = 'dailybuddy_tp_lang_detected';
 
     /**
-     * Get stored value from sessionStorage.
+     * Get stored value from localStorage (persists across tabs and sessions).
      */
     function getStorage(key) {
         try {
-            return sessionStorage.getItem(key);
+            return localStorage.getItem(key);
         } catch (e) {
             return null;
         }
     }
 
     /**
-     * Set value in sessionStorage.
+     * Set value in localStorage.
      */
     function setStorage(key, value) {
         try {
-            sessionStorage.setItem(key, value);
+            localStorage.setItem(key, value);
         } catch (e) {
-            // sessionStorage not available, silently fail.
+            // localStorage not available, silently fail.
         }
     }
 
@@ -155,7 +155,23 @@
             return false;
         }
         // If detected language slug matches current slug, no need to prompt.
-        return detectedLang.slug !== config.currentSlug;
+        if (detectedLang.slug === config.currentSlug) {
+            return false;
+        }
+        // Also compare by language code prefix: if both resolve to the same
+        // language (e.g. browser "de" and current page "de_DE"), don't prompt.
+        var detectedPrefix = detectedLang.code.substring(0, 2).toLowerCase();
+        var currentPrefix = '';
+        for (var i = 0; i < config.languages.length; i++) {
+            if (config.languages[i].slug === config.currentSlug) {
+                currentPrefix = config.languages[i].code.substring(0, 2).toLowerCase();
+                break;
+            }
+        }
+        if (detectedPrefix && currentPrefix && detectedPrefix === currentPrefix) {
+            return false;
+        }
+        return true;
     }
 
     /**
