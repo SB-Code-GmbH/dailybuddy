@@ -127,10 +127,18 @@ class Dailybuddy_Elementor_Filterable_Gallery
      */
     public function enqueue_editor_styles()
     {
+        // Tagify CSS for the tag-input in the editor panel
+        wp_enqueue_style(
+            'tagify',
+            DAILYBUDDY_URL . 'vendor/tagify/tagify.css',
+            array(),
+            '4.31.3'
+        );
+
         wp_enqueue_style(
             'dailybuddy-fg-editor',
             DAILYBUDDY_URL . 'modules/elementor-extensions/filterable-gallery/assets/editor.css',
-            array(),
+            array('tagify'),
             DAILYBUDDY_VERSION
         );
 
@@ -216,11 +224,20 @@ i.dbicon-div::before{content:"DIV"!important;font-size:10px!important}
             );
         }
 
-        // Enqueue the editor script (isotope initialization for editor preview)
+        // Tagify for the tag-input in the editor panel
+        wp_enqueue_script(
+            'tagify',
+            DAILYBUDDY_URL . 'vendor/tagify/tagify.min.js',
+            array(),
+            '4.31.3',
+            true
+        );
+
+        // Enqueue the editor script (isotope initialization for editor preview + Tagify init)
         wp_enqueue_script(
             'dailybuddy-filterable-gallery-editor',
             DAILYBUDDY_URL . 'modules/elementor-extensions/filterable-gallery/assets/editor.js',
-            array('jquery', 'isotope', 'imagesloaded'),
+            array('jquery', 'isotope', 'imagesloaded', 'tagify'),
             DAILYBUDDY_VERSION,
             true
         );

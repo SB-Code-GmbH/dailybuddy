@@ -3451,20 +3451,31 @@ class Dailybuddy_Elementor_Filterable_Gallery_Widget extends Widget_Base
 
     public function sorter_class($string)
     {
-        $sorter_class = strtolower($string);
+        $string = trim($string);
+        if (empty($string)) {
+            return '';
+        }
 
-        // Order-dependent replacements (must run sequentially)
-        $sorter_class = str_replace(' ', '-', $sorter_class);
-        $sorter_class = str_replace(',-', ' dailybuddy-cf-', $sorter_class);
+        // Split by comma first — handles "A, B" and "A,B" and "A , B"
+        $filters = array_map('trim', explode(',', $string));
+        $filters = array_filter($filters);
 
-        // Batch replacements for special characters
-        $search  = array(',', '&', '+', 'amp;', '/', "'", '"', '.', '~', '!', '@', '#', '(', ')', '=', ';', ':', '<', '>', '|', '\\', '^', '*', '$', '%', '`', '[', ']', '{', '}', '?');
-        $replace = array('comma', 'and', 'plus', '', 'slash', 'apostrophe', 'apostrophe', '-', 'tilde', 'exclamation', 'at', 'hash', 'parenthesis', 'parenthesis', 'equal', 'semicolon', 'colon', 'lessthan', 'greaterthan', 'pipe', 'backslash', 'caret', 'asterisk', 'dollar', 'percent', 'backtick', 'bracket', 'bracket', 'curlybracket', 'curlybracket', 'questionmark');
+        // Special character replacements (comma removed — handled by explode above)
+        $search  = array('&', '+', 'amp;', '/', "'", '"', '.', '~', '!', '@', '#', '(', ')', '=', ';', ':', '<', '>', '|', '\\', '^', '*', '$', '%', '`', '[', ']', '{', '}', '?');
+        $replace = array('and', 'plus', '', 'slash', 'apostrophe', 'apostrophe', '-', 'tilde', 'exclamation', 'at', 'hash', 'parenthesis', 'parenthesis', 'equal', 'semicolon', 'colon', 'lessthan', 'greaterthan', 'pipe', 'backslash', 'caret', 'asterisk', 'dollar', 'percent', 'backtick', 'bracket', 'bracket', 'curlybracket', 'curlybracket', 'questionmark');
 
-        $sorter_class = str_replace($search, $replace, $sorter_class);
-        $sorter_class = mb_convert_encoding($sorter_class, 'UTF-8');
+        $classes = array();
+        foreach ($filters as $filter) {
+            $class = strtolower($filter);
+            $class = str_replace(' ', '-', $class);
+            $class = str_replace($search, $replace, $class);
+            $class = mb_convert_encoding($class, 'UTF-8');
+            $classes[] = $class;
+        }
 
-        return $sorter_class;
+        // Caller prepends "dailybuddy-cf-" to the result,
+        // so join with " dailybuddy-cf-" for subsequent entries
+        return implode(' dailybuddy-cf-', $classes);
     }
 
     protected function render_filters()

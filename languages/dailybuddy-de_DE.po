@@ -4735,3 +4735,150 @@ msgstr "Die Auswahl wird im sessionStorage gespeichert (keine Cookies) und für 
 #: ...templates\settings-page.php (Line 297)
 msgid "This approach is cache-friendly because detection happens client-side."
 msgstr "Dieser Ansatz ist cache-freundlich, da die Erkennung clientseitig erfolgt."
+
+msgid "Display step-by-step processes and workflows with customizable icons, titles, descriptions, and connectors."
+msgstr "Zeigt Schritt-für-Schritt-Prozesse und Workflows mit anpassbaren Icons, Titeln, Beschreibungen und Verbindern an."
+
+msgid "process"
+msgstr "prozess"
+
+msgid "steps"
+msgstr "schritte"
+
+msgid "workflow"
+msgstr "workflow"
+
+msgid "walkthrough"
+msgstr "anleitung"
+
+msgid "Process Steps"
+msgstr "Prozessschritte"
+
+msgid "Steps"
+msgstr "Schritte"
+
+msgid "Number"
+msgstr "Nummer"
+
+msgid "Auto"
+msgstr "Automatisch"
+
+msgid "Leave empty for auto-numbering."
+msgstr "Leer lassen für automatische Nummerierung."
+
+msgid "Step Title"
+msgstr "Schritt-Titel"
+
+msgid "Short description for this step."
+msgstr "Kurze Beschreibung für diesen Schritt."
+
+msgid "Upload"
+msgstr "Hochladen"
+
+msgid "Upload your files to the cloud storage."
+msgstr "Lade deine Dateien in den Cloud-Speicher hoch."
+
+msgid "Connect"
+msgstr "Verbinden"
+
+msgid "Link your resources together."
+msgstr "Verbinde deine Ressourcen miteinander."
+
+msgid "Share"
+msgstr "Teilen"
+
+msgid "Share with your team or clients."
+msgstr "Teile es mit deinem Team oder deinen Kunden."
+
+msgid "Done"
+msgstr "Fertig"
+
+msgid "Process complete and ready to go."
+msgstr "Prozess abgeschlossen und einsatzbereit."
+
+msgid "Snake Flow"
+msgstr "Schlangen-Layout"
+
+msgid "Compact Inline"
+msgstr "Kompakt Inline"
+
+msgid "Card Stack"
+msgstr "Kartenstapel"
+
+msgid "Max Columns"
+msgstr "Maximale Spalten"
+
+msgid "Columns reduce automatically based on available width."
+msgstr "Die Spalten reduzieren sich automatisch je nach verfügbarer Breite."
+
+msgid "Connector Style"
+msgstr "Verbinder-Stil"
+
+msgid "Arrow"
+msgstr "Pfeil"
+
+msgid "Line + Arrow"
+msgstr "Linie + Pfeil"
+
+msgid "Dashed Line"
+msgstr "Gestrichelte Linie"
+
+msgid "Dotted Line"
+msgstr "Gepunktete Linie"
+
+msgid "Connector Icon"
+msgstr "Verbinder-Icon"
+
+msgid "Loop Mode"
+msgstr "Schleifenmodus"
+
+msgid "Show a return connector from the last step back to the first."
+msgstr "Zeigt eine Rückverbindung vom letzten Schritt zum ersten."
+
+msgid "Loop Icon"
+msgstr "Schleifen-Icon"
+
+msgid "Show Step Numbers"
+msgstr "Schrittnummern anzeigen"
+
+msgid "Link Click Area"
+msgstr "Klickbereich des Links"
+
+msgid "Entire Step"
+msgstr "Ganzer Schritt"
+
+msgid "Icon Only"
+msgstr "Nur Icon"
+
+msgid "Title Only"
+msgstr "Nur Titel"
+
+msgid "Icon / Image"
+msgstr "Icon / Bild"
+
+msgid "Number Badge"
+msgstr "Nummern-Badge"
+
+msgid "Number Color"
+msgstr "Nummer-Farbe"
+
+msgid "Number Background"
+msgstr "Nummern-Hintergrund"
+
+msgid "Spacing (Icon to Content)"
+msgstr "Abstand (Icon zu Inhalt)"
+
+msgid "Connector"
+msgstr "Verbinder"
+
+msgid "Line Thickness"
+msgstr "Linienstärke"
+
+msgid "Step Box"
+msgstr "Schritt-Box"
+
+msgid "Gap Between Steps"
+msgstr "Abstand zwischen Schritten"
+
+msgid "Leave empty to inherit the text color."
+msgstr "Leer lassen, um die Textfarbe zu übernehmen."

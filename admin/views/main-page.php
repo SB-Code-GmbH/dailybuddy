@@ -176,11 +176,6 @@ wp_localize_script(
 
                                     <div class="dailybuddy-module-footer">
                                         <div class="dailybuddy-module-meta">
-                                            <span class="dailybuddy-module-version">
-                                                <span class="fa-solid fa-code-branch"></span>
-                                                <?php echo esc_html($dailybuddy_version); ?>
-                                            </span>
-
                                             <?php if ($dailybuddy_has_settings) : ?>
                                                 <a href="<?php echo esc_url(admin_url('admin.php?page=dailybuddy&view=settings&module=' . urlencode($dailybuddy_module_data['id']))); ?>"
                                                     class="dailybuddy-settings-link">

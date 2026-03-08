@@ -40,9 +40,15 @@
 }
 
 .dailybuddy-tp-popup-icon {
-    font-size: 48px;
     margin-bottom: 16px;
     line-height: 1;
+    color: var(--db-tp-popup-icon-color, inherit);
+}
+
+.dailybuddy-tp-popup-icon .dashicons {
+    font-size: 48px;
+    width: 48px;
+    height: 48px;
 }
 
 .dailybuddy-tp-popup-text {
@@ -299,4 +305,44 @@
     margin-bottom: 5px;
 }
 
+/* ===== Icon Picker ===== */
+.dailybuddy-tp-tools-settings .dailybuddy-icon-picker {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+
+.dailybuddy-tp-tools-settings .dailybuddy-icon-option {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 52px;
+    height: 52px;
+    border: 2px solid #ddd;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: border-color 0.2s, background 0.2s, box-shadow 0.2s;
+}
+
+.dailybuddy-tp-tools-settings .dailybuddy-icon-option:hover {
+    border-color: #2271b1;
+    background: #f0f7fc;
+}
+
+.dailybuddy-tp-tools-settings .dailybuddy-icon-option input {
+    display: none;
+}
+
+.dailybuddy-tp-tools-settings .dailybuddy-icon-option:has(input:checked) {
+    border-color: #2271b1;
+    background: #f0f7fc;
+    box-shadow: 0 0 0 1px #2271b1;
+}
+
+.dailybuddy-tp-tools-settings .dailybuddy-icon-preview .dashicons {
+    font-size: 28px;
+    width: 28px;
+    height: 28px;
+    line-height: 1;
+}
 

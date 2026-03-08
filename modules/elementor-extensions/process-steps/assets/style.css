@@ -1,0 +1,537 @@
+/**
+ * dailybuddy Process Steps - Frontend Styles
+ *
+ * Responsive columns via CSS Container Queries (like Bootstrap).
+ * JS only handles snake-row grouping.
+ */
+
+/* ──────────────────────────────────────────────
+   Container Query Context
+   ────────────────────────────────────────────── */
+
+.elementor-widget-dailybuddy-process-steps > .elementor-widget-container {
+    container-type: inline-size;
+}
+
+/* ──────────────────────────────────────────────
+   Container + Responsive Column Breakpoints
+   ────────────────────────────────────────────── */
+
+.dailybuddy-process-steps {
+    --ps-max-columns: 4;
+    --ps-auto-columns: 6;
+    --ps-columns: var(--ps-max-columns, 4);   /* no-JS fallback */
+    --ps-icon-box-size: 80px;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    position: relative;
+}
+
+@container (max-width: 1199px) { .dailybuddy-process-steps { --ps-auto-columns: 5; } }
+@container (max-width: 999px)  { .dailybuddy-process-steps { --ps-auto-columns: 4; } }
+@container (max-width: 799px)  { .dailybuddy-process-steps { --ps-auto-columns: 3; } }
+@container (max-width: 599px)  { .dailybuddy-process-steps { --ps-auto-columns: 2; } }
+@container (max-width: 399px)  { .dailybuddy-process-steps { --ps-auto-columns: 1; } }
+
+/* ──────────────────────────────────────────────
+   No-JS Fallback (simple wrapped grid)
+   ────────────────────────────────────────────── */
+
+.dailybuddy-process-steps:not(.dailybuddy-ps-snake):not(.dailybuddy-ps-vertical) {
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+/* ──────────────────────────────────────────────
+   Row (created by JS for snake layout)
+   ────────────────────────────────────────────── */
+
+.dailybuddy-ps-row {
+    display: flex;
+    align-items: flex-start;
+    width: 100%;
+}
+
+.dailybuddy-ps-row[data-direction="rtl"] {
+    flex-direction: row-reverse;
+}
+
+/* ──────────────────────────────────────────────
+   Single Step
+   ────────────────────────────────────────────── */
+
+.dailybuddy-process-step {
+    flex: 0 0 calc(100% / var(--ps-columns));
+    max-width: calc(100% / var(--ps-columns));
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    box-sizing: border-box;
+    padding: 0 10px;
+}
+
+.dailybuddy-step-inner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    width: 100%;
+    position: relative;
+    z-index: 1;
+}
+
+/* ──────────────────────────────────────────────
+   Icon / Image Wrap
+   ────────────────────────────────────────────── */
+
+.dailybuddy-step-icon-wrap {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    background-color: #eee8ff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    flex-shrink: 0;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.dailybuddy-step-icon-wrap:hover {
+    transform: translateY(-3px);
+}
+
+.dailybuddy-step-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    line-height: 1;
+}
+
+.dailybuddy-step-icon i {
+    font-size: 40px;
+    line-height: 1;
+}
+
+.dailybuddy-step-icon svg {
+    width: 40px;
+    height: 40px;
+}
+
+.dailybuddy-step-icon img {
+    width: 40px;
+    height: 40px;
+    object-fit: cover;
+    border-radius: inherit;
+}
+
+.dailybuddy-step-number-display {
+    font-size: 40px;
+    font-weight: 700;
+    line-height: 1;
+}
+
+/* ──────────────────────────────────────────────
+   Step Number Badge
+   ────────────────────────────────────────────── */
+
+.dailybuddy-step-number {
+    position: absolute;
+    top: -6px;
+    right: -6px;
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    background-color: #5d3dfd;
+    color: #fff;
+    font-size: 12px;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    line-height: 1;
+    z-index: 2;
+}
+
+/* ──────────────────────────────────────────────
+   Content
+   ────────────────────────────────────────────── */
+
+.dailybuddy-step-content {
+    margin-top: 16px;
+    max-width: 100%;
+}
+
+.dailybuddy-step-title {
+    margin: 0 0 8px;
+    font-size: 18px;
+    font-weight: 600;
+    line-height: 1.3;
+}
+
+.dailybuddy-step-description {
+    margin: 0;
+    font-size: 14px;
+    line-height: 1.5;
+    opacity: 0.8;
+}
+
+/* ──────────────────────────────────────────────
+   Horizontal Connector
+   ────────────────────────────────────────────── */
+
+.dailybuddy-step-connector {
+    position: absolute;
+    top: calc(var(--ps-icon-box-size, 80px) / 2);
+    left: 50%;
+    right: -50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+    transform: translateY(-50%);
+    z-index: 0;
+    pointer-events: none;
+}
+
+.dailybuddy-ps-row[data-direction="rtl"] .dailybuddy-step-connector {
+    left: -50%;
+    right: 50%;
+    transform: translateY(-50%) scaleX(-1);
+}
+
+.dailybuddy-connector-line {
+    flex: 1;
+    border-top: 2px solid #5d3dfd;
+}
+
+.dailybuddy-step-connector i,
+.dailybuddy-step-connector svg {
+    font-size: 16px;
+    color: #5d3dfd;
+    flex-shrink: 0;
+}
+
+.dailybuddy-step-connector svg {
+    width: 16px;
+    height: 16px;
+    fill: #5d3dfd;
+}
+
+/* No-JS fallback */
+.dailybuddy-process-step:last-child > .dailybuddy-step-connector {
+    display: none;
+}
+
+/* ── Connector Styles ── */
+.dailybuddy-connector-style-arrow .dailybuddy-step-connector {
+    justify-content: center;
+}
+
+.dailybuddy-connector-style-dashed .dailybuddy-connector-line {
+    border-top-style: dashed;
+}
+
+.dailybuddy-connector-style-dotted .dailybuddy-connector-line {
+    border-top-style: dotted;
+}
+
+.dailybuddy-connector-style-none .dailybuddy-step-connector,
+.dailybuddy-connector-style-none .dailybuddy-ps-row-connector,
+.dailybuddy-connector-style-none .dailybuddy-loop-connector {
+    display: none !important;
+}
+
+/* ──────────────────────────────────────────────
+   Vertical Row Connector (snake transition)
+   ────────────────────────────────────────────── */
+
+.dailybuddy-ps-row-connector {
+    display: flex;
+    width: 100%;
+    padding: 4px 0;
+}
+
+.dailybuddy-ps-row-connector-right .dailybuddy-row-connector-inner {
+    margin-left: auto;
+    margin-right: calc((100% / var(--ps-columns)) / 2);
+    transform: translateX(50%);
+}
+
+.dailybuddy-ps-row-connector-left .dailybuddy-row-connector-inner {
+    margin-right: auto;
+    margin-left: calc((100% / var(--ps-columns)) / 2);
+    transform: translateX(-50%);
+}
+
+.dailybuddy-row-connector-inner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+}
+
+.dailybuddy-connector-line-vertical {
+    border-left: 2px solid #5d3dfd;
+    height: 30px;
+}
+
+.dailybuddy-ps-row-connector i,
+.dailybuddy-ps-row-connector svg {
+    font-size: 16px;
+    color: #5d3dfd;
+    flex-shrink: 0;
+    transform: rotate(90deg);
+}
+
+.dailybuddy-ps-row-connector svg {
+    width: 16px;
+    height: 16px;
+    fill: #5d3dfd;
+}
+
+.dailybuddy-connector-style-dashed .dailybuddy-connector-line-vertical {
+    border-left-style: dashed;
+}
+
+.dailybuddy-connector-style-dotted .dailybuddy-connector-line-vertical {
+    border-left-style: dotted;
+}
+
+/* ──────────────────────────────────────────────
+   Loop Connector
+   ────────────────────────────────────────────── */
+
+.dailybuddy-loop-connector {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 20px 10%;
+    position: relative;
+}
+
+.dailybuddy-loop-connector-line {
+    flex: 1;
+    border-top: 2px solid #5d3dfd;
+}
+
+.dailybuddy-loop-connector i,
+.dailybuddy-loop-connector svg {
+    font-size: 16px;
+    color: #5d3dfd;
+    flex-shrink: 0;
+}
+
+.dailybuddy-loop-connector svg {
+    width: 16px;
+    height: 16px;
+    fill: #5d3dfd;
+}
+
+.dailybuddy-connector-style-dashed .dailybuddy-loop-connector-line {
+    border-top-style: dashed;
+}
+
+.dailybuddy-connector-style-dotted .dailybuddy-loop-connector-line {
+    border-top-style: dotted;
+}
+
+.dailybuddy-connector-style-arrow .dailybuddy-loop-connector-line {
+    display: none;
+}
+
+/* ──────────────────────────────────────────────
+   Vertical Mode (1 column)
+   ────────────────────────────────────────────── */
+
+.dailybuddy-ps-vertical {
+    align-items: center;
+}
+
+.dailybuddy-ps-vertical .dailybuddy-process-step {
+    flex: 0 0 auto;
+    max-width: 420px;
+    width: 100%;
+    padding: 0 20px;
+}
+
+.dailybuddy-ps-vertical .dailybuddy-step-connector {
+    position: relative;
+    top: auto;
+    left: auto;
+    right: auto;
+    width: 60px;
+    height: auto;
+    margin: 14px auto;
+    transform: rotate(90deg);
+    justify-content: center;
+}
+
+.dailybuddy-ps-vertical .dailybuddy-loop-connector {
+    flex-direction: column;
+    align-items: center;
+    padding: 10px 0;
+}
+
+.dailybuddy-ps-vertical .dailybuddy-loop-connector-line {
+    border-top: none;
+    border-left: 2px solid #5d3dfd;
+    height: 30px;
+}
+
+.dailybuddy-ps-vertical.dailybuddy-connector-style-dashed .dailybuddy-loop-connector-line {
+    border-left-style: dashed;
+}
+
+.dailybuddy-ps-vertical.dailybuddy-connector-style-dotted .dailybuddy-loop-connector-line {
+    border-left-style: dotted;
+}
+
+@media (max-width: 480px) {
+    .dailybuddy-ps-vertical .dailybuddy-process-step {
+        max-width: 100%;
+        padding: 0 16px;
+    }
+}
+
+/* ══════════════════════════════════════════════
+   LAYOUT: Compact Inline
+   Same snake flow, but smaller icons, no description.
+   Visual skin only — connectors + rows identical.
+   ══════════════════════════════════════════════ */
+
+.dailybuddy-ps-layout-compact {
+    --ps-icon-box-size: 48px;
+}
+
+.dailybuddy-ps-layout-compact .dailybuddy-step-icon-wrap {
+    width: 48px;
+    height: 48px;
+}
+
+.dailybuddy-ps-layout-compact .dailybuddy-step-icon i {
+    font-size: 22px;
+}
+
+.dailybuddy-ps-layout-compact .dailybuddy-step-icon svg {
+    width: 22px;
+    height: 22px;
+}
+
+.dailybuddy-ps-layout-compact .dailybuddy-step-icon img {
+    width: 22px;
+    height: 22px;
+}
+
+.dailybuddy-ps-layout-compact .dailybuddy-step-number-display {
+    font-size: 22px;
+}
+
+.dailybuddy-ps-layout-compact .dailybuddy-step-content {
+    margin-top: 8px;
+}
+
+.dailybuddy-ps-layout-compact .dailybuddy-step-title {
+    font-size: 14px;
+    font-weight: 500;
+    margin-bottom: 0;
+}
+
+.dailybuddy-ps-layout-compact .dailybuddy-step-description {
+    display: none;
+}
+
+.dailybuddy-ps-layout-compact .dailybuddy-step-number {
+    width: 18px;
+    height: 18px;
+    font-size: 10px;
+    top: -4px;
+    right: -4px;
+}
+
+/* ══════════════════════════════════════════════
+   LAYOUT: Card Stack
+   Same snake flow, but each step has a card
+   background with border + rounded corners.
+   ══════════════════════════════════════════════ */
+
+.dailybuddy-ps-layout-cards .dailybuddy-step-inner {
+    background: #f8f9fa;
+    border: 1px solid #e5e7eb;
+    border-radius: 12px;
+    padding: 24px 16px 20px;
+}
+
+.dailybuddy-ps-layout-cards .dailybuddy-step-connector {
+    top: 50%;
+}
+
+.dailybuddy-ps-layout-cards .dailybuddy-step-title {
+    font-size: 16px;
+}
+
+.dailybuddy-ps-layout-cards .dailybuddy-step-description {
+    font-size: 13px;
+}
+
+/* ══════════════════════════════════════════════
+   Step Links
+   ══════════════════════════════════════════════ */
+
+/* Overlay link — covers entire step-inner */
+.dailybuddy-step-overlay-link {
+    position: absolute;
+    inset: 0;
+    z-index: 3;
+    text-decoration: none;
+    color: inherit;
+    border-radius: inherit;
+}
+
+/* Icon link */
+.dailybuddy-step-icon-link {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-decoration: none;
+    color: inherit;
+}
+
+/* Title link */
+.dailybuddy-step-title-link {
+    text-decoration: none;
+    color: inherit;
+}
+
+.dailybuddy-step-title-link:hover {
+    text-decoration: underline;
+}
+
+/* Hover feedback for linked steps */
+.dailybuddy-step-has-link {
+    cursor: pointer;
+}
+
+.dailybuddy-step-has-link .dailybuddy-step-icon-wrap {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.dailybuddy-step-has-link:hover .dailybuddy-step-icon-wrap {
+    transform: translateY(-4px);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.12);
+}
+
+/* Cards layout: lift entire card on hover */
+.dailybuddy-ps-layout-cards .dailybuddy-step-has-link .dailybuddy-step-inner {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.dailybuddy-ps-layout-cards .dailybuddy-step-has-link:hover .dailybuddy-step-inner {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+}

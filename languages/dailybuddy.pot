@@ -4615,3 +4615,199 @@ msgstr ""
 #: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\wordpress-tools\translatepress-tools\templates\settings-page.php (Line 297)
 msgid "This approach is cache-friendly because detection happens client-side."
 msgstr ""
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\elementor-extensions\process-steps\config.php (Line 9)
+msgid "Display step-by-step processes and workflows with customizable icons, titles, descriptions, and connectors."
+msgstr ""
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\elementor-extensions\process-steps\config.php (Line 9)
+msgid "process"
+msgstr ""
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\elementor-extensions\process-steps\config.php (Line 18)
+msgid "steps"
+msgstr ""
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\elementor-extensions\process-steps\config.php (Line 9)
+msgid "workflow"
+msgstr ""
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\elementor-extensions\process-steps\config.php (Line 20)
+msgid "walkthrough"
+msgstr ""
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\elementor-extensions\process-steps\widget.php (Line 4)
+msgid "Process Steps"
+msgstr ""
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\elementor-extensions\process-steps\widget.php (Line 4)
+msgid "Steps"
+msgstr ""
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\elementor-extensions\process-steps\widget.php (Line 84)
+msgid "Number"
+msgstr ""
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\elementor-extensions\process-steps\widget.php (Line 124)
+msgid "Auto"
+msgstr ""
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\elementor-extensions\process-steps\widget.php (Line 125)
+msgid "Leave empty for auto-numbering."
+msgstr ""
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\elementor-extensions\process-steps\widget.php (Line 138)
+msgid "Step Title"
+msgstr ""
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\elementor-extensions\process-steps\widget.php (Line 150)
+msgid "Short description for this step."
+msgstr ""
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\elementor-extensions\process-steps\widget.php (Line 181)
+msgid "Upload"
+msgstr ""
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\elementor-extensions\process-steps\widget.php (Line 182)
+msgid "Upload your files to the cloud storage."
+msgstr ""
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\elementor-extensions\process-steps\widget.php (Line 187)
+msgid "Connect"
+msgstr ""
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\elementor-extensions\process-steps\widget.php (Line 188)
+msgid "Link your resources together."
+msgstr ""
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\elementor-extensions\process-steps\widget.php (Line 193)
+msgid "Share"
+msgstr ""
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\elementor-extensions\process-steps\widget.php (Line 194)
+msgid "Share with your team or clients."
+msgstr ""
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\elementor-extensions\process-steps\widget.php (Line 199)
+msgid "Done"
+msgstr ""
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\elementor-extensions\process-steps\widget.php (Line 200)
+msgid "Process complete and ready to go."
+msgstr ""
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\elementor-extensions\process-steps\widget.php (Line 230)
+msgid "Snake Flow"
+msgstr ""
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\elementor-extensions\process-steps\widget.php (Line 231)
+msgid "Compact Inline"
+msgstr ""
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\elementor-extensions\process-steps\widget.php (Line 232)
+msgid "Card Stack"
+msgstr ""
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\elementor-extensions\process-steps\widget.php (Line 240)
+msgid "Max Columns"
+msgstr ""
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\elementor-extensions\process-steps\widget.php (Line 241)
+msgid "Columns reduce automatically based on available width."
+msgstr ""
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\elementor-extensions\process-steps\widget.php (Line 261)
+msgid "Connector Style"
+msgstr ""
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\elementor-extensions\process-steps\widget.php (Line 265)
+msgid "Arrow"
+msgstr ""
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\elementor-extensions\process-steps\widget.php (Line 266)
+msgid "Line + Arrow"
+msgstr ""
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\elementor-extensions\process-steps\widget.php (Line 267)
+msgid "Dashed Line"
+msgstr ""
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\elementor-extensions\process-steps\widget.php (Line 268)
+msgid "Dotted Line"
+msgstr ""
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\elementor-extensions\process-steps\widget.php (Line 277)
+msgid "Connector Icon"
+msgstr ""
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\elementor-extensions\process-steps\widget.php (Line 292)
+msgid "Loop Mode"
+msgstr ""
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\elementor-extensions\process-steps\widget.php (Line 293)
+msgid "Show a return connector from the last step back to the first."
+msgstr ""
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\elementor-extensions\process-steps\widget.php (Line 306)
+msgid "Loop Icon"
+msgstr ""
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\elementor-extensions\process-steps\widget.php (Line 322)
+msgid "Show Step Numbers"
+msgstr ""
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\elementor-extensions\process-steps\widget.php (Line 332)
+msgid "Link Click Area"
+msgstr ""
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\elementor-extensions\process-steps\widget.php (Line 336)
+msgid "Entire Step"
+msgstr ""
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\elementor-extensions\process-steps\widget.php (Line 337)
+msgid "Icon Only"
+msgstr ""
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\elementor-extensions\process-steps\widget.php (Line 338)
+msgid "Title Only"
+msgstr ""
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\elementor-extensions\process-steps\widget.php (Line 366)
+msgid "Icon / Image"
+msgstr ""
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\elementor-extensions\process-steps\widget.php (Line 478)
+msgid "Number Badge"
+msgstr ""
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\elementor-extensions\process-steps\widget.php (Line 488)
+msgid "Number Color"
+msgstr ""
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\elementor-extensions\process-steps\widget.php (Line 501)
+msgid "Number Background"
+msgstr ""
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\elementor-extensions\process-steps\widget.php (Line 531)
+msgid "Spacing (Icon to Content)"
+msgstr ""
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\elementor-extensions\process-steps\widget.php (Line 261)
+msgid "Connector"
+msgstr ""
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\elementor-extensions\process-steps\widget.php (Line 697)
+msgid "Line Thickness"
+msgstr ""
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\elementor-extensions\process-steps\widget.php (Line 719)
+msgid "Step Box"
+msgstr ""
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\elementor-extensions\process-steps\widget.php (Line 786)
+msgid "Gap Between Steps"
+msgstr ""
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\wordpress-tools\translatepress-tools\templates\settings-page.php (Line 201)
+msgid "Leave empty to inherit the text color."
+msgstr ""

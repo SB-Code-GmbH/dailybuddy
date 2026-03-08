@@ -43,6 +43,8 @@ class Dailybuddy_TranslatePress_Tools
         'dismiss_text'         => '',
         'exclude_pages'        => '',
         // Appearance.
+        'popup_icon'           => 'dashicons-translation',
+        'popup_icon_color'     => '',
         'popup_bg_color'       => '#ffffff',
         'popup_text_color'     => '#333333',
         'popup_border_radius'  => 12,
@@ -162,10 +164,13 @@ class Dailybuddy_TranslatePress_Tools
 
         $module_url = plugin_dir_url(__FILE__);
 
+        // Dashicons for the popup icon on the frontend.
+        wp_enqueue_style('dashicons');
+
         wp_enqueue_style(
             'dailybuddy-tp-tools',
             $module_url . 'assets/style.css',
-            array(),
+            array('dashicons'),
             '1.0.0'
         );
 
@@ -211,6 +216,7 @@ class Dailybuddy_TranslatePress_Tools
             'defaultSlug'  => $default_slug,
             'basePath'     => $home_path,
             'actionType'   => $this->settings['action_type'],
+            'popupIcon'    => ! empty($this->settings['popup_icon']) ? $this->settings['popup_icon'] : 'dashicons-translation',
             'cookieDays'   => absint($this->settings['cookie_days']),
             'barPosition'  => $this->settings['bar_position'],
             'popupText'    => ! empty($this->settings['popup_text']) ? $this->settings['popup_text'] : $default_texts['popup_text'],
@@ -237,12 +243,15 @@ class Dailybuddy_TranslatePress_Tools
         $g = hexdec(substr($hex, 2, 2));
         $b = hexdec(substr($hex, 4, 2));
 
+        $icon_color = ! empty($s['popup_icon_color']) ? esc_attr($s['popup_icon_color']) : 'inherit';
+
         printf(
             '<style id="dailybuddy-tp-tools-vars">
 :root {
     --db-tp-popup-bg: %s;
     --db-tp-popup-text: %s;
     --db-tp-popup-radius: %dpx;
+    --db-tp-popup-icon-color: %s;
     --db-tp-overlay-bg: rgba(%d, %d, %d, %s);
     --db-tp-bar-bg: %s;
     --db-tp-bar-text: %s;
@@ -253,6 +262,7 @@ class Dailybuddy_TranslatePress_Tools
             esc_attr($s['popup_bg_color']),
             esc_attr($s['popup_text_color']),
             absint($s['popup_border_radius']),
+            esc_attr($icon_color),
             absint($r),
             absint($g),
             absint($b),
@@ -345,6 +355,8 @@ function dailybuddy_render_translatepress_tools_settings()
             'dismiss_text'  => isset($_POST['dismiss_text']) ? sanitize_text_field(wp_unslash($_POST['dismiss_text'])) : '',
             'exclude_pages'        => isset($_POST['exclude_pages']) ? sanitize_textarea_field(wp_unslash($_POST['exclude_pages'])) : '',
             // Appearance.
+            'popup_icon'           => isset($_POST['popup_icon']) ? sanitize_text_field(wp_unslash($_POST['popup_icon'])) : 'dashicons-translation',
+            'popup_icon_color'     => isset($_POST['popup_icon_color']) && ! empty($_POST['popup_icon_color']) ? sanitize_hex_color(wp_unslash($_POST['popup_icon_color'])) : '',
             'popup_bg_color'       => isset($_POST['popup_bg_color']) ? sanitize_hex_color(wp_unslash($_POST['popup_bg_color'])) : '#ffffff',
             'popup_text_color'     => isset($_POST['popup_text_color']) ? sanitize_hex_color(wp_unslash($_POST['popup_text_color'])) : '#333333',
             'popup_border_radius'  => isset($_POST['popup_border_radius']) ? absint($_POST['popup_border_radius']) : 12,

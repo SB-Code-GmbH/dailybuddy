@@ -169,6 +169,39 @@ $dailybuddy_action_types  = array(
             <table class="form-table">
                 <tbody>
                     <tr>
+                        <th scope="row"><label><?php esc_html_e('Icon', 'dailybuddy'); ?></label></th>
+                        <td>
+                            <?php
+                            $dailybuddy_icons = array(
+                                'dashicons-translation',
+                                'dashicons-admin-site-alt3',
+                                'dashicons-admin-site',
+                                'dashicons-admin-site-alt',
+                                'dashicons-admin-site-alt2',
+                                'dashicons-format-chat',
+                                'dashicons-megaphone',
+                                'dashicons-info-outline',
+                            );
+                            $dailybuddy_current_icon = ! empty( $settings['popup_icon'] ) ? $settings['popup_icon'] : 'dashicons-translation';
+                            ?>
+                            <div class="dailybuddy-icon-picker">
+                                <?php foreach ( $dailybuddy_icons as $dailybuddy_icon_option ) : ?>
+                                    <label class="dailybuddy-icon-option">
+                                        <input type="radio" name="popup_icon" value="<?php echo esc_attr( $dailybuddy_icon_option ); ?>" <?php checked( $dailybuddy_current_icon, $dailybuddy_icon_option ); ?>>
+                                        <span class="dailybuddy-icon-preview"><span class="dashicons <?php echo esc_attr( $dailybuddy_icon_option ); ?>"></span></span>
+                                    </label>
+                                <?php endforeach; ?>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th scope="row"><label for="popup_icon_color"><?php esc_html_e('Icon Color', 'dailybuddy'); ?></label></th>
+                        <td>
+                            <input type="text" id="popup_icon_color" name="popup_icon_color" value="<?php echo esc_attr( $settings['popup_icon_color'] ); ?>" class="db-color-picker" data-default-color="">
+                            <p class="description"><?php esc_html_e( 'Leave empty to inherit the text color.', 'dailybuddy' ); ?></p>
+                        </td>
+                    </tr>
+                    <tr>
                         <th scope="row"><label for="popup_bg_color"><?php esc_html_e('Background', 'dailybuddy'); ?></label></th>
                         <td><input type="text" id="popup_bg_color" name="popup_bg_color" value="<?php echo esc_attr($settings['popup_bg_color']); ?>" class="db-color-picker" data-default-color="#ffffff"></td>
                     </tr>

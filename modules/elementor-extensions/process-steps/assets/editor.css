@@ -1,0 +1,13 @@
+/**
+ * dailybuddy Process Steps - Editor Styles
+ */
+
+/* Ensure process steps are visible in the editor */
+.elementor-element-edit-mode .dailybuddy-process-steps {
+    min-height: 100px;
+}
+
+/* Prevent connector overlaps in editor when resizing */
+.elementor-element-edit-mode .dailybuddy-step-connector {
+    pointer-events: none;
+}

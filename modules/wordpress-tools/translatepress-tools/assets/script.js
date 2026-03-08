@@ -11,6 +11,20 @@
         return;
     }
 
+    // Fix basePath: TranslatePress filters home_url() on translated pages,
+    // appending the current language slug (e.g. "/wp/de/" instead of "/wp/").
+    // Strip any trailing language slug so all URL logic uses the real base path.
+    (function () {
+        var bp = config.basePath || '/';
+        for (var i = 0; i < config.languages.length; i++) {
+            var suffix = config.languages[i].slug + '/';
+            if (bp.length > suffix.length && bp.slice(-suffix.length) === suffix) {
+                config.basePath = bp.slice(0, -suffix.length);
+                return;
+            }
+        }
+    })();
+
     var STORAGE_KEY = 'dailybuddy_tp_lang_detected';
 
     /**
@@ -33,6 +47,38 @@
         } catch (e) {
             // localStorage not available, silently fail.
         }
+    }
+
+    /**
+     * Determine the current language slug from the actual browser URL.
+     * This is more reliable than the server-side computed value because
+     * TranslatePress may translate the config output itself.
+     *
+     * @return string The current language slug.
+     */
+    function getCurrentSlugFromUrl() {
+        var path     = window.location.pathname;
+        var basePath = config.basePath || '/';
+
+        // Strip the base path prefix (e.g. "/wp/de/contact/" → "de/contact/").
+        var relativePath = path;
+        if (basePath !== '/' && path.indexOf(basePath) === 0) {
+            relativePath = path.substring(basePath.length);
+        } else if (path.charAt(0) === '/') {
+            relativePath = path.substring(1);
+        }
+
+        var firstSegment = relativePath.split('/')[0] || '';
+
+        // Check if the first URL segment matches a known language slug.
+        for (var i = 0; i < config.languages.length; i++) {
+            if (config.languages[i].slug === firstSegment) {
+                return firstSegment;
+            }
+        }
+
+        // No language slug in URL → user is on the default language.
+        return config.defaultSlug;
     }
 
     /**
@@ -187,7 +233,7 @@
         var popup = document.createElement('div');
         popup.className = 'dailybuddy-tp-popup';
         popup.innerHTML =
-            '<div class="dailybuddy-tp-popup-icon">&#127760;</div>' +
+            '<div class="dailybuddy-tp-popup-icon"><span class="dashicons ' + escapeAttr(config.popupIcon) + '"></span></div>' +
             '<div class="dailybuddy-tp-popup-text">' + escapeHtml(text) + '</div>' +
             '<div class="dailybuddy-tp-popup-actions">' +
             '<a href="' + escapeAttr(buildLanguageUrl(detectedLang.slug)) + '" class="dailybuddy-tp-btn dailybuddy-tp-btn-primary">' + escapeHtml(config.buttonText) + '</a>' +
@@ -209,7 +255,7 @@
             setTimeout(function () { overlay.remove(); }, 300);
         });
 
-        // Clicking the switch button also sets cookie.
+        // Clicking the switch button also sets storage.
         overlay.querySelector('.dailybuddy-tp-btn-primary').addEventListener('click', function () {
             setStorage(STORAGE_KEY, detectedLang.slug);
         });
@@ -254,7 +300,7 @@
             setTimeout(function () { bar.remove(); }, 300);
         });
 
-        // Switch button sets cookie.
+        // Switch button sets storage.
         bar.querySelector('.dailybuddy-tp-btn-primary').addEventListener('click', function () {
             setStorage(STORAGE_KEY, detectedLang.slug);
         });
@@ -264,8 +310,14 @@
      * Direct redirect.
      */
     function doRedirect(detectedLang) {
-        setStorage(STORAGE_KEY, detectedLang.slug);
-        window.location.href = buildLanguageUrl(detectedLang.slug);
+        var targetUrl = buildLanguageUrl(detectedLang.slug);
+        // Guard: only redirect if the URL actually changes (prevents loop).
+        var current = (window.location.pathname + window.location.search).replace(/\/+$/, '') || '/';
+        var target  = targetUrl.replace(/\/+$/, '') || '/';
+        if (current !== target) {
+            setStorage(STORAGE_KEY, detectedLang.slug);
+            window.location.href = targetUrl;
+        }
     }
 
     /**
@@ -285,14 +337,61 @@
     }
 
     /**
+     * Watch for manual language changes via the TranslatePress switcher.
+     * If the user explicitly picks a language themselves, store 'dismissed'
+     * so auto-detection no longer overrides their choice.
+     */
+    function watchManualLanguageChange() {
+        document.addEventListener('click', function (e) {
+            var link = e.target.closest('.trp-language-switcher a[href]');
+            if (link) {
+                setStorage(STORAGE_KEY, 'dismissed');
+            }
+        });
+    }
+
+    /**
      * Initialize detection.
      */
     function init() {
-        // Check if already decided.
-        if (getStorage(STORAGE_KEY)) {
+        // Always listen for manual language switches, regardless of stored state.
+        watchManualLanguageChange();
+
+        // Override the server-side currentSlug with a client-side computation
+        // from the actual URL. TranslatePress may translate the wp_localize_script
+        // output, making the PHP value unreliable on translated pages.
+        config.currentSlug = getCurrentSlugFromUrl();
+
+        var stored = getStorage(STORAGE_KEY);
+
+        if (stored) {
+            // User previously dismissed — do nothing.
+            if (stored === 'dismissed') {
+                return;
+            }
+
+            // User previously chose a language — redirect if not already on it.
+            if (stored !== config.currentSlug) {
+                // Verify the stored slug is still a valid language.
+                for (var i = 0; i < config.languages.length; i++) {
+                    if (config.languages[i].slug === stored) {
+                        var targetUrl = buildLanguageUrl(stored);
+                        // Guard: only redirect if the URL actually changes (prevents loop).
+                        var current = (window.location.pathname + window.location.search).replace(/\/+$/, '') || '/';
+                        var target  = targetUrl.replace(/\/+$/, '') || '/';
+                        if (current !== target) {
+                            window.location.href = targetUrl;
+                        }
+                        return;
+                    }
+                }
+            }
+
+            // Already on the chosen language, nothing to do.
             return;
         }
 
+        // No stored preference — detect and prompt.
         var detectedLang = detectLanguage();
         if (!shouldPrompt(detectedLang)) {
             return;

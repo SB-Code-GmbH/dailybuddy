@@ -253,3 +253,174 @@
     });
     
 })(jQuery);
+
+
+/**
+ * Tagify Enhancement for Gallery Filter Title
+ *
+ * Replaces the plain text input for "Gallery Filter Title" in each
+ * gallery item with a Tagify-powered tag input. The dropdown shows
+ * all filter titles defined in the Filter Controls repeater.
+ *
+ * Stored value format stays as comma-separated string for backward
+ * compatibility (e.g. "Portfolio, Web Design").
+ */
+(function () {
+    'use strict';
+
+    if (typeof elementor === 'undefined' || typeof Tagify === 'undefined') {
+        return;
+    }
+
+    var CONTROL_NAME = 'dailybuddy_fg_gallery_control_name';
+    var FILTER_REPEATER = 'dailybuddy_fg_controls';
+    var FILTER_FIELD = 'dailybuddy_fg_control';
+    var debounceTimer = null;
+
+    /**
+     * Read the current filter titles from the Filter Controls repeater
+     */
+    function getFilterWhitelist(model) {
+        var settings = model.get('settings');
+        var controls = settings.get(FILTER_REPEATER);
+        var whitelist = [];
+
+        if (controls && controls.models) {
+            controls.models.forEach(function (m) {
+                var title = m.get(FILTER_FIELD);
+                if (title && title.trim()) {
+                    whitelist.push(title.trim());
+                }
+            });
+        }
+
+        return whitelist;
+    }
+
+    /**
+     * Initialize Tagify on a single input element
+     */
+    function initTagifyOnInput(input, whitelist) {
+        // Already initialized — just update whitelist
+        if (input.__tagify) {
+            input.__tagify.whitelist = whitelist;
+            return;
+        }
+
+        var tagify = new Tagify(input, {
+            whitelist: whitelist,
+            enforceWhitelist: false,       // allow old/unknown tags (shown as invalid)
+            keepInvalidTags: true,         // don't auto-remove invalid tags
+            editTags: false,
+            dropdown: {
+                maxItems: 20,
+                enabled: 0,               // show suggestions on focus
+                closeOnSelect: false       // keep open for multi-select
+            },
+            delimiters: ',',
+            originalInputValueFormat: function (valuesArr) {
+                return valuesArr.map(function (item) {
+                    return item.value;
+                }).join(', ');
+            }
+        });
+
+        // Sync value back to Elementor's data model
+        tagify.on('change', function () {
+            // Dispatch native events so Elementor picks up the change
+            var evt;
+            evt = new Event('input', { bubbles: true });
+            input.dispatchEvent(evt);
+            evt = new Event('change', { bubbles: true });
+            input.dispatchEvent(evt);
+        });
+
+        // Store reference for later whitelist updates
+        input.__tagify = tagify;
+    }
+
+    /**
+     * Find all Gallery Filter Title inputs in the panel and init Tagify
+     */
+    function enhanceFilterInputs(panelEl, model) {
+        var inputs = panelEl.querySelectorAll(
+            '.elementor-control-' + CONTROL_NAME + ' input[data-setting="' + CONTROL_NAME + '"]'
+        );
+
+        if (!inputs.length) return;
+
+        var whitelist = getFilterWhitelist(model);
+
+        for (var i = 0; i < inputs.length; i++) {
+            initTagifyOnInput(inputs[i], whitelist);
+        }
+    }
+
+    /**
+     * Update whitelist on all existing Tagify instances in the panel
+     */
+    function updateWhitelists(panelEl, model) {
+        var whitelist = getFilterWhitelist(model);
+        var inputs = panelEl.querySelectorAll(
+            '.elementor-control-' + CONTROL_NAME + ' input[data-setting="' + CONTROL_NAME + '"]'
+        );
+
+        for (var i = 0; i < inputs.length; i++) {
+            if (inputs[i].__tagify) {
+                inputs[i].__tagify.whitelist = whitelist;
+            }
+        }
+    }
+
+    /**
+     * Set up a MutationObserver to catch lazy-rendered repeater items
+     */
+    function setupPanelObserver(panel, model) {
+        var panelEl = panel.el || (panel.$el && panel.$el[0]);
+        if (!panelEl) return;
+
+        // Initial enhancement (with slight delay for DOM readiness)
+        setTimeout(function () {
+            enhanceFilterInputs(panelEl, model);
+        }, 200);
+
+        // Watch for new DOM nodes (repeater items being expanded)
+        var observer = new MutationObserver(function () {
+            if (debounceTimer) clearTimeout(debounceTimer);
+            debounceTimer = setTimeout(function () {
+                enhanceFilterInputs(panelEl, model);
+            }, 100);
+        });
+
+        observer.observe(panelEl, {
+            childList: true,
+            subtree: true
+        });
+
+        // Listen for filter controls repeater changes to update whitelist
+        var settings = model.get('settings');
+        if (settings) {
+            settings.on('change:' + FILTER_REPEATER, function () {
+                updateWhitelists(panelEl, model);
+            });
+        }
+
+        // Clean up observer when panel changes to a different widget
+        elementor.hooks.addAction(
+            'panel/open_editor/widget',
+            function cleanupOnce() {
+                observer.disconnect();
+                elementor.hooks.removeAction('panel/open_editor/widget', cleanupOnce);
+            }
+        );
+    }
+
+    // Hook into the panel opening for this specific widget
+    elementor.hooks.addAction(
+        'panel/open_editor/widget/dailybuddy-filterable-gallery',
+        function (panel, model) {
+            setupPanelObserver(panel, model);
+        }
+    );
+
+})();

@@ -4,7 +4,7 @@ Tags: content folders, duplicate posts, maintenance mode, elementor widgets, cus
 Requires at least: 5.0
 Tested up to: 6.9
 Requires PHP: 7.4
-Stable tag: 1.2.0
+Stable tag: 1.2.1
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -12,7 +12,7 @@ Free all-in-one toolkit: content folders, duplicate posts, custom login URL, mai
 
 == Description ==
 
-Stop installing 10 separate plugins for basic WordPress features. DailyBuddy gives you content folders, post duplication, custom login URLs, maintenance mode, media replacement, a classic editor option, AI bot controls, language detection, dashboard widgets, and 9 Elementor extensions — completely free, in one lightweight plugin.
+Stop installing 10 separate plugins for basic WordPress features. DailyBuddy gives you content folders, post duplication, custom login URLs, maintenance mode, media replacement, a classic editor option, AI bot controls, language detection, dashboard widgets, and 10 Elementor extensions — completely free, in one lightweight plugin.
 
 **Why install 10 plugins when one does it all?**
 
@@ -22,7 +22,7 @@ Stop installing 10 separate plugins for basic WordPress features. DailyBuddy giv
 * **Maintenance Mode** — Show a branded maintenance page to visitors while you work on your site.
 * **Media Replace** — Swap out media files without breaking any links or references.
 * **Classic Editor** — Switch back to the classic TinyMCE editor if Gutenberg isn't for you.
-* **9 Elementor Widgets** — Advanced Accordion, Tabs, Timeline, Gallery, FlipBox, Logo Carousel, Product Card, Content Switcher, and Mega Menu.
+* **10 Elementor Widgets** — Advanced Accordion, Tabs, Timeline, Gallery, FlipBox, Logo Carousel, Process Steps, Product Card, Content Switcher, and Mega Menu.
 
 All features are modular — enable only what you need, disable the rest. Zero bloat.
 
@@ -38,7 +38,7 @@ Enhance your WordPress admin dashboard with helpful information and productivity
 * Server & Performance Check – PHP version, memory limit, database version, disk usage, and system health.
 * User Activity – Recent user activity and currently active users in the admin area.
 
-#### Elementor Extensions (9 modules)
+#### Elementor Extensions (10 modules)
 Additional Elementor widgets and editor enhancements (Elementor required):
 
 * Advanced Accordion – Multiple layouts, numbering, icons, and styling options.
@@ -47,6 +47,7 @@ Additional Elementor widgets and editor enhancements (Elementor required):
 * Filterable Gallery – Filterable image galleries with multiple layouts, search, and lightbox.
 * FlipBox – Animated flip box widget for front/back content presentation.
 * Logo Carousel – Responsive logo carousel/slider with configurable animation.
+* Process Steps – Snake flow step-by-step widget with connectors, three layout variants, and responsive columns.
 * Product Card – Product-style content widget with badges, countdowns, and CTAs.
 * Content Switcher – Toggle between two content sections (e.g. pricing tables).
 * Mega Menu – Full-featured mega menu with Elementor template support.
@@ -91,7 +92,7 @@ Yes. The maintenance page is shown before WordPress fully loads, so it works wit
 Yes. The Media Replace module lets you upload a new file to replace an existing one. All links, embeds, and references keep working because the URL stays the same.
 
 = Which Elementor widgets are included? =
-DailyBuddy includes 9 Elementor widgets: Advanced Accordion, Advanced Tabs, Content Timeline, Filterable Gallery, FlipBox, Logo Carousel, Product Card, Content Switcher, and Mega Menu. All are free and included in the plugin.
+DailyBuddy includes 10 Elementor widgets: Advanced Accordion, Advanced Tabs, Content Timeline, Filterable Gallery, FlipBox, Logo Carousel, Process Steps, Product Card, Content Switcher, and Mega Menu. All are free and included in the plugin.
 
 = Does DailyBuddy conflict with other plugins? =
 DailyBuddy is designed to be modular and lightweight. Each module only loads when enabled, minimizing conflicts. If you already use a plugin for one of these features, simply keep that module disabled.
@@ -112,9 +113,12 @@ It detects your visitors' browser language and shows a popup, hello bar, or auto
 3. **Dashboard Widgets Overview** — All activated dashboard widgets providing quick access to essential insights.
 4. **WordPress Modules Overview** — Enable or disable individual modules with a simple toggle switch.
 5. **Maintenance Mode** — Show a branded maintenance page to visitors while you work on your site.
-6. **Elementor Extensions** — 9 additional Elementor widgets including Mega Menu, Advanced Accordion, and more.
+6. **Elementor Extensions** — 10 additional Elementor widgets including Mega Menu, Process Steps, Advanced Accordion, and more.
 
 == Changelog ==
+
+= 1.2.1 =
+* Add Process Steps Elementor widget with snake flow layout, compact inline, and card stack variants
 
 = 1.2.0 =
 * Add TranslatePress Language Detection module with popup, hello bar, and redirect support

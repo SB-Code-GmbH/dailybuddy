@@ -77,6 +77,89 @@
 .elementor-choices.eael-choices .elementor-choices-label i.dbicon-div::before,
 .elementor-choices-label i.dbicon-div::before { content: "DIV" !important; font-size: 10px !important; }
 
+/* ──────────────────────────────────────────────
+   Tagify — Gallery Filter Title tag input
+   ────────────────────────────────────────────── */
+
+/* Container */
+.elementor-control-dailybuddy_fg_gallery_control_name .tagify {
+    --tags-border-color: var(--e-a-border-color, #d5dadf);
+    --tags-hover-border-color: var(--e-a-border-color-bold, #a4afb7);
+    --tags-focus-border-color: var(--e-a-btn-bg-primary, #5d3dfd);
+    --tag-bg: #eee8ff;
+    --tag-hover: #ddd0ff;
+    --tag-text-color: #3b1fa8;
+    --tag-remove-bg: rgba(93, 61, 253, 0.1);
+    --tag-remove-btn-color: #5d3dfd;
+    --tag-remove-btn-bg--hover: #c5221f;
+    --tag-invalid-bg: rgba(211, 148, 148, 0.35);
+    --tag-invalid-color: #c5221f;
+    --tag-pad: 0.2em 0.5em;
+    --tag-inset-shadow-size: 1em;
+    width: 100%;
+    border-radius: 3px;
+    min-height: 36px;
+    padding: 3px 5px;
+    font-size: 12px;
+    background: var(--e-a-bg-default, #fff);
+}
+
+.elementor-control-dailybuddy_fg_gallery_control_name .tagify__tag {
+    margin: 2px 3px 2px 0;
+}
+
+.elementor-control-dailybuddy_fg_gallery_control_name .tagify__tag > div {
+    padding: 0.2em 0.5em;
+}
+
+.elementor-control-dailybuddy_fg_gallery_control_name .tagify__input {
+    min-width: 80px;
+    margin: 2px;
+}
+
+/* Invalid / non-matching tags */
+.elementor-control-dailybuddy_fg_gallery_control_name .tagify__tag.tagify--notAllowed > div::before {
+    --tag-bg: var(--tag-invalid-bg);
+}
+
+/* Dropdown — must sit above Elementor panel */
+.elementor-control-dailybuddy_fg_gallery_control_name .tagify__dropdown {
+    z-index: 100001;
+    border: 1px solid var(--e-a-border-color, #d5dadf);
+    border-radius: 3px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+.elementor-control-dailybuddy_fg_gallery_control_name .tagify__dropdown__wrapper {
+    background: var(--e-a-bg-default, #fff);
+    border: 0;
+}
+
+.elementor-control-dailybuddy_fg_gallery_control_name .tagify__dropdown__item {
+    padding: 6px 10px;
+    font-size: 12px;
+    border-radius: 2px;
+    margin: 1px;
+}
+
+.elementor-control-dailybuddy_fg_gallery_control_name .tagify__dropdown__item--active {
+    background: #eee8ff;
+    color: #3b1fa8;
+}
+
+/* Hide Elementor's description and dynamic tags button when Tagify is active */
+.elementor-control-dailybuddy_fg_gallery_control_name:has(.tagify) .elementor-control-field-description {
+    display: none;
+}
+
+.elementor-control-dailybuddy_fg_gallery_control_name:has(.tagify) .elementor-control-dynamic-switcher {
+    display: none;
+}
+
+/* ──────────────────────────────────────────────
+   Elementor Editor Specific Styles
+   ────────────────────────────────────────────── */
+
 /* Elementor Editor Specific Styles */
 .elementor-element-edit-mode .dailybuddy-filter-gallery-wrapper {
     min-height: 200px;

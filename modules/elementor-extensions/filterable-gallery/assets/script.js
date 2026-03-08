@@ -136,7 +136,7 @@ jQuery(window).on("elementor/frontend/init", function () {
       }, 1);
     });
     
-    if (!isEditMode) {
+    if (!elementorFrontend.isEditMode()) {
       var $gallery = $(".dailybuddy-filter-gallery-container", $scope);
       var $settings = $gallery.data("settings");
       var fg_items = JSON.parse(atob($gallery.data("gallery-items")));
