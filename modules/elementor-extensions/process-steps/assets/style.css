@@ -9,12 +9,8 @@
    Container Query Context
    ────────────────────────────────────────────── */
 
-.elementor-widget-dailybuddy-process-steps > .elementor-widget-container {
-    container-type: inline-size;
-}
-
 /* ──────────────────────────────────────────────
-   Container + Responsive Column Breakpoints
+   Responsive Column Breakpoints (Media Queries)
    ────────────────────────────────────────────── */
 
 .dailybuddy-process-steps {
@@ -28,11 +24,11 @@
     position: relative;
 }
 
-@container (max-width: 1199px) { .dailybuddy-process-steps { --ps-auto-columns: 5; } }
-@container (max-width: 999px)  { .dailybuddy-process-steps { --ps-auto-columns: 4; } }
-@container (max-width: 799px)  { .dailybuddy-process-steps { --ps-auto-columns: 3; } }
-@container (max-width: 599px)  { .dailybuddy-process-steps { --ps-auto-columns: 2; } }
-@container (max-width: 399px)  { .dailybuddy-process-steps { --ps-auto-columns: 1; } }
+@media (max-width: 1199px) { .dailybuddy-process-steps { --ps-auto-columns: 5; } }
+@media (max-width: 999px)  { .dailybuddy-process-steps { --ps-auto-columns: 4; } }
+@media (max-width: 799px)  { .dailybuddy-process-steps { --ps-auto-columns: 3; } }
+@media (max-width: 599px)  { .dailybuddy-process-steps { --ps-auto-columns: 2; } }
+@media (max-width: 399px)  { .dailybuddy-process-steps { --ps-auto-columns: 1; } }
 
 /* ──────────────────────────────────────────────
    No-JS Fallback (simple wrapped grid)
@@ -276,7 +272,7 @@
 
 .dailybuddy-connector-line-vertical {
     border-left: 2px solid #5d3dfd;
-    height: 30px;
+    height: 20px;
 }
 
 .dailybuddy-ps-row-connector i,
@@ -365,9 +361,9 @@
     top: auto;
     left: auto;
     right: auto;
-    width: 60px;
+    width: 40px;
     height: auto;
-    margin: 14px auto;
+    margin: 6px auto;
     transform: rotate(90deg);
     justify-content: center;
 }
@@ -381,7 +377,7 @@
 .dailybuddy-ps-vertical .dailybuddy-loop-connector-line {
     border-top: none;
     border-left: 2px solid #5d3dfd;
-    height: 30px;
+    height: 16px;
 }
 
 .dailybuddy-ps-vertical.dailybuddy-connector-style-dashed .dailybuddy-loop-connector-line {
@@ -390,6 +386,51 @@
 
 .dailybuddy-ps-vertical.dailybuddy-connector-style-dotted .dailybuddy-loop-connector-line {
     border-left-style: dotted;
+}
+
+/* ── Compact vertical on small containers ── */
+
+@media (max-width: 599px) {
+    .dailybuddy-ps-vertical .dailybuddy-step-icon-wrap {
+        width: 56px;
+        height: 56px;
+    }
+
+    .dailybuddy-ps-vertical .dailybuddy-step-icon i {
+        font-size: 28px;
+    }
+
+    .dailybuddy-ps-vertical .dailybuddy-step-icon svg {
+        width: 28px;
+        height: 28px;
+    }
+
+    .dailybuddy-ps-vertical .dailybuddy-step-icon img {
+        width: 28px;
+        height: 28px;
+    }
+
+    .dailybuddy-ps-vertical .dailybuddy-step-number-display {
+        font-size: 28px;
+    }
+
+    .dailybuddy-ps-vertical .dailybuddy-step-content {
+        margin-top: 10px;
+    }
+
+    .dailybuddy-ps-vertical .dailybuddy-step-title {
+        font-size: 15px;
+        margin-bottom: 4px;
+    }
+
+    .dailybuddy-ps-vertical .dailybuddy-step-description {
+        font-size: 13px;
+    }
+
+    .dailybuddy-ps-vertical .dailybuddy-step-connector {
+        width: 30px;
+        margin: 4px auto;
+    }
 }
 
 @media (max-width: 480px) {

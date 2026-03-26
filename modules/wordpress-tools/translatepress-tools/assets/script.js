@@ -307,20 +307,6 @@
     }
 
     /**
-     * Direct redirect.
-     */
-    function doRedirect(detectedLang) {
-        var targetUrl = buildLanguageUrl(detectedLang.slug);
-        // Guard: only redirect if the URL actually changes (prevents loop).
-        var current = (window.location.pathname + window.location.search).replace(/\/+$/, '') || '/';
-        var target  = targetUrl.replace(/\/+$/, '') || '/';
-        if (current !== target) {
-            setStorage(STORAGE_KEY, detectedLang.slug);
-            window.location.href = targetUrl;
-        }
-    }
-
-    /**
      * Escape HTML for safe insertion.
      */
     function escapeHtml(str) {
@@ -365,29 +351,7 @@
         var stored = getStorage(STORAGE_KEY);
 
         if (stored) {
-            // User previously dismissed — do nothing.
-            if (stored === 'dismissed') {
-                return;
-            }
-
-            // User previously chose a language — redirect if not already on it.
-            if (stored !== config.currentSlug) {
-                // Verify the stored slug is still a valid language.
-                for (var i = 0; i < config.languages.length; i++) {
-                    if (config.languages[i].slug === stored) {
-                        var targetUrl = buildLanguageUrl(stored);
-                        // Guard: only redirect if the URL actually changes (prevents loop).
-                        var current = (window.location.pathname + window.location.search).replace(/\/+$/, '') || '/';
-                        var target  = targetUrl.replace(/\/+$/, '') || '/';
-                        if (current !== target) {
-                            window.location.href = targetUrl;
-                        }
-                        return;
-                    }
-                }
-            }
-
-            // Already on the chosen language, nothing to do.
+            // User previously dismissed or chose a language — do nothing.
             return;
         }
 
@@ -403,9 +367,6 @@
                 break;
             case 'bar':
                 showBar(detectedLang);
-                break;
-            case 'redirect':
-                doRedirect(detectedLang);
                 break;
         }
     }

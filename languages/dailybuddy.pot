@@ -4811,3 +4811,203 @@ msgstr ""
 #: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\wordpress-tools\translatepress-tools\templates\settings-page.php (Line 201)
 msgid "Leave empty to inherit the text color."
 msgstr ""
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\elementor-extensions\category-post-list\config.php (Line 9)
+msgid "Displays a linked list of all posts in a chosen category. Highlights the current post for easy sidebar navigation."
+msgstr ""
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\elementor-extensions\category-post-list\config.php (Line 9)
+msgid "category"
+msgstr ""
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\elementor-extensions\category-post-list\config.php (Line 16)
+msgid "post list"
+msgstr ""
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\elementor-extensions\category-post-list\config.php (Line 9)
+msgid "sidebar"
+msgstr ""
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\elementor-extensions\category-post-list\config.php (Line 19)
+msgid "links"
+msgstr ""
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\elementor-extensions\category-post-list\widget.php (Line 4)
+msgid "Category Post List"
+msgstr ""
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\elementor-extensions\category-post-list\widget.php (Line 81)
+msgid "Select the category whose posts to display."
+msgstr ""
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\elementor-extensions\category-post-list\widget.php (Line 92)
+msgid "Title (A-Z)"
+msgstr ""
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\elementor-extensions\category-post-list\widget.php (Line 94)
+msgid "Menu Order"
+msgstr ""
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\elementor-extensions\category-post-list\widget.php (Line 115)
+msgid "Max Posts"
+msgstr ""
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\elementor-extensions\category-post-list\widget.php (Line 119)
+msgid "-1 = show all posts."
+msgstr ""
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\elementor-extensions\category-post-list\widget.php (Line 125)
+msgid "Active State"
+msgstr ""
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\elementor-extensions\category-post-list\widget.php (Line 136)
+msgid "Highlight Style"
+msgstr ""
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\elementor-extensions\category-post-list\widget.php (Line 140)
+msgid "Bold"
+msgstr ""
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\elementor-extensions\category-post-list\widget.php (Line 142)
+msgid "Border Left"
+msgstr ""
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\elementor-extensions\category-post-list\widget.php (Line 143)
+msgid "Bold + Border Left"
+msgstr ""
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\elementor-extensions\category-post-list\widget.php (Line 8)
+msgid "Features"
+msgstr ""
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\elementor-extensions\category-post-list\widget.php (Line 167)
+msgid "Search Filter"
+msgstr ""
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\elementor-extensions\category-post-list\widget.php (Line 172)
+msgid "Adds a live search field above the list to filter posts by title."
+msgstr ""
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\elementor-extensions\category-post-list\widget.php (Line 179)
+msgid "Search Placeholder"
+msgstr ""
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\elementor-extensions\category-post-list\widget.php (Line 181)
+msgid "Search..."
+msgstr ""
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\elementor-extensions\category-post-list\widget.php (Line 189)
+msgid "Excerpt Tooltip"
+msgstr ""
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\elementor-extensions\category-post-list\widget.php (Line 194)
+msgid "Shows the post excerpt as a tooltip on hover."
+msgstr ""
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\elementor-extensions\category-post-list\widget.php (Line 201)
+msgid "Excerpt Length (words)"
+msgstr ""
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\elementor-extensions\category-post-list\widget.php (Line 213)
+msgid "Post Count Badge"
+msgstr ""
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\elementor-extensions\category-post-list\widget.php (Line 218)
+msgid "Shows total number of posts above the list."
+msgstr ""
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\elementor-extensions\category-post-list\widget.php (Line 225)
+msgid "Scroll to Active"
+msgstr ""
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\elementor-extensions\category-post-list\widget.php (Line 230)
+msgid "Automatically scrolls long lists to the active item."
+msgstr ""
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\elementor-extensions\category-post-list\widget.php (Line 237)
+msgid "Max Height"
+msgstr ""
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\elementor-extensions\category-post-list\widget.php (Line 247)
+msgid "Set a max height to make the list scrollable."
+msgstr ""
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\elementor-extensions\category-post-list\widget.php (Line 254)
+msgid "Responsive"
+msgstr ""
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\elementor-extensions\category-post-list\widget.php (Line 263)
+msgid "Mobile: Show as Dropdown"
+msgstr ""
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\elementor-extensions\category-post-list\widget.php (Line 268)
+msgid "On mobile, the list becomes a native dropdown with integrated search."
+msgstr ""
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\elementor-extensions\category-post-list\widget.php (Line 275)
+msgid "Breakpoint (px)"
+msgstr ""
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\elementor-extensions\category-post-list\widget.php (Line 4)
+msgid "List"
+msgstr ""
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\elementor-extensions\category-post-list\widget.php (Line 304)
+msgid "Link Style"
+msgstr ""
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\elementor-extensions\category-post-list\widget.php (Line 308)
+msgid "Plain"
+msgstr ""
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\elementor-extensions\category-post-list\widget.php (Line 310)
+msgid "Pill"
+msgstr ""
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\elementor-extensions\category-post-list\widget.php (Line 312)
+msgid "Minimal (underline)"
+msgstr ""
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\elementor-extensions\category-post-list\widget.php (Line 367)
+msgid "Hover Background"
+msgstr ""
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\elementor-extensions\category-post-list\widget.php (Line 456)
+msgid "Active Item"
+msgstr ""
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\elementor-extensions\category-post-list\widget.php (Line 167)
+msgid "Search"
+msgstr ""
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\elementor-extensions\category-post-list\widget.php (Line 643)
+msgid "Max Width"
+msgstr ""
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\elementor-extensions\category-post-list\widget.php (Line 665)
+msgid "— Select —"
+msgstr ""
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\elementor-extensions\category-post-list\widget.php (Line 715)
+msgid "Please select a category."
+msgstr ""
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\elementor-extensions\category-post-list\widget.php (Line 733)
+msgid "No posts found in this category."
+msgstr ""
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\elementor-extensions\category-post-list\widget.php (Line 774)
+msgid "%d Posts"
+msgstr ""
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\elementor-extensions\category-post-list\widget.php (Line 844)
+msgid "No matches found."
+msgstr ""
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\wordpress-tools\translatepress-tools\templates\settings-page.php (Line 90)
+msgid "When enabled, visitors will be prompted based on their browser language."
+msgstr ""
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\wordpress-tools\translatepress-tools\templates\settings-page.php (Line 322)
+msgid "If a match is found and differs from the current page language, the visitor is notified."
+msgstr ""

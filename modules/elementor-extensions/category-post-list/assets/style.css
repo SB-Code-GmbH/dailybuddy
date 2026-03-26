@@ -1,0 +1,470 @@
+/**
+ * dailybuddy Category Post List - Frontend Styles
+ */
+
+/* ──────────────────────────────────────────────
+   Wrapper
+   ────────────────────────────────────────────── */
+
+.dailybuddy-cpl-wrap {
+    position: relative;
+}
+
+/* ──────────────────────────────────────────────
+   Post Count Badge
+   ────────────────────────────────────────────── */
+
+.dailybuddy-cpl-count {
+    font-size: 12px;
+    font-weight: 600;
+    color: #888;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: 8px;
+    padding: 0 12px;
+}
+
+/* ──────────────────────────────────────────────
+   Search
+   ────────────────────────────────────────────── */
+
+.dailybuddy-cpl-search-wrap {
+    margin-bottom: 10px;
+}
+
+.dailybuddy-cpl-search {
+    display: block;
+    width: 100%;
+    padding: 8px 12px;
+    border: 1px solid #e0e0e0;
+    border-radius: 6px;
+    background: #f5f5f5;
+    font-size: 14px;
+    line-height: 1.4;
+    outline: none;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    box-sizing: border-box;
+}
+
+.dailybuddy-cpl-search:focus {
+    border-color: #5d3dfd;
+    box-shadow: 0 0 0 2px rgba(93, 61, 253, 0.15);
+}
+
+.dailybuddy-cpl-search::placeholder {
+    color: #aaa;
+}
+
+/* ──────────────────────────────────────────────
+   List
+   ────────────────────────────────────────────── */
+
+.dailybuddy-cpl-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    scrollbar-width: thin;
+}
+
+.dailybuddy-cpl-list::-webkit-scrollbar {
+    width: 4px;
+}
+
+.dailybuddy-cpl-list::-webkit-scrollbar-thumb {
+    background: #ccc;
+    border-radius: 2px;
+}
+
+.dailybuddy-cpl-item {
+    margin: 0;
+}
+
+/* ──────────────────────────────────────────────
+   Link — Base
+   ────────────────────────────────────────────── */
+
+.dailybuddy-cpl-link {
+    display: block;
+    padding: 8px 12px;
+    color: #333;
+    text-decoration: none;
+    transition: color 0.2s ease, background-color 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease, transform 0.15s ease;
+    border-left: 3px solid transparent;
+    line-height: 1.4;
+}
+
+.dailybuddy-cpl-link:hover {
+    color: #5d3dfd;
+}
+
+/* Text overflow ellipsis */
+.dailybuddy-cpl-link-text {
+    display: block;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+/* ──────────────────────────────────────────────
+   Link Style: Button
+   ────────────────────────────────────────────── */
+
+.dailybuddy-cpl-style-button .dailybuddy-cpl-link {
+    background: #f5f5f5;
+    border: 1px solid #e0e0e0;
+    border-left: 3px solid transparent;
+    border-radius: 6px;
+    text-align: center;
+}
+
+.dailybuddy-cpl-style-button .dailybuddy-cpl-link:hover {
+    background: #eee;
+    transform: translateY(-1px);
+}
+
+.dailybuddy-cpl-style-button .dailybuddy-cpl-item + .dailybuddy-cpl-item {
+    margin-top: 4px;
+}
+
+/* ──────────────────────────────────────────────
+   Link Style: Pill
+   ────────────────────────────────────────────── */
+
+.dailybuddy-cpl-style-pill .dailybuddy-cpl-link {
+    background: #f0f0f0;
+    border: none;
+    border-radius: 999px;
+    padding: 6px 16px;
+    text-align: center;
+}
+
+.dailybuddy-cpl-style-pill .dailybuddy-cpl-link:hover {
+    background: #e0dcff;
+}
+
+.dailybuddy-cpl-style-pill .dailybuddy-cpl-item + .dailybuddy-cpl-item {
+    margin-top: 4px;
+}
+
+/* Pill active: override border-left highlight with background */
+.dailybuddy-cpl-style-pill .dailybuddy-cpl-active .dailybuddy-cpl-link {
+    background: #5d3dfd;
+    color: #fff;
+}
+
+/* ──────────────────────────────────────────────
+   Link Style: Card
+   ────────────────────────────────────────────── */
+
+.dailybuddy-cpl-style-card .dailybuddy-cpl-link {
+    background: #fff;
+    border: 1px solid #e5e7eb;
+    border-left: 3px solid transparent;
+    border-radius: 8px;
+    padding: 12px 16px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
+}
+
+.dailybuddy-cpl-style-card .dailybuddy-cpl-link:hover {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    transform: translateY(-2px);
+}
+
+.dailybuddy-cpl-style-card .dailybuddy-cpl-item + .dailybuddy-cpl-item {
+    margin-top: 6px;
+}
+
+/* ──────────────────────────────────────────────
+   Link Style: Minimal (underline)
+   ────────────────────────────────────────────── */
+
+.dailybuddy-cpl-style-minimal .dailybuddy-cpl-link {
+    border: none;
+    border-bottom: 1px solid #eee;
+    border-radius: 0;
+    padding: 10px 4px;
+}
+
+.dailybuddy-cpl-style-minimal .dailybuddy-cpl-link:hover {
+    border-bottom-color: #5d3dfd;
+}
+
+.dailybuddy-cpl-style-minimal .dailybuddy-cpl-item:last-child .dailybuddy-cpl-link {
+    border-bottom: none;
+}
+
+/* ──────────────────────────────────────────────
+   Highlight: Bold
+   ────────────────────────────────────────────── */
+
+.dailybuddy-cpl-highlight-bold .dailybuddy-cpl-active .dailybuddy-cpl-link {
+    font-weight: 700;
+}
+
+/* ──────────────────────────────────────────────
+   Highlight: Background
+   ────────────────────────────────────────────── */
+
+.dailybuddy-cpl-highlight-background .dailybuddy-cpl-active .dailybuddy-cpl-link {
+    background-color: #f0ecff;
+    border-radius: 4px;
+}
+
+/* ──────────────────────────────────────────────
+   Highlight: Border Left
+   ────────────────────────────────────────────── */
+
+.dailybuddy-cpl-highlight-border .dailybuddy-cpl-active .dailybuddy-cpl-link {
+    border-left-color: #5d3dfd;
+}
+
+/* ──────────────────────────────────────────────
+   Highlight: Bold + Border Left
+   ────────────────────────────────────────────── */
+
+.dailybuddy-cpl-highlight-bold-border .dailybuddy-cpl-active .dailybuddy-cpl-link {
+    font-weight: 700;
+    border-left-color: #5d3dfd;
+}
+
+/* ──────────────────────────────────────────────
+   No Results
+   ────────────────────────────────────────────── */
+
+.dailybuddy-cpl-no-results {
+    padding: 12px;
+    text-align: center;
+    color: #999;
+    font-size: 13px;
+    font-style: italic;
+}
+
+/* ──────────────────────────────────────────────
+   Excerpt Tooltip
+   ────────────────────────────────────────────── */
+
+.dailybuddy-cpl-tooltip {
+    position: absolute;
+    z-index: 1000;
+    max-width: 280px;
+    padding: 10px 14px;
+    background: #333;
+    color: #fff;
+    font-size: 13px;
+    line-height: 1.5;
+    border-radius: 6px;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+    pointer-events: none;
+    opacity: 0;
+    transform: translateY(4px);
+    transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.dailybuddy-cpl-tooltip.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.dailybuddy-cpl-tooltip::after {
+    content: '';
+    position: absolute;
+    top: 12px;
+    left: -6px;
+    border-width: 6px;
+    border-style: solid;
+    border-color: transparent #333 transparent transparent;
+}
+
+/* ──────────────────────────────────────────────
+   Mobile Searchable Dropdown
+   ────────────────────────────────────────────── */
+
+.dailybuddy-cpl-mobile {
+    display: none;
+    position: relative;
+}
+
+/* <details> reset */
+.dailybuddy-cpl-dropdown {
+    border: none;
+}
+
+/* Toggle (summary) */
+.dailybuddy-cpl-dropdown-toggle {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    padding: 10px 14px;
+    border: 1px solid #e0e0e0;
+    border-radius: 6px;
+    background: #fff;
+    font-size: 15px;
+    line-height: 1.4;
+    color: #333;
+    cursor: pointer;
+    box-sizing: border-box;
+    text-align: left;
+    gap: 8px;
+    list-style: none;
+}
+
+/* Remove default <summary> marker */
+.dailybuddy-cpl-dropdown-toggle::-webkit-details-marker {
+    display: none;
+}
+
+.dailybuddy-cpl-dropdown-toggle::marker {
+    display: none;
+    content: '';
+}
+
+.dailybuddy-cpl-dropdown-toggle:focus {
+    border-color: #5d3dfd;
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(93, 61, 253, 0.15);
+}
+
+.dailybuddy-cpl-dropdown-label {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    flex: 1;
+}
+
+.dailybuddy-cpl-dropdown-arrow {
+    flex-shrink: 0;
+    transition: transform 0.2s ease;
+}
+
+.dailybuddy-cpl-dropdown[open] .dailybuddy-cpl-dropdown-arrow {
+    transform: rotate(180deg);
+}
+
+/* Dropdown panel */
+.dailybuddy-cpl-dropdown-panel {
+    position: absolute;
+    top: calc(100% + 4px);
+    left: 0;
+    right: 0;
+    z-index: 100;
+    background: #fff;
+    border: 1px solid #e0e0e0;
+    border-radius: 6px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+    overflow: hidden;
+}
+
+/* Search inside dropdown */
+.dailybuddy-cpl-dropdown-search-wrap {
+    padding: 8px;
+    border-bottom: 1px solid #f0f0f0;
+}
+
+.dailybuddy-cpl-dropdown-search {
+    display: block;
+    width: 100%;
+    padding: 8px 10px;
+    border: 1px solid #e0e0e0;
+    border-radius: 4px;
+    background: #f9f9f9;
+    font-size: 14px;
+    line-height: 1.4;
+    outline: none;
+    box-sizing: border-box;
+}
+
+.dailybuddy-cpl-dropdown-search:focus {
+    border-color: #5d3dfd;
+    background: #fff;
+}
+
+.dailybuddy-cpl-dropdown-search::placeholder {
+    color: #aaa;
+}
+
+/* Options list */
+.dailybuddy-cpl-dropdown-list {
+    list-style: none;
+    margin: 0;
+    padding: 4px 0;
+    max-height: 240px;
+    overflow-y: auto;
+    scrollbar-width: thin;
+}
+
+.dailybuddy-cpl-dropdown-list::-webkit-scrollbar {
+    width: 4px;
+}
+
+.dailybuddy-cpl-dropdown-list::-webkit-scrollbar-thumb {
+    background: #ccc;
+    border-radius: 2px;
+}
+
+.dailybuddy-cpl-dropdown-item {
+    margin: 0;
+}
+
+.dailybuddy-cpl-dropdown-link {
+    display: block;
+    padding: 8px 14px;
+    color: #333;
+    text-decoration: none;
+    font-size: 14px;
+    line-height: 1.4;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    transition: background-color 0.15s ease;
+}
+
+.dailybuddy-cpl-dropdown-link:hover {
+    background: #f5f3ff;
+    color: #5d3dfd;
+}
+
+.dailybuddy-cpl-dropdown-active .dailybuddy-cpl-dropdown-link {
+    color: #5d3dfd;
+    font-weight: 600;
+    background: #f0ecff;
+}
+
+.dailybuddy-cpl-dropdown-empty {
+    padding: 12px 14px;
+    text-align: center;
+    color: #999;
+    font-size: 13px;
+    font-style: italic;
+}
+
+/* ── Responsive: toggle list ↔ dropdown ── */
+
+/* Desktop: hide mobile dropdown */
+.dailybuddy-cpl-wrap[data-mobile-select="1"] .dailybuddy-cpl-mobile {
+    display: none;
+}
+
+/* Mobile: hide list, show dropdown */
+@media (max-width: 767px) {
+    .dailybuddy-cpl-wrap[data-mobile-select="1"] .dailybuddy-cpl-list,
+    .dailybuddy-cpl-wrap[data-mobile-select="1"] .dailybuddy-cpl-search-wrap,
+    .dailybuddy-cpl-wrap[data-mobile-select="1"] .dailybuddy-cpl-count {
+        display: none;
+    }
+
+    .dailybuddy-cpl-wrap[data-mobile-select="1"] .dailybuddy-cpl-mobile {
+        display: block;
+    }
+}
+
+/* JS override for custom breakpoints (class added by JS) */
+.dailybuddy-cpl-wrap.dailybuddy-cpl-is-mobile .dailybuddy-cpl-list,
+.dailybuddy-cpl-wrap.dailybuddy-cpl-is-mobile .dailybuddy-cpl-search-wrap,
+.dailybuddy-cpl-wrap.dailybuddy-cpl-is-mobile .dailybuddy-cpl-count {
+    display: none !important;
+}
+
+.dailybuddy-cpl-wrap.dailybuddy-cpl-is-mobile .dailybuddy-cpl-mobile {
+    display: block !important;
+}

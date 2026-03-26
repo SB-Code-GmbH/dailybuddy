@@ -34,7 +34,7 @@ class Dailybuddy_TranslatePress_Tools
      */
     private static $defaults = array(
         'enabled'              => true,
-        'action_type'          => 'popup',       // popup, bar, redirect
+        'action_type'          => 'popup',       // popup, bar
         'cookie_days'          => 30,
         'bar_position'         => 'top',         // top, bottom
         'popup_text'           => '',
@@ -64,6 +64,12 @@ class Dailybuddy_TranslatePress_Tools
         $this->settings     = get_option('dailybuddy_tp_tools_settings', self::$defaults);
         $this->settings     = wp_parse_args($this->settings, self::$defaults);
         $this->trp_settings = get_option('trp_settings', array());
+
+        // Migrate: redirect action type was removed due to SEO issues.
+        if ($this->settings['action_type'] === 'redirect') {
+            $this->settings['action_type'] = 'popup';
+            update_option('dailybuddy_tp_tools_settings', $this->settings);
+        }
 
         if (! empty($this->settings['enabled']) && ! is_admin() && ! $this->is_rest_request()) {
             add_action('wp_enqueue_scripts', array($this, 'enqueue_frontend_assets'));
@@ -369,7 +375,7 @@ function dailybuddy_render_translatepress_tools_settings()
         );
 
         // Validate action_type.
-        if (! in_array($new_settings['action_type'], array('popup', 'bar', 'redirect'), true)) {
+        if (! in_array($new_settings['action_type'], array('popup', 'bar'), true)) {
             $new_settings['action_type'] = 'popup';
         }
 

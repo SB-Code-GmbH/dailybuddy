@@ -13,7 +13,6 @@ $dailybuddy_lang_count    = count($trp_languages);
 $dailybuddy_action_types  = array(
     'popup'    => __('Popup Window', 'dailybuddy'),
     'bar'      => __('Hello Bar', 'dailybuddy'),
-    'redirect' => __('Direct Redirect', 'dailybuddy'),
 );
 ?>
 
@@ -88,7 +87,7 @@ $dailybuddy_action_types  = array(
                                 <div class="method-info">
                                     <strong><?php esc_html_e('Detect browser language automatically', 'dailybuddy'); ?></strong>
                                     <p class="description">
-                                        <?php esc_html_e('When enabled, visitors will be prompted or redirected based on their browser language.', 'dailybuddy'); ?>
+                                        <?php esc_html_e('When enabled, visitors will be prompted based on their browser language.', 'dailybuddy'); ?>
                                     </p>
                                 </div>
                             </label>
@@ -111,11 +110,6 @@ $dailybuddy_action_types  = array(
                                     <?php elseif ('bar' === $dailybuddy_type_key) : ?>
                                         <p class="description" style="margin-left: 24px;">
                                             <?php esc_html_e('Shows a notification bar at the top or bottom of the page.', 'dailybuddy'); ?>
-                                        </p>
-                                    <?php elseif ('redirect' === $dailybuddy_type_key) : ?>
-                                        <span class="badge badge-red"><?php esc_html_e('SEO Risk', 'dailybuddy'); ?></span>
-                                        <p class="description" style="margin-left: 24px;">
-                                            <?php esc_html_e('Redirects visitors directly without asking. May cause issues with search engine indexing.', 'dailybuddy'); ?>
                                         </p>
                                     <?php endif; ?>
                                 </label>
@@ -325,7 +319,7 @@ $dailybuddy_action_types  = array(
             <ul>
                 <li><?php esc_html_e('The visitor\'s browser language is detected via JavaScript (navigator.languages).', 'dailybuddy'); ?></li>
                 <li><?php esc_html_e('It is matched against your configured TranslatePress languages.', 'dailybuddy'); ?></li>
-                <li><?php esc_html_e('If a match is found and differs from the current page language, the visitor is notified or redirected.', 'dailybuddy'); ?></li>
+                <li><?php esc_html_e('If a match is found and differs from the current page language, the visitor is notified.', 'dailybuddy'); ?></li>
                 <li><?php esc_html_e('The choice is stored in sessionStorage (no cookies) and remembered for the current browser session.', 'dailybuddy'); ?></li>
                 <li><?php esc_html_e('This approach is cache-friendly because detection happens client-side.', 'dailybuddy'); ?></li>
             </ul>

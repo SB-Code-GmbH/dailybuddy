@@ -4,7 +4,7 @@
  * Plugin Name: DailyBuddy — Free All-in-One Toolkit
  * Plugin URI: https://dailybuddy.net/
  * Description: Free all-in-one toolkit: content folders, duplicate posts, custom login URL, maintenance mode, media replace, classic editor, language detection, dashboard widgets & 10 Elementor extensions.
- * Version: 1.2.1
+ * Version: 1.2.2
  * Author: Ilja Becker
  * Author URI: https://profiles.wordpress.org/beckerilja/
  * Text Domain: dailybuddy
@@ -21,7 +21,7 @@ if (! defined('ABSPATH')) {
 }
 
 // Plugin constants
-define('DAILYBUDDY_VERSION', '1.2.1');
+define('DAILYBUDDY_VERSION', '1.2.2');
 define('DAILYBUDDY_PATH', plugin_dir_path(__FILE__));
 define('DAILYBUDDY_URL', plugin_dir_url(__FILE__));
 define('DAILYBUDDY_BASENAME', plugin_basename(__FILE__));

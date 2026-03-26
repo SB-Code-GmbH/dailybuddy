@@ -4882,3 +4882,153 @@ msgstr "Abstand zwischen Schritten"
 
 msgid "Leave empty to inherit the text color."
 msgstr "Leer lassen, um die Textfarbe zu übernehmen."
+
+msgid "Category Post List"
+msgstr "Kategorie-Beitragsliste"
+
+msgid "Displays a linked list of all posts in a chosen category. Highlights the current post for easy sidebar navigation."
+msgstr "Zeigt eine verlinkte Liste aller Beiträge einer gewählten Kategorie an. Hebt den aktuellen Beitrag für eine einfache Sidebar-Navigation hervor."
+
+msgid "category"
+msgstr "Kategorie"
+
+msgid "post list"
+msgstr "Beitragsliste"
+
+msgid "sidebar"
+msgstr "Seitenleiste"
+
+msgid "links"
+msgstr "Links"
+
+msgid "Select the category whose posts to display."
+msgstr "Wähle die Kategorie, deren Beiträge angezeigt werden sollen."
+
+msgid "Title (A-Z)"
+msgstr "Titel (A-Z)"
+
+msgid "Menu Order"
+msgstr "Menüreihenfolge"
+
+msgid "Max Posts"
+msgstr "Max. Beiträge"
+
+msgid "-1 = show all posts."
+msgstr "-1 = alle Beiträge anzeigen."
+
+msgid "Active State"
+msgstr "Aktiver Zustand"
+
+msgid "Highlight Style"
+msgstr "Hervorhebungsstil"
+
+msgid "Bold"
+msgstr "Fett"
+
+msgid "Border Left"
+msgstr "Rand links"
+
+msgid "Bold + Border Left"
+msgstr "Fett + Rand links"
+
+msgid "Features"
+msgstr "Funktionen"
+
+msgid "Search Filter"
+msgstr "Suchfilter"
+
+msgid "Adds a live search field above the list to filter posts by title."
+msgstr "Fügt ein Live-Suchfeld über der Liste hinzu, um Beiträge nach Titel zu filtern."
+
+msgid "Search Placeholder"
+msgstr "Such-Platzhalter"
+
+msgid "Search..."
+msgstr "Suchen..."
+
+msgid "Excerpt Tooltip"
+msgstr "Textauszug-Tooltip"
+
+msgid "Shows the post excerpt as a tooltip on hover."
+msgstr "Zeigt den Textauszug des Beitrags als Tooltip beim Überfahren an."
+
+msgid "Excerpt Length (words)"
+msgstr "Textauszug-Länge (Wörter)"
+
+msgid "Post Count Badge"
+msgstr "Beitragsanzahl-Badge"
+
+msgid "Shows total number of posts above the list."
+msgstr "Zeigt die Gesamtanzahl der Beiträge über der Liste an."
+
+msgid "Scroll to Active"
+msgstr "Zum aktiven scrollen"
+
+msgid "Automatically scrolls long lists to the active item."
+msgstr "Scrollt bei langen Listen automatisch zum aktiven Eintrag."
+
+msgid "Max Height"
+msgstr "Maximale Höhe"
+
+msgid "Set a max height to make the list scrollable."
+msgstr "Lege eine maximale Höhe fest, um die Liste scrollbar zu machen."
+
+msgid "Responsive"
+msgstr "Responsiv"
+
+msgid "Mobile: Show as Dropdown"
+msgstr "Mobil: Als Dropdown anzeigen"
+
+msgid "On mobile, the list becomes a native dropdown with integrated search."
+msgstr "Auf Mobilgeräten wird die Liste zu einem Dropdown mit integrierter Suche."
+
+msgid "Breakpoint (px)"
+msgstr "Breakpoint (px)"
+
+msgid "List"
+msgstr "Liste"
+
+msgid "Link Style"
+msgstr "Link-Stil"
+
+msgid "Plain"
+msgstr "Einfach"
+
+msgid "Pill"
+msgstr "Pill"
+
+msgid "Minimal (underline)"
+msgstr "Minimal (Unterstrich)"
+
+msgid "Hover Background"
+msgstr "Hover-Hintergrund"
+
+msgid "Active Item"
+msgstr "Aktiver Eintrag"
+
+msgid "Search"
+msgstr "Suche"
+
+msgid "Max Width"
+msgstr "Maximale Breite"
+
+msgid "— Select —"
+msgstr "— Auswählen —"
+
+msgid "Please select a category."
+msgstr "Bitte wähle eine Kategorie aus."
+
+msgid "No posts found in this category."
+msgstr "Keine Beiträge in dieser Kategorie gefunden."
+
+msgid "%d Posts"
+msgstr "%d Beiträge"
+
+msgid "No matches found."
+msgstr "Keine Treffer gefunden."
+
+msgid "When enabled, visitors will be prompted based on their browser language."
+msgstr "Wenn aktiviert, werden Besucher basierend auf ihrer Browsersprache benachrichtigt."
+
+msgid "If a match is found and differs from the current page language, the visitor is notified."
+msgstr "Wenn eine Übereinstimmung gefunden wird und sich von der aktuellen Seitensprache unterscheidet, wird der Besucher benachrichtigt."
