@@ -342,7 +342,7 @@ class Dailybuddy_Elementor_Category_Post_List_Widget extends Widget_Base
                 'type'      => Controls_Manager::COLOR,
                 'default'   => '#5d3dfd',
                 'selectors' => array(
-                    '{{WRAPPER}} .dailybuddy-cpl-link:hover' => 'color: {{VALUE}};',
+                    '{{WRAPPER}} .dailybuddy-cpl-link:hover, {{WRAPPER}} .dailybuddy-cpl-dropdown-link:hover' => 'color: {{VALUE}};',
                 ),
             )
         );
@@ -367,7 +367,7 @@ class Dailybuddy_Elementor_Category_Post_List_Widget extends Widget_Base
                 'label'     => __('Hover Background', 'dailybuddy'),
                 'type'      => Controls_Manager::COLOR,
                 'selectors' => array(
-                    '{{WRAPPER}} .dailybuddy-cpl-link:hover' => 'background-color: {{VALUE}};',
+                    '{{WRAPPER}} .dailybuddy-cpl-link:hover, {{WRAPPER}} .dailybuddy-cpl-dropdown-link:hover' => 'background-color: {{VALUE}};',
                 ),
                 'condition' => array(
                     'link_style' => array('button', 'pill', 'card'),
@@ -473,7 +473,7 @@ class Dailybuddy_Elementor_Category_Post_List_Widget extends Widget_Base
                 'type'      => Controls_Manager::COLOR,
                 'default'   => '#5d3dfd',
                 'selectors' => array(
-                    '{{WRAPPER}} .dailybuddy-cpl-active .dailybuddy-cpl-link' => 'color: {{VALUE}};',
+                    '{{WRAPPER}} .dailybuddy-cpl-active .dailybuddy-cpl-link, {{WRAPPER}} .dailybuddy-cpl-dropdown-active .dailybuddy-cpl-dropdown-link' => 'color: {{VALUE}};',
                 ),
             )
         );
@@ -485,10 +485,7 @@ class Dailybuddy_Elementor_Category_Post_List_Widget extends Widget_Base
                 'type'      => Controls_Manager::COLOR,
                 'default'   => '#f0ecff',
                 'selectors' => array(
-                    '{{WRAPPER}} .dailybuddy-cpl-active .dailybuddy-cpl-link' => 'background-color: {{VALUE}};',
-                ),
-                'condition' => array(
-                    'highlight_style' => 'background',
+                    '{{WRAPPER}} .dailybuddy-cpl-active .dailybuddy-cpl-link, {{WRAPPER}} .dailybuddy-cpl-dropdown-active .dailybuddy-cpl-dropdown-link' => 'background-color: {{VALUE}};',
                 ),
             )
         );
@@ -796,7 +793,7 @@ class Dailybuddy_Elementor_Category_Post_List_Widget extends Widget_Base
                         <?php endif; ?>
                     >
                         <a href="<?php echo esc_url($p['permalink']); ?>" class="dailybuddy-cpl-link">
-                            <span class="dailybuddy-cpl-link-text"><?php echo esc_html($p['title']); ?></span>
+                            <span class="dailybuddy-cpl-link-text"><?php echo wp_kses_post($p['title']); ?></span>
                         </a>
                     </li>
                 <?php endforeach; ?>
@@ -815,7 +812,7 @@ class Dailybuddy_Elementor_Category_Post_List_Widget extends Widget_Base
                                     break;
                                 }
                             }
-                            echo esc_html($active_title ?: $posts_data[0]['title']);
+                            echo wp_kses_post($active_title ?: $posts_data[0]['title']);
                             ?>
                         </span>
                         <svg class="dailybuddy-cpl-dropdown-arrow" width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M2.5 4.5L6 8L9.5 4.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
@@ -835,7 +832,7 @@ class Dailybuddy_Elementor_Category_Post_List_Widget extends Widget_Base
                             <?php foreach ($posts_data as $p) : ?>
                                 <li class="dailybuddy-cpl-dropdown-item <?php echo $p['is_active'] ? 'dailybuddy-cpl-dropdown-active' : ''; ?>">
                                     <a href="<?php echo esc_url($p['permalink']); ?>" class="dailybuddy-cpl-dropdown-link">
-                                        <?php echo esc_html($p['title']); ?>
+                                        <?php echo wp_kses_post($p['title']); ?>
                                     </a>
                                 </li>
                             <?php endforeach; ?>
