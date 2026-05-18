@@ -3,9 +3,6 @@
  */
 document.addEventListener('DOMContentLoaded', function () {
 
-    // Track original body overflow to restore correctly
-    var savedBodyOverflow = null;
-
     /**
      * Check if we are inside the Elementor editor
      */
@@ -42,7 +39,7 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     /**
-     * Close a mobile menu and restore body scroll
+     * Close a mobile menu
      */
     function closeMobileMenu(menu) {
         var wrapper = menu.querySelector('.db-mega-menu-wrapper');
@@ -52,39 +49,8 @@ document.addEventListener('DOMContentLoaded', function () {
         menu.classList.remove('e-open');
         if (wrapper) wrapper.classList.remove('e-open');
 
-        restoreBodyOverflow();
-
         // Return focus to toggle for accessibility
         if (toggle) toggle.focus();
-    }
-
-    /**
-     * Lock body scroll (save original value first)
-     */
-    function lockBodyOverflow() {
-        if (savedBodyOverflow === null) {
-            savedBodyOverflow = document.body.style.overflow || '';
-        }
-        document.body.style.overflow = 'hidden';
-    }
-
-    /**
-     * Restore body scroll to its original value
-     */
-    function restoreBodyOverflow() {
-        if (savedBodyOverflow !== null) {
-            document.body.style.overflow = savedBodyOverflow;
-            savedBodyOverflow = null;
-        }
-    }
-
-    /**
-     * Check if a menu layout needs body scroll lock
-     */
-    function needsScrollLock(menu) {
-        return menu.classList.contains('mobile-layout-slide-left') ||
-            menu.classList.contains('mobile-layout-slide-right') ||
-            menu.classList.contains('mobile-layout-full-screen');
     }
 
     // ========== DROPDOWN ITEMS ==========
@@ -154,7 +120,6 @@ document.addEventListener('DOMContentLoaded', function () {
                 toggle.setAttribute('aria-expanded', 'true');
                 menu.classList.add('e-open');
                 if (wrapper) wrapper.classList.add('e-open');
-                if (needsScrollLock(menu)) lockBodyOverflow();
             }
         });
     });
@@ -192,6 +157,85 @@ document.addEventListener('DOMContentLoaded', function () {
             });
         }
     });
+
+    // ========== SCROLLSPY FOR ANCHOR LINKS ==========
+    // Markiert das Menü-Item, dessen #anchor-Ziel gerade im Viewport ist, mit .e-active.
+    // Items mit Dropdown bleiben unangetastet (deren e-active steuert das Auf/Zu).
+
+    (function initScrollSpy() {
+        var entries = [];
+        var currentPath = window.location.pathname;
+
+        document.querySelectorAll('.db-mega-menu-item a.db-mega-menu-title-container').forEach(function (link) {
+            var href = link.getAttribute('href') || '';
+            var hashIndex = href.indexOf('#');
+            if (hashIndex === -1) return;
+
+            var pathPart = href.substring(0, hashIndex);
+            var anchorId = href.substring(hashIndex + 1);
+            if (!anchorId) return;
+
+            // Akzeptiere nur Anker auf der aktuellen Seite (oder relative #...)
+            if (pathPart !== '' && pathPart !== currentPath && pathPart !== currentPath + '/') {
+                try {
+                    var u = new URL(href, window.location.href);
+                    if (u.pathname !== currentPath) return;
+                } catch (e) {
+                    return;
+                }
+            }
+
+            var target = document.getElementById(anchorId);
+            if (!target) return;
+
+            var menuItem = link.closest('.db-mega-menu-item');
+            if (!menuItem) return;
+
+            // Items mit Dropdown vom Scrollspy ausnehmen, sonst Konflikt mit Open-State.
+            if (menuItem.getAttribute('data-has-dropdown') === 'true') return;
+
+            entries.push({ menuItem: menuItem, target: target });
+        });
+
+        if (entries.length === 0) return;
+
+        function updateActive() {
+            var scrollPos = window.scrollY + (window.innerHeight * 0.3);
+            var current = null;
+
+            entries.forEach(function (entry) {
+                var rect = entry.target.getBoundingClientRect();
+                var top = rect.top + window.scrollY;
+                if (top <= scrollPos) {
+                    current = entry;
+                }
+            });
+
+            entries.forEach(function (entry) {
+                if (entry === current) {
+                    entry.menuItem.classList.add('e-active');
+                } else {
+                    entry.menuItem.classList.remove('e-active');
+                }
+            });
+        }
+
+        var ticking = false;
+        window.addEventListener('scroll', function () {
+            if (!ticking) {
+                window.requestAnimationFrame(function () {
+                    updateActive();
+                    ticking = false;
+                });
+                ticking = true;
+            }
+        }, { passive: true });
+
+        window.addEventListener('resize', updateActive);
+        window.addEventListener('hashchange', updateActive);
+
+        updateActive();
+    })();
 
     // ========== ESC KEY TO CLOSE ==========
 

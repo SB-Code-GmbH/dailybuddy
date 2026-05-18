@@ -129,8 +129,66 @@
             }
         });
 
+        // ========== HORIZONTAL SCROLL (Pfeile + Shadow-Toggle) ==========
+        function initHorizontalScroll() {
+            if (!$tabsWrapper.hasClass('dailybuddy-tabs-scrollable')) return;
+
+            var $nav = $tabsWrapper.find('.dailybuddy-tabs-nav').first();
+            var $ul = $nav.find('> ul').first();
+            var $btnPrev = $nav.find('.dailybuddy-scroll-btn-prev').first();
+            var $btnNext = $nav.find('.dailybuddy-scroll-btn-next').first();
+            if (!$ul.length) return;
+
+            var ul = $ul[0];
+
+            function updateState() {
+                var maxScroll = ul.scrollWidth - ul.clientWidth;
+                var hasOverflow = maxScroll > 1;
+                var atStart = ul.scrollLeft <= 0;
+                var atEnd = ul.scrollLeft >= maxScroll - 1;
+
+                $nav.toggleClass('has-scroll-prev', hasOverflow && !atStart);
+                $nav.toggleClass('has-scroll-next', hasOverflow && !atEnd);
+
+                if (!hasOverflow) {
+                    if ($btnPrev.length) $btnPrev.prop('hidden', true);
+                    if ($btnNext.length) $btnNext.prop('hidden', true);
+                    return;
+                }
+
+                if ($btnPrev.length) $btnPrev.prop('hidden', atStart);
+                if ($btnNext.length) $btnNext.prop('hidden', atEnd);
+            }
+
+            function scrollByAmount(direction) {
+                var amount = Math.max(120, ul.clientWidth * 0.8);
+                ul.scrollBy({ left: direction * amount, behavior: 'smooth' });
+            }
+
+            if ($btnPrev.length) {
+                $btnPrev.on('click', function (e) {
+                    e.preventDefault();
+                    scrollByAmount(-1);
+                });
+            }
+            if ($btnNext.length) {
+                $btnNext.on('click', function (e) {
+                    e.preventDefault();
+                    scrollByAmount(1);
+                });
+            }
+
+            $ul.on('scroll', updateState);
+            $(window).on('resize', updateState);
+
+            // Initialer Status, kurze Verzögerung damit Layouts gesetzt sind
+            updateState();
+            setTimeout(updateState, 200);
+        }
+
         // Initialize
         initTabs();
+        initHorizontalScroll();
     };
 
     // Run on Elementor Frontend

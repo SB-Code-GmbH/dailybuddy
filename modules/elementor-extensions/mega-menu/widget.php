@@ -1811,6 +1811,44 @@ class Dailybuddy_Mega_Menu_Widget extends Widget_Nested_Base
         $this->end_controls_tab();
 
         $this->start_controls_tab(
+            'mobile_menu_items_hover',
+            array('label' => __('Hover', 'dailybuddy'))
+        );
+
+        $this->add_control(
+            'mobile_menu_items_color_hover',
+            array(
+                'label'     => __('Text Color', 'dailybuddy'),
+                'type'      => Controls_Manager::COLOR,
+                'selectors' => array(
+                    '{{WRAPPER}} .db-mega-menu.e-open .db-mega-menu-title-container:hover .db-mega-menu-title-text' => 'color: {{VALUE}};',
+                    '{{WRAPPER}} .db-mega-menu.mobile-menu-only .db-mega-menu-title-container:hover .db-mega-menu-title-text' => 'color: {{VALUE}};',
+                ),
+            )
+        );
+
+        $this->add_group_control(
+            Group_Control_Background::get_type(),
+            array(
+                'name'     => 'mobile_menu_items_background_hover',
+                'types'    => array('classic', 'gradient'),
+                // phpcs:ignore WordPressVIPMinimum.Performance.WPQueryParams.PostNotIn_exclude -- Elementor control parameter, not a database query.
+                'exclude'  => array('image'),
+                'selector' => '{{WRAPPER}} .db-mega-menu.e-open .db-mega-menu-title-container:hover, {{WRAPPER}} .db-mega-menu.mobile-menu-only .db-mega-menu-title-container:hover',
+            )
+        );
+
+        $this->add_group_control(
+            Group_Control_Box_Shadow::get_type(),
+            array(
+                'name'     => 'mobile_menu_items_box_shadow_hover',
+                'selector' => '{{WRAPPER}} .db-mega-menu.e-open .db-mega-menu-title-container:hover, {{WRAPPER}} .db-mega-menu.mobile-menu-only .db-mega-menu-title-container:hover',
+            )
+        );
+
+        $this->end_controls_tab();
+
+        $this->start_controls_tab(
             'mobile_menu_items_active',
             array('label' => __('Active', 'dailybuddy'))
         );
@@ -1871,7 +1909,9 @@ class Dailybuddy_Mega_Menu_Widget extends Widget_Nested_Base
                     'vw' => array('min' => 10, 'max' => 100),
                 ),
                 'selectors'  => array(
-                    '{{WRAPPER}} .db-mega-menu.e-open .db-mega-menu-wrapper, {{WRAPPER}} .db-mega-menu.mobile-menu-only .db-mega-menu-wrapper.e-open' => 'width: {{SIZE}}{{UNIT}}; max-width: min({{SIZE}}{{UNIT}}, 100vw);',
+                    // Width für den Drawer. !important und max-width-Reset schlagen die
+                    // statischen Layout-Defaults (width: 80%; max-width: 300px) aus style.css.
+                    '{{WRAPPER}} .db-mega-menu.mobile-menu-only .db-mega-menu-wrapper, {{WRAPPER}} .db-mega-menu .db-mega-menu-wrapper.e-open' => 'width: {{SIZE}}{{UNIT}} !important; max-width: 100vw !important;',
                 ),
             )
         );
@@ -1880,8 +1920,17 @@ class Dailybuddy_Mega_Menu_Widget extends Widget_Nested_Base
             Group_Control_Background::get_type(),
             array(
                 'name'     => 'mobile_menu_box_background',
+                'label'    => __('Hintergrundfarbe', 'dailybuddy'),
                 'types'    => array('classic', 'gradient'),
                 'selector' => '{{WRAPPER}} .db-mega-menu.e-open .db-mega-menu-wrapper, {{WRAPPER}} .db-mega-menu.mobile-menu-only .db-mega-menu-wrapper.e-open',
+                'fields_options' => array(
+                    'background' => array(
+                        'default' => 'classic',
+                    ),
+                    'color' => array(
+                        'default' => '#ffffff',
+                    ),
+                ),
             )
         );
 

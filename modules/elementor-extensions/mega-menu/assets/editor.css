@@ -177,13 +177,13 @@
     overflow-y: auto;
 }
 
-/* Slide Left */
+/* Slide Left
+   Width/Max-Width NICHT mehr hier hardcoden, sonst überschreibt's den
+   Width-Slider aus dem Widget-Control. */
 .elementor-editor-active .elementor-widget-dailybuddy-mega-menu .db-mega-menu.mobile-layout-slide-left.e-open .db-mega-menu-wrapper.e-open {
     top: 0 !important;
     left: 0 !important;
     bottom: 0 !important;
-    width: 300px !important;
-    max-width: 80vw !important;
     border-radius: 0 !important;
 }
 
@@ -192,8 +192,6 @@
     top: 0 !important;
     right: 0 !important;
     bottom: 0 !important;
-    width: 300px !important;
-    max-width: 80vw !important;
     border-radius: 0 !important;
 }
 

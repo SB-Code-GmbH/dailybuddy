@@ -25,6 +25,134 @@
     /* Default: left */
 }
 
+/* ========================================
+   Horizontal Scrollable Tabs
+   Scrollbar versteckt, dunkle Shadow-Overlays an den Rändern als
+   visueller Hinweis, klickbare Pfeile für Desktop-Navigation.
+   ======================================== */
+.dailybuddy-tabs-horizontal.dailybuddy-tabs-scrollable .dailybuddy-tabs-nav {
+    position: relative;
+}
+
+.dailybuddy-tabs-horizontal.dailybuddy-tabs-scrollable .dailybuddy-tabs-nav > ul {
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    overflow-y: hidden;
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch;
+    overscroll-behavior-x: contain;
+
+    /* Scrollbar komplett verstecken */
+    scrollbar-width: none;       /* Firefox */
+    -ms-overflow-style: none;    /* IE/Edge alt */
+}
+
+.dailybuddy-tabs-horizontal.dailybuddy-tabs-scrollable .dailybuddy-tabs-nav > ul::-webkit-scrollbar {
+    display: none;
+    width: 0;
+    height: 0;
+}
+
+.dailybuddy-tabs-horizontal.dailybuddy-tabs-scrollable .dailybuddy-tabs-nav > ul > li {
+    flex-shrink: 0;
+    white-space: nowrap;
+}
+
+/* Dunkle Shadow-Overlays an den Rändern (visueller Hinweis auf Scroll)
+   Radial-Gradient mit über die Nav hinaus extending box (top/bottom
+   negativ), damit der Shadow oben/unten weich rausläuft. */
+.dailybuddy-tabs-horizontal.dailybuddy-tabs-scrollable .dailybuddy-tabs-nav::before,
+.dailybuddy-tabs-horizontal.dailybuddy-tabs-scrollable .dailybuddy-tabs-nav::after {
+    content: '';
+    position: absolute;
+    top: -8px;
+    bottom: -8px;
+    width: 140px;
+    pointer-events: none;
+    z-index: 2;
+    opacity: 0;
+    transition: opacity 0.25s ease;
+}
+
+.dailybuddy-tabs-horizontal.dailybuddy-tabs-scrollable .dailybuddy-tabs-nav::before {
+    left: 0;
+    background: radial-gradient(ellipse 140px 80% at left center,
+        rgba(0, 0, 0, 0.30) 0%,
+        rgba(0, 0, 0, 0.15) 35%,
+        rgba(0, 0, 0, 0.05) 65%,
+        rgba(0, 0, 0, 0) 100%);
+}
+
+.dailybuddy-tabs-horizontal.dailybuddy-tabs-scrollable .dailybuddy-tabs-nav::after {
+    right: 0;
+    background: radial-gradient(ellipse 140px 80% at right center,
+        rgba(0, 0, 0, 0.30) 0%,
+        rgba(0, 0, 0, 0.15) 35%,
+        rgba(0, 0, 0, 0.05) 65%,
+        rgba(0, 0, 0, 0) 100%);
+}
+
+.dailybuddy-tabs-horizontal.dailybuddy-tabs-scrollable .dailybuddy-tabs-nav.has-scroll-prev::before,
+.dailybuddy-tabs-horizontal.dailybuddy-tabs-scrollable .dailybuddy-tabs-nav.has-scroll-next::after {
+    opacity: 1;
+}
+
+/* Scroll Buttons */
+.dailybuddy-scroll-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 3;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    border: none;
+    background: #ffffff;
+    color: #1f2937;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.18);
+    transition: opacity 0.2s ease, transform 0.2s ease, background 0.2s ease;
+    padding: 0;
+    font-size: 16px;
+    line-height: 1;
+}
+
+.dailybuddy-scroll-btn:hover {
+    background: #f3f4f6;
+    transform: translateY(-50%) scale(1.06);
+}
+
+.dailybuddy-scroll-btn:focus-visible {
+    outline: 2px solid #3b82f6;
+    outline-offset: 2px;
+}
+
+.dailybuddy-scroll-btn[hidden] {
+    display: none;
+}
+
+.dailybuddy-scroll-btn-prev {
+    left: 4px;
+}
+
+.dailybuddy-scroll-btn-next {
+    right: 4px;
+}
+
+/* Mobile-Override: bestehende max-width:768px Regel zwingt sonst column-Layout */
+@media (max-width: 768px) {
+    .dailybuddy-tabs-horizontal.dailybuddy-tabs-scrollable .dailybuddy-tabs-nav > ul {
+        flex-direction: row;
+    }
+
+    .dailybuddy-tabs-horizontal.dailybuddy-tabs-scrollable .dailybuddy-tabs-nav > ul > li {
+        width: auto;
+    }
+}
+
 /* Tab Alignment wird durch Elementor Selectors gesteuert */
 /* Left: justify-content: flex-start (default) */
 /* Center: justify-content: center */
@@ -118,7 +246,7 @@
     background: #3b82f6;
     border-color: #3b82f6;
     color: #ffffff;
-    box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
+    /* Box-Shadow wird via Editor-Control gesteuert (Style → Tab Title → Active → Box Shadow). */
 }
 
 .dailybuddy-tab-nav-item.active:hover,

@@ -122,6 +122,22 @@ class Dailybuddy_Elementor_Advanced_Tabs_Widget extends Widget_Base
         );
 
         $this->add_control(
+            'dailybuddy_adv_tabs_horizontal_scroll',
+            array(
+                'label'        => __('Horizontal scrollbar', 'dailybuddy'),
+                'description'  => __('Bei vielen Tabs nicht umbrechen, sondern horizontal scrollbar machen.', 'dailybuddy'),
+                'type'         => Controls_Manager::SWITCHER,
+                'default'      => '',
+                'return_value' => 'yes',
+                'label_on'     => __('Yes', 'dailybuddy'),
+                'label_off'    => __('No', 'dailybuddy'),
+                'condition'    => array(
+                    'dailybuddy_adv_tab_layout' => 'dailybuddy-tabs-horizontal',
+                ),
+            )
+        );
+
+        $this->add_control(
             'dailybuddy_adv_tabs_alignment',
             array(
                 'label'       => __('Tab Alignment', 'dailybuddy'),
@@ -145,8 +161,20 @@ class Dailybuddy_Elementor_Advanced_Tabs_Widget extends Widget_Base
                         'icon'  => 'eicon-text-align-justify',
                     ),
                 ),
-                'condition'   => array(
-                    'dailybuddy_adv_tab_layout' => 'dailybuddy-tabs-horizontal',
+                'conditions'  => array(
+                    'relation' => 'and',
+                    'terms'    => array(
+                        array(
+                            'name'     => 'dailybuddy_adv_tab_layout',
+                            'operator' => '=',
+                            'value'    => 'dailybuddy-tabs-horizontal',
+                        ),
+                        array(
+                            'name'     => 'dailybuddy_adv_tabs_horizontal_scroll',
+                            'operator' => '!=',
+                            'value'    => 'yes',
+                        ),
+                    ),
                 ),
                 'selectors'   => array(
                     '{{WRAPPER}} .dailybuddy-tabs-horizontal .dailybuddy-tabs-nav ul' => 'justify-content: {{VALUE}};',
@@ -642,6 +670,7 @@ class Dailybuddy_Elementor_Advanced_Tabs_Widget extends Widget_Base
             'dailybuddy_adv_tabs_tab_icon_gap',
             array(
                 'label'      => __('Icon Gap', 'dailybuddy'),
+                'description' => __('Abstand zwischen Icon und Titel (funktioniert in alle Richtungen).', 'dailybuddy'),
                 'type'       => Controls_Manager::SLIDER,
                 'default'    => array(
                     'size' => 10,
@@ -656,12 +685,7 @@ class Dailybuddy_Elementor_Advanced_Tabs_Widget extends Widget_Base
                     ),
                 ),
                 'selectors'  => array(
-                    '{{WRAPPER}} .dailybuddy-advance-tabs .dailybuddy-tabs-nav > ul li.dailybuddy-tab-inline-icon i' => 'margin-right: {{SIZE}}{{UNIT}};',
-                    '{{WRAPPER}} .dailybuddy-advance-tabs .dailybuddy-tabs-nav > ul li.dailybuddy-tab-inline-icon svg' => 'margin-right: {{SIZE}}{{UNIT}};',
-                    '{{WRAPPER}} .dailybuddy-advance-tabs .dailybuddy-tabs-nav > ul li.dailybuddy-tab-inline-icon img' => 'margin-right: {{SIZE}}{{UNIT}};',
-                    '{{WRAPPER}} .dailybuddy-advance-tabs .dailybuddy-tabs-nav > ul li.dailybuddy-tab-top-icon i' => 'margin-bottom: {{SIZE}}{{UNIT}};',
-                    '{{WRAPPER}} .dailybuddy-advance-tabs .dailybuddy-tabs-nav > ul li.dailybuddy-tab-top-icon svg' => 'margin-bottom: {{SIZE}}{{UNIT}};',
-                    '{{WRAPPER}} .dailybuddy-advance-tabs .dailybuddy-tabs-nav > ul li.dailybuddy-tab-top-icon img' => 'margin-bottom: {{SIZE}}{{UNIT}};',
+                    '{{WRAPPER}} .dailybuddy-advance-tabs .dailybuddy-tabs-nav > ul > li.dailybuddy-tab-nav-item' => 'gap: {{SIZE}}{{UNIT}};',
                 ),
             )
         );
@@ -824,6 +848,28 @@ class Dailybuddy_Elementor_Advanced_Tabs_Widget extends Widget_Base
             )
         );
 
+        $this->add_group_control(
+            Group_Control_Box_Shadow::get_type(),
+            array(
+                'name'     => 'dailybuddy_adv_tabs_tab_box_shadow_active',
+                'selector' => '{{WRAPPER}} .dailybuddy-advance-tabs .dailybuddy-tabs-nav > ul li.active, {{WRAPPER}} .dailybuddy-advance-tabs .dailybuddy-tabs-nav > ul li.active-default',
+                'fields_options' => array(
+                    'box_shadow_type' => array(
+                        'default' => 'yes',
+                    ),
+                    'box_shadow' => array(
+                        'default' => array(
+                            'horizontal' => 0,
+                            'vertical'   => 4,
+                            'blur'       => 12,
+                            'spread'     => 0,
+                            'color'      => 'rgba(59, 130, 246, 0.3)',
+                        ),
+                    ),
+                ),
+            )
+        );
+
         $this->end_controls_tab();
 
         $this->end_controls_tabs();
@@ -922,6 +968,104 @@ class Dailybuddy_Elementor_Advanced_Tabs_Widget extends Widget_Base
         );
 
         $this->end_controls_section();
+
+        // Scroll Buttons Style (nur sichtbar wenn horizontaler Scroll aktiv)
+        $this->start_controls_section(
+            'dailybuddy_section_adv_tabs_scroll_buttons_style',
+            array(
+                'label'      => __('Scroll Buttons', 'dailybuddy'),
+                'tab'        => Controls_Manager::TAB_STYLE,
+                'conditions' => array(
+                    'relation' => 'and',
+                    'terms'    => array(
+                        array(
+                            'name'     => 'dailybuddy_adv_tab_layout',
+                            'operator' => '=',
+                            'value'    => 'dailybuddy-tabs-horizontal',
+                        ),
+                        array(
+                            'name'     => 'dailybuddy_adv_tabs_horizontal_scroll',
+                            'operator' => '=',
+                            'value'    => 'yes',
+                        ),
+                    ),
+                ),
+            )
+        );
+
+        $this->start_controls_tabs('dailybuddy_adv_tabs_scroll_btn_tabs');
+
+        // Normal
+        $this->start_controls_tab(
+            'dailybuddy_adv_tabs_scroll_btn_normal',
+            array('label' => __('Normal', 'dailybuddy'))
+        );
+
+        $this->add_control(
+            'dailybuddy_adv_tabs_scroll_btn_bg',
+            array(
+                'label'     => __('Background Color', 'dailybuddy'),
+                'type'      => Controls_Manager::COLOR,
+                'default'   => '#ffffff',
+                'selectors' => array(
+                    '{{WRAPPER}} .dailybuddy-advance-tabs .dailybuddy-scroll-btn' => 'background-color: {{VALUE}};',
+                ),
+            )
+        );
+
+        $this->add_control(
+            'dailybuddy_adv_tabs_scroll_btn_color',
+            array(
+                'label'     => __('Icon Color', 'dailybuddy'),
+                'type'      => Controls_Manager::COLOR,
+                'default'   => '#1f2937',
+                'selectors' => array(
+                    '{{WRAPPER}} .dailybuddy-advance-tabs .dailybuddy-scroll-btn'   => 'color: {{VALUE}};',
+                    '{{WRAPPER}} .dailybuddy-advance-tabs .dailybuddy-scroll-btn i' => 'color: {{VALUE}};',
+                    '{{WRAPPER}} .dailybuddy-advance-tabs .dailybuddy-scroll-btn svg' => 'fill: {{VALUE}};',
+                ),
+            )
+        );
+
+        $this->end_controls_tab();
+
+        // Hover
+        $this->start_controls_tab(
+            'dailybuddy_adv_tabs_scroll_btn_hover',
+            array('label' => __('Hover', 'dailybuddy'))
+        );
+
+        $this->add_control(
+            'dailybuddy_adv_tabs_scroll_btn_bg_hover',
+            array(
+                'label'     => __('Background Color', 'dailybuddy'),
+                'type'      => Controls_Manager::COLOR,
+                'default'   => '#f3f4f6',
+                'selectors' => array(
+                    '{{WRAPPER}} .dailybuddy-advance-tabs .dailybuddy-scroll-btn:hover' => 'background-color: {{VALUE}};',
+                ),
+            )
+        );
+
+        $this->add_control(
+            'dailybuddy_adv_tabs_scroll_btn_color_hover',
+            array(
+                'label'     => __('Icon Color', 'dailybuddy'),
+                'type'      => Controls_Manager::COLOR,
+                'default'   => '#1f2937',
+                'selectors' => array(
+                    '{{WRAPPER}} .dailybuddy-advance-tabs .dailybuddy-scroll-btn:hover'   => 'color: {{VALUE}};',
+                    '{{WRAPPER}} .dailybuddy-advance-tabs .dailybuddy-scroll-btn:hover i' => 'color: {{VALUE}};',
+                    '{{WRAPPER}} .dailybuddy-advance-tabs .dailybuddy-scroll-btn:hover svg' => 'fill: {{VALUE}};',
+                ),
+            )
+        );
+
+        $this->end_controls_tab();
+
+        $this->end_controls_tabs();
+
+        $this->end_controls_section();
     }
 
     /**
@@ -986,13 +1130,23 @@ class Dailybuddy_Elementor_Advanced_Tabs_Widget extends Widget_Base
             }
         }
 
+        $wrapper_classes = array(
+            'dailybuddy-advance-tabs',
+            esc_attr($settings['dailybuddy_adv_tab_layout']),
+        );
+
+        if (
+            !empty($settings['dailybuddy_adv_tabs_horizontal_scroll']) &&
+            $settings['dailybuddy_adv_tabs_horizontal_scroll'] === 'yes' &&
+            $settings['dailybuddy_adv_tab_layout'] === 'dailybuddy-tabs-horizontal'
+        ) {
+            $wrapper_classes[] = 'dailybuddy-tabs-scrollable';
+        }
+
         $this->add_render_attribute(
             'dailybuddy_tab_wrapper',
             array(
-                'class' => array(
-                    'dailybuddy-advance-tabs',
-                    esc_attr($settings['dailybuddy_adv_tab_layout']),
-                ),
+                'class'      => $wrapper_classes,
                 'data-tabid' => esc_attr($this->get_id()),
             )
         );
@@ -1038,9 +1192,19 @@ class Dailybuddy_Elementor_Advanced_Tabs_Widget extends Widget_Base
             )
         );
 
+        $is_scrollable = (
+            $settings['dailybuddy_adv_tab_layout'] === 'dailybuddy-tabs-horizontal' &&
+            !empty($settings['dailybuddy_adv_tabs_horizontal_scroll']) &&
+            $settings['dailybuddy_adv_tabs_horizontal_scroll'] === 'yes'
+        );
 ?>
         <div <?php $this->print_render_attribute_string('dailybuddy_tab_wrapper'); ?>>
             <div <?php $this->print_render_attribute_string('dailybuddy_tab_style_wrapper'); ?>>
+                <?php if ($is_scrollable) : ?>
+                    <button type="button" class="dailybuddy-scroll-btn dailybuddy-scroll-btn-prev" aria-label="<?php echo esc_attr__('Scroll left', 'dailybuddy'); ?>" hidden>
+                        <i class="eicon-chevron-left" aria-hidden="true"></i>
+                    </button>
+                <?php endif; ?>
                 <ul <?php $this->print_render_attribute_string('dailybuddy_tab_icon_position'); ?>>
                     <?php foreach ($settings['dailybuddy_adv_tabs_tab'] as $index => $tab) :
                         $tab_id = $tab['dailybuddy_adv_tabs_tab_id'] ? $tab['dailybuddy_adv_tabs_tab_id'] : $this->str_to_css_id($tab['dailybuddy_adv_tabs_tab_title']);
@@ -1132,6 +1296,11 @@ class Dailybuddy_Elementor_Advanced_Tabs_Widget extends Widget_Base
                         </li>
                     <?php endforeach; ?>
                 </ul>
+                <?php if ($is_scrollable) : ?>
+                    <button type="button" class="dailybuddy-scroll-btn dailybuddy-scroll-btn-next" aria-label="<?php echo esc_attr__('Scroll right', 'dailybuddy'); ?>">
+                        <i class="eicon-chevron-right" aria-hidden="true"></i>
+                    </button>
+                <?php endif; ?>
             </div>
 
             <div class="dailybuddy-tabs-content">

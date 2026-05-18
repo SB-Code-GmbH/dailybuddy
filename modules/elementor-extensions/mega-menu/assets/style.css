@@ -231,6 +231,13 @@
     background-color: #fff;
 }
 
+/* Mobile-Drawer: Inneren Content transparent halten, damit der Wrapper-Background (z.B. Gradient) durchgehend sichtbar ist. */
+:where(.elementor-widget-dailybuddy-mega-menu .db-mega-menu.mobile-menu-only .db-mega-menu-content > .e-con),
+:where(.elementor-widget-dailybuddy-mega-menu .db-mega-menu.breakpoint-tablet.e-open .db-mega-menu-content > .e-con),
+:where(.elementor-widget-dailybuddy-mega-menu .db-mega-menu.breakpoint-mobile.e-open .db-mega-menu-content > .e-con) {
+    background-color: transparent;
+}
+
 /* Show container when item IS active */
 .elementor-widget-dailybuddy-mega-menu .db-mega-menu-item.e-active>.db-mega-menu-content>.e-con {
     display: flex;
@@ -942,7 +949,7 @@
     padding: 15px 20px;
     position: sticky;
     top: 0;
-    background: inherit;
+    background: transparent;
     z-index: 10001;
 }
 
@@ -1183,4 +1190,90 @@
 .elementor-widget-dailybuddy-mega-menu .db-mega-menu.mobile-menu-only .db-mega-menu-dropdown-icon {
     flex-shrink: 0;
     margin-left: 0;
+}
+
+/* ========================================
+   Mobile Drawer - Item Entrance Animation
+   Stagger-Effekt für Menü-Items beim Öffnen
+   Richtung passt sich dem Drawer-Layout an
+   ======================================== */
+
+@keyframes db-mega-menu-item-from-left {
+    from {
+        opacity: 0;
+        transform: translate3d(-24px, 0, 0);
+    }
+    to {
+        opacity: 1;
+        transform: translate3d(0, 0, 0);
+    }
+}
+
+@keyframes db-mega-menu-item-from-right {
+    from {
+        opacity: 0;
+        transform: translate3d(24px, 0, 0);
+    }
+    to {
+        opacity: 1;
+        transform: translate3d(0, 0, 0);
+    }
+}
+
+@keyframes db-mega-menu-item-from-top {
+    from {
+        opacity: 0;
+        transform: translate3d(0, -18px, 0);
+    }
+    to {
+        opacity: 1;
+        transform: translate3d(0, 0, 0);
+    }
+}
+
+/* Base: Items werden initial unsichtbar versteckt, sobald der Drawer offen ist.
+   forwards = Endzustand bleibt erhalten. */
+.elementor-widget-dailybuddy-mega-menu .db-mega-menu.e-open .db-mega-menu-wrapper.e-open > .db-mega-menu-heading > .db-mega-menu-item,
+.elementor-widget-dailybuddy-mega-menu .db-mega-menu.mobile-menu-only .db-mega-menu-wrapper.e-open > .db-mega-menu-heading > .db-mega-menu-item {
+    opacity: 0;
+    animation: db-mega-menu-item-from-left 0.45s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+    animation-delay: calc(120ms + var(--db-item-i, 0) * 55ms);
+    will-change: transform, opacity;
+}
+
+/* Slide-Right Drawer: aus der rechten Seite reinfliegen */
+.elementor-widget-dailybuddy-mega-menu .db-mega-menu.mobile-layout-slide-right .db-mega-menu-wrapper.e-open > .db-mega-menu-heading > .db-mega-menu-item {
+    animation-name: db-mega-menu-item-from-right;
+}
+
+/* Slide-Down + Full-Screen: von oben einblenden */
+.elementor-widget-dailybuddy-mega-menu .db-mega-menu.mobile-layout-slide-down .db-mega-menu-wrapper.e-open > .db-mega-menu-heading > .db-mega-menu-item,
+.elementor-widget-dailybuddy-mega-menu .db-mega-menu.mobile-layout-full-screen .db-mega-menu-wrapper.e-open > .db-mega-menu-heading > .db-mega-menu-item {
+    animation-name: db-mega-menu-item-from-top;
+}
+
+/* Stagger via nth-child Fallback (falls JS --db-item-i nicht setzt, bis 15 Items) */
+.elementor-widget-dailybuddy-mega-menu .db-mega-menu-wrapper.e-open > .db-mega-menu-heading > .db-mega-menu-item:nth-child(1) { --db-item-i: 0; }
+.elementor-widget-dailybuddy-mega-menu .db-mega-menu-wrapper.e-open > .db-mega-menu-heading > .db-mega-menu-item:nth-child(2) { --db-item-i: 1; }
+.elementor-widget-dailybuddy-mega-menu .db-mega-menu-wrapper.e-open > .db-mega-menu-heading > .db-mega-menu-item:nth-child(3) { --db-item-i: 2; }
+.elementor-widget-dailybuddy-mega-menu .db-mega-menu-wrapper.e-open > .db-mega-menu-heading > .db-mega-menu-item:nth-child(4) { --db-item-i: 3; }
+.elementor-widget-dailybuddy-mega-menu .db-mega-menu-wrapper.e-open > .db-mega-menu-heading > .db-mega-menu-item:nth-child(5) { --db-item-i: 4; }
+.elementor-widget-dailybuddy-mega-menu .db-mega-menu-wrapper.e-open > .db-mega-menu-heading > .db-mega-menu-item:nth-child(6) { --db-item-i: 5; }
+.elementor-widget-dailybuddy-mega-menu .db-mega-menu-wrapper.e-open > .db-mega-menu-heading > .db-mega-menu-item:nth-child(7) { --db-item-i: 6; }
+.elementor-widget-dailybuddy-mega-menu .db-mega-menu-wrapper.e-open > .db-mega-menu-heading > .db-mega-menu-item:nth-child(8) { --db-item-i: 7; }
+.elementor-widget-dailybuddy-mega-menu .db-mega-menu-wrapper.e-open > .db-mega-menu-heading > .db-mega-menu-item:nth-child(9) { --db-item-i: 8; }
+.elementor-widget-dailybuddy-mega-menu .db-mega-menu-wrapper.e-open > .db-mega-menu-heading > .db-mega-menu-item:nth-child(10) { --db-item-i: 9; }
+.elementor-widget-dailybuddy-mega-menu .db-mega-menu-wrapper.e-open > .db-mega-menu-heading > .db-mega-menu-item:nth-child(11) { --db-item-i: 10; }
+.elementor-widget-dailybuddy-mega-menu .db-mega-menu-wrapper.e-open > .db-mega-menu-heading > .db-mega-menu-item:nth-child(12) { --db-item-i: 11; }
+.elementor-widget-dailybuddy-mega-menu .db-mega-menu-wrapper.e-open > .db-mega-menu-heading > .db-mega-menu-item:nth-child(13) { --db-item-i: 12; }
+.elementor-widget-dailybuddy-mega-menu .db-mega-menu-wrapper.e-open > .db-mega-menu-heading > .db-mega-menu-item:nth-child(14) { --db-item-i: 13; }
+.elementor-widget-dailybuddy-mega-menu .db-mega-menu-wrapper.e-open > .db-mega-menu-heading > .db-mega-menu-item:nth-child(15) { --db-item-i: 14; }
+
+/* Accessibility: Animation komplett deaktivieren wenn User reduzierte Bewegung wünscht */
+@media (prefers-reduced-motion: reduce) {
+    .elementor-widget-dailybuddy-mega-menu .db-mega-menu-wrapper.e-open > .db-mega-menu-heading > .db-mega-menu-item {
+        animation: none !important;
+        opacity: 1 !important;
+        transform: none !important;
+    }
 }
