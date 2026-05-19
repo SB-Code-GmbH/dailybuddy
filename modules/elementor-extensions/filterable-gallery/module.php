@@ -108,7 +108,7 @@ class Dailybuddy_Elementor_Filterable_Gallery
             'dompurify',
             DAILYBUDDY_URL . 'vendor/dompurify/purify.min.js',
             array(),
-            '3.0.6',
+            '3.4.5',
             true
         );
 

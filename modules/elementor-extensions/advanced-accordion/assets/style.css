@@ -193,22 +193,31 @@
 }
 
 .dailybuddy-accordion.style-modern .dailybuddy-accordion-title {
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
     color: #fff;
     border: none;
     border-radius: 0;
     padding: 20px 25px;
 }
 
-.dailybuddy-accordion.style-modern .dailybuddy-accordion-title:hover {
+/* Default backgrounds — only applied when the editor's Background control is
+   untouched. The marker classes are added in PHP render(). When the user picks
+   a background, the marker is dropped and Elementor's CSS owns the property. */
+.dailybuddy-accordion.style-modern.use-default-tab-bg .dailybuddy-accordion-title {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+}
+
+.dailybuddy-accordion.style-modern.use-default-tab-hover-bg .dailybuddy-accordion-title:hover {
     background: linear-gradient(135deg, #764ba2 0%, #667eea 100%);
 }
 
 .dailybuddy-accordion.style-modern .dailybuddy-accordion-content {
-    background: #fff;
     border: none;
     border-radius: 0;
     padding: 25px;
+}
+
+.dailybuddy-accordion.style-modern.use-default-content-bg .dailybuddy-accordion-content {
+    background: #fff;
 }
 
 .dailybuddy-accordion.style-modern .dailybuddy-accordion-icon {

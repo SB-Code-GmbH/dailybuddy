@@ -14,13 +14,14 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     /**
-     * Close all dropdown items within a specific menu
+     * Close all dropdown items within a specific menu.
+     * Only touches items with data-has-dropdown="true" — non-dropdown items
+     * may have e-active for a different reason (current page or scrollspy).
      */
     function closeItemsInMenu(menu, except) {
-        menu.querySelectorAll('.db-mega-menu-item').forEach(function (el) {
+        menu.querySelectorAll('.db-mega-menu-item[data-has-dropdown="true"]').forEach(function (el) {
             if (el !== except) {
                 el.classList.remove('e-active');
-                // Update aria-expanded on dropdown icon
                 var icon = el.querySelector('.db-mega-menu-dropdown-icon');
                 if (icon) icon.setAttribute('aria-expanded', 'false');
             }
@@ -52,6 +53,53 @@ document.addEventListener('DOMContentLoaded', function () {
         // Return focus to toggle for accessibility
         if (toggle) toggle.focus();
     }
+
+    // ========== PAGE-MATCH ACTIVE STATE ==========
+    // Marks the menu item whose link points at the current URL with .e-active.
+    // Runs client-side so it survives cached headers/footers (Elementor Pro templates,
+    // page caches, etc.) where the server-rendered class may be stale.
+
+    (function applyPageActiveState() {
+        if (isEditorMode()) return;
+
+        function normalizePath(p) {
+            p = '/' + String(p || '').replace(/^\/+/, '').replace(/\/+$/, '');
+            return p === '/' ? '/' : p;
+        }
+
+        var currentPath = normalizePath(window.location.pathname);
+
+        document.querySelectorAll('.db-mega-menu-item').forEach(function (item) {
+            // Dropdown items reserve .e-active for open/close state — skip them.
+            if (item.getAttribute('data-has-dropdown') === 'true') return;
+
+            var link = item.querySelector('a.db-mega-menu-title-container');
+            if (!link) {
+                item.classList.remove('e-active');
+                return;
+            }
+
+            var href = link.getAttribute('href') || '';
+
+            // Skip URLs that scrollspy or non-navigational schemes handle.
+            if (!href || href === '#' || href.charAt(0) === '#') return;
+            if (href.indexOf('#') !== -1) return; // anchor links → scrollspy owns this
+            if (/^(javascript:|mailto:|tel:|sms:)/i.test(href)) return;
+
+            var linkPath;
+            try {
+                linkPath = new URL(href, window.location.href).pathname;
+            } catch (e) {
+                linkPath = href;
+            }
+
+            if (normalizePath(linkPath) === currentPath) {
+                item.classList.add('e-active');
+            } else {
+                item.classList.remove('e-active');
+            }
+        });
+    })();
 
     // ========== DROPDOWN ITEMS ==========
 

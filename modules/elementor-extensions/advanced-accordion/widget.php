@@ -849,6 +849,23 @@ class Dailybuddy_Elementor_Advanced_Accordion_Widget extends Widget_Base
             $this->add_render_attribute('accordion-wrapper', 'class', 'has-numbering');
         }
 
+        // Mark areas where the user hasn't customized the background, so the
+        // design-style defaults (e.g. modern's gradient) only apply there. When
+        // the user picks a background in the editor the marker class goes away,
+        // letting Elementor's generated CSS take over cleanly.
+        if (empty($settings['tab_background_background'])) {
+            $this->add_render_attribute('accordion-wrapper', 'class', 'use-default-tab-bg');
+        }
+        if (empty($settings['tab_hover_background_background'])) {
+            $this->add_render_attribute('accordion-wrapper', 'class', 'use-default-tab-hover-bg');
+        }
+        if (empty($settings['tab_active_background_background'])) {
+            $this->add_render_attribute('accordion-wrapper', 'class', 'use-default-tab-active-bg');
+        }
+        if (empty($settings['content_background_background'])) {
+            $this->add_render_attribute('accordion-wrapper', 'class', 'use-default-content-bg');
+        }
+
         // FAQ Schema
         $faq_schema = array();
         if ($settings['enable_faq_schema'] === 'yes') {

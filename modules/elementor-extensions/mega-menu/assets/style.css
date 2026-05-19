@@ -86,6 +86,10 @@
     color: var(--n-menu-title-color-hover);
 }
 
+.elementor-widget-dailybuddy-mega-menu .db-mega-menu-item.e-active .db-mega-menu-title {
+    color: var(--n-menu-title-color-active);
+}
+
 /* ========== TITLE CONTAINER ========== */
 .elementor-widget-dailybuddy-mega-menu .db-mega-menu-title-container {
     align-items: var(--n-menu-title-align-items);

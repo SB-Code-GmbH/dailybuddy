@@ -2235,6 +2235,54 @@ class Dailybuddy_Mega_Menu_Widget extends Widget_Nested_Base
     <?php
     }
 
+    /**
+     * Whether the given menu-item URL points at the current request.
+     * Exact path match only (ignores query string, hash and scheme/host).
+     * Returns false in the Elementor editor — there is no "current page" there.
+     */
+    protected function is_current_url($url)
+    {
+        if (empty($url) || !is_string($url)) {
+            return false;
+        }
+
+        if (Plugin::$instance->editor->is_edit_mode() || Plugin::$instance->preview->is_preview_mode()) {
+            return false;
+        }
+
+        if ($url === '#' || strpos($url, '#') === 0) {
+            return false;
+        }
+
+        // Anchor-bearing links are owned by the JS scrollspy, leave them alone.
+        if (strpos($url, '#') !== false) {
+            return false;
+        }
+
+        if (preg_match('#^(javascript:|mailto:|tel:|sms:)#i', $url)) {
+            return false;
+        }
+
+        $item_path = wp_parse_url($url, PHP_URL_PATH);
+        if ($item_path === null || $item_path === false) {
+            return false;
+        }
+
+        $request_uri = isset($_SERVER['REQUEST_URI']) ? esc_url_raw(wp_unslash($_SERVER['REQUEST_URI'])) : '/';
+        $current_path = wp_parse_url($request_uri, PHP_URL_PATH);
+        if (!is_string($current_path)) {
+            $current_path = '/';
+        }
+
+        $normalize = static function ($path) {
+            $path = '/' . ltrim((string) $path, '/');
+            $path = rtrim($path, '/');
+            return $path === '' ? '/' : $path;
+        };
+
+        return $normalize($item_path) === $normalize($current_path);
+    }
+
     protected function render_menu_item($index, $item, $settings)
     {
         $widget_number = $this->get_menu_widget_id();
@@ -2293,8 +2341,15 @@ class Dailybuddy_Mega_Menu_Widget extends Widget_Nested_Base
                 }
             }
         }
+
+        // Mark item as active when its URL matches the current page.
+        // Dropdown items keep e-active reserved for open/close state, so skip them here.
+        $li_classes = array('db-mega-menu-item');
+        if (!$has_dropdown_content && $this->is_current_url($url)) {
+            $li_classes[] = 'e-active';
+        }
     ?>
-        <li class="db-mega-menu-item" data-has-dropdown="<?php echo esc_attr($has_dropdown_content ? 'true' : 'false'); ?>">
+        <li class="<?php echo esc_attr(implode(' ', $li_classes)); ?>" data-has-dropdown="<?php echo esc_attr($has_dropdown_content ? 'true' : 'false'); ?>">
             <div id="<?php echo esc_attr($menu_item_id); ?>" class="<?php echo esc_attr(implode(' ', $item_classes)); ?>">
                 <?php if (!empty($url)) : ?>
                     <a class="db-mega-menu-title-container e-link e-focus" href="<?php echo esc_url($url); ?>"<?php if ($is_external) : ?> target="_blank"<?php endif; ?><?php if (!empty($rel_string)) : ?> rel="<?php echo esc_attr($rel_string); ?>"<?php endif; ?><?php foreach ($custom_attrs_array as $attr_key => $attr_value) : ?> <?php echo esc_attr($attr_key); ?>="<?php echo esc_attr($attr_value); ?>"<?php endforeach; ?>>
