@@ -74,6 +74,12 @@ document.addEventListener('DOMContentLoaded', function () {
         // Reset prior offset so the natural position is measured.
         content.style.left = '';
 
+        // Skip clamp in mobile drawer mode — the content is inline there
+        // (position: relative from the @media rule) and shifting it would
+        // push it out of the drawer.
+        var menu = item.closest('.db-mega-menu');
+        if (menu && (menu.classList.contains('e-open') || menu.classList.contains('mobile-menu-only'))) return;
+
         requestAnimationFrame(function () {
             var rect = content.getBoundingClientRect();
             var viewportWidth = window.innerWidth || document.documentElement.clientWidth;

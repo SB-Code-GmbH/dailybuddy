@@ -118,6 +118,17 @@
     font-size: var(--n-menu-title-font-size);
     line-height: var(--n-menu-title-line-height);
     transition: all var(--n-menu-title-transition);
+    /* Stabilize rendered width across state changes */
+    font-synthesis: none;
+}
+
+/* Prevent 1px width shift between normal/active state.
+   Elementor's active-typography control often boosts font-weight, which makes
+   the rendered text slightly wider and pushes sibling items. We override that
+   here and simulate the heavier look via text-shadow (zero-width). */
+.elementor-widget-dailybuddy-mega-menu .db-mega-menu-item.e-active .db-mega-menu-title-text {
+    font-weight: inherit !important;
+    text-shadow: 0.35px 0 0 currentColor, -0.35px 0 0 currentColor;
 }
 
 /* ========== MENU ICON ========== */
@@ -180,6 +191,9 @@
 .elementor-widget-dailybuddy-mega-menu .db-mega-menu-dropdown-icon-closed {
     align-items: center;
     justify-content: center;
+    /* Lock width so caret-up / caret-down swap doesn't shift the title row by 1px */
+    width: 1em;
+    text-align: center;
 }
 
 /* Dropdown icon states */
@@ -461,6 +475,9 @@
     .elementor-widget-dailybuddy-mega-menu .db-mega-menu.breakpoint-tablet.e-open .db-mega-menu-wrapper .db-mega-menu-heading {
         display: flex !important;
         flex-direction: column;
+        flex-wrap: nowrap !important;
+        justify-content: flex-start !important;
+        row-gap: 0 !important;
     }
 
     .elementor-widget-dailybuddy-mega-menu .db-mega-menu.breakpoint-tablet.e-open .db-mega-menu-item {
@@ -476,6 +493,8 @@
     .elementor-widget-dailybuddy-mega-menu .db-mega-menu.breakpoint-tablet.e-open .db-mega-menu-content {
         position: relative !important;
         width: 100% !important;
+        min-width: 0 !important;
+        max-width: 100% !important;
         left: 0 !important;
         right: 0 !important;
         top: auto !important;
@@ -628,6 +647,9 @@
     .elementor-widget-dailybuddy-mega-menu .db-mega-menu.breakpoint-mobile.e-open .db-mega-menu-wrapper .db-mega-menu-heading {
         display: flex !important;
         flex-direction: column;
+        flex-wrap: nowrap !important;
+        justify-content: flex-start !important;
+        row-gap: 0 !important;
     }
 
     .elementor-widget-dailybuddy-mega-menu .db-mega-menu.breakpoint-mobile.e-open .db-mega-menu-item {
@@ -643,6 +665,8 @@
     .elementor-widget-dailybuddy-mega-menu .db-mega-menu.breakpoint-mobile.e-open .db-mega-menu-content {
         position: relative !important;
         width: 100% !important;
+        min-width: 0 !important;
+        max-width: 100% !important;
         left: 0 !important;
         right: 0 !important;
         top: auto !important;
@@ -839,6 +863,9 @@
 .elementor-widget-dailybuddy-mega-menu .db-mega-menu.mobile-menu-only .db-mega-menu-wrapper .db-mega-menu-heading {
     display: flex !important;
     flex-direction: column;
+    flex-wrap: nowrap !important;
+    justify-content: flex-start !important;
+    row-gap: 0 !important;
 }
 
 .elementor-widget-dailybuddy-mega-menu .db-mega-menu.mobile-menu-only .db-mega-menu-item {
@@ -854,6 +881,8 @@
 .elementor-widget-dailybuddy-mega-menu .db-mega-menu.mobile-menu-only .db-mega-menu-content {
     position: relative !important;
     width: 100% !important;
+    min-width: 0 !important;
+    max-width: 100% !important;
     left: 0 !important;
     right: 0 !important;
     top: auto !important;
@@ -1325,3 +1354,4 @@
     min-height: 0 !important;
     -webkit-overflow-scrolling: touch;
 }
+
