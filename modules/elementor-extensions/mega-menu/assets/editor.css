@@ -290,3 +290,21 @@
 .elementor-editor-active .elementor-widget-dailybuddy-mega-menu .db-mega-menu.e-open .db-mega-menu-wrapper.e-open .db-action-button-mobile {
     display: flex !important;
 }
+
+/* ========================================
+   Hide empty container drop-zone placeholders in editor.
+   Elementor renders "Drag widget here" for nested child containers that
+   belong to menu items without dropdown content — noise that doesn't reflect
+   the frontend output.
+   ======================================== */
+.elementor-editor-active .elementor-widget-dailybuddy-mega-menu .elementor-empty-view,
+.elementor-editor-active .elementor-widget-dailybuddy-mega-menu .elementor-first-add {
+    display: none !important;
+}
+
+/* Also hide the empty-state placeholder on .db-mega-menu-content containers
+   whose menu item has no dropdown enabled. */
+.elementor-editor-active .elementor-widget-dailybuddy-mega-menu .db-mega-menu-item[data-has-dropdown="false"] .elementor-empty-view,
+.elementor-editor-active .elementor-widget-dailybuddy-mega-menu .db-mega-menu-item[data-has-dropdown="false"] .elementor-first-add {
+    display: none !important;
+}
