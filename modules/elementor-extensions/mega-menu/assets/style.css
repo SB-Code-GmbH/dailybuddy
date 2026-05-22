@@ -218,6 +218,19 @@
     width: var(--stretch-width);
 }
 
+/* Content-width mode: item is the positioning parent, dropdown fits content */
+.elementor-widget-dailybuddy-mega-menu .db-mega-menu-item[data-dropdown-width="content"] {
+    position: relative;
+}
+
+.elementor-widget-dailybuddy-mega-menu .db-mega-menu-item[data-dropdown-width="content"] > .db-mega-menu-content {
+    left: 0;
+    right: auto;
+    width: max-content;
+    max-width: 80vw;
+    min-width: 240px;
+}
+
 /* Show active content UNDER the menu - when LI has e-active */
 .elementor-widget-dailybuddy-mega-menu .db-mega-menu-item.e-active>.db-mega-menu-content {
     display: flex;
@@ -1280,4 +1293,35 @@
         opacity: 1 !important;
         transform: none !important;
     }
+}
+
+/* ========================================
+   Mobile drawer scroll behavior
+   Wrapper itself does NOT scroll. Header and top/bottom action buttons
+   are pinned (flex-shrink:0), only the heading list scrolls.
+   ======================================== */
+.elementor-widget-dailybuddy-mega-menu .db-mega-menu.e-open .db-mega-menu-wrapper.e-open,
+.elementor-widget-dailybuddy-mega-menu .db-mega-menu.mobile-menu-only .db-mega-menu-wrapper.e-open {
+    overflow: hidden !important;
+    display: flex !important;
+    flex-direction: column !important;
+}
+
+.elementor-widget-dailybuddy-mega-menu .db-mega-menu.e-open .db-mega-menu-wrapper.e-open > .db-mega-menu-mobile-header,
+.elementor-widget-dailybuddy-mega-menu .db-mega-menu.mobile-menu-only .db-mega-menu-wrapper.e-open > .db-mega-menu-mobile-header,
+.elementor-widget-dailybuddy-mega-menu .db-mega-menu.e-open .db-mega-menu-wrapper.e-open > .db-mega-menu-action-button.mobile-top,
+.elementor-widget-dailybuddy-mega-menu .db-mega-menu.e-open .db-mega-menu-wrapper.e-open > .db-mega-menu-action-button.mobile-bottom,
+.elementor-widget-dailybuddy-mega-menu .db-mega-menu.mobile-menu-only .db-mega-menu-wrapper.e-open > .db-mega-menu-action-button.mobile-top,
+.elementor-widget-dailybuddy-mega-menu .db-mega-menu.mobile-menu-only .db-mega-menu-wrapper.e-open > .db-mega-menu-action-button.mobile-bottom {
+    flex: 0 0 auto !important;
+    position: static !important;
+}
+
+.elementor-widget-dailybuddy-mega-menu .db-mega-menu.e-open .db-mega-menu-wrapper.e-open > .db-mega-menu-heading,
+.elementor-widget-dailybuddy-mega-menu .db-mega-menu.mobile-menu-only .db-mega-menu-wrapper.e-open > .db-mega-menu-heading {
+    flex: 1 1 auto !important;
+    overflow-y: auto !important;
+    overflow-x: hidden !important;
+    min-height: 0 !important;
+    -webkit-overflow-scrolling: touch;
 }

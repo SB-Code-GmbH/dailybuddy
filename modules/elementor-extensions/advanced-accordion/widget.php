@@ -449,6 +449,68 @@ class Dailybuddy_Elementor_Advanced_Accordion_Widget extends Widget_Base
             )
         );
 
+        $this->add_responsive_control(
+            'item_border_radius',
+            array(
+                'label'      => __('Item Border Radius', 'dailybuddy'),
+                'type'       => Controls_Manager::DIMENSIONS,
+                'size_units' => array('px', '%'),
+                'separator'  => 'before',
+                'selectors'  => array(
+                    '{{WRAPPER}} .dailybuddy-accordion-item' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                ),
+            )
+        );
+
+        $this->start_controls_tabs('item_shadow_tabs');
+
+        $this->start_controls_tab(
+            'item_shadow_normal',
+            array('label' => __('Normal', 'dailybuddy'))
+        );
+
+        $this->add_group_control(
+            Group_Control_Box_Shadow::get_type(),
+            array(
+                'name'     => 'item_box_shadow',
+                'selector' => '{{WRAPPER}} .dailybuddy-accordion-item',
+            )
+        );
+
+        $this->end_controls_tab();
+
+        $this->start_controls_tab(
+            'item_shadow_hover',
+            array('label' => __('Hover', 'dailybuddy'))
+        );
+
+        $this->add_group_control(
+            Group_Control_Box_Shadow::get_type(),
+            array(
+                'name'     => 'item_box_shadow_hover',
+                'selector' => '{{WRAPPER}} .dailybuddy-accordion-item:hover',
+            )
+        );
+
+        $this->end_controls_tab();
+
+        $this->start_controls_tab(
+            'item_shadow_active',
+            array('label' => __('Active', 'dailybuddy'))
+        );
+
+        $this->add_group_control(
+            Group_Control_Box_Shadow::get_type(),
+            array(
+                'name'     => 'item_box_shadow_active',
+                'selector' => '{{WRAPPER}} .dailybuddy-accordion-item.active',
+            )
+        );
+
+        $this->end_controls_tab();
+
+        $this->end_controls_tabs();
+
         $this->end_controls_section();
 
         // Tab Title Style
@@ -540,6 +602,18 @@ class Dailybuddy_Elementor_Advanced_Accordion_Widget extends Widget_Base
             )
         );
 
+        $this->add_responsive_control(
+            'tab_border_radius',
+            array(
+                'label'      => __('Border Radius', 'dailybuddy'),
+                'type'       => Controls_Manager::DIMENSIONS,
+                'size_units' => array('px', '%'),
+                'selectors'  => array(
+                    '{{WRAPPER}} .dailybuddy-accordion-title' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                ),
+            )
+        );
+
         $this->end_controls_tab();
 
         // Hover State
@@ -577,6 +651,18 @@ class Dailybuddy_Elementor_Advanced_Accordion_Widget extends Widget_Base
                 'type'      => Controls_Manager::COLOR,
                 'selectors' => array(
                     '{{WRAPPER}} .dailybuddy-accordion-title:hover' => 'border-color: {{VALUE}};',
+                ),
+            )
+        );
+
+        $this->add_responsive_control(
+            'tab_hover_border_radius',
+            array(
+                'label'      => __('Border Radius', 'dailybuddy'),
+                'type'       => Controls_Manager::DIMENSIONS,
+                'size_units' => array('px', '%'),
+                'selectors'  => array(
+                    '{{WRAPPER}} .dailybuddy-accordion-title:hover' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
                 ),
             )
         );
@@ -623,28 +709,28 @@ class Dailybuddy_Elementor_Advanced_Accordion_Widget extends Widget_Base
             )
         );
 
-        $this->end_controls_tab();
-
-        $this->end_controls_tabs();
-
         $this->add_responsive_control(
-            'tab_border_radius',
+            'tab_active_border_radius',
             array(
                 'label'      => __('Border Radius', 'dailybuddy'),
                 'type'       => Controls_Manager::DIMENSIONS,
                 'size_units' => array('px', '%'),
-                'separator'  => 'before',
                 'selectors'  => array(
-                    '{{WRAPPER}} .dailybuddy-accordion-title' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                    '{{WRAPPER}} .dailybuddy-accordion-item.active .dailybuddy-accordion-title' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
                 ),
             )
         );
 
+        $this->end_controls_tab();
+
+        $this->end_controls_tabs();
+
         $this->add_group_control(
             Group_Control_Box_Shadow::get_type(),
             array(
-                'name'     => 'tab_box_shadow',
-                'selector' => '{{WRAPPER}} .dailybuddy-accordion-title',
+                'name'      => 'tab_box_shadow',
+                'selector'  => '{{WRAPPER}} .dailybuddy-accordion-title',
+                'separator' => 'before',
             )
         );
 
@@ -707,6 +793,19 @@ class Dailybuddy_Elementor_Advanced_Accordion_Widget extends Widget_Base
                 ),
                 'selectors'  => array(
                     '{{WRAPPER}} .dailybuddy-accordion-content' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                ),
+            )
+        );
+
+        $this->add_responsive_control(
+            'content_margin',
+            array(
+                'label'        => __('Margin', 'dailybuddy'),
+                'type'         => Controls_Manager::DIMENSIONS,
+                'size_units'   => array('px', '%', 'em'),
+                'allowed_dimensions' => array('top', 'right', 'bottom', 'left'),
+                'selectors'    => array(
+                    '{{WRAPPER}} .dailybuddy-accordion-content' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
                 ),
             )
         );

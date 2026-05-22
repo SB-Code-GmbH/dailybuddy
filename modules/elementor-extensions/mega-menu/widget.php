@@ -243,6 +243,25 @@ class Dailybuddy_Mega_Menu_Widget extends Widget_Nested_Base
         );
 
         $repeater->add_control(
+            'item_dropdown_width',
+            array(
+                'label'   => __('Dropdown Width', 'dailybuddy'),
+                'type'    => Controls_Manager::SELECT,
+                'default' => 'viewport',
+                'options' => array(
+                    'viewport' => __('Full Width (Page)', 'dailybuddy'),
+                    'content'  => __('Content Width', 'dailybuddy'),
+                ),
+                'description' => __('Full Width stretches the dropdown across the entire page. Content Width fits the dropdown to its content under the menu item.', 'dailybuddy'),
+                'render_type' => 'template',
+                'frontend_available' => true,
+                'condition' => array(
+                    'item_dropdown_content' => 'yes',
+                ),
+            )
+        );
+
+        $repeater->add_control(
             'item_icon',
             array(
                 'label' => __('Icon', 'dailybuddy'),
@@ -2348,8 +2367,10 @@ class Dailybuddy_Mega_Menu_Widget extends Widget_Nested_Base
         if (!$has_dropdown_content && $this->is_current_url($url)) {
             $li_classes[] = 'e-active';
         }
+
+        $dropdown_width = !empty($item['item_dropdown_width']) ? $item['item_dropdown_width'] : 'viewport';
     ?>
-        <li class="<?php echo esc_attr(implode(' ', $li_classes)); ?>" data-has-dropdown="<?php echo esc_attr($has_dropdown_content ? 'true' : 'false'); ?>">
+        <li class="<?php echo esc_attr(implode(' ', $li_classes)); ?>" data-has-dropdown="<?php echo esc_attr($has_dropdown_content ? 'true' : 'false'); ?>" data-dropdown-width="<?php echo esc_attr($dropdown_width); ?>">
             <div id="<?php echo esc_attr($menu_item_id); ?>" class="<?php echo esc_attr(implode(' ', $item_classes)); ?>">
                 <?php if (!empty($url)) : ?>
                     <a class="db-mega-menu-title-container e-link e-focus" href="<?php echo esc_url($url); ?>"<?php if ($is_external) : ?> target="_blank"<?php endif; ?><?php if (!empty($rel_string)) : ?> rel="<?php echo esc_attr($rel_string); ?>"<?php endif; ?><?php foreach ($custom_attrs_array as $attr_key => $attr_value) : ?> <?php echo esc_attr($attr_key); ?>="<?php echo esc_attr($attr_value); ?>"<?php endforeach; ?>>
@@ -2660,7 +2681,7 @@ class Dailybuddy_Mega_Menu_Widget extends Widget_Nested_Base
                             });
                             #>
 
-                            <li class="db-mega-menu-item" data-has-dropdown="{{ hasDropdownContent ? 'true' : 'false' }}">
+                            <li class="db-mega-menu-item" data-has-dropdown="{{ hasDropdownContent ? 'true' : 'false' }}" data-dropdown-width="{{ item.item_dropdown_width || 'viewport' }}">
                                 <div {{{ view.getRenderAttributeString( menuItemWrapperKey ) }}}>
                                     <# if ( menuItemLink ) { #>
                                         <a {{{ view.getRenderAttributeString( menuItemTitleContainerLinkKey ) }}}>
@@ -2789,7 +2810,7 @@ class Dailybuddy_Mega_Menu_Widget extends Widget_Nested_Base
                     'aria-controls': 'db-mega-menu-content-' + menuItemUid
                 }, null, true);
                 #>
-                <li class="db-mega-menu-item" data-has-dropdown="{{ hasDropdownContent ? 'true' : 'false' }}">
+                <li class="db-mega-menu-item" data-has-dropdown="{{ hasDropdownContent ? 'true' : 'false' }}" data-dropdown-width="{{ data.item_dropdown_width || 'viewport' }}">
                     <div {{{ view.getRenderAttributeString( menuItemWrapperKey ) }}}>
                         <# if ( menuItemLink ) { #>
                             <a {{{ view.getRenderAttributeString( menuItemTitleContainerLinkKey ) }}}>

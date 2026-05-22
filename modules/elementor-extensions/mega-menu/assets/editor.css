@@ -10,14 +10,19 @@
    - .db-mega-menu-content = absolute, under heading
    ======================================== */
 
-/* Make heading the positioning parent */
+/* Make heading the positioning parent (used by viewport-mode dropdowns) */
 .elementor-editor-active .elementor-widget-dailybuddy-mega-menu .db-mega-menu-heading {
     position: relative !important;
 }
 
-/* CRITICAL: Item must be static so content positions to heading, not item */
+/* Default: items are static so dropdown positions to the heading */
 .elementor-editor-active .elementor-widget-dailybuddy-mega-menu .db-mega-menu-item {
     position: static !important;
+}
+
+/* Content-mode items: item itself is the positioning parent */
+.elementor-editor-active .elementor-widget-dailybuddy-mega-menu .db-mega-menu-item[data-dropdown-width="content"] {
+    position: relative !important;
 }
 
 /* ========================================
@@ -33,24 +38,41 @@
 }
 
 /* ========================================
-   SHOW ACTIVE - FULL VIEWPORT WIDTH (OVERLAY)
+   SHOW ACTIVE - shared base
    ======================================== */
 .elementor-editor-active .elementor-widget-dailybuddy-mega-menu .db-mega-menu-content.e-active,
 .elementor-editor-active .elementor-widget-dailybuddy-mega-menu .db-mega-menu-item.e-active>.db-mega-menu-content {
     display: flex !important;
     flex-direction: column;
-
-    /* POSITIONING - FULL VIEWPORT WIDTH */
-    position: absolute !important;
-    top: 100% !important;
-    left: 50% !important;
-    transform: translateX(-50%) !important;
-    width: 100vw !important;
-    max-width: 100vw !important;
-
-    /* Styling */
     min-height: 100px;
     z-index: 9999 !important;
+}
+
+/* ========================================
+   VIEWPORT MODE: Full Width across the page
+   (fixed positioning to escape narrow heading parent)
+   ======================================== */
+.elementor-editor-active .elementor-widget-dailybuddy-mega-menu .db-mega-menu-item[data-dropdown-width="viewport"].e-active>.db-mega-menu-content {
+    position: fixed !important;
+    top: var(--db-mega-menu-dropdown-top, auto) !important;
+    left: 0 !important;
+    right: 0 !important;
+    width: 100vw !important;
+    max-width: 100vw !important;
+}
+
+/* ========================================
+   CONTENT MODE: Width fits content, under the item
+   ======================================== */
+.elementor-editor-active .elementor-widget-dailybuddy-mega-menu .db-mega-menu-item[data-dropdown-width="content"].e-active>.db-mega-menu-content {
+    position: absolute !important;
+    top: 100% !important;
+    left: 0 !important;
+    right: auto !important;
+    transform: none !important;
+    width: max-content !important;
+    max-width: 80vw !important;
+    min-width: 240px;
 }
 
 /* Container inside must be visible */
@@ -174,7 +196,19 @@
     background: #fff;
     box-shadow: 0 4px 20px rgba(0,0,0,0.15);
     padding: 0;
-    overflow-y: auto;
+    overflow: hidden !important;
+}
+
+/* Mobile drawer in editor: header pinned, only heading scrolls */
+.elementor-editor-active .elementor-widget-dailybuddy-mega-menu .db-mega-menu.e-open .db-mega-menu-wrapper.e-open > .db-mega-menu-mobile-header,
+.elementor-editor-active .elementor-widget-dailybuddy-mega-menu .db-mega-menu.e-open .db-mega-menu-wrapper.e-open > .db-mega-menu-action-button {
+    flex-shrink: 0 !important;
+}
+
+.elementor-editor-active .elementor-widget-dailybuddy-mega-menu .db-mega-menu.e-open .db-mega-menu-wrapper.e-open > .db-mega-menu-heading {
+    flex: 1 1 auto !important;
+    overflow-y: auto !important;
+    min-height: 0 !important;
 }
 
 /* Slide Left

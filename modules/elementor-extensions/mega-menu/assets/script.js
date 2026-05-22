@@ -37,7 +37,33 @@ document.addEventListener('DOMContentLoaded', function () {
 
         var icon = item.querySelector('.db-mega-menu-dropdown-icon');
         if (icon) icon.setAttribute('aria-expanded', isActive ? 'true' : 'false');
+
+        if (isActive) {
+            applyViewportStretch(item);
+        }
     }
+
+    /**
+     * For data-dropdown-width="viewport" items, set --stretch-* on the
+     * dropdown content so it spans the full viewport width regardless of
+     * where the menu is positioned in the page.
+     */
+    function applyViewportStretch(item) {
+        if (!item || item.getAttribute('data-dropdown-width') !== 'viewport') return;
+        var heading = item.closest('.db-mega-menu-heading');
+        var content = item.querySelector('.db-mega-menu-content');
+        if (!heading || !content) return;
+
+        var rect = heading.getBoundingClientRect();
+        content.style.setProperty('--stretch-left', (-rect.left) + 'px');
+        content.style.setProperty('--stretch-right', 'auto');
+        content.style.setProperty('--stretch-width', '100vw');
+    }
+
+    // Recompute viewport stretch on resize so the dropdown stays full-width.
+    window.addEventListener('resize', function () {
+        document.querySelectorAll('.db-mega-menu-item.e-active[data-dropdown-width="viewport"]').forEach(applyViewportStretch);
+    });
 
     /**
      * Close a mobile menu

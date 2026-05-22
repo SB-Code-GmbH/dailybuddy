@@ -268,7 +268,11 @@
                     content.classList.add('e-active');
                     var icon = menuItem.querySelector('.db-mega-menu-dropdown-icon');
                     if (icon) icon.setAttribute('aria-expanded', 'true');
-                    
+
+                    // For viewport-mode dropdown, set the top offset so
+                    // position: fixed sits directly below the menu heading.
+                    positionViewportDropdown(menuItem);
+
                     // Store state
                     window.dbMegaMenuActiveState[widgetId] = menuItemIndex;
                 } else {
@@ -339,8 +343,28 @@
                 content.classList.add('e-active');
                 var icon = menuItem.querySelector('.db-mega-menu-dropdown-icon');
                 if (icon) icon.setAttribute('aria-expanded', 'true');
-                
+
+                // Reposition the viewport-mode dropdown when state is restored.
+                positionViewportDropdown(menuItem);
+
             });
+        }
+
+        /**
+         * For data-dropdown-width="viewport" items, set the CSS variable
+         * --db-mega-menu-dropdown-top to the bottom of the menu heading so
+         * position: fixed renders directly below the menu bar.
+         */
+        function positionViewportDropdown(menuItem) {
+            if (!menuItem) return;
+            if (menuItem.getAttribute('data-dropdown-width') !== 'viewport') return;
+
+            var heading = menuItem.closest('.db-mega-menu-heading');
+            var content = menuItem.querySelector('.db-mega-menu-content');
+            if (!heading || !content) return;
+
+            var rect = heading.getBoundingClientRect();
+            content.style.setProperty('--db-mega-menu-dropdown-top', rect.bottom + 'px');
         }
         
         // Listen for element changes
@@ -371,9 +395,9 @@
         // Also listen for any repeater item changes
         elementor.channels.editor.on('change', function(controlView) {
             if (!controlView || !controlView.model) return;
-            
+
             var controlName = controlView.model.get('name');
-            if (controlName === 'item_dropdown_content') {
+            if (controlName === 'item_dropdown_content' || controlName === 'item_dropdown_width') {
                 setTimeout(updateDropdownStateFromModel, 100);
             }
             if (controlName === 'mobile_menu_only') {
@@ -581,12 +605,21 @@
                 var hasDropdown = item.get ? item.get('item_dropdown_content') === 'yes' : item.item_dropdown_content === 'yes';
                 var itemTitle = item.get ? item.get('item_title') : item.item_title;
                 var itemIcon = item.get ? item.get('item_icon') : item.item_icon;
-                
+                var dropdownWidth = item.get ? item.get('item_dropdown_width') : item.item_dropdown_width;
+                if (!dropdownWidth) dropdownWidth = 'viewport';
+
                 var currentAttr = domItem.getAttribute('data-has-dropdown');
-                
-                
-                // Update data attribute
+
+
+                // Update data attributes
                 domItem.setAttribute('data-has-dropdown', hasDropdown ? 'true' : 'false');
+                domItem.setAttribute('data-dropdown-width', dropdownWidth);
+
+                // If this item is currently active and uses viewport mode,
+                // recalculate its top offset.
+                if (hasDropdown && domItem.classList.contains('e-active')) {
+                    positionViewportDropdown(domItem);
+                }
                 
                 // Update title
                 var titleSpan = domItem.querySelector('.db-mega-menu-title-text');
