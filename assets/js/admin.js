@@ -79,6 +79,7 @@ jQuery(document).ready(function ($) {
     $('.dailybuddy-module-toggle').on('change', function () {
         var $checkbox = $(this);
         var $card = $checkbox.closest('.dailybuddy-module-card');
+        var $reloadContainer = $checkbox.closest('[data-wpbuddy-reload-on-toggle="1"]');
         var moduleId = $checkbox.data('module-id');
         var moduleName = $checkbox.data('module-name');
         var isActive = $checkbox.is(':checked');
@@ -86,6 +87,9 @@ jQuery(document).ready(function ($) {
         // Show loading state
         $checkbox.prop('disabled', true);
         $card.css('opacity', '0.6');
+        if ($reloadContainer.length) {
+            $reloadContainer.addClass('is-loading');
+        }
 
         // AJAX Save
         $.ajax({
@@ -115,9 +119,24 @@ jQuery(document).ready(function ($) {
                     // Show Snackbar
                     showSnackbar(moduleName, isActive);
 
+                    // Container asks for a reload after toggle (e.g. WPBuddy
+                    // CTA that reveals the pairing token). Reload with
+                    // focus_category so we land on the same tab.
+                    if ($reloadContainer.length) {
+                        var category = $checkbox.data('module-id').split('/')[0];
+                        var url = new URL(window.location.href);
+                        url.searchParams.set('page', 'dailybuddy');
+                        url.searchParams.set('focus_category', category);
+                        setTimeout(function () { window.location.href = url.toString(); }, 500);
+                        return; // keep loader visible until navigation
+                    }
+
                 } else {
                     // Revert checkbox on error
                     $checkbox.prop('checked', !isActive);
+                    if ($reloadContainer.length) {
+                        $reloadContainer.removeClass('is-loading');
+                    }
                     showSnackbar(response.data.message || __('Error!', 'dailybuddy'), false, 'error');
                 }
             },
@@ -125,9 +144,22 @@ jQuery(document).ready(function ($) {
                 $checkbox.prop('disabled', false);
                 $card.css('opacity', '1');
                 $checkbox.prop('checked', !isActive);
+                if ($reloadContainer.length) {
+                    $reloadContainer.removeClass('is-loading');
+                }
                 showSnackbar(__('Connection error. Please try again.', 'dailybuddy'), false, 'error');
             }
         });
+    });
+
+    // WPBuddy: confirm + show loader when regenerate form is submitted
+    $(document).on('submit', '.dailybuddy-wpbuddy-token__regen', function (e) {
+        var msg = $(this).data('confirm');
+        if (msg && !window.confirm(msg)) {
+            e.preventDefault();
+            return false;
+        }
+        $(this).closest('[data-wpbuddy-reload-on-toggle="1"]').addClass('is-loading');
     });
 
     // Snackbar Function (mit gettext)
@@ -179,5 +211,27 @@ jQuery(document).ready(function ($) {
             }
         });
     }
+
+    // WPBuddy: copy pairing token to clipboard
+    $(document).on('click', '.dailybuddy-wpbuddy-token__copy', function () {
+        const $btn = $(this);
+        const targetId = $btn.data('target');
+        const input = document.getElementById(targetId);
+        if (!input) return;
+
+        const done = function () {
+            const original = $btn.html();
+            $btn.html('<span class="fa-solid fa-check"></span> ' + __('Copied', 'dailybuddy'));
+            setTimeout(function () { $btn.html(original); }, 1500);
+        };
+
+        if (navigator.clipboard && window.isSecureContext) {
+            navigator.clipboard.writeText(input.value).then(done);
+        } else {
+            input.select();
+            document.execCommand('copy');
+            done();
+        }
+    });
 
 });
