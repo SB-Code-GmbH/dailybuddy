@@ -81,17 +81,85 @@ $dailybuddy_wpbuddy_active = $dailybuddy_wpbuddy_connector
 
         <?php
         $dailybuddy_wpbuddy_connection = new Dailybuddy_Platform_Connector_Connection();
+        $dailybuddy_wpbuddy_pairings   = $dailybuddy_wpbuddy_connection->get_pairings();
+        $dailybuddy_wpbuddy_date_fmt   = get_option('date_format') . ' ' . get_option('time_format');
+        ?>
+
+        <?php if (! empty($dailybuddy_wpbuddy_pairings)) : ?>
+            <div class="dailybuddy-wpbuddy-pairings">
+                <div class="dailybuddy-wpbuddy-pairings__header">
+                    <span class="fa-solid fa-satellite-dish"></span>
+                    <h3>
+                        <?php
+                        printf(
+                            esc_html(_n(
+                                'Connected with %d platform',
+                                'Connected with %d platforms',
+                                count($dailybuddy_wpbuddy_pairings),
+                                'dailybuddy'
+                            )),
+                            count($dailybuddy_wpbuddy_pairings)
+                        );
+                        ?>
+                    </h3>
+                </div>
+
+                <ul class="dailybuddy-wpbuddy-pairing-list">
+                    <?php foreach ($dailybuddy_wpbuddy_pairings as $dailybuddy_wpbuddy_pairing) :
+                        $dailybuddy_wpbuddy_p_url   = (string) ($dailybuddy_wpbuddy_pairing['platform_url'] ?? '');
+                        $dailybuddy_wpbuddy_p_name  = (string) ($dailybuddy_wpbuddy_pairing['platform_name'] ?? '');
+                        $dailybuddy_wpbuddy_p_uuid  = (string) ($dailybuddy_wpbuddy_pairing['site_uuid'] ?? '');
+                        $dailybuddy_wpbuddy_p_since = (int)    ($dailybuddy_wpbuddy_pairing['connected_at'] ?? 0);
+                        $dailybuddy_wpbuddy_p_since_fmt = $dailybuddy_wpbuddy_p_since
+                            ? wp_date($dailybuddy_wpbuddy_date_fmt, $dailybuddy_wpbuddy_p_since)
+                            : '—';
+                    ?>
+                        <li class="dailybuddy-wpbuddy-pairing">
+                            <div class="dailybuddy-wpbuddy-pairing__body">
+                                <div class="dailybuddy-wpbuddy-pairing__title">
+                                    <a href="<?php echo esc_url($dailybuddy_wpbuddy_p_url); ?>" target="_blank" rel="noopener noreferrer">
+                                        <?php echo esc_html($dailybuddy_wpbuddy_p_name ?: $dailybuddy_wpbuddy_p_url); ?>
+                                    </a>
+                                </div>
+                                <div class="dailybuddy-wpbuddy-pairing__meta">
+                                    <?php esc_html_e('Since', 'dailybuddy'); ?> <?php echo esc_html($dailybuddy_wpbuddy_p_since_fmt); ?>
+                                    · <?php esc_html_e('UUID', 'dailybuddy'); ?> <code><?php echo esc_html($dailybuddy_wpbuddy_p_uuid); ?></code>
+                                </div>
+                            </div>
+                            <form
+                                method="post"
+                                action="<?php echo esc_url(admin_url('admin-post.php')); ?>"
+                                class="dailybuddy-wpbuddy-disconnect"
+                                data-confirm="<?php echo esc_attr(sprintf(__('Disconnect from %s? That platform will stop receiving updates.', 'dailybuddy'), $dailybuddy_wpbuddy_p_name ?: $dailybuddy_wpbuddy_p_url)); ?>">
+                                <input type="hidden" name="action" value="<?php echo esc_attr(Dailybuddy_Platform_Connector_Connection::ACTION_DISCONNECT); ?>">
+                                <input type="hidden" name="site_uuid" value="<?php echo esc_attr($dailybuddy_wpbuddy_p_uuid); ?>">
+                                <?php wp_nonce_field(Dailybuddy_Platform_Connector_Connection::ACTION_DISCONNECT); ?>
+                                <button type="submit" class="button dailybuddy-wpbuddy-btn-danger">
+                                    <span class="fa-solid fa-link-slash"></span>
+                                    <?php esc_html_e('Disconnect', 'dailybuddy'); ?>
+                                </button>
+                            </form>
+                        </li>
+                    <?php endforeach; ?>
+                </ul>
+            </div>
+        <?php endif; ?>
+
+        <?php
         $dailybuddy_wpbuddy_token      = $dailybuddy_wpbuddy_connection->ensure_pairing_token();
         $dailybuddy_wpbuddy_expires_at = $dailybuddy_wpbuddy_connection->get_pairing_token_expires_at();
-        $dailybuddy_wpbuddy_expires_in = max(0, $dailybuddy_wpbuddy_expires_at - time());
-        $dailybuddy_wpbuddy_expires_min = (int) ceil($dailybuddy_wpbuddy_expires_in / 60);
+        $dailybuddy_wpbuddy_has_pairs  = ! empty($dailybuddy_wpbuddy_pairings);
         ?>
 
         <div class="dailybuddy-wpbuddy-panel">
 
-            <h3><?php esc_html_e('Pairing token', 'dailybuddy'); ?></h3>
+            <h3>
+                <?php echo $dailybuddy_wpbuddy_has_pairs
+                    ? esc_html__('Pair with another platform', 'dailybuddy')
+                    : esc_html__('Pairing token', 'dailybuddy'); ?>
+            </h3>
             <p>
-                <?php esc_html_e('Copy this token and paste it into your WPBuddy platform to link this site. The token is single-use and expires shortly.', 'dailybuddy'); ?>
+                <?php esc_html_e('Copy this token and paste it into your WPBuddy platform to link this site. The token is single-use.', 'dailybuddy'); ?>
             </p>
 
             <div class="dailybuddy-wpbuddy-token">
@@ -110,14 +178,11 @@ $dailybuddy_wpbuddy_active = $dailybuddy_wpbuddy_connector
                 </button>
             </div>
 
-            <p class="dailybuddy-wpbuddy-token__meta">
-                <?php
-                printf(
-                    /* translators: %d: minutes remaining */
-                    esc_html(_n('Expires in ~%d minute.', 'Expires in ~%d minutes.', $dailybuddy_wpbuddy_expires_min, 'dailybuddy')),
-                    (int) $dailybuddy_wpbuddy_expires_min
-                );
-                ?>
+            <p class="dailybuddy-wpbuddy-token__meta"
+               id="dailybuddy-wpbuddy-token-meta"
+               data-expires-at="<?php echo esc_attr($dailybuddy_wpbuddy_expires_at); ?>">
+                <?php esc_html_e('Expires in', 'dailybuddy'); ?>
+                <span id="dailybuddy-wpbuddy-token-countdown">…</span>
             </p>
 
             <form
@@ -149,6 +214,31 @@ $dailybuddy_wpbuddy_active = $dailybuddy_wpbuddy_connector
                 </span>
             </div>
         </div>
+
+        <script>
+        (function () {
+            var meta = document.getElementById('dailybuddy-wpbuddy-token-meta');
+            var out  = document.getElementById('dailybuddy-wpbuddy-token-countdown');
+            if (!meta || !out) return;
+            var expiresAt = parseInt(meta.getAttribute('data-expires-at'), 10);
+            if (!expiresAt) return;
+
+            function tick() {
+                var left = expiresAt - Math.floor(Date.now() / 1000);
+                if (left <= 0) {
+                    meta.innerHTML = '<strong style="color:#d63638;"><?php echo esc_js(__('Token expired — regenerate to continue.', 'dailybuddy')); ?></strong>';
+                    var input = document.getElementById('dailybuddy-wpbuddy-token-input');
+                    if (input) input.disabled = true;
+                    return;
+                }
+                var m = Math.floor(left / 60);
+                var s = left % 60;
+                out.textContent = m + ':' + (s < 10 ? '0' + s : s);
+                setTimeout(tick, 1000);
+            }
+            tick();
+        })();
+        </script>
 
     <?php endif; ?>
 

@@ -823,3 +823,108 @@
 @keyframes dailybuddy-wpbuddy-spin {
     to { transform: rotate(360deg); }
 }
+
+/* ─── WPBuddy: connected-state (reuses .dailybuddy-wpbuddy-cta) ─── */
+
+.dailybuddy-wpbuddy-cta__meta {
+    display: inline-block;
+    margin-top: 0.5rem;
+    font-size: 0.85rem;
+    color: #787c82;
+}
+.dailybuddy-wpbuddy-cta__meta code {
+    background: #f6f7f7;
+    padding: 2px 8px;
+    border-radius: 3px;
+    font-size: 0.8rem;
+    color: #1d2327;
+    margin-left: 0.25rem;
+}
+
+.dailybuddy-wpbuddy-disconnect {
+    display: inline-block;
+    margin: 0.5rem 0;
+}
+
+/* Danger button (Disconnect) */
+.dailybuddy-wpbuddy-btn-danger.button,
+.dailybuddy-wpbuddy-btn-danger.button:hover,
+.dailybuddy-wpbuddy-btn-danger.button:focus {
+    background: #fff;
+    border-color: #d63638;
+    color: #d63638;
+    text-shadow: none;
+    box-shadow: none;
+}
+.dailybuddy-wpbuddy-btn-danger.button:hover {
+    background: #d63638;
+    color: #fff;
+    border-color: #b32d2e;
+}
+
+/* WPBuddy: multi-pairings list */
+.dailybuddy-wpbuddy-pairings {
+    background: #fff;
+    border: 1px solid #e2e4e7;
+    border-radius: 12px;
+    padding: 1.5rem 1.75rem;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.04);
+    margin-bottom: 1.5rem;
+}
+.dailybuddy-wpbuddy-pairings__header {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 1rem;
+}
+.dailybuddy-wpbuddy-pairings__header .fa-solid {
+    font-size: 1.1rem;
+    color: #91CE00;
+}
+.dailybuddy-wpbuddy-pairings__header h3 {
+    margin: 0;
+    font-size: 1.1rem;
+    color: #1d2327;
+}
+.dailybuddy-wpbuddy-pairing-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+.dailybuddy-wpbuddy-pairing {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    padding: 0.85rem 0;
+    border-top: 1px solid #f0f0f1;
+}
+.dailybuddy-wpbuddy-pairing:first-child { border-top: none; padding-top: 0; }
+.dailybuddy-wpbuddy-pairing__body {
+    flex-grow: 1;
+    min-width: 0;
+}
+.dailybuddy-wpbuddy-pairing__title {
+    font-weight: 500;
+    color: #1d2327;
+}
+.dailybuddy-wpbuddy-pairing__title a {
+    color: #1d2327;
+    text-decoration: none;
+}
+.dailybuddy-wpbuddy-pairing__title a:hover { text-decoration: underline; }
+.dailybuddy-wpbuddy-pairing__meta {
+    font-size: 0.8rem;
+    color: #646970;
+    margin-top: 2px;
+}
+.dailybuddy-wpbuddy-pairing__meta code {
+    background: #f6f7f7;
+    padding: 1px 6px;
+    border-radius: 3px;
+    font-size: 0.75rem;
+}
+.dailybuddy-wpbuddy-pairing form {
+    margin: 0;
+    flex-shrink: 0;
+}

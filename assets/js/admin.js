@@ -152,8 +152,8 @@ jQuery(document).ready(function ($) {
         });
     });
 
-    // WPBuddy: confirm + show loader when regenerate form is submitted
-    $(document).on('submit', '.dailybuddy-wpbuddy-token__regen', function (e) {
+    // WPBuddy: confirm + show loader when regenerate/disconnect form is submitted
+    $(document).on('submit', '.dailybuddy-wpbuddy-token__regen, .dailybuddy-wpbuddy-disconnect', function (e) {
         var msg = $(this).data('confirm');
         if (msg && !window.confirm(msg)) {
             e.preventDefault();

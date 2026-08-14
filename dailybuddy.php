@@ -32,6 +32,7 @@ require_once DAILYBUDDY_PATH . 'includes/helpers.php';
 require_once DAILYBUDDY_PATH . 'includes/class-dailybuddy.php';
 require_once DAILYBUDDY_PATH . 'includes/class-module-loader.php';
 require_once DAILYBUDDY_PATH . 'includes/class-settings.php';
+require_once DAILYBUDDY_PATH . 'includes/class-rest-core.php';
 require_once DAILYBUDDY_PATH . 'admin/class-admin-page.php';
 
 // Include Translation Scanner (only in DEV_MODE)

@@ -33,6 +33,10 @@ class Dailybuddy
             $admin_page->init();
         }
 
+        // Plugin-core REST (always on, regardless of module state) — so
+        // the WPBuddy platform can flip modules on/off remotely.
+        new Dailybuddy_Rest_Core();
+
         // Load assets
         add_action('admin_enqueue_scripts', array($this, 'enqueue_admin_assets'));
     }

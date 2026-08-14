@@ -22,8 +22,17 @@ class Dailybuddy_Platform_Connector
      * Option keys used across the module. Kept in one place so it's
      * obvious what state we persist in wp_options.
      */
-    const OPT_PRIVATE_KEY       = 'dailybuddy_pc_private_key';
-    const OPT_PUBLIC_KEY        = 'dailybuddy_pc_public_key';
+    // The WP site has ONE identity keypair, shared across all pairings.
+    const OPT_PRIVATE_KEY = 'dailybuddy_pc_private_key';
+    const OPT_PUBLIC_KEY  = 'dailybuddy_pc_public_key';
+
+    // Multi-pair store: JSON array of pairings, each with its own site
+    // UUID + platform pubkey. Replaces the old single-value options
+    // below (kept as constants only for the one-time migration).
+    const OPT_PAIRINGS = 'dailybuddy_pc_pairings';
+
+    // Legacy single-connection options — used only to migrate existing
+    // sites into OPT_PAIRINGS on first read.
     const OPT_PLATFORM_URL      = 'dailybuddy_pc_platform_url';
     const OPT_PLATFORM_PUB_KEY  = 'dailybuddy_pc_platform_public_key';
     const OPT_SITE_UUID         = 'dailybuddy_pc_site_uuid';
@@ -44,11 +53,11 @@ class Dailybuddy_Platform_Connector
     }
 
     /**
-     * Convenience: is this site already connected to a platform?
+     * Convenience: is this site paired with at least one platform?
      */
     public static function is_connected()
     {
-        return (bool) get_option(self::OPT_PLATFORM_URL)
-            && (bool) get_option(self::OPT_SITE_UUID);
+        $conn = new Dailybuddy_Platform_Connector_Connection();
+        return count($conn->get_pairings()) > 0;
     }
 }
