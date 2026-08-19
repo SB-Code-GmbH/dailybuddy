@@ -46,6 +46,7 @@ class Dailybuddy_Platform_Connector
         // to the WordPress lifecycle in its constructor.
         new Dailybuddy_Platform_Connector_Keypair();
         new Dailybuddy_Platform_Connector_Connection();
+        new Dailybuddy_Platform_Connector_Traffic();
         new Dailybuddy_Platform_Connector_Rest();
 
         // Admin page hooks are separate — they're registered when the

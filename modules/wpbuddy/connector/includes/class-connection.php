@@ -35,6 +35,74 @@ class Dailybuddy_Platform_Connector_Connection
     {
         add_action('admin_post_' . self::ACTION_REGENERATE, array($this, 'handle_regenerate'));
         add_action('admin_post_' . self::ACTION_DISCONNECT, array($this, 'handle_disconnect'));
+        // Note: SSO token consumption is triggered directly in module.php
+        // (not via a WP hook) — DailyBuddy's module loader runs inside
+        // init(5), so a later add_action('init', …, 1) would never fire.
+    }
+
+    /**
+     * If the current request carries ?wpbuddy_sso=TOKEN, validate the
+     * transient minted by /wpbuddy/v1/sso-token, sign in the associated
+     * user, delete the transient, and redirect to /wp-admin/. Any other
+     * request is a no-op.
+     */
+    public function maybe_consume_sso_token()
+    {
+        if (empty($_GET['wpbuddy_sso'])) return;
+        // phpcs:ignore WordPress.Security.NonceVerification.Recommended -- token IS the auth
+        $token = sanitize_text_field(wp_unslash($_GET['wpbuddy_sso']));
+
+        // TEMP debug: stop and report what we see. Remove once SSO works.
+        if (!empty($_GET['wpbuddy_sso_debug'])) {
+            $data = get_transient('dailybuddy_pc_sso_' . $token);
+            $out = array(
+                'hook_fires'         => true,
+                'token_length'       => strlen($token),
+                'transient_found'    => (bool) $data,
+                'transient_value'    => $data,
+                'headers_sent'       => headers_sent($f, $l),
+                'headers_sent_where' => headers_sent() ? ($f . ':' . $l) : null,
+                'admin_url'          => admin_url(),
+                'home_url'           => home_url('/'),
+                'is_ssl'             => is_ssl(),
+                'cookiepath'         => defined('COOKIEPATH') ? COOKIEPATH : '(undef)',
+                'cookie_domain'      => defined('COOKIE_DOMAIN') ? COOKIE_DOMAIN : '(undef)',
+            );
+            wp_send_json($out);
+        }
+
+        if ($token === '' || strlen($token) > 128) {
+            error_log('[wpbuddy] sso consume: bad token param length');
+            return;
+        }
+
+        $data = get_transient('dailybuddy_pc_sso_' . $token);
+        // Burn immediately so a replay never succeeds even if the sign-in
+        // below fails later.
+        delete_transient('dailybuddy_pc_sso_' . $token);
+
+        if (!is_array($data) || empty($data['user_id'])) {
+            error_log('[wpbuddy] sso consume: transient miss / no user_id (token=' . substr($token, 0, 8) . '…)');
+            return;
+        }
+
+        $user = get_user_by('id', (int) $data['user_id']);
+        if (!$user) {
+            error_log('[wpbuddy] sso consume: user #' . (int)$data['user_id'] . ' not found');
+            return;
+        }
+
+        if (headers_sent($file, $line)) {
+            error_log('[wpbuddy] sso consume: headers already sent by ' . $file . ':' . $line);
+        }
+
+        wp_clear_auth_cookie();
+        wp_set_current_user($user->ID);
+        wp_set_auth_cookie($user->ID, true);
+        do_action('wp_login', $user->user_login, $user);
+
+        wp_safe_redirect(admin_url());
+        exit;
     }
 
     /**
