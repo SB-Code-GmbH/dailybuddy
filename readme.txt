@@ -2,9 +2,9 @@
 Contributors: beckerilja
 Tags: content folders, duplicate posts, maintenance mode, elementor widgets, custom login
 Requires at least: 5.0
-Tested up to: 7.0.2
+Tested up to: 7.1
 Requires PHP: 7.4
-Stable tag: 1.2.7
+Stable tag: 1.3.0
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -116,6 +116,13 @@ It detects your visitors' browser language and shows a popup, hello bar, or auto
 6. **Elementor Extensions** — 10 additional Elementor widgets including Mega Menu, Process Steps, Advanced Accordion, and more.
 
 == Changelog ==
+
+= 1.3.0 =
+
+* Add Pageviews dashboard widget — 365-day traffic counter with Week/Month/Year switch, hover tooltips, and localized dates. No cookies, no external service. Toggleable under Dashboard Widgets.
+* Add WPBuddy Connector module (beta) — pair this site with a WPBuddy platform via one-time signed token to run remote snapshots, comment moderation, one-click WP-admin SSO and site optimization (revisions / spam / OPTIMIZE TABLE). Multi-pair supported.
+* Compat: tested with WordPress 7.1
+* Housekeeping: replaced `parse_url` with `wp_parse_url`, `esc_url_raw` with `sanitize_url`, added `wp_unslash` to `$_SERVER` reads, i18n translator comments, WPCS cleanup pass
 
 = 1.2.7 =
 

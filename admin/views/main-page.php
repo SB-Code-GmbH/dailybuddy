@@ -102,6 +102,14 @@ wp_localize_script(
                 <?php $dailybuddy_first = true; ?>
                 <?php foreach ($modules as $dailybuddy_category => $dailybuddy_category_modules) : ?>
 
+                    <?php
+                    $dailybuddy_cat_config = dailybuddy_get_category_config($dailybuddy_category);
+                    $dailybuddy_custom_view = isset($dailybuddy_cat_config['custom_view']) && ! empty($dailybuddy_cat_config['custom_view'])
+                        ? $dailybuddy_cat_config['custom_view']
+                        : '';
+                    $dailybuddy_use_custom_view = $dailybuddy_custom_view && file_exists($dailybuddy_custom_view);
+                    ?>
+
                     <div class="dailybuddy-category <?php echo $dailybuddy_first ? 'active' : ''; ?>"
                         data-category="<?php echo esc_attr($dailybuddy_category); ?>">
 
@@ -114,6 +122,16 @@ wp_localize_script(
                                 <?php echo esc_html(dailybuddy_get_category_description($dailybuddy_category)); ?>
                             </p>
                         </div>
+
+                        <?php if ($dailybuddy_use_custom_view) : ?>
+
+                            <?php
+                            // Category-owned view. Has $dailybuddy_category and
+                            // $dailybuddy_category_modules in scope.
+                            include $dailybuddy_custom_view;
+                            ?>
+
+                        <?php else : ?>
 
                         <div class="dailybuddy-modules">
 
@@ -216,6 +234,8 @@ wp_localize_script(
                             <?php endforeach; ?>
 
                         </div>
+
+                        <?php endif; // custom_view vs default module grid ?>
 
                     </div>
 

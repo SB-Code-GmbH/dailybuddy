@@ -1,0 +1,206 @@
+#dailybuddy_pageviews .hndle::before {
+    content: '\f238';
+    font-family: dashicons;
+    margin-right: 12px;
+    font-size: 20px;
+    color: #000;
+}
+
+/* ── KPI cards row ──────────────────────────────────────────────── */
+#dailybuddy_pageviews .dailybuddy-pv-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: 8px;
+    margin-top: 8px;
+}
+
+#dailybuddy_pageviews .pv-stat-card {
+    background: #f8f9fa;
+    border-radius: 6px;
+    padding: 10px 12px;
+    border-left: 3px solid #2271b1;
+    transition: all 0.3s ease;
+}
+
+#dailybuddy_pageviews .pv-stat-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
+}
+
+#dailybuddy_pageviews .pv-stat-card.today { border-left-color: #2271b1; }
+#dailybuddy_pageviews .pv-stat-card.week  { border-left-color: #00a32a; }
+#dailybuddy_pageviews .pv-stat-card.month { border-left-color: #8c44b3; }
+
+#dailybuddy_pageviews .pv-stat-header {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    margin-bottom: 4px;
+}
+
+#dailybuddy_pageviews .pv-stat-icon {
+    font-size: 18px;
+    opacity: 0.7;
+}
+
+#dailybuddy_pageviews .pv-stat-title {
+    font-size: 11px;
+    font-weight: 600;
+    color: #1d2327;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+#dailybuddy_pageviews .pv-stat-value {
+    font-size: 24px;
+    font-weight: 700;
+    line-height: 1.1;
+    color: #1d2327;
+    margin: 2px 0;
+}
+
+#dailybuddy_pageviews .pv-stat-label {
+    font-size: 11px;
+    color: #646970;
+}
+
+/* ── Chart block ────────────────────────────────────────────────── */
+#dailybuddy_pageviews .dailybuddy-pv-chart {
+    margin-top: 14px;
+    padding: 12px;
+    background: #f8f9fa;
+    border-radius: 6px;
+    border: 1px solid #e7e8ea;
+}
+
+#dailybuddy_pageviews .pv-chart-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 6px;
+}
+
+#dailybuddy_pageviews .pv-chart-title {
+    font-size: 11px;
+    font-weight: 600;
+    color: #1d2327;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+/* ── Range switch (Week / Month / Year) ─────────────────────────── */
+#dailybuddy_pageviews .pv-chart-switch {
+    display: inline-flex;
+    background: #fff;
+    border: 1px solid #dcdcde;
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+#dailybuddy_pageviews .pv-chart-switch button {
+    background: transparent;
+    border: 0;
+    border-left: 1px solid #dcdcde;
+    padding: 3px 10px;
+    font-size: 11px;
+    color: #50575e;
+    cursor: pointer;
+    line-height: 1.4;
+    transition: all 0.15s ease;
+}
+#dailybuddy_pageviews .pv-chart-switch button:first-child { border-left: 0; }
+
+#dailybuddy_pageviews .pv-chart-switch button:hover {
+    background: #f0f0f1;
+    color: #1d2327;
+}
+
+#dailybuddy_pageviews .pv-chart-switch button.active {
+    background: #2271b1;
+    color: #fff;
+    font-weight: 600;
+}
+
+/* ── Chart-wrap (for tooltip positioning) ───────────────────────── */
+#dailybuddy_pageviews .pv-chart-wrap {
+    position: relative;
+}
+
+#dailybuddy_pageviews .pv-tooltip {
+    position: absolute;
+    background: #1d2327;
+    color: #fff;
+    padding: 6px 8px;
+    border-radius: 4px;
+    font-size: 11px;
+    line-height: 1.3;
+    pointer-events: none;
+    white-space: nowrap;
+    transform: translateY(-100%);
+    box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+    z-index: 5;
+}
+
+#dailybuddy_pageviews .pv-tooltip-label {
+    opacity: 0.7;
+    font-size: 10px;
+    margin-bottom: 2px;
+}
+
+#dailybuddy_pageviews .pv-tooltip-value strong {
+    font-size: 12px;
+}
+
+#dailybuddy_pageviews .pv-chart-svg {
+    display: block;
+    width: 100%;
+    height: 90px;
+    overflow: visible;
+}
+
+#dailybuddy_pageviews .pv-chart-line {
+    fill: none;
+    stroke: #2271b1;
+    stroke-width: 2;
+    stroke-linejoin: round;
+    stroke-linecap: round;
+}
+
+#dailybuddy_pageviews .pv-chart-area {
+    fill: #2271b1;
+    fill-opacity: 0.12;
+}
+
+#dailybuddy_pageviews .pv-chart-legend {
+    display: flex;
+    justify-content: space-between;
+    font-size: 11px;
+    color: #646970;
+    margin-top: 4px;
+}
+
+/* ── Empty state ────────────────────────────────────────────────── */
+#dailybuddy_pageviews .pv-empty {
+    text-align: center;
+    padding: 18px 8px 8px;
+    color: #646970;
+}
+
+#dailybuddy_pageviews .pv-empty .dashicons {
+    font-size: 32px;
+    width: 32px;
+    height: 32px;
+    opacity: 0.5;
+    margin-bottom: 6px;
+}
+
+#dailybuddy_pageviews .pv-empty p {
+    margin: 4px 0;
+}
+
+#dailybuddy_pageviews .pv-empty-hint {
+    font-size: 11px;
+    opacity: 0.85;
+    max-width: 340px;
+    margin: 4px auto 0 !important;
+}
