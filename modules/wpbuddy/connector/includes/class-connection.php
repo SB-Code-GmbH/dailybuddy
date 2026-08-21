@@ -48,31 +48,16 @@ class Dailybuddy_Platform_Connector_Connection
      */
     public function maybe_consume_sso_token()
     {
+        // Nonce check does not apply here — the one-time SSO token IS the
+        // auth. It's minted by the signed /wpbuddy/v1/sso-token endpoint,
+        // burned on first use, and lives 60 s in a transient.
+        // phpcs:ignore WordPress.Security.NonceVerification.Recommended
         if (empty($_GET['wpbuddy_sso'])) return;
-        // phpcs:ignore WordPress.Security.NonceVerification.Recommended -- token IS the auth
+        // phpcs:ignore WordPress.Security.NonceVerification.Recommended
         $token = sanitize_text_field(wp_unslash($_GET['wpbuddy_sso']));
 
-        // TEMP debug: stop and report what we see. Remove once SSO works.
-        if (!empty($_GET['wpbuddy_sso_debug'])) {
-            $data = get_transient('dailybuddy_pc_sso_' . $token);
-            $out = array(
-                'hook_fires'         => true,
-                'token_length'       => strlen($token),
-                'transient_found'    => (bool) $data,
-                'transient_value'    => $data,
-                'headers_sent'       => headers_sent($f, $l),
-                'headers_sent_where' => headers_sent() ? ($f . ':' . $l) : null,
-                'admin_url'          => admin_url(),
-                'home_url'           => home_url('/'),
-                'is_ssl'             => is_ssl(),
-                'cookiepath'         => defined('COOKIEPATH') ? COOKIEPATH : '(undef)',
-                'cookie_domain'      => defined('COOKIE_DOMAIN') ? COOKIE_DOMAIN : '(undef)',
-            );
-            wp_send_json($out);
-        }
-
         if ($token === '' || strlen($token) > 128) {
-            error_log('[wpbuddy] sso consume: bad token param length');
+            $this->log_error('sso consume: bad token param length');
             return;
         }
 
@@ -82,23 +67,27 @@ class Dailybuddy_Platform_Connector_Connection
         delete_transient('dailybuddy_pc_sso_' . $token);
 
         if (!is_array($data) || empty($data['user_id'])) {
-            error_log('[wpbuddy] sso consume: transient miss / no user_id (token=' . substr($token, 0, 8) . '…)');
+            $this->log_error('sso consume: transient miss / no user_id (token=' . substr($token, 0, 8) . '…)');
             return;
         }
 
         $user = get_user_by('id', (int) $data['user_id']);
         if (!$user) {
-            error_log('[wpbuddy] sso consume: user #' . (int)$data['user_id'] . ' not found');
+            $this->log_error('sso consume: user #' . (int)$data['user_id'] . ' not found');
             return;
         }
 
         if (headers_sent($file, $line)) {
-            error_log('[wpbuddy] sso consume: headers already sent by ' . $file . ':' . $line);
+            $this->log_error('sso consume: headers already sent by ' . $file . ':' . $line);
         }
 
         wp_clear_auth_cookie();
         wp_set_current_user($user->ID);
         wp_set_auth_cookie($user->ID, true);
+        // We're firing WordPress core's own `wp_login` action so other
+        // plugins that listen for logins get notified — not defining a
+        // new plugin-scoped hook.
+        // phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedHooknameFound
         do_action('wp_login', $user->user_login, $user);
 
         wp_safe_redirect(admin_url());
@@ -284,7 +273,7 @@ class Dailybuddy_Platform_Connector_Connection
                 'site_uuid'           => $legacy_uuid,
                 'platform_url'        => $legacy_url,
                 'platform_public_key' => $legacy_pub,
-                'platform_name'       => parse_url($legacy_url, PHP_URL_HOST) ?: $legacy_url,
+                'platform_name'       => wp_parse_url($legacy_url, PHP_URL_HOST) ?: $legacy_url,
                 'connected_at'        => $legacy_at ?: time(),
                 'last_heartbeat_at'   => (int) get_option(Dailybuddy_Platform_Connector::OPT_LAST_HEARTBEAT_AT, 0) ?: null,
             );
@@ -305,6 +294,19 @@ class Dailybuddy_Platform_Connector_Connection
      * Without it: removes ALL pairings (used by an "Unpair everything"
      * action if we add one later).
      */
+    /**
+     * Guarded debug log — only when WP_DEBUG + WP_DEBUG_LOG are on.
+     * Silences WordPress.PHP.DevelopmentFunctions.error_log_error_log
+     * for the SSO edge cases where we need a trace to diagnose failures.
+     */
+    private function log_error($msg)
+    {
+        if (defined('WP_DEBUG') && WP_DEBUG && defined('WP_DEBUG_LOG') && WP_DEBUG_LOG) {
+            // phpcs:ignore WordPress.PHP.DevelopmentFunctions.error_log_error_log
+            error_log('[wpbuddy] ' . $msg);
+        }
+    }
+
     public function handle_disconnect()
     {
         if (! current_user_can('manage_options')) {

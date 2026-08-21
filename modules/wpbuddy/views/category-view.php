@@ -34,6 +34,13 @@ $dailybuddy_wpbuddy_active = $dailybuddy_wpbuddy_connector
         </span>
     </div>
 
+    <div class="notice notice-info inline dailybuddy-wpbuddy-beta">
+        <p>
+            <strong><?php esc_html_e('Beta', 'dailybuddy'); ?>:</strong>
+            <?php esc_html_e('The WPBuddy Connector is still under active development. Core features (pairing, snapshots, comment moderation, SSO, optimization) work — but the platform side is evolving fast, so expect the occasional rough edge. Feedback welcome.', 'dailybuddy'); ?>
+        </p>
+    </div>
+
     <?php if (! $dailybuddy_wpbuddy_connector) : ?>
 
         <div class="notice notice-error inline">
@@ -92,12 +99,15 @@ $dailybuddy_wpbuddy_active = $dailybuddy_wpbuddy_connector
                     <h3>
                         <?php
                         printf(
-                            esc_html(_n(
-                                'Connected with %d platform',
-                                'Connected with %d platforms',
-                                count($dailybuddy_wpbuddy_pairings),
-                                'dailybuddy'
-                            )),
+                            esc_html(
+                                /* translators: %d: number of platforms this site is connected to */
+                                _n(
+                                    'Connected with %d platform',
+                                    'Connected with %d platforms',
+                                    count($dailybuddy_wpbuddy_pairings),
+                                    'dailybuddy'
+                                )
+                            ),
                             count($dailybuddy_wpbuddy_pairings)
                         );
                         ?>
@@ -130,6 +140,7 @@ $dailybuddy_wpbuddy_active = $dailybuddy_wpbuddy_connector
                                 method="post"
                                 action="<?php echo esc_url(admin_url('admin-post.php')); ?>"
                                 class="dailybuddy-wpbuddy-disconnect"
+                                <?php /* translators: %s: platform name or URL the site is currently paired with */ ?>
                                 data-confirm="<?php echo esc_attr(sprintf(__('Disconnect from %s? That platform will stop receiving updates.', 'dailybuddy'), $dailybuddy_wpbuddy_p_name ?: $dailybuddy_wpbuddy_p_url)); ?>">
                                 <input type="hidden" name="action" value="<?php echo esc_attr(Dailybuddy_Platform_Connector_Connection::ACTION_DISCONNECT); ?>">
                                 <input type="hidden" name="site_uuid" value="<?php echo esc_attr($dailybuddy_wpbuddy_p_uuid); ?>">

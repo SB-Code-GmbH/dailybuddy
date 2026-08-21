@@ -37,6 +37,10 @@ new Dailybuddy_Platform_Connector();
 // ManageWP worker uses (it runs its request handler at plugin bootstrap
 // rather than waiting for a WP action). Output hasn't started yet at
 // init(5), so setcookie() + wp_safe_redirect() both work.
+// The one-time SSO token IS the auth (minted by the signed
+// /wpbuddy/v1/sso-token endpoint, 60 s TTL, burned on first use), so
+// no WP nonce applies here — the callee validates it against the transient.
+// phpcs:ignore WordPress.Security.NonceVerification.Recommended
 if (!empty($_GET['wpbuddy_sso'])) {
     (new Dailybuddy_Platform_Connector_Connection())->maybe_consume_sso_token();
 }

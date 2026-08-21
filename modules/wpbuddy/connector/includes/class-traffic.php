@@ -76,7 +76,9 @@ class Dailybuddy_Platform_Connector_Traffic
         }
 
         // Simple bot filter.
-        $ua = isset($_SERVER['HTTP_USER_AGENT']) ? strtolower((string) $_SERVER['HTTP_USER_AGENT']) : '';
+        $ua = isset($_SERVER['HTTP_USER_AGENT'])
+            ? strtolower(sanitize_text_field(wp_unslash($_SERVER['HTTP_USER_AGENT'])))
+            : '';
         if ($ua === '') {
             // No UA at all is nearly always a bot / probe — skip.
             return;

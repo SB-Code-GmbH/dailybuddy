@@ -141,7 +141,7 @@ class Dailybuddy_Platform_Connector_Rest
             ), 401);
         }
 
-        $platform_url = esc_url_raw((string) $request->get_param('platform_url'));
+        $platform_url = sanitize_url((string) $request->get_param('platform_url'));
         $platform_pub = trim((string) $request->get_param('platform_public_key'));
 
         if ('' === $platform_url || ! preg_match('#^https?://#i', $platform_url)) {
@@ -171,7 +171,7 @@ class Dailybuddy_Platform_Connector_Rest
         // Register (or update-in-place) this pairing.
         $platform_name = (string) $request->get_param('platform_name');
         if ($platform_name === '') {
-            $platform_name = parse_url($platform_url, PHP_URL_HOST) ?: $platform_url;
+            $platform_name = wp_parse_url($platform_url, PHP_URL_HOST) ?: $platform_url;
         }
         $pairing = $connection->upsert_pairing($platform_url, $platform_pub, $platform_name);
         delete_option(Dailybuddy_Platform_Connector::OPT_LAST_ERROR);
@@ -198,7 +198,7 @@ class Dailybuddy_Platform_Connector_Rest
      */
     public function handle_auto_connect(WP_REST_Request $request)
     {
-        $platform_url = esc_url_raw((string) $request->get_param('platform_url'));
+        $platform_url = sanitize_url((string) $request->get_param('platform_url'));
         $platform_pub = trim((string) $request->get_param('platform_public_key'));
 
         if ('' === $platform_url || ! preg_match('#^https?://#i', $platform_url)) {
@@ -225,7 +225,7 @@ class Dailybuddy_Platform_Connector_Rest
 
         $platform_name = (string) $request->get_param('platform_name');
         if ($platform_name === '') {
-            $platform_name = parse_url($platform_url, PHP_URL_HOST) ?: $platform_url;
+            $platform_name = wp_parse_url($platform_url, PHP_URL_HOST) ?: $platform_url;
         }
         $connection = new Dailybuddy_Platform_Connector_Connection();
         $pairing = $connection->upsert_pairing($platform_url, $platform_pub, $platform_name);
@@ -511,7 +511,7 @@ class Dailybuddy_Platform_Connector_Rest
             $mysql_version = (string) $wpdb->db_version();
         }
         $server_software = isset($_SERVER['SERVER_SOFTWARE'])
-            ? (string) sanitize_text_field($_SERVER['SERVER_SOFTWARE'])
+            ? (string) sanitize_text_field(wp_unslash($_SERVER['SERVER_SOFTWARE']))
             : '';
 
         // ── Comments (wp_count_comments has approved/moderated/spam/trash) ──
@@ -540,6 +540,10 @@ class Dailybuddy_Platform_Connector_Rest
         // Post revisions bloat wp_posts, spam bloats wp_comments,
         // db_overhead is InnoDB/MyISAM data_free — the same numbers a
         // WP-Optimize-style plugin acts on.
+        // Direct queries + no cache are intentional: these numbers must
+        // be authoritative (they drive a maintenance UI), and the
+        // information_schema query has no WP-API equivalent.
+        // phpcs:disable WordPress.DB.DirectDatabaseQuery.DirectQuery,WordPress.DB.DirectDatabaseQuery.NoCaching
         $revisions_count = (int) $wpdb->get_var(
             "SELECT COUNT(*) FROM {$wpdb->posts} WHERE post_type = 'revision'"
         );
@@ -554,6 +558,7 @@ class Dailybuddy_Platform_Connector_Rest
             );
             $wpdb->suppress_errors(false);
         }
+        // phpcs:enable WordPress.DB.DirectDatabaseQuery.DirectQuery,WordPress.DB.DirectDatabaseQuery.NoCaching
 
         return array(
             'schema'    => 1,
@@ -712,6 +717,10 @@ class Dailybuddy_Platform_Connector_Rest
         $action = (string) $request->get_param('action');
         $cleaned = 0;
 
+        // Optimization actions inherently touch tables WP core APIs don't
+        // expose (SHOW TABLES / OPTIMIZE TABLE) and must NOT be cached —
+        // the whole point is to mutate DB state and return fresh counts.
+        // phpcs:disable WordPress.DB.DirectDatabaseQuery.DirectQuery,WordPress.DB.DirectDatabaseQuery.NoCaching
         switch ($action) {
             case 'revisions':
                 $ids = $wpdb->get_col("SELECT ID FROM {$wpdb->posts} WHERE post_type = 'revision'");
@@ -731,6 +740,11 @@ class Dailybuddy_Platform_Connector_Rest
                 $tables = $wpdb->get_col("SHOW TABLES");
                 foreach ($tables as $t) {
                     $safe = esc_sql($t);
+                    // OPTIMIZE TABLE takes an identifier, not a value —
+                    // $wpdb->prepare()'s %s/%d placeholders can't be used
+                    // for table names. $t comes from SHOW TABLES on the
+                    // same DB (never user input) and is esc_sql'd on top.
+                    // phpcs:ignore WordPress.DB.PreparedSQL.InterpolatedNotPrepared
                     if ($wpdb->query("OPTIMIZE TABLE `{$safe}`") !== false) $cleaned++;
                 }
                 break;
@@ -746,6 +760,11 @@ class Dailybuddy_Platform_Connector_Rest
                 $tables = $wpdb->get_col("SHOW TABLES");
                 foreach ($tables as $t) {
                     $safe = esc_sql($t);
+                    // OPTIMIZE TABLE takes an identifier, not a value —
+                    // $wpdb->prepare()'s %s/%d placeholders can't be used
+                    // for table names. $t comes from SHOW TABLES on the
+                    // same DB (never user input) and is esc_sql'd on top.
+                    // phpcs:ignore WordPress.DB.PreparedSQL.InterpolatedNotPrepared
                     if ($wpdb->query("OPTIMIZE TABLE `{$safe}`") !== false) $cleaned++;
                 }
                 break;
@@ -756,6 +775,7 @@ class Dailybuddy_Platform_Connector_Rest
                     'message' => __('Unknown optimize action.', 'dailybuddy'),
                 ), 400);
         }
+        // phpcs:enable WordPress.DB.DirectDatabaseQuery.DirectQuery,WordPress.DB.DirectDatabaseQuery.NoCaching
 
         // Return a fresh snapshot so the platform can update the UI
         // without a second round-trip.

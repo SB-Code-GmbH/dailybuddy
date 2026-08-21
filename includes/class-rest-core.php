@@ -118,6 +118,7 @@ class Dailybuddy_Rest_Core
         if (empty($known[$module_id])) {
             return new WP_REST_Response(array(
                 'code'    => 'unknown_module',
+                /* translators: %s: module identifier (e.g. "wpbuddy/connector") */
                 'message' => sprintf(__('Module %s is not installed.', 'dailybuddy'), $module_id),
             ), 404);
         }
