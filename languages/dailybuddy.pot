@@ -5011,3 +5011,359 @@ msgstr ""
 #: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\wordpress-tools\translatepress-tools\templates\settings-page.php (Line 322)
 msgid "If a match is found and differs from the current page language, the visitor is notified."
 msgstr ""
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\includes\class-rest-core.php (Line 103)
+msgid "module_id is required."
+msgstr ""
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\includes\class-rest-core.php (Line 122)
+msgid "Module %s is not installed."
+msgstr ""
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\includes\class-rest-core.php (Line 139)
+msgid "Could not save module state."
+msgstr ""
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\dashboard-widgets\pageviews\config.php (Line 4)
+msgid "Pageviews"
+msgstr ""
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\dashboard-widgets\pageviews\config.php (Line 9)
+msgid "30-day traffic chart with today, 7-day and 30-day totals. Uses the same lightweight counter as the WPBuddy connector — no external service, no cookies."
+msgstr ""
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\dashboard-widgets\pageviews\config.php (Line 9)
+msgid "traffic"
+msgstr ""
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\dashboard-widgets\pageviews\config.php (Line 18)
+msgid "pageviews"
+msgstr ""
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\dashboard-widgets\pageviews\module.php (Line 4)
+msgid "Pageviews"
+msgstr ""
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\dashboard-widgets\pageviews\module.php (Line 80)
+msgid "Today"
+msgstr ""
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\dashboard-widgets\pageviews\module.php (Line 35)
+msgid "pageviews"
+msgstr ""
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\dashboard-widgets\pageviews\module.php (Line 89)
+msgid "Last 7 days"
+msgstr ""
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\dashboard-widgets\pageviews\module.php (Line 98)
+msgid "Last 30 days"
+msgstr ""
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\dashboard-widgets\pageviews\module.php (Line 111)
+msgid "Week"
+msgstr ""
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\dashboard-widgets\pageviews\module.php (Line 112)
+msgid "Month"
+msgstr ""
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\dashboard-widgets\pageviews\module.php (Line 113)
+msgid "Year"
+msgstr ""
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\dashboard-widgets\pageviews\module.php (Line 136)
+msgid "No pageviews recorded yet."
+msgstr ""
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\dashboard-widgets\pageviews\module.php (Line 138)
+msgid "The counter starts as soon as your first visitor arrives. If you connected this site to a WPBuddy platform, tracking is already on."
+msgstr ""
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\dashboard-widgets\pageviews\module.php (Line 151)
+msgid "Last 12 months"
+msgstr ""
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\dashboard-widgets\pageviews\module.php (Line 155)
+msgid "Jan"
+msgstr ""
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\dashboard-widgets\pageviews\module.php (Line 155)
+msgid "Feb"
+msgstr ""
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\dashboard-widgets\pageviews\module.php (Line 155)
+msgid "Mar"
+msgstr ""
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\dashboard-widgets\pageviews\module.php (Line 156)
+msgid "Apr"
+msgstr ""
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\dashboard-widgets\pageviews\module.php (Line 156)
+msgid "May"
+msgstr ""
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\dashboard-widgets\pageviews\module.php (Line 156)
+msgid "Jun"
+msgstr ""
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\dashboard-widgets\pageviews\module.php (Line 157)
+msgid "Jul"
+msgstr ""
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\dashboard-widgets\pageviews\module.php (Line 157)
+msgid "Aug"
+msgstr ""
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\dashboard-widgets\pageviews\module.php (Line 157)
+msgid "Sep"
+msgstr ""
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\dashboard-widgets\pageviews\module.php (Line 158)
+msgid "Oct"
+msgstr ""
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\dashboard-widgets\pageviews\module.php (Line 158)
+msgid "Nov"
+msgstr ""
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\dashboard-widgets\pageviews\module.php (Line 158)
+msgid "Dec"
+msgstr ""
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\elementor-extensions\advanced-accordion\widget.php (Line 455)
+msgid "Item Border Radius"
+msgstr ""
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\elementor-extensions\advanced-tabs\widget.php (Line 127)
+msgid "Horizontal scrollbar"
+msgstr ""
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\elementor-extensions\advanced-tabs\widget.php (Line 128)
+msgid "Bei vielen Tabs nicht umbrechen, sondern horizontal scrollbar machen."
+msgstr ""
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\elementor-extensions\advanced-tabs\widget.php (Line 673)
+msgid "Abstand zwischen Icon und Titel (funktioniert in alle Richtungen)."
+msgstr ""
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\elementor-extensions\advanced-tabs\widget.php (Line 972)
+msgid "Scroll Buttons"
+msgstr ""
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\elementor-extensions\advanced-tabs\widget.php (Line 1204)
+msgid "Scroll left"
+msgstr ""
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\elementor-extensions\advanced-tabs\widget.php (Line 1300)
+msgid "Scroll right"
+msgstr ""
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\elementor-extensions\mega-menu\widget.php (Line 248)
+msgid "Dropdown Width"
+msgstr ""
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\elementor-extensions\mega-menu\widget.php (Line 252)
+msgid "Full Width (Page)"
+msgstr ""
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\elementor-extensions\mega-menu\widget.php (Line 253)
+msgid "Content Width"
+msgstr ""
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\elementor-extensions\mega-menu\widget.php (Line 255)
+msgid "Full Width stretches the dropdown across the entire page. Content Width fits the dropdown to its content under the menu item."
+msgstr ""
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\elementor-extensions\mega-menu\widget.php (Line 1942)
+msgid "Hintergrundfarbe"
+msgstr ""
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\wpbuddy\config.php (Line 10)
+msgid "WPBuddy"
+msgstr ""
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\wpbuddy\config.php (Line 11)
+msgid "Connect this site to a WPBuddy platform for central monitoring, updates and remote management."
+msgstr ""
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\wpbuddy\connector\config.php (Line 18)
+msgid "Connect this site to a WPBuddy platform for central monitoring and update visibility. Sends signed status snapshots on a schedule — you decide what the platform sees."
+msgstr ""
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\wpbuddy\connector\config.php (Line 6)
+msgid "platform"
+msgstr ""
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\wpbuddy\connector\config.php (Line 26)
+msgid "remote"
+msgstr ""
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\wpbuddy\connector\includes\class-connection.php (Line 168)
+msgid "No permission."
+msgstr ""
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\wpbuddy\connector\includes\class-keypair.php (Line 40)
+msgid "OpenSSL PHP extension is required."
+msgstr ""
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\wpbuddy\connector\includes\class-keypair.php (Line 49)
+msgid "Could not generate keypair."
+msgstr ""
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\wpbuddy\connector\includes\class-keypair.php (Line 54)
+msgid "Could not export private key."
+msgstr ""
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\wpbuddy\connector\includes\class-keypair.php (Line 59)
+msgid "Could not read public key."
+msgstr ""
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\wpbuddy\connector\includes\class-keypair.php (Line 127)
+msgid "SECURE_AUTH_KEY is not set in wp-config.php."
+msgstr ""
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\wpbuddy\connector\includes\class-keypair.php (Line 149)
+msgid "Encrypt failed."
+msgstr ""
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\wpbuddy\connector\includes\class-keypair.php (Line 172)
+msgid "Encrypted payload is malformed."
+msgstr ""
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\wpbuddy\connector\includes\class-keypair.php (Line 180)
+msgid "Encrypted payload is corrupted."
+msgstr ""
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\wpbuddy\connector\includes\class-keypair.php (Line 185)
+msgid "Decrypt failed (wrong key or tampered data)."
+msgstr ""
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\wpbuddy\connector\includes\class-rest.php (Line 140)
+msgid "Invalid or expired pairing token."
+msgstr ""
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\wpbuddy\connector\includes\class-rest.php (Line 150)
+msgid "Platform URL is missing or malformed."
+msgstr ""
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\wpbuddy\connector\includes\class-rest.php (Line 156)
+msgid "Platform public key is missing or malformed."
+msgstr ""
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\wpbuddy\connector\includes\class-rest.php (Line 260)
+msgid "Missing signature headers."
+msgstr ""
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\wpbuddy\connector\includes\class-rest.php (Line 266)
+msgid "Request timestamp is out of range."
+msgstr ""
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\wpbuddy\connector\includes\class-rest.php (Line 278)
+msgid "No pairing with that UUID."
+msgstr ""
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\wpbuddy\connector\includes\class-rest.php (Line 287)
+msgid "Signature did not verify."
+msgstr ""
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\wpbuddy\connector\includes\class-rest.php (Line 315)
+msgid "No administrator user found on this site."
+msgstr ""
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\wpbuddy\connector\includes\class-rest.php (Line 671)
+msgid "Unknown comment action."
+msgstr ""
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\wpbuddy\connector\includes\class-rest.php (Line 775)
+msgid "Unknown optimize action."
+msgstr ""
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\wpbuddy\views\category-view.php (Line 105)
+msgid "Connected with %d platform"
+msgstr ""
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\wpbuddy\views\category-view.php (Line 106)
+msgid "Connected with %d platforms"
+msgstr ""
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\wpbuddy\views\category-view.php (Line 33)
+msgid "Working…"
+msgstr ""
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\wpbuddy\views\category-view.php (Line 39)
+msgid "Beta"
+msgstr ""
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\wpbuddy\views\category-view.php (Line 40)
+msgid "The WPBuddy Connector is still under active development. Core features (pairing, snapshots, comment moderation, SSO, optimization) work — but the platform side is evolving fast, so expect the occasional rough edge. Feedback welcome."
+msgstr ""
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\wpbuddy\views\category-view.php (Line 48)
+msgid "The Connector module is missing from modules/wpbuddy/connector/. Reinstall the plugin to restore it."
+msgstr ""
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\wpbuddy\views\category-view.php (Line 60)
+msgid "Connect this site to a WPBuddy platform"
+msgstr ""
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\wpbuddy\views\category-view.php (Line 64)
+msgid "Enable the Connector to link this WordPress installation to a WPBuddy-compatible platform. Once active, you get a one-time pairing token to paste into your platform — nothing leaves your site until the token is used."
+msgstr ""
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\wpbuddy\views\category-view.php (Line 78)
+msgid "Activate Connector"
+msgstr ""
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\wpbuddy\views\category-view.php (Line 83)
+msgid "Your pairing token appears here as soon as the Connector is active."
+msgstr ""
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\wpbuddy\views\category-view.php (Line 135)
+msgid "Since"
+msgstr ""
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\wpbuddy\views\category-view.php (Line 136)
+msgid "UUID"
+msgstr ""
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\wpbuddy\views\category-view.php (Line 144)
+msgid "Disconnect from %s? That platform will stop receiving updates."
+msgstr ""
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\wpbuddy\views\category-view.php (Line 144)
+msgid "Disconnect"
+msgstr ""
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\wpbuddy\views\category-view.php (Line 169)
+msgid "Pair with another platform"
+msgstr ""
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\wpbuddy\views\category-view.php (Line 170)
+msgid "Pairing token"
+msgstr ""
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\wpbuddy\views\category-view.php (Line 173)
+msgid "Copy this token and paste it into your WPBuddy platform to link this site. The token is single-use."
+msgstr ""
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\wpbuddy\views\category-view.php (Line 195)
+msgid "Expires in"
+msgstr ""
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\wpbuddy\views\category-view.php (Line 203)
+msgid "Generate a new token? The current token will stop working immediately, and any pairing already in progress with it will fail."
+msgstr ""
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\wpbuddy\views\category-view.php (Line 208)
+msgid "Regenerate token"
+msgstr ""
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\wpbuddy\views\category-view.php (Line 224)
+msgid "Deactivate Connector"
+msgstr ""
+
+#: C:\MAMP\htdocs\wp\wp-content\plugins\dailybuddy\modules\wpbuddy\views\category-view.php (Line 240)
+msgid "Token expired — regenerate to continue."
+msgstr ""
