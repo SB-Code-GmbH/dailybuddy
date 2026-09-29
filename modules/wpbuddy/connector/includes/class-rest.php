@@ -1536,10 +1536,14 @@ class Dailybuddy_Platform_Connector_Rest
      * Hard caps to keep the request under PHP's max_execution_time:
      *   • 300 posts scanned
      *   • 500 unique URLs checked
-     *   • 5 s per HEAD (parallel via curl_multi)
+     *   • 20 parallel connections, max 3 per host (curl_multi)
+     *   • 15 s per HEAD, 10 s to connect
+     *   • up to 60 inconclusive URLs re-checked sequentially with GET
      *
      * Bigger sites will surface the most-cited URLs first — a truncated
-     * summary is honest and useful; a timeout is not.
+     * summary is honest and useful; a timeout is not. The same goes for
+     * the concurrency cap: an unthrottled burst reports working links as
+     * broken, which is worse than a slower scan.
      */
     public function handle_link_scan(WP_REST_Request $request)
     {
@@ -1550,7 +1554,24 @@ class Dailybuddy_Platform_Connector_Rest
         // allow up to 60 s. This is a best-effort raise, silently
         // ignored where safe_mode / disable_functions block it.
         // phpcs:ignore Squiz.PHP.DiscouragedFunctions.Discouraged
-        @set_time_limit(60);
+        @set_time_limit(120);
+
+        // Deadline derived from the time we ACTUALLY got. Reading the ini
+        // value after the raise above tells us whether it took: on hosts
+        // that block set_time_limit() this still reports the original 30 s,
+        // and budgeting for 70 s there would walk straight into a fatal
+        // timeout — worse than the old behaviour, because the platform can
+        // only show that as a total failure.
+        //   • 0  → no limit (CLI / some configs): use our own 70 s ceiling
+        //   • >0 → stay at 80 % of it, so there is room to build and send
+        //          the response after the last request returns
+        // No lower bound here on purpose: a floor would sit ABOVE the limit
+        // on a host that allows very little, which is the exact failure
+        // this calculation exists to prevent.
+        // The platform waits 90 s, so 70 s is the upper bound either way.
+        $execLimit = (int) ini_get('max_execution_time');
+        $budget    = $execLimit > 0 ? ($execLimit * 0.8) : 70.0;
+        $deadline  = microtime(true) + min(70.0, $budget);
 
         global $wpdb;
 
@@ -1626,12 +1647,37 @@ class Dailybuddy_Platform_Connector_Rest
         // and makes the scan unusable. curl_multi_* completes 500 URLs
         // in about the time of the slowest single one. This is a
         // conscious performance trade-off for the link-monitor endpoint.
-        // phpcs:disable WordPress.WP.AlternativeFunctions.curl_curl_multi_init,WordPress.WP.AlternativeFunctions.curl_curl_init,WordPress.WP.AlternativeFunctions.curl_curl_setopt_array,WordPress.WP.AlternativeFunctions.curl_curl_multi_add_handle,WordPress.WP.AlternativeFunctions.curl_curl_multi_exec,WordPress.WP.AlternativeFunctions.curl_curl_multi_select,WordPress.WP.AlternativeFunctions.curl_curl_getinfo,WordPress.WP.AlternativeFunctions.curl_curl_exec,WordPress.WP.AlternativeFunctions.curl_curl_close,WordPress.WP.AlternativeFunctions.curl_curl_multi_remove_handle,WordPress.WP.AlternativeFunctions.curl_curl_multi_close
+        // phpcs:disable WordPress.WP.AlternativeFunctions.curl_curl_multi_init,WordPress.WP.AlternativeFunctions.curl_curl_init,WordPress.WP.AlternativeFunctions.curl_curl_setopt_array,WordPress.WP.AlternativeFunctions.curl_curl_multi_setopt,WordPress.WP.AlternativeFunctions.curl_curl_multi_add_handle,WordPress.WP.AlternativeFunctions.curl_curl_multi_exec,WordPress.WP.AlternativeFunctions.curl_curl_multi_select,WordPress.WP.AlternativeFunctions.curl_curl_getinfo,WordPress.WP.AlternativeFunctions.curl_curl_exec,WordPress.WP.AlternativeFunctions.curl_curl_close,WordPress.WP.AlternativeFunctions.curl_curl_multi_remove_handle,WordPress.WP.AlternativeFunctions.curl_curl_multi_close
         $urls   = array_keys($links);
         $status = array(); // url => ['code' => int, 'ms' => int]
 
+        // A plain browser UA. The earlier "Mozilla/5.0 (WPBuddy Link
+        // Monitor)" hybrid is exactly the shape bot filters match on, and
+        // a link that a visitor can open must not be reported as broken
+        // just because the checker announced itself.
+        $ua = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36'
+            . ' (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36';
+        $commonHeaders = array(
+            'Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,*/*;q=0.8',
+            'Accept-Language: en;q=0.9',
+        );
+
         if (!empty($urls)) {
             $mh = curl_multi_init();
+
+            // Throttle the fan-out. Firing all 500 handles at once is what
+            // made healthy links time out: many of them share a host, and
+            // both origin servers and CDNs rate-limit a burst like that.
+            // The connect timeouts we saw (every failure landing on exactly
+            // 4 s) were queueing, not dead links. Capping concurrency costs
+            // wall-clock time but returns a truthful result.
+            if (defined('CURLMOPT_MAX_TOTAL_CONNECTIONS')) {
+                curl_multi_setopt($mh, CURLMOPT_MAX_TOTAL_CONNECTIONS, 20);
+            }
+            if (defined('CURLMOPT_MAX_HOST_CONNECTIONS')) {
+                curl_multi_setopt($mh, CURLMOPT_MAX_HOST_CONNECTIONS, 3);
+            }
+
             $handles = array();
             foreach ($urls as $idx => $url) {
                 $ch = curl_init($url);
@@ -1639,9 +1685,12 @@ class Dailybuddy_Platform_Connector_Rest
                     CURLOPT_NOBODY         => true,
                     CURLOPT_RETURNTRANSFER => true,
                     CURLOPT_FOLLOWLOCATION => false, // status of the FIRST hop
-                    CURLOPT_TIMEOUT        => 8,
-                    CURLOPT_CONNECTTIMEOUT => 4,
-                    CURLOPT_USERAGENT      => 'Mozilla/5.0 (WPBuddy Link Monitor)',
+                    // Raised from 8/4: with the queue above, a handle may
+                    // legitimately wait for a slot before it even starts.
+                    CURLOPT_TIMEOUT        => 15,
+                    CURLOPT_CONNECTTIMEOUT => 10,
+                    CURLOPT_USERAGENT      => $ua,
+                    CURLOPT_HTTPHEADER     => $commonHeaders,
                 ));
                 curl_multi_add_handle($mh, $ch);
                 $handles[$idx] = $ch;
@@ -1649,27 +1698,35 @@ class Dailybuddy_Platform_Connector_Rest
             $running = null;
             do {
                 curl_multi_exec($mh, $running);
-                if ($running) curl_multi_select($mh, 0.5);
+
+                // Stop early rather than risk a fatal timeout: with the
+                // connection cap, 500 URLs that all hang would need many
+                // more seconds than any host grants us. Handles that never
+                // ran keep code 0 and are reported as broken — the same
+                // verdict they would have got before, but we still return
+                // a response instead of dying mid-scan.
+                if (microtime(true) >= $deadline) break;
+
+                // select() returns -1 when there is nothing to wait on —
+                // with a connection cap that happens while handles sit in
+                // the queue. Without the sleep this becomes a busy loop.
+                if ($running && curl_multi_select($mh, 0.5) === -1) {
+                    usleep(2000);
+                }
             } while ($running);
 
+            $retry = array(); // idx => url, re-checked sequentially below
+
             foreach ($handles as $idx => $ch) {
-                $inf = curl_getinfo($ch);
+                $inf  = curl_getinfo($ch);
                 $code = (int) ($inf['http_code'] ?? 0);
                 $ms   = (int) round(((float) ($inf['total_time'] ?? 0)) * 1000);
 
-                // 405 = method not allowed for HEAD. Retry with a 1-byte GET.
-                if ($code === 405) {
-                    $ch2 = curl_init($urls[$idx]);
-                    curl_setopt_array($ch2, array(
-                        CURLOPT_RETURNTRANSFER => true,
-                        CURLOPT_HTTPHEADER     => array('Range: bytes=0-0'),
-                        CURLOPT_TIMEOUT        => 6,
-                        CURLOPT_CONNECTTIMEOUT => 4,
-                        CURLOPT_USERAGENT      => 'Mozilla/5.0 (WPBuddy Link Monitor)',
-                    ));
-                    curl_exec($ch2);
-                    $code = (int) curl_getinfo($ch2, CURLINFO_HTTP_CODE);
-                    curl_close($ch2);
+                // Verdicts that say more about HOW we asked than about the
+                // link: no answer at all (0), HEAD refused (405), bot wall
+                // (403), rate limit (429). Worth a second, gentler attempt.
+                if ($code === 0 || $code === 403 || $code === 405 || $code === 429) {
+                    $retry[$idx] = $urls[$idx];
                 }
 
                 $status[$urls[$idx]] = array('code' => $code, 'ms' => $ms);
@@ -1677,6 +1734,36 @@ class Dailybuddy_Platform_Connector_Rest
                 curl_close($ch);
             }
             curl_multi_close($mh);
+
+            // Sequential re-check with a real (range-limited) GET, once the
+            // parallel burst is over and the network is quiet again. Capped
+            // so a site full of genuinely dead links can't blow the time
+            // limit — the remainder keeps its first verdict.
+            $retryBudget = 60;
+            foreach ($retry as $idx => $url) {
+                if ($retryBudget-- <= 0) break;
+                if (microtime(true) >= $deadline) break;
+
+                $ch2 = curl_init($url);
+                curl_setopt_array($ch2, array(
+                    CURLOPT_RETURNTRANSFER => true,
+                    CURLOPT_FOLLOWLOCATION => false,
+                    CURLOPT_HTTPHEADER     => array_merge($commonHeaders, array('Range: bytes=0-0')),
+                    CURLOPT_TIMEOUT        => 12,
+                    CURLOPT_CONNECTTIMEOUT => 8,
+                    CURLOPT_USERAGENT      => $ua,
+                ));
+                curl_exec($ch2);
+                $code2 = (int) curl_getinfo($ch2, CURLINFO_HTTP_CODE);
+                $ms2   = (int) round(((float) curl_getinfo($ch2, CURLINFO_TOTAL_TIME)) * 1000);
+                curl_close($ch2);
+
+                // Keep the retry only if it actually reached the server;
+                // otherwise the first verdict stands.
+                if ($code2 > 0) {
+                    $status[$url] = array('code' => $code2, 'ms' => $ms2);
+                }
+            }
         }
         // phpcs:enable
 
