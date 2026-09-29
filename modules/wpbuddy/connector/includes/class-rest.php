@@ -1657,9 +1657,19 @@ class Dailybuddy_Platform_Connector_Rest
         // just because the checker announced itself.
         $ua = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36'
             . ' (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36';
+        // A real browser's request headers, not just a UA string. The
+        // Sec-Fetch-* trio is what actually matters: Meta's servers answer
+        // 400 without them, 200 with them, on the very same URL. Sending
+        // only Accept-Language changes nothing — verified against
+        // help.instagram.com. Without these, working links get reported
+        // as broken purely because of how we asked.
         $commonHeaders = array(
             'Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,*/*;q=0.8',
-            'Accept-Language: en;q=0.9',
+            'Accept-Language: en-US,en;q=0.9',
+            'Upgrade-Insecure-Requests: 1',
+            'Sec-Fetch-Dest: document',
+            'Sec-Fetch-Mode: navigate',
+            'Sec-Fetch-Site: none',
         );
 
         if (!empty($urls)) {
