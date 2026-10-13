@@ -1895,6 +1895,23 @@ class Dailybuddy_Platform_Connector_Rest
             return 0.8; // gif / webp / avif — no strong opinion
         };
 
+        // TranslatePress keeps translated media in its own per-language
+        // tables (wp_trp_dictionary_<from>_<to>), as original→translated
+        // URL pairs. An image used ONLY as the translated version of
+        // another one appears nowhere in wp_posts or wp_postmeta, so the
+        // audit reported it as unused although it is wired up and served
+        // on the translated page. Resolved once here, not per image.
+        // phpcs:disable WordPress.DB.DirectDatabaseQuery.DirectQuery,WordPress.DB.DirectDatabaseQuery.NoCaching,WordPress.DB.PreparedSQL.NotPrepared
+        $trpTables = array();
+        $trpLike   = $wpdb->esc_like($wpdb->prefix . 'trp_dictionary_') . '%';
+        foreach ((array) $wpdb->get_col($wpdb->prepare('SHOW TABLES LIKE %s', $trpLike)) as $t) {
+            // Table names come from SHOW TABLES, never from user input —
+            // but keep them to the expected shape anyway before they are
+            // interpolated into a query below.
+            if (preg_match('/^[A-Za-z0-9_]+$/', (string) $t)) $trpTables[] = (string) $t;
+        }
+        // phpcs:enable
+
         foreach ((array) $rows as $p) {
             $id       = (int) $p->ID;
             $mime     = (string) $p->post_mime_type;
@@ -1960,7 +1977,8 @@ class Dailybuddy_Platform_Connector_Rest
             // that misclassified anything just under the threshold as
             // "unused". Accuracy beats speed here — the scan is capped
             // at 500 attachments anyway.
-            $usage = 0;
+            $usage    = 0;
+            $trpUsage = 0; // hits in TranslatePress dictionary tables
 
             // Prefer the ORIGINAL file path from metadata over the
             // scaled/attached file — that's the un-suffixed stem WP
@@ -1977,7 +1995,17 @@ class Dailybuddy_Platform_Connector_Rest
             if ($stem !== '') {
                 $likeStem  = '%' . $wpdb->esc_like($stem)  . '%';
                 $likeClass = '%wp-image-' . $id . '%';
-                $likeJson  = '%"id":' . $id . '%';
+                // Page builders are inconsistent about the type: Elementor
+                // writes "id":123 in some widgets and "id":"123" in others
+                // (both occur in the same install). Matching only the numeric
+                // form marked everything placed by the other widgets unused.
+                $likeJson    = '%"id":' . $id . '%';
+                $likeJsonStr = '%"id":"' . $id . '"%';
+
+                // Exact test for PHP-side scanning. '"id":123' as a plain
+                // substring also matches '"id":1234', so require the value
+                // to end at a comma or closing brace, and accept quotes.
+                $idJsonRe = '/"id":"?' . $id . '"?\s*[,}]/';
 
                 // Fetch matching posts ONCE with their content — then
                 // scan in PHP to figure out which specific variant each
@@ -2000,16 +2028,29 @@ class Dailybuddy_Platform_Connector_Rest
                 // we can scan for the exact variant filename in PHP.
                 // No WP API for LIKE across meta_value — direct query
                 // is the only way to catch page-builder JSON blobs.
+                //
+                // The INNER JOIN is load-bearing, not an optimisation.
+                // Elementor copies _elementor_data into every revision, so
+                // one image easily has dozens of matching meta rows of type
+                // 'revision'. Without the join those rows ate the LIMIT
+                // before the actual published page was ever reached, and the
+                // image came back "unused" although it sits on a live page.
                 // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery,WordPress.DB.DirectDatabaseQuery.NoCaching
                 $metaHit = $wpdb->get_results($wpdb->prepare("
-                    SELECT post_id, meta_value
-                    FROM {$wpdb->postmeta}
-                    WHERE meta_value LIKE %s
-                       OR meta_value LIKE %s
-                       OR meta_value LIKE %s
-                       OR (meta_key = '_thumbnail_id' AND meta_value = %s)
+                    SELECT pm.post_id, pm.meta_value
+                    FROM {$wpdb->postmeta} pm
+                    INNER JOIN {$wpdb->posts} p ON p.ID = pm.post_id
+                    WHERE p.post_status = 'publish'
+                      AND p.post_type NOT IN ('revision', 'attachment', 'nav_menu_item')
+                      AND (
+                            pm.meta_value LIKE %s
+                         OR pm.meta_value LIKE %s
+                         OR pm.meta_value LIKE %s
+                         OR pm.meta_value LIKE %s
+                         OR (pm.meta_key = '_thumbnail_id' AND pm.meta_value = %s)
+                      )
                     LIMIT 200
-                ", $likeStem, $likeClass, $likeJson, (string)$id));
+                ", $likeStem, $likeClass, $likeJson, $likeJsonStr, (string)$id));
 
                 // Map post_id → { title, type } for meta hits.
                 $metaPostIds = array();
@@ -2088,7 +2129,7 @@ class Dailybuddy_Platform_Connector_Rest
                 $idMatches = array();
                 foreach ($postsHit as $p) {
                     $c = (string) $p->post_content;
-                    if (strpos($c, 'wp-image-' . $id) !== false || strpos($c, '"id":' . $id) !== false) {
+                    if (strpos($c, 'wp-image-' . $id) !== false || preg_match($idJsonRe, $c)) {
                         $idMatches[(int)$p->ID] = array(
                             'id'    => (int)  $p->ID,
                             'title' => (string) $p->post_title,
@@ -2100,7 +2141,7 @@ class Dailybuddy_Platform_Connector_Rest
                     $pid = (int) $m->post_id;
                     if (!isset($metaTitles[$pid])) continue;
                     $mv = (string) $m->meta_value;
-                    if (strpos($mv, 'wp-image-' . $id) !== false || strpos($mv, '"id":' . $id) !== false) {
+                    if (strpos($mv, 'wp-image-' . $id) !== false || preg_match($idJsonRe, $mv)) {
                         $idMatches[$pid] = array(
                             'id'    => $pid,
                             'title' => $metaTitles[$pid]['title'],
@@ -2131,6 +2172,27 @@ class Dailybuddy_Platform_Connector_Rest
                     foreach ((array)($v['used_in'] ?? array()) as $u) $allSeen[$u['id']] = true;
                 }
                 $usage = count($allSeen);
+
+                // TranslatePress: counted separately because there is no
+                // post behind it — the image is registered as the
+                // translation of another one and served on the translated
+                // page. Enough to clear the "unused" flag, but it gets its
+                // own number so the UI can say WHY it isn't unused.
+                // The table name is interpolated because SQL has no
+                // placeholder for identifiers — prepare() can only bind
+                // values. It never comes from user input: SHOW TABLES
+                // produced it and the [A-Za-z0-9_] check above rejected
+                // anything else. The two LIKE values ARE bound.
+                // phpcs:disable WordPress.DB.DirectDatabaseQuery.DirectQuery,WordPress.DB.DirectDatabaseQuery.NoCaching,WordPress.DB.PreparedSQL.NotPrepared,WordPress.DB.PreparedSQL.InterpolatedNotPrepared
+                foreach ($trpTables as $trpTable) {
+                    $trpUsage += (int) $wpdb->get_var($wpdb->prepare(
+                        "SELECT COUNT(*) FROM `{$trpTable}`
+                         WHERE original LIKE %s OR translated LIKE %s",
+                        $likeStem,
+                        $likeStem
+                    ));
+                }
+                // phpcs:enable WordPress.DB.DirectDatabaseQuery.DirectQuery,WordPress.DB.DirectDatabaseQuery.NoCaching,WordPress.DB.PreparedSQL.NotPrepared,WordPress.DB.PreparedSQL.InterpolatedNotPrepared
                 // Persist orig usage list for the view.
                 $originalUsedIn = $origUsed;
             }
@@ -2143,7 +2205,11 @@ class Dailybuddy_Platform_Connector_Rest
 
             $hasAlt      = $altText !== '';
             $isJpgPng    = ($mime === 'image/jpeg' || $mime === 'image/png');
-            $isUnused    = ($usage === 0);
+            // A TranslatePress hit means the file IS wired up — it's the
+            // translated variant of another image and gets served on the
+            // translated page. Deleting it would break that page, so it
+            // must not be flagged unused.
+            $isUnused    = ($usage === 0 && $trpUsage === 0);
             // "Oversized" now means: original OR any variant > 500 KB
             // (variants matter most — that's what visitors actually load).
             $isOversized = $bytes > 500 * 1024;
@@ -2177,6 +2243,10 @@ class Dailybuddy_Platform_Connector_Rest
                 'orig_used_in'    => isset($originalUsedIn) ? $originalUsedIn : array(),
                 'alt'             => $hasAlt,
                 'usage'           => $usage,
+                // Referenced from TranslatePress' dictionary tables rather
+                // than from a post — the platform shows this as "used as a
+                // translation" instead of a post link, since there is none.
+                'translation_use' => $trpUsage,
                 'variants'        => $variants,     // sorted biggest-first, each with 'used_in'
                 'flags'           => array(
                     'oversized' => $isOversized,

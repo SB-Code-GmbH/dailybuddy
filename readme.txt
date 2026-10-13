@@ -4,7 +4,7 @@ Tags: content folders, duplicate posts, maintenance mode, elementor widgets, cus
 Requires at least: 5.0
 Tested up to: 7.1
 Requires PHP: 7.4
-Stable tag: 1.4.1
+Stable tag: 1.4.2
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -116,6 +116,11 @@ It detects your visitors' browser language and shows a popup, hello bar, or auto
 6. **Elementor Extensions** — 10 additional Elementor widgets including Mega Menu, Process Steps, Advanced Accordion, and more.
 
 == Changelog ==
+
+= 1.4.2 =
+
+* WPBuddy Connector: image audit no longer reports images as unused that are actually in use.
+* WPBuddy Connector: link scan fixes for links wrongly listed as broken.
 
 = 1.4.1 =
 
