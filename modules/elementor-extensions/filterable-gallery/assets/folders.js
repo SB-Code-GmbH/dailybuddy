@@ -1935,8 +1935,11 @@
                         // ★ Update all dropdowns
                         $selects.each(function () {
                             var $select = $(this);
-                            // Keep first option, remove others
-                            $select.find('option:not(:first)').remove();
+                            // Keep first option, remove others.
+                            // Uses .slice(1) instead of the :not(:first) jQuery
+                            // filter, which is deprecated in jQuery Migrate 3.6
+                            // and removed in jQuery 4.
+                            $select.find('option').slice(1).remove();
                             self.renderFolderOptions(response.data.tree, $select, 0);
 
                             // ★ Restore selected value if any

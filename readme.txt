@@ -2,9 +2,9 @@
 Contributors: beckerilja
 Tags: content folders, duplicate posts, maintenance mode, elementor widgets, custom login
 Requires at least: 5.0
-Tested up to: 7.1
+Tested up to: 7.2
 Requires PHP: 7.4
-Stable tag: 1.4.2
+Stable tag: 1.4.3
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -116,6 +116,11 @@ It detects your visitors' browser language and shows a popup, hello bar, or auto
 6. **Elementor Extensions** — 10 additional Elementor widgets including Mega Menu, Process Steps, Advanced Accordion, and more.
 
 == Changelog ==
+
+= 1.4.3 =
+
+* Compat: tested with WordPress 7.2
+* Housekeeping: replaced the deprecated jQuery `:not(:first)` filter in Content Folders and Filterable Gallery (jQuery 4 / Migrate 3.6 ready)
 
 = 1.4.2 =
 
